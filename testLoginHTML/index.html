@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Museu Apel·les Fenosa</title>
+    <!-- Enlace a Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-form">
+            <img src="logo.png" alt="Museu Apel·les Fenosa" class="logo">
+            <h2>INTRANET</h2>
+            <form action="/login" method="POST">
+                <div class="input-group">
+                    <label for="username">
+                        <i class="fas fa-user"></i>
+                    </label>
+                    <input type="text" id="username" name="username" placeholder="Usuari" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">
+                        <i class="fas fa-lock"></i>
+                    </label>
+                    <input type="password" id="password" name="password" placeholder="Contrasenya" required>
+                </div>
+                <a href="#" class="forgot-password">He oblidat la meva contrasenya</a>
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+        </div>
+        <div class="image-container">
+            <img src="login-screen.png" alt="Apel·les Fenosa">
+        </div>
+    </div>
+</body>
+</html>
