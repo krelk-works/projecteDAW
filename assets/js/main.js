@@ -1,4 +1,4 @@
-let profileButton = document.querySelector("#profileButton");
+let profileButton = document.querySelector("#logoutButton");
 
 profileButton.addEventListener("click", function() {
     location.href = "?logout";

@@ -20,20 +20,28 @@
     <!-- Navigation menú -->
     <ul>
         <li>
-            <a href="index.php" style="<?php echo (!isset($actualPage) || $actualPage == "inici") ? "font-weight: 500;" : ""; ?>">Inici</a>
+            <a href="index.php" style="<?php echo (!isset($actualPage) || $actualPage == "inici") ? "font-weight: 500; border-bottom: 1px solid #007bff;" : ""; ?>">Inici</a>
         </li>
         <li>
-            <a href="?page=usuaris" style="<?php echo $actualPage == "usuaris" ? "font-weight: 500;" : "" ?>">Usuaris</a>
+            <a href="?page=usuaris" style="<?php echo $actualPage == "usuaris" ? "font-weight: 500; border-bottom: 1px solid #007bff;" : "" ?>">Usuaris</a>
         </li>
         <li>
-            <a href="?page=localitzacions" style="<?php echo $actualPage == "localitzacions" ? "font-weight: 500;" : "" ?>">Localitzacions</a>
+            <a href="?page=localitzacions" style="<?php echo $actualPage == "localitzacions" ? "font-weight: 500; border-bottom: 1px solid #007bff;" : "" ?>">Localitzacions</a>
         </li>
         <li>
-            <a href="?page=backups" style="<?php echo $actualPage == "backups" ? "font-weight: 500;" : "" ?>">Backups</a>
+            <a href="?page=backups" style="<?php echo $actualPage == "backups" ? "font-weight: 500; border-bottom: 1px solid #007bff;" : "" ?>">Backups</a>
         </li>
     </ul>
     <!-- Profile picture -->
     <div id="profile">
-        <img id="profileButton" src="<?php echo $_SESSION['profileimg'] ?>" width="30" height="30" class="" alt="Profile icon">
+        <div id="profileName">
+            <p><?php echo $_SESSION['firstname']." ".$_SESSION['lastname'] ?></p>
+        </div>
+
+        <div id="profileIconAandOptions">
+            <img id="profileButton" src="<?php echo $_SESSION['profileimg'] ?>" width="30" height="30" class="" alt="Profile icon">
+            <i class="fa-solid fa-gear" id="profileSettings"></i>
+            <i class="fa-solid fa-right-from-bracket" id="logoutButton"></i>
+        </div>
     </div>
 </nav>

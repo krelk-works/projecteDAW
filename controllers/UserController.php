@@ -24,25 +24,11 @@ class UserController{
         $_SESSION['lastname'] = $user->getLastname();
         $_SESSION['email'] = $user->getEmail();
         $_SESSION['profileimg'] = $user->getProfileimg();
-        //echo "<br> Profile IMG: ".$user->getProfileimg();
-        //echo "<br>Session started";
-        //echo "<br>Username: ".$_SESSION['username'];
-        //echo "<br>Logout: <a href='?logout'><button>Logout</button></a>";
+        $_SESSION['role'] = $user->getRole();
 
-        // Redirect to the home page.
-        //header("Location: index.php?page=home");
-
-        require_once "views/navbar/navbar.php";
-        //echo "<h1>Benvingut ".$_SESSION['username']."</h1>";
-
-        //echo '<pre>';
-            //var_dump($_SESSION);
-        //echo '</pre>';  
-
-
-        //echo "<h1>Benvingut ".$user->getUsername()."</h1>";
-        //echo "<br><a href='index.php'>Tornar a la pàgina principal</a>";
-        //echo "<br>The username session is: ".$_SESSION['username'];
+        // Redirect user to the home page.
+        header("Location: index.php");
+        
     }
 }
 ?>

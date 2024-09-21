@@ -15,11 +15,12 @@
     <?php
         // Needed to include all classes created.
         require_once "autoload.php";
-
+        /*
         if (!is_writable(session_save_path())) {
             echo 'Session path "'.session_save_path().'" is not writable for PHP!'; 
             die();
         }
+        */
         ini_set('session.gc_maxlifetime', 3600);
 
         // Each client should remember their session id for EXACTLY 1 hour
