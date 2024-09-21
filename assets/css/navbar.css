@@ -106,6 +106,7 @@
     padding: 4px;
     font-size: 10px;
     z-index: 2;
+    transition: all 0.5s;
 }
 
 #profile #logoutButton {
@@ -117,6 +118,7 @@
     padding: 4px;
     font-size: 10px;
     z-index: 2;
+    transition: all 0.5s;
 }
 
 #profile #profileSettings:hover {
@@ -128,7 +130,6 @@
 #profile #logoutButton:hover {
     cursor: pointer;
     background-color: #ff0000;
-    border: 1px solid #ff0000;
     color: white;
 }
 
@@ -184,10 +185,6 @@
 
 @media only screen and (max-width: 800px) {
     #profileName {
-        /*margin-left: -70%;*/
-        /*padding: 0px;
-        font-size: calc( 0.25vw + 0.25vw + 0.25vw );
-        text-align: left;*/
         font-size: 15px;
     }
 }
