@@ -1,11 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-body {
+#login_wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -63,7 +56,7 @@ body {
     border-radius: 5px;
 }
 
-input:focus {
+.input-group input:focus {
     outline: solid #007bff 1px;
 }
 

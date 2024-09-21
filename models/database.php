@@ -1,6 +1,6 @@
 <?php
     class Database{
-        public function conectar(){
+        public function connect(){
             $servername = "bbyirnoypbjzxaryzns9-mysql.services.clever-cloud.com";
             $dbname= "bbyirnoypbjzxaryzns9";
             $username = "ujthole5uvbkxwxc";

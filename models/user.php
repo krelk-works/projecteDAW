@@ -1,69 +1,113 @@
 <?php
     require_once("database.php");
-    class Usuario extends Database {
-        private $nombre;
-        private $apellidos;
+    class User extends Database {
+        private $username;
+        private $firstname;
+        private $lastname;
         private $email;
-        private $password;
-        private $fecha;
+        private $profileimg;
 
-        function __construct($nombre, $apellidos, $email, $password, $fecha) {
-            $this->nombre = $nombre;
-            $this->apellidos = $apellidos;
+        public function __construct($username = null, $firstname = null, $lastname = null, $email = null, $profileimg = null){
+            $this->username = $username;
+            $this->firstname = $firstname;
+            $this->lastname = $lastname;
             $this->email = $email;
-            $this->password = $password;
-            $this->fecha = $fecha;
+            $this->profileimg = $profileimg;
         }
         
-        function getNombre() {
-            return $this->nombre;
+        public function getUsername(){
+            return $this->username;
         }
 
-        function getApellidos() {
-            return $this->apellidos;
+        public function getFirstname(){
+            return $this->firstname;
         }
 
-        function getEmail() {
+        public function getLastname(){
+            return $this->lastname;
+        }
+
+        public function getEmail(){
             return $this->email;
         }
 
-        function getPassword() {
-            return $this->password;
+        public function getProfileimg(){
+            return $this->profileimg;
         }
 
-        function setNombre($nombre) {
-            $this->nombre = $nombre;
-        }
-        function getFecha() {
-            return $this->fecha;
-        }
-        function setApellidos($apellidos) {
-            $this->apellidos = $apellidos;
+        public function setUsername($username){
+            $this->username = $username;
         }
 
-        function setEmail($email) {
+        public function setFirstname($firstname){
+            $this->firstname = $firstname;
+        }
+
+        public function setLastname($lastname){
+            $this->lastname = $lastname;
+        }
+
+        public function setEmail($email){
             $this->email = $email;
         }
 
-        function setPassword($password) {
-            $this->password = $password;
+        public function setProfileimg($profileimg){
+            $this->profileimg = $profileimg;
+        }
+
+        public function update(){
+            $conn = $this->connect();
+            $sql = "UPDATE users SET username = :username, firstname = :firstname, lastname = :lastname, email = :email, profileimg = :profileimg WHERE username = :username";
+            
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+        
+            // Linking parameters securely to avoid SQL injection
+            $stmt->bindParam(':username', $this->username);
+            $stmt->bindParam(':firstname', $this->firstname);
+            $stmt->bindParam(':lastname', $this->lastname);
+            $stmt->bindParam(':email', $this->email);
+            $stmt->bindParam(':profileimg', $this->profileimg);
+        
+            // Execute the statement
+            $stmt->execute();
+        }
+
+        public function login($username, $password){
+            $conn = $this->connect();
+            $sql = "SELECT * FROM users WHERE username = :username AND password = :password";
+            
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+        
+            // Linking parameters securely to avoid SQL injection
+            $stmt->bindParam(':username', $username);
+            $stmt->bindParam(':password', $password);
+        
+            // Execute the statement
+            $stmt->execute();
+        
+            // Fetch the user
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+            // If the query returns a row then...
+            if ($row) {
+                if ($password == $row['password']) {
+                    // Set the user data
+                    $this->username = $row['username'];
+                    $this->firstname = $row['firstname'];
+                    $this->lastname = $row['lastname'];
+                    $this->email = $row['email'];
+                    $this->profileimg = $row['profileimg'];
+                    
+                    // Send data to UserController to start the web session
+                    $controller = new UserController();
+                    $controller->startSession(new User($this->username, $this->firstname, $this->lastname, $this->email, $this->profileimg));
+                } else {
+                    // TODO: Show error message user or password incorrect
+                }
+            }
         }
         
-        function setFecha($fecha) {
-            $this->fecha = $fecha;
-        }
-
-        function mostrarTodos(){
-            $sql = "SELECT * FROM usuarios";
-            $db = $this->conectar();
-            $rows = $db->query($sql);
-            return $rows;
-        }
-
-        function insertar($nombre, $passwod){
-            echo "Insertaría en la BD, pero no está acabado";
-            $db = $this->conectar();
-            $sql = "INSERT INTO usuario VALUES ";
-        }
     }
 ?>

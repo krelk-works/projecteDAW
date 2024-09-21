@@ -1,0 +1,69 @@
+#navbar {
+    width: 100%;
+    display: flex;
+    justify-content:space-between;
+    padding: 5px 20px;
+    /*border-bottom: 2px solid rgba(165, 165, 165, 0.726);*/
+
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+
+#navbar #logo-link {
+    display: flex;
+    width: 112px;
+    align-items: center;
+    margin-left: 20px;
+}
+
+#navbar #logo-link img {
+    width: 100%;
+    height: auto;
+}
+
+#navbar ul {
+    /*background-color: aquamarine;*/
+    display: flex;
+    align-items: flex-end;
+    list-style: none;
+}
+
+#navbar ul li {
+    margin: 15px;
+    text-decoration: none;
+}
+
+#navbar ul li a {
+    border-bottom: 1px solid #007bff00;
+    text-decoration: none;
+    color: black;
+    transition: border-bottom 0.66s, text-shadow 0.66s, color 0.66s;
+    font-size: 16px;
+    font-size: 1em;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-transform: uppercase;
+    text-shadow: none;
+    container-name: navbar-font;
+}
+
+#navbar ul li a:hover {
+    border-bottom: 1px solid #007bff;
+    text-shadow: 0 0 2px #bebebe80, 0 0 1px #bebebe80;
+    color: #007bff;
+}
+
+#profile {
+    display: flex;
+    width: 112px;
+    align-items: center;
+}
+
+#profile img {
+    width: 38%;
+    height: auto;
+}
+
+#profile img:hover {
+    cursor: pointer;
+}
