@@ -93,10 +93,6 @@
     z-index: 1;
 }
 
-#profile img:hover {
-    /*cursor: pointer;*/
-}
-
 #profile #profileSettings {
     margin-left: -51px;
     margin-top: 55px;
