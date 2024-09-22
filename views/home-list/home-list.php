@@ -3,7 +3,7 @@
     <div id="home-list-container">
         <div class="home-list-item">
             <div class="home-list-item-img">
-                <img src="assets/img/login-screen.png" alt="Obra 1">
+                <img src="assets/img/example4.jpeg" alt="Obra 1">
             </div>
             <div class="home-list-item-info">
                 <h3>Dona Ajaguda</h3>
@@ -15,7 +15,7 @@
         </div>
         <div class="home-list-item">
             <div class="home-list-item-img">
-                <img src="assets/img/login-screen.png" alt="Obra 1">
+                <img src="assets/img/example1.jpg" alt="Obra 1">
             </div>
             <div class="home-list-item-info">
                 <h3>Aire</h3>
@@ -27,7 +27,7 @@
         </div>
         <div class="home-list-item">
             <div class="home-list-item-img">
-                <img src="assets/img/login-screen.png" alt="Obra 1">
+                <img src="assets/img/example2.jfif" alt="Obra 1">
             </div>
             <div class="home-list-item-info">
                 <h3>Els Amants</h3>
@@ -39,7 +39,7 @@
         </div>
         <div class="home-list-item">
             <div class="home-list-item-img">
-                <img src="assets/img/login-screen.png" alt="Obra 1">
+                <img src="assets/img/example3.png" alt="Obra 1">
             </div>
             <div class="home-list-item-info">
                 <h3>Centauro</h3>
@@ -51,7 +51,7 @@
         </div>
         <div class="home-list-item">
             <div class="home-list-item-img">
-                <img src="assets/img/login-screen.png" alt="Obra 1">
+                <img src="assets/img/example6.jpg" alt="Obra 1">
             </div>
             <div class="home-list-item-info">
                 <h3>L'Arbre</h3>
@@ -63,7 +63,7 @@
         </div>
         <div class="home-list-item">
             <div class="home-list-item-img">
-                <img src="assets/img/login-screen.png" alt="Obra 1">
+                <img src="assets/img/example5.jpg" alt="Obra 1">
             </div>
             <div class="home-list-item-info">
                 <h3>Cristo de l'Agoni</h3>

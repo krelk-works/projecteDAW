@@ -23,15 +23,33 @@
             <li>
                 <a href="index.php" style="<?php echo (!isset($actualPage) || $actualPage == "inici") ? "border-bottom: 2px solid #007bff;" : ""; ?>">Inici</a>
             </li>
-            <li>
-                <a href="?page=usuaris" style="<?php echo $actualPage == "usuaris" ? "border-bottom: 2px solid #007bff;" : "" ?>">Usuaris</a>
-            </li>
-            <li>
-                <a href="?page=localitzacions" style="<?php echo $actualPage == "localitzacions" ? "border-bottom: 2px solid #007bff;" : "" ?>">Localitzacions</a>
-            </li>
-            <li>
-                <a href="?page=backups" style="<?php echo $actualPage == "backups" ? "border-bottom: 2px solid #007bff;" : "" ?>">Backups</a>
-            </li>
+
+            <?php
+                // If the user is admin, show the following options
+
+                if ($_SESSION['role'] == "admin") {
+
+                    // Variables to change the style of the selected option
+                    $userManagementStyle = $actualPage == "usuaris" ? "border-bottom: 2px solid #007bff;" : "";
+                    $locationManagementStyle = $actualPage == "localitzacions" ? "border-bottom: 2px solid #007bff;" : "";
+                    $backupManagementStyle = $actualPage == "backups" ? "border-bottom: 2px solid #007bff;" : "";
+
+                    // User management
+                    echo "<li>";
+                        echo "<a href='?page=usuaris' style='$userManagementStyle'>Usuaris</a>";
+                    echo "</li>";
+
+                    // Location management
+                    echo "<li>";
+                        echo "<a href='?page=localitzacions' style='$locationManagementStyle'>Localitzacions</a>";
+                    echo "</li>";
+
+                    // Backup management
+                    echo "<li>";
+                        echo "<a href='?page=backups' style='$backupManagementStyle'>Backups</a>";
+                    echo "</li>";
+                }
+            ?>
         </ul>
         <!-- Profile picture -->
         <div id="profile">
