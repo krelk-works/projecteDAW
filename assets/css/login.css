@@ -34,6 +34,7 @@
     font-size: 28px;
     margin-bottom: 40px;
     font-family: 'Courier New', Courier, monospace;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .input-group {
@@ -50,19 +51,6 @@
 
 .input-group input {
     width: 80%;
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    border-bottom: 1px solid #ccc;
-    border-radius: 1px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    transition: all 0.66s;
-}
-
-.input-group input:focus {
-    /*outline: solid #007bff 1px;*/
-    outline: none;
-    border-bottom: 1px solid #007bff;
 }
 
 .forgot-password {
@@ -83,7 +71,7 @@
     color: rgb(0, 0, 0);
     font-size: 16px;
     border: none;
-    border-radius: 5px;
+    border-radius: 1px;
     border: 1px solid #4577ff;
     margin-top: 30px;
     cursor: pointer;

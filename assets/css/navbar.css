@@ -1,5 +1,6 @@
 #navbar {
-    width: 100%;
+    width: 100vw !important;
+    height: 11vh !important;
     display: flex;
     justify-content:space-between;
     padding: 5px 20px;
@@ -61,7 +62,7 @@
 #profileIconAandOptions {
     display: flex;
     width: 112px;
-    align-items: flex-start;
+    align-items: center;
 }
 
 #profileName {
@@ -72,7 +73,7 @@
     min-width: 130px;
     height: 100%;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     margin-left: -70%;
     padding-right: 10px;
     text-align: right;
@@ -95,7 +96,7 @@
 
 #profile #profileSettings {
     margin-left: -51px;
-    margin-top: 55px;
+    margin-top: 76px;
     background-color: white;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 12px;
@@ -107,7 +108,7 @@
 
 #profile #logoutButton {
     margin-left: 15.8px;
-    margin-top: 55px;
+    margin-top: 76px;
     background-color: white;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 12px;
@@ -151,22 +152,33 @@
     #profile #logoutButton {
         font-size: 8px;
         margin-left: 5.5px;
-        margin-top: 40px;
+        margin-top: 60px;
     }
 
     #profile #profileSettings {
         font-size: 8px;
         margin-left: -36.5px;
-        margin-top: 40px;
+        margin-top: 60px;
     }
 
     #profileName {
         margin-left: -100%;
         font-size: 14px;
+        align-items: center;
+    }
+
+    #profileIconAandOptions {
+        align-items: center;
     }
 }
 
-@media only screen and (max-width: 590px) {
+@media only screen and (max-width: 700px) {
+    #navbar {
+        display: none;
+    }
+}
+
+@media only screen and (max-height: 660px) {
     #navbar {
         display: none;
     }
@@ -174,13 +186,41 @@
 
 @media only screen and (max-width: 1260px) {
     #profileName {
-        padding-right: 0px;
+        padding-right: 5px;
         font-size: 14px;
     }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 850px) {
     #profileName {
-        font-size: 15px;
+        font-size: 12px;
     }
 }
+
+/* Profile Icon and Options RESPONSIVE */
+
+@media only screen and (max-height: 950px) {
+    #profileIconAandOptions {
+        margin-top: -10px;
+    }
+}
+
+@media only screen and (max-height: 860px) {
+    #profileIconAandOptions {
+        margin-top: -15px;
+    }
+}
+
+@media only screen and (min-height: 1100px) {
+    #profileIconAandOptions {
+        margin-top: 10px;
+    }
+}
+
+@media only screen and (min-height: 1400px) {
+    #profileIconAandOptions {
+        margin-top: 20px;
+    }
+}
+
+/* --------------------------------------------- */
