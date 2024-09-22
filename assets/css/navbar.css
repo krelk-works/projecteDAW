@@ -5,7 +5,7 @@
     justify-content:space-between;
     padding: 5px 20px;
     /*border-bottom: 2px solid rgba(165, 165, 165, 0.726);*/
-
+    z-index: 5;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 }
 
@@ -178,7 +178,7 @@
     }
 }
 
-@media only screen and (max-height: 660px) {
+@media only screen and (max-height: 700px) {
     #navbar {
         display: none;
     }
@@ -207,10 +207,17 @@
 
 @media only screen and (max-height: 860px) {
     #profileIconAandOptions {
-        margin-top: -15px;
+        margin-top: -21px;
     }
 }
 
+@media only screen and (max-height: 720px) {
+    #profileIconAandOptions {
+        margin-top: -23px;
+    }
+}
+
+/*
 @media only screen and (min-height: 1100px) {
     #profileIconAandOptions {
         margin-top: 10px;
@@ -222,5 +229,6 @@
         margin-top: 20px;
     }
 }
+    */
 
 /* --------------------------------------------- */

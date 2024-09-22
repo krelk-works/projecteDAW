@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="assets/css/general.css">
     <link rel="stylesheet" href="assets/css/login.css">
     <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/search.css">
+    <link rel="stylesheet" href="assets/css/home-list.css">
     <script src="assets/js/main.js" defer></script>
     <title>Intranet - Apel·les Fenosa</title>
 </head>
@@ -44,6 +46,14 @@
             // Always include the navbar.
             require_once "views/navbar/navbar.php";
             //echo "<h1>Benvingut ".$_SESSION['username']."</h1>";
+
+            // Check what to load in the main content.
+            if (isset($actualPage)) {
+                if ($actualPage == "inici") {
+                    require_once "views/search/search.php";
+                    require_once "views/home-list/home-list.php";
+                }
+            }
             
             if (isset($_GET['controller'])){
                 // TODO
