@@ -9,7 +9,14 @@
     session_name("MuseuApellesFenosa"); 
 
     // Start the session.
-    session_start(); 
+    session_start();
+
+    // Check if the user wants to logout.
+    if (isset($_GET['logout'])){
+        session_unset();
+        session_destroy();
+        header("Location: index.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -37,12 +44,6 @@
             die();
         }
         */
-        // Check if the user wants to logout.
-        if (isset($_GET['logout'])){
-            session_unset();
-            session_destroy();
-            header("Location: index.php");
-        }
 
         // Check if the session is active and the user is logged in.
         if (session_status() != PHP_SESSION_NONE && isset($_SESSION['username'])) {
