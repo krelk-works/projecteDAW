@@ -1,3 +1,17 @@
+<?php
+
+    ini_set('session.gc_maxlifetime', 3600);
+
+    // Each client should remember their session id for EXACTLY 1 hour
+    session_set_cookie_params(3600);
+
+    // Set a custom session name.
+    session_name("MuseuApellesFenosa"); 
+
+    // Start the session.
+    session_start(); 
+?>
+
 <!DOCTYPE html>
 <html lang="ca">
 <head>
@@ -23,17 +37,6 @@
             die();
         }
         */
-        ini_set('session.gc_maxlifetime', 3600);
-
-        // Each client should remember their session id for EXACTLY 1 hour
-        session_set_cookie_params(3600);
-
-        // Set a custom session name.
-        session_name("MuseuApellesFenosa"); 
-
-        // Start the session.
-        session_start(); 
-
         // Check if the user wants to logout.
         if (isset($_GET['logout'])){
             session_unset();
