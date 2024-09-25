@@ -1,6 +1,26 @@
+<?php
+        ini_set('session.gc_maxlifetime', 3600);
+
+        // Each client should remember their session id for EXACTLY 1 hour
+        session_set_cookie_params(3600);
+    
+        // Set a custom session name.
+        session_name("MuseuApellesFenosa"); 
+    
+        // Start the session.
+        session_start();
+
+        ?>
 <!DOCTYPE html>
 <html lang="ca">
 <head>
+    <?php
+        if (isset($_GET['logout'])){
+            session_unset();
+            session_destroy();
+            echo "<meta http-equiv='refresh' content='0;url=index.php'>";
+        }
+    ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -24,23 +44,9 @@
         }
         */
 
-        ini_set('session.gc_maxlifetime', 3600);
-
-        // Each client should remember their session id for EXACTLY 1 hour
-        session_set_cookie_params(3600);
-    
-        // Set a custom session name.
-        session_name("MuseuApellesFenosa"); 
-    
-        // Start the session.
-        session_start();
 
         // Check if the user wants to logout.
-        if (isset($_GET['logout'])){
-            session_unset();
-            session_destroy();
-            header("Location: index.php");
-        }
+    
         // Check if the session is active and the user is logged in.
         if (session_status() != PHP_SESSION_NONE && isset($_SESSION['username'])) {
             // Always include the navbar.
