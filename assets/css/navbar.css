@@ -244,7 +244,9 @@
   width: 20%;
   height: 100%;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+  padding-right: 20px;
+  /*padding-right: 10%;*/
   /*background-color: yellow;*/
 }
 
