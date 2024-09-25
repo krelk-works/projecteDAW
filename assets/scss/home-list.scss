@@ -1,5 +1,4 @@
 #home-list-wrapper {
-    /*background-color: rgb(66, 151, 226);*/
     padding: 0px 15px 0px 20px;
     width: calc( 82% - 35px );
     display: flex;
@@ -7,7 +6,6 @@
     justify-content: flex-start;
     align-items: flex-start;
     height: 89vh;
-    /*background-color: #f5f5f5;*/
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -19,8 +17,9 @@
 
 .home-list-item {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+    flex-wrap: nowrap;
+    flex-direction: row; 
+    justify-content: space-between; 
     align-items: center;
     width: 100%;
     padding: 10px;
@@ -32,29 +31,23 @@
     transition: border-bottom 0.66s, padding 0.2s;
 }
 
-.home-list-item p{
-    margin-right: 100px;
-
-}
-
 .home-list-item:hover {
     border-bottom: 1px solid #4577ff;
     cursor: pointer;
-    /*margin: 5px;*/
     padding: 15px;
 }
 
 .home-list-item-info {
-    display: flex;
-    flex-direction: row; 
-    justify-content: space-between; 
-    align-items: center;
-    flex-wrap: nowrap; 
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr; /* Definimos 5 columnas */
+    gap: 10px; /* Ajusta el espacio entre las columnas */
+    align-items: center; /* Alinea verticalmente */
     width: 100%;
 }
 
-.home-list-item-info * {
-    margin: 5px;
+.home-list-item-info p, .home-list-item-info h3 {
+    white-space: nowrap;
+    margin: 0 0 0 10px;
 }
 
 .home-list-item-img {
@@ -87,11 +80,4 @@
 
 .home-list-pagination-page {
     width: auto !important;
-}
-
-
-
-.home-list-item-info p, .home-list-item-info h3 {
-    margin: 0 10px; 
-    white-space: nowrap;
 }
