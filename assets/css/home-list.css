@@ -32,6 +32,10 @@
   transition: border-bottom 0.66s, padding 0.2s;
 }
 
+.home-list-item p {
+  margin-right: 100px;
+}
+
 .home-list-item:hover {
   border-bottom: 1px solid #4577ff;
   cursor: pointer;
@@ -41,9 +45,11 @@
 
 .home-list-item-info {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
+  flex-wrap: nowrap;
+  width: 100%;
 }
 
 .home-list-item-info * {
@@ -82,4 +88,9 @@
 
 .home-list-pagination-page {
   width: auto !important;
+}
+
+.home-list-item-info p, .home-list-item-info h3 {
+  margin: 0 10px;
+  white-space: nowrap;
 }/*# sourceMappingURL=home-list.css.map */
