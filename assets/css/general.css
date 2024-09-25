@@ -17,7 +17,7 @@ body {
 
 /* CUSTOM BUTTONS FOR WEBSITE */
 button {
-  padding: 10px;
+  padding: 6px;
   color: rgb(0, 0, 0);
   font-size: 16px;
   border: none;
@@ -36,7 +36,7 @@ button:hover {
 /* ------------------------------ */
 /* CUSTOM INPUT FIELDS FOR WEBSITE */
 input {
-  padding: 10px;
+  padding: 6px;
   font-size: 16px;
   border: none;
   border-bottom: 1px solid #ccc;

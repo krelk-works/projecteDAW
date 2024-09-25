@@ -3,7 +3,8 @@
     height: 11vh !important;
     display: flex;
     justify-content:space-between;
-    padding: 5px 20px;
+    /*padding: 5px 20px;*/
+    padding: 0px;
     /*border-bottom: 2px solid rgba(165, 165, 165, 0.726);*/
     z-index: 5;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
@@ -11,19 +12,22 @@
 
 #navbar #logo-link {
     display: flex;
-    width: 112px;
+    justify-content: center;
     align-items: center;
-    margin-left: 20px;
+    width: 20%;
+    /*background-color: yellowgreen;*/
 }
 
 #navbar #logo-link img {
-    width: 100%;
-    height: auto;
+    height: 100%;
+    width: auto;
 }
 
 #navbar ul {
+    width: 60%;
     /*background-color: aquamarine;*/
     display: flex;
+    justify-content: center;
     align-items: flex-end;
     list-style: none;
 }
@@ -53,6 +57,8 @@
     color: #007bff;
 }
 
+/*
+
 #profile {
     display: flex;
     width: 112px;
@@ -66,7 +72,6 @@
 }
 
 #profileName {
-    /*background-color: tomato;*/
     display: flex;
     width: 130px;
     max-width: 130px;
@@ -198,8 +203,11 @@
     }
 }
 
+*/
+
 /* Profile Icon and Options RESPONSIVE */
 
+/*
 @media only screen and (max-height: 950px) {
     #profileIconAandOptions {
         margin-top: -10px;
@@ -217,7 +225,7 @@
         margin-top: -23px;
     }
 }
-
+*/
 /*
 @media only screen and (min-height: 1100px) {
     #profileIconAandOptions {
@@ -233,3 +241,91 @@
     */
 
 /* --------------------------------------------- */
+#profile {
+    display: flex;
+    /*width: 112px;*/
+    width: 20%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    /*background-color: yellow;*/
+}
+
+.profile-section {
+    height: 80%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-image-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  
+}
+
+.menu-button-container {
+    position: relative;
+}
+
+.menu-button {
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 10px 15px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, color 0.15s;
+}
+
+.menu-button:hover {
+    background-color: #007bff;
+  /*transform: scale(1.2);*/
+  color: white;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    width: 250%;
+    top: 50px;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown-menu a i {
+    padding-right: 5px;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f1f1f1;
+  border-radius: 5px;
+}
+
+.show {
+    display: block;
+}

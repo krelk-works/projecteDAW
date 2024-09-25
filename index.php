@@ -9,7 +9,6 @@
     
         // Start the session.
         session_start();
-
         ?>
 <!DOCTYPE html>
 <html lang="ca">
@@ -20,6 +19,9 @@
             session_destroy();
             echo "<meta http-equiv='refresh' content='0;url=index.php'>";
         }
+
+        // RELOAD WEB PAGE FOR DEVELOPEMENT PURPOSES
+        //echo "<meta http-equiv='refresh' content='2;url=index.php'>";
     ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

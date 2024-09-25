@@ -53,7 +53,19 @@
         </ul>
         <!-- Profile picture -->
         <div id="profile">
-            <div id="profileName">
+            <div class="profile-section">
+                <div class="profile-image-container">
+                    <img src="<?php echo $_SESSION['profileimg'] ?>" alt="Foto de perfil" class="profile-image">
+                </div>
+                <div class="menu-button-container">
+                    <button class="menu-button" onclick="toggleMenu()">☰</button>
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <a href="#"><i class="fa-solid fa-user"></i><?php echo $_SESSION['username']; ?></a>
+                        <a href="#" id="logoutButton"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+                    </div>
+                </div>
+            </div>
+            <!--<div id="profileName">
                 <p><?php echo $_SESSION['firstname']." ".$_SESSION['lastname'] ?></p>
             </div>
 
@@ -61,7 +73,7 @@
                 <img id="profileButton" src="<?php echo $_SESSION['profileimg'] ?>" width="30" height="30" class="" alt="Profile icon">
                 <i class="fa-solid fa-gear" id="profileSettings"></i>
                 <i class="fa-solid fa-right-from-bracket" id="logoutButton"></i>
-            </div>
+            </div>-->
         </div>
     </nav>
 </header>
