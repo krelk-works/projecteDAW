@@ -12,6 +12,9 @@
     }
 ?>
 
+<head>
+    <script src="assets/js/navbar.js" defer></script>
+</head>
 <header>
     <nav id="navbar">
         <!-- Logo -->
@@ -51,7 +54,7 @@
                 }
             ?>
         </ul>
-        <!-- Profile picture -->
+        <!-- Profile icon & drop down menu -->
         <div id="profile">
             <div class="profile-section">
                 <div class="profile-image-container">
@@ -65,15 +68,6 @@
                     </div>
                 </div>
             </div>
-            <!--<div id="profileName">
-                <p><?php echo $_SESSION['firstname']." ".$_SESSION['lastname'] ?></p>
-            </div>
-
-            <div id="profileIconAandOptions">
-                <img id="profileButton" src="<?php echo $_SESSION['profileimg'] ?>" width="30" height="30" class="" alt="Profile icon">
-                <i class="fa-solid fa-gear" id="profileSettings"></i>
-                <i class="fa-solid fa-right-from-bracket" id="logoutButton"></i>
-            </div>-->
         </div>
     </nav>
 </header>

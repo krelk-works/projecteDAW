@@ -28,7 +28,7 @@
     /*background-color: aquamarine;*/
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     list-style: none;
 }
 
@@ -40,12 +40,10 @@
 #navbar ul li a {
     border-bottom: 1px solid #007bff00;
     text-decoration: none;
-    color: black;
+    color: #444444;
     transition: border-bottom 0.66s, text-shadow 0.66s, color 0.66s;
-    /*font-size: 16px;*/
-    font-size: 1em;
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
+    font-size: 16px;
+    font-weight: 600;
     font-style: normal;
     text-transform: uppercase;
     text-shadow: none;

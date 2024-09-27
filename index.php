@@ -1,15 +1,16 @@
 <?php
-        ini_set('session.gc_maxlifetime', 3600);
+    // Set the session cookie to 1 hour.
+    ini_set('session.gc_maxlifetime', 3600);
 
-        // Each client should remember their session id for EXACTLY 1 hour
-        session_set_cookie_params(3600);
-    
-        // Set a custom session name.
-        session_name("MuseuApellesFenosa"); 
-    
-        // Start the session.
-        session_start();
-        ?>
+    // Each client should remember their session id for EXACTLY 1 hour
+    session_set_cookie_params(3600);
+
+    // Set a custom session name.
+    session_name("MuseuApellesFenosa"); 
+
+    // Start the session.
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="ca">
 <head>
@@ -31,7 +32,7 @@
     <link rel="stylesheet" href="assets/css/navbar.css">
     <link rel="stylesheet" href="assets/css/search.css">
     <link rel="stylesheet" href="assets/css/home-list.css">
-    <script src="assets/js/main.js" defer></script>
+    <!--<script src="assets/js/main.js" defer></script>-->
     <title>Intranet - Apel·les Fenosa</title>
 </head>
 <body>
@@ -79,12 +80,15 @@
         }
         // If the session is not active, then show the login view.
         else{
-            if (isset($_POST['username']) && isset($_POST['password'])){
-                $controller = new UserController();
-                $controller->login($_POST['username'], $_POST['password']);
-            } else {
+            if (!isset($_POST['username']) && !isset($_POST['password'])){
+                //new UserController().showLoginView();
                 $controller = new UserController();
                 $controller->showLoginView();
+            } else {
+                if (isset($_POST['username']) && isset($_POST['password'])){
+                    $controller = new UserController();
+                    $controller->login($_POST['username'], $_POST['password']);
+                }
             }
         }
     ?>
