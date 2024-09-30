@@ -1,3 +1,4 @@
+@import 'vars';
 #login_wrapper {
     display: flex;
     justify-content: center;
@@ -55,7 +56,7 @@
 }
 
 .forgot-password {
-    color: #007bff;
+    color: $color-primary;
     text-decoration: none;
     font-size: 14px;
     margin-top: 10px;
@@ -73,14 +74,14 @@
     font-size: 16px;
     border: none;
     border-radius: 1px;
-    border: 1px solid #4577ff;
+    border: 1px solid $color-primary;
     margin-top: 30px;
     cursor: pointer;
     transition: all 0.66s;
 }
 
 .login-btn:hover {
-    background-color: #5d88ff;
+    background-color: $color-primary;
     color: white;
 }
 

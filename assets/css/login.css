@@ -73,14 +73,14 @@
   font-size: 16px;
   border: none;
   border-radius: 1px;
-  border: 1px solid #4577ff;
+  border: 1px solid #007bff;
   margin-top: 30px;
   cursor: pointer;
   transition: all 0.66s;
 }
 
 .login-btn:hover {
-  background-color: #5d88ff;
+  background-color: #007bff;
   color: white;
 }
 
