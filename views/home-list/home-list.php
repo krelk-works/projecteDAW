@@ -1,78 +1,26 @@
-<?php ?>
+<?php 
+    session_start();
+?>
 <main id="home-list-wrapper">
     <div id="home-list-container">
-        <div class="home-list-item">
-            <div class="home-list-item-img">
-                <img src="assets/img/example4.jpeg" alt="Obra 1">
-            </div>
-            <div class="home-list-item-info">
-                <h3>Dona Ajaguda</h3>
-                <p><i class="fa-solid fa-user"></i>Apel·les Fenosa</p>
-                <p><i class="fa-solid fa-location-dot"></i> Primera planta</p>
-                <p><i class="fa-solid fa-bookmark"></i> 1960</p>
-                <p><i class="fa-regular fa-clipboard"></i> Museu</p>
-            </div>
-        </div>
-        <div class="home-list-item">
-            <div class="home-list-item-img">
-                <img src="assets/img/example1.jpg" alt="Obra 1">
-            </div>
-            <div class="home-list-item-info">
-                <h3>Aire</h3>
-                <p><i class="fa-solid fa-user"></i>Apel·les Fenosa</p>
-                <p><i class="fa-solid fa-location-dot"></i> Primera planta</p>
-                <p><i class="fa-solid fa-bookmark"></i> 1960</p>
-                <p><i class="fa-regular fa-clipboard"></i> Museu</p>
-            </div>
-        </div>
-        <div class="home-list-item">
-            <div class="home-list-item-img">
-                <img src="assets/img/example2.jfif" alt="Obra 1">
-            </div>
-            <div class="home-list-item-info">
-                <h3>Els Amants</h3>
-                <p><i class="fa-solid fa-user"></i>Apel·les Fenosa</p>
-                <p><i class="fa-solid fa-location-dot"></i> Primera planta</p>
-                <p><i class="fa-solid fa-bookmark"></i> 1960</p>
-                <p><i class="fa-regular fa-clipboard"></i> Museu</p>
-            </div>
-        </div>
-        <div class="home-list-item">
-            <div class="home-list-item-img">
-                <img src="assets/img/example3.png" alt="Obra 1">
-            </div>
-            <div class="home-list-item-info">
-                <h3>Centauro</h3>
-                <p><i class="fa-solid fa-user"></i>Apel·les Fenosa</p>
-                <p><i class="fa-solid fa-location-dot"></i> Primera planta</p>
-                <p><i class="fa-solid fa-bookmark"></i> 1960</p>
-                <p><i class="fa-regular fa-clipboard"></i> Museu</p>
-            </div>
-        </div>
-        <div class="home-list-item">
-            <div class="home-list-item-img">
-                <img src="assets/img/example6.jpg" alt="Obra 1">
-            </div>
-            <div class="home-list-item-info">
-                <h3>L'Arbre</h3>
-                <p><i class="fa-solid fa-user"></i>Apel·les Fenosa</p>
-                <p><i class="fa-solid fa-location-dot"></i> Primera planta</p>
-                <p><i class="fa-solid fa-bookmark"></i> 1960</p>
-                <p><i class="fa-regular fa-clipboard"></i> Museu</p>
-            </div>
-        </div>
-        <div class="home-list-item">
-            <div class="home-list-item-img">
-                <img src="assets/img/example5.jpg" alt="Obra 1">
-            </div>
-            <div class="home-list-item-info">
-                <h3>Cristo de l'Agoni</h3>
-                <p><i class="fa-solid fa-user"></i>Apel·les Fenosa</p>
-                <p><i class="fa-solid fa-location-dot"></i> Primera planta</p>
-                <p><i class="fa-solid fa-bookmark"></i> 1960</p>
-                <p><i class="fa-regular fa-clipboard"></i> Museu</p>
-            </div>
-        </div>
+        <?php
+            $ArtworkController = new ArtworkController();
+            $data = $ArtworkController->getData();
+            foreach ($data as $artwork) {
+                echo '<div class="home-list-item">';
+                    echo '<div class="home-list-item-img">';
+                        echo '<img src="'.$artwork['URL'].'" alt="Obra 1">';
+                    echo '</div>';
+                    echo '<div class="home-list-item-info">';
+                        echo '<h3>'.$artwork['Artwork_name'].'</h3>';
+                        echo '<p><i class="fa-solid fa-user"></i> '.$artwork['Author_name'].'</p>';
+                        echo '<p><i class="fa-solid fa-location-dot"></i> '.$artwork['Location_name'].'</p>';
+                        echo '<p><i class="fa-solid fa-bookmark"></i> '.$artwork['Creation_date'].'</p>';
+                        echo '<p><i class="fa-regular    fa-clipboard"></i> Museu</p>';
+                    echo '</div>';
+                echo '</div>';
+            }
+        ?>
     </div>
     <div id="home-list-pagination">
         <button id="home-list-pagination-previous">Anterior</button>
