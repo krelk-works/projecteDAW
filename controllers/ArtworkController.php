@@ -9,10 +9,16 @@
                 require_once "views/home-list/home-list.php";
             }
         
-            public function getData(){
+            public function getData($limit, $offset){
                 $artwork = new Artwork(); // Create a new user object.
                 //$artwork->getInfo($Artwork_name); // Call the login method from the user object.
-                $data = $artwork->getInfo();
+                $data = $artwork->getInfo($limit, $offset);
+                return $data;
+            }
+
+            public function getTotalCount(){
+                $artwork = new Artwork(); // Create a new user object.
+                $data = $artwork->getTotalCount();
                 return $data;
             }
         }

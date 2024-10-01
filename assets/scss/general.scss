@@ -8,6 +8,8 @@
     font-family: "Roboto", Sans-serif;
 }
 
+
+
 body {
     display: flex;
     flex-wrap: wrap;
@@ -90,4 +92,10 @@ select:hover {
 select {
     color: #929292;
     /*font-style: italic;*/
+}
+
+/* Elimina las flechas del scroll en navegadores basados en WebKit */
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
 }
