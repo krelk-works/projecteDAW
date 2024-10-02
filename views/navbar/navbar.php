@@ -30,7 +30,7 @@
             <?php
                 // If the user is admin, show the following options
 
-                if ($_SESSION['role'] == "admin") {
+                if ($_SESSION['role'] != "convidat") {
 
                     // Variables to change the style of the selected option
                     $userManagementStyle = $actualPage == "usuaris" ? "border-bottom: 2px solid #007bff;" : "";
