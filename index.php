@@ -62,6 +62,10 @@
                     require_once "views/search/search.php";
                     require_once "views/home-list/home-list.php";
                 }
+                else if ($actualPage == "usuaris") {
+                    require_once "views/create/create.php";
+                    require_once "views/user-list/user-list.php";
+                }
             }
             
             if (isset($_GET['controller'])){
