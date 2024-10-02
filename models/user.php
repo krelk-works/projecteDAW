@@ -2,14 +2,16 @@
     require_once("database.php");
     class User extends Database {
         private $username;
+        private $password;
         private $firstname;
         private $lastname;
         private $email;
         private $profileimg;
         private $role;
 
-        public function __construct($username = null, $firstname = null, $lastname = null, $email = null, $profileimg = null, $role = null){
+        public function __construct($username = null, $password = null, $firstname = null, $lastname = null, $email = null, $profileimg = null, $role = null){
             $this->username = $username;
+            $this->password = $password;
             $this->firstname = $firstname;
             $this->lastname = $lastname;
             $this->email = $email;
@@ -43,6 +45,10 @@
 
         public function setUsername($username){
             $this->username = $username;
+        }
+
+        public function setPassword($password){
+            $this->password = $password;
         }
 
         public function setFirstname($firstname){
@@ -118,6 +124,32 @@
                 } else {
                     // TODO: Show error message user or password incorrect
                 }
+            }
+        }
+
+        public function createUser() {
+            $conn = $this->connect();
+            // Query para insertar un nuevo usuario
+            $sql = "INSERT INTO users (username, password, firstname, lastname, email, role, profileimg) 
+                    VALUES (:username, :password, :firstname, :lastname, :email, :role, :profileimg)";
+            
+            // Preparar la consulta
+            $stmt = $conn->prepare($sql);
+            //echo ($sql);
+            // Asignar los valores a los parámetros
+            $stmt->bindParam(':username', $this->username);
+            $stmt->bindParam(':password', $this->password);
+            $stmt->bindParam(':firstname', $this->firstname);
+            $stmt->bindParam(':lastname', $this->lastname);
+            $stmt->bindParam(':email', $this->email);
+            $stmt->bindParam(':profileimg', $this->profileimg);
+            $stmt->bindParam(':role', $this->role);
+            
+            // Ejecutar la consulta
+            if ($stmt->execute()) {
+                return true;
+            } else {
+                return false;
             }
         }
         

@@ -32,6 +32,11 @@
                 echo "<meta http-equiv='refresh' content='0;url=index.php'>";
                 
             }
+
+            public function createUser($username, $password, $firstname, $lastname, $email, $filePath, $role){
+                $userModel = new User($username, $password, $firstname, $lastname, $email, $filePath, $role);
+                return $userModel->createUser();
+            }
         }
     ?>
     <meta charset="UTF-8">
