@@ -77,5 +77,39 @@
             $stmt->execute();
             return $stmt->fetchColumn();
         }
+
+        public function generatePDF() {
+            // Get the data to generate the PDF file
+            $conn = $this->connect();
+            $sql = "SELECT Artwork_ID, Artwork_name, Description FROM Artwork";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+
+            // PDF base config
+            $pdf = new TCPDF();
+            $pdf->SetCreator(PDF_CREATOR);
+            $pdf->SetAuthor('Me');
+            $pdf->SetTitle('Informe de fitxes');
+            $pdf->SetSubject('');
+            $pdf->SetKeywords('TCPDF, PDF, MySQL');
+
+            // PDF styles
+            //$pdf->setPrintHeader(false);
+            //$pdf->setPrintFooter(false);
+            $pdf->AddPage();
+            $pdf->SetFont('helvetica', '', 12);
+            $pdf->Cell(20, 10, 'ID', 1, 0, 'C');
+            $pdf->Cell(80, 10, 'Nom', 1, 0, 'C');
+            $pdf->Cell(80, 10, 'Descripció', 1, 1, 'C');
+
+            // Insert data into PDF Format
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $pdf->Cell(20, 10, $row['Artwork_ID'], 1, 0, 'C');
+                $pdf->Cell(80, 10, utf8_decode($row['Artwork_name']), 1, 0, 'C');
+                $pdf->Cell(80, 10, utf8_decode($row['Description']), 1, 1, 'C');
+            }
+
+            return $pdf;
+        }
     }
 ?>
