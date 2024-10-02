@@ -58,7 +58,7 @@
         <div id="profile">
             <div class="profile-section">
                 <div class="profile-image-container">
-                    <img src="<?php echo $_SESSION['profileimg'] ?>" alt="Foto de perfil" class="profile-image">
+                    <img src="<?php echo $_SESSION['profileimg']; ?>" alt="Foto de perfil" class="profile-image">
                 </div>
                 <div class="menu-button-container">
                     <button class="menu-button" onclick="toggleMenu()">☰</button>

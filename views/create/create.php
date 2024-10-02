@@ -7,9 +7,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $lastname = $_POST['lastname'];
             $email = $_POST['email'];
             $role = $_POST['role'];
+            $profileimg = 'assets/img/'.$_FILES['profileimg']['name'];
 
             $userController = new UserController();
-            $createdUser=$userController->createUser($username, $password, $firstname, $lastname, $email, $filePath, $role);
+            $createdUser=$userController->createUser($username, $password, $firstname, $lastname, $email, $profileimg, $role);
             #if ($createdUser){
             #    echo ("Se ha creado correctamente");
             #}

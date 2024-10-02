@@ -1,8 +1,3 @@
-<?php
-    //echo "<h1>Searchbar</h1>";
-?>
-
-
 <aside id="searchbar">
     <form id="searchbarwrapper">
         <!--<h3>Cercador</h3>-->
@@ -23,7 +18,7 @@
             <option value="3">Tercera planta</option>
         </select>
         <label for="year">Any</label>
-        <input type="number" name="year" id="yeear" min="1500" placeholder="Any">
+        <input type="number" name="year" id="year" min="1500" placeholder="Any">
         <label for="status">Estat</label>
         <select name="status" id="status">
             <option value="0">Tots</option>
@@ -31,15 +26,27 @@
             <option value="2">Altre museu</option>
             <option value="3">Confiscat</option>
         </select>
-        <button id="searcherButton">Cerca</button>
+        <button id="searcherButton" type="submit">Cerca</button>
+        
     </form>
     <?php
+            if ($_SESSION['role'] != "convidat") {
+                echo 
+                '<div id="generatePDFBox"><a href="?generatePDF"><button id="formGeneratePDFButton">Descarregar informe</button></a></div>';
+            }
+        ?>
+    
+    
+    <?php
+        /*
         if ($_SESSION['role'] != "convidat") {
             echo 
-            '<form id="searchbarwrapper" action="controllers/PDFController.php" method="POST" target="_blank">
-                <button type="submit" id="searcherButton">Descarregar informe</button>
+            '<form id="searchbarwrapper_" action="controllers/PDFController.php" method="POST" target="_blank">
+                <button type="submit" id="searcherButton_">Descarregar informe</button>
             </form>';
-        }
+        }*/
+
+        //TODO: ESTO NO ESTA BIEN, DEBE LLAMAR AL MISMO INDEX.PHP NO A UNA PAGINA EXTERNA "controllers/PDFController.php"
     ?>
 </aside>
 

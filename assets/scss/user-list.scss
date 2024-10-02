@@ -1,4 +1,5 @@
 @import 'vars';
+/*
 #home-list-wrapper {
     padding: 0px 15px 0px 20px;
     width: calc( 82% - 35px );
@@ -41,9 +42,9 @@
 
 .home-list-item-info {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr; /* Definimos 5 columnas */
-    gap: 10px; /* Ajusta el espacio entre las columnas */
-    align-items: center; /* Alinea verticalmente */
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr; 
+    gap: 10px; 
+    align-items: center;
     width: 100%;
 }
 
@@ -93,3 +94,7 @@
     background-color: #ccc !important;
     color: black;
 }
+
+*/
+
+/* HACE CONFLICTO DE CSS CON LA VISTA/CSS DE HOME-LIST HAY QUE LLAMAR A LAS CLASSES Y ID DE DIFERENTE FORMA AQUI Y EN EL HTML/PHP/VISTA */
