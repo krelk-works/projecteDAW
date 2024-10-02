@@ -32,12 +32,24 @@
                 echo "<meta http-equiv='refresh' content='0;url=index.php'>";
                 
             }
+<<<<<<< HEAD
 
             public function createUser($username, $password, $firstname, $lastname, $email, $filePath, $role){
                 $userModel = new User($username, $password, $firstname, $lastname, $email, $filePath, $role);
                 return $userModel->createUser();
+=======
+            public function getUsers($limit, $offset){
+                $user=new User();
+                return $user->getUsers($limit, $offset);
+            }
+            public function getTotalCount(){
+                $user = new User(); // Create a new user object.
+                $data = $user->getTotalCount();
+                return $data;
+>>>>>>> 821050f291c7af13f1f7bdcf3bf1e86de3e30e98
             }
         }
+        
     ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

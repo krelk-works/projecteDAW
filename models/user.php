@@ -125,6 +125,43 @@
                     // TODO: Show error message user or password incorrect
                 }
             }
+        }/*
+        public function getUsers($limit, $offset){
+            $conn = $this->connect();
+            $sql = "SELECT * FROM users";
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            if($row){
+                return $row;
+            }
+        
+        }  */ 
+
+        public function getUsers($limit, $offset) {
+            $conn = $this->connect();
+            $sql = "SELECT * FROM users LIMIT :limit OFFSET :offset";
+        
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+        
+            // Bind parameters
+            $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+            $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+        
+            // Execute the statement
+            $stmt->execute();
+        
+            // Fetch the results
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function getTotalCount() {
+            $conn = $this->connect();
+            $sql = "SELECT COUNT(*) FROM users";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchColumn();
         }
 
         public function createUser() {

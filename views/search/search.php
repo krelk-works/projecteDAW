@@ -32,6 +32,14 @@
             <option value="3">Confiscat</option>
         </select>
         <button id="searcherButton">Cerca</button>
-</form>
+    </form>
+    <?php
+        if ($_SESSION['role'] != "convidat") {
+            echo 
+            '<form id="searchbarwrapper" action="controllers/PDFController.php" method="POST" target="_blank">
+                <button type="submit" id="searcherButton">Descarregar informe</button>
+            </form>';
+        }
+    ?>
 </aside>
 

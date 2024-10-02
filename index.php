@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="assets/css/login.css">
     <link rel="stylesheet" href="assets/css/navbar.css">
     <link rel="stylesheet" href="assets/css/search.css">
-    <link rel="stylesheet" href="assets/css/home-list.css">
+    <link rel="stylesheet" href="assets/css/home-list.css"> 
     <!--<script src="assets/js/main.js" defer></script>-->
     <title>Intranet - Apel·les Fenosa</title>
 </head>
@@ -67,6 +67,8 @@
                     require_once "views/user-list/user-list.php";
                 }
             }
+
+            echo $actualPage;
             
             if (isset($_GET['controller'])){
                 // TODO
