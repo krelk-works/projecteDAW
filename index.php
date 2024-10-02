@@ -40,7 +40,7 @@
     <?php
         // Needed to include all classes created.
         require_once "autoload.php";
-        /*
+        /*Username
         if (!is_writable(session_save_path())) {
             echo 'Session path "'.session_save_path().'" is not writable for PHP!'; 
             die();
@@ -88,6 +88,9 @@
                 if (isset($_POST['username']) && isset($_POST['password'])){
                     $controller = new UserController();
                     $controller->login($_POST['username'], $_POST['password']);
+                    $ArtworkController = new ArtworkController();
+                    //$ArtworkController->getData();
+                    $ArtworkController->showData();
                 }
             }
         }
