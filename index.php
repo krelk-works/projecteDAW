@@ -68,7 +68,6 @@
                 }
             }
 
-            echo $actualPage;
             
             if (isset($_GET['controller'])){
                 // TODO
