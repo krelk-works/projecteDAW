@@ -32,6 +32,7 @@
             <option value="3">Confiscat</option>
         </select>
         <button id="searcherButton">Cerca</button>
+        <button id="searcherButton">Descarregar informe</button>
 </form>
 </aside>
 
