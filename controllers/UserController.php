@@ -32,7 +32,17 @@
                 echo "<meta http-equiv='refresh' content='0;url=index.php'>";
                 
             }
+            public function getUsers($limit, $offset){
+                $user=new User();
+                return $user->getUsers($limit, $offset);
+            }
+            public function getTotalCount(){
+                $user = new User(); // Create a new user object.
+                $data = $user->getTotalCount();
+                return $data;
+            }
         }
+        
     ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
