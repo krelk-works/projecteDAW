@@ -46,6 +46,9 @@ class UserController
         $data = $user->getTotalCount();
         return $data;
     }
+    public function deleteUser($username){
+        
+    }
 }
 
 ?>
