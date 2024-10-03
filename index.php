@@ -1,4 +1,7 @@
 <?php
+    if (isset($actualPage) && $actualPage == "generatePDF") {
+        require_once "controllers/PDFController.php";
+    }
     // Set the session cookie to 1 hour.
     ini_set('session.gc_maxlifetime', 3600);
 

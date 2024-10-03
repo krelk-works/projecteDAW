@@ -32,7 +32,7 @@
     <?php
             if ($_SESSION['role'] != "convidat") {
                 echo 
-                '<div id="generatePDFBox"><a href="?generatePDF"><button id="formGeneratePDFButton">Descarregar informe</button></a></div>';
+                '<div id="generatePDFBox"><a href="?page=generatePDF" target="_blank"><button id="formGeneratePDFButton">Descarregar informe</button></a></div>';
             }
         ?>
     
