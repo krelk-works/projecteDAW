@@ -15,9 +15,8 @@
                     <div class="home-list-item-info">
                         <h3>' . $user['firstname'] . ' ' . $user['lastname'] . '</h3>
                         <p><i class="fa-solid fa-user"></i> ' . $user['username'] . '</p>
-                        <p><i class="fa-solid fa-location-dot"></i> ' . $user['Location_name'] . '</p>
-                        <p><i class="fa-solid fa-bookmark"></i> ' . $user['Creation_date'] . '</p>
-                        <p><i class="fa-regular fa-clipboard"></i> Museu</p>
+                        <p> <i class="fa-solid fa-user"></i> '. $user['email'].'<p>
+                        <p> <i class="fa-solid fa-bookmark"></i> '. $user['role'].'<p>
                     </div>
                 </div>';
             }
