@@ -1,54 +1,45 @@
 <?php 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-            $firstname = $_POST['firstname'];
-            $lastname = $_POST['lastname'];
-            $email = $_POST['email'];
-            $role = $_POST['role'];
-            $profileimg = 'assets/img/'.$_FILES['profileimg']['name'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $email = $_POST['email'];
+    $role = $_POST['role'];
+    $profileimg = 'assets/img/'.$_FILES['profileimg']['name'];
 
-            $userController = new UserController();
-            $createdUser=$userController->createUser($username, $password, $firstname, $lastname, $email, $profileimg, $role);
-            #if ($createdUser){
-            #    echo ("Se ha creado correctamente");
-            #}
-            #else {
-            #    echo ("Error");
-            #}
-            // Verificar si se subió un archivo y moverlo a la carpeta de imágenes
-            #if (isset($_FILES['profileimg']) && $_FILES['profileimg']['error'] === 0) {
-             #   $imgName = $_FILES['profileimg']['name'];
-              #  $imgTmpPath = $_FILES['profileimg']['tmp_name'];
-               # $imgSize = $_FILES['profileimg']['size'];
-                #$imgType = $_FILES['profileimg']['type'];
+    // Crear el usuario en la base de datos
+    $userController = new UserController();
+    $createdUser = $userController->createUser($username, $password, $firstname, $lastname, $email, $profileimg, $role);
 
-                // Definir el directorio de subida
-             #   $uploadDir = 'assets/img/';
-              #  $filePath = $uploadDir . basename($imgName);
-
-                // Mover el archivo subido al directorio de destino
-               # if (move_uploaded_file($imgTmpPath, $filePath)) {
-                    // Crear instancia del modelo Create y pasar la ruta de la imagen
-                #    $createModel = new Create($username, $password, $firstname, $lastname, $email, $filePath, $role);
-
-                    // Llamar al método para insertar el usuario
-                 #   if ($createModel->createUser()) {
-                        // Redireccionar a la lista de usuarios
-                  #      header("Location: http://localhost:8080/projecteDAW/index.php?page=usuaris");
-                   #     exit();
-                    #} else {
-                     #   echo "Error al crear el usuario.";
-                    #}
-                #} else {
-                 #   echo "Error al subir la imagen.";
-               # }
-            #} else {
-             #   echo "Por favor, sube una imagen válida.";
-            #}
+    // Comprobar si se ha subido la imagen
+    if (isset($_FILES['profileimg'])) {
+        // Recogemos el archivo enviado por el formulario
+        $archivo = $_FILES['profileimg']['name'];
+        // Si el archivo contiene algo
+        if (isset($archivo) && $archivo != "") {
+            // Obtenemos algunos datos sobre el archivo
+            $tipo = $_FILES['profileimg']['type'];
+            $tamano = $_FILES['profileimg']['size'];
+            $temp = $_FILES['profileimg']['tmp_name'];
+            // Se comprueba si el archivo a cargar es correcto observando su extensión y tamaño
+            if (!((strpos($tipo, "gif") || strpos($tipo, "jpeg") || strpos($tipo, "jpg") || strpos($tipo, "png")) && ($tamano < 2000000))) {
+                echo '<div><b>Error. La extension o el tamaño de los archivos no es correcta.<br/>
+                - Se permiten archivos .gif, .jpg, .png. y de 2MB como maximo.</b></div>';
+            } else {
+                // Si la imagen es correcta en tamaño y tipo
+                // Se intenta subir al servidor
+                if (move_uploaded_file($temp, 'assets/img/'.$archivo)) {
+                    // Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
+                    chmod('assets/img/'.$archivo, 0777);
+                } else {
+                    // Si no se ha podido subir la imagen, mostramos un mensaje de error
+                    echo '<div><b>Ocurrió algún error al subir el fichero. No pudo guardarse.</b></div>';
+                }
+            }
         }
-
+    }
+}
 ?>
 <aside id="searchbar">
     <form id="searchbarwrapper" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=usuaris" enctype="multipart/form-data">
@@ -76,8 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </select>
         
         <label for="profileimg">Foto</label>
-        <input type="file" name="profileimg" id="profileimg" accept="image/*" required>
-        
+        <input type="file" name="profileimg" id="profileimg" required>
         <button type="submit" id="searcherButton">Crear</button>
     </form>
 </aside>
