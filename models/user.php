@@ -190,6 +190,18 @@
                 return false;
             }
         }
-        
+        public function deleteUser($username){
+            $conn = $this->connect();
+            // Query to delete user
+            $sql="DELETE FROM users WHERE :username";
+            $stmt=$conn->prepare($sql);
+            $stmt->bindParam(':username', $this->username);
+
+            if ($stmt->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        }      
     }
 ?>
