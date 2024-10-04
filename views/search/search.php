@@ -1,6 +1,6 @@
 <aside id="searchbar">
     <form id="searchbarwrapper">
-        <!--<h3>Cercador</h3>-->
+        <h3>Filtre de busqueda</h3>
         <label for="search">Cerca</label>
         <input type="text" name="search" id="search" placeholder="Cerca">
         <label for="search">Autor</label>
