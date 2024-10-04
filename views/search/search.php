@@ -27,14 +27,14 @@
             <option value="3">Confiscat</option>
         </select>
         <button id="searcherButton" type="submit">Cerca</button>
-        
-    </form>
-    <?php
+        <?php
             if ($_SESSION['role'] != "convidat") {
                 echo 
-                '<div id="generatePDFBox"><a href="?generatePDF" target="_blank"><button id="formGeneratePDFButton">Descarregar informe</button></a></div>';
+                '<button id="formGeneratePDFButton" type="button">Descarregar informe</button>';
             }
         ?>
+    </form>
+    
     
     
     <?php
