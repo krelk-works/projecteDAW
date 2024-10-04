@@ -14,9 +14,9 @@
                     </div>
                     <div class="user-list-item-info">
                         <h3>' . $user['firstname'] . ' ' . $user['lastname'] . '</h3>
-                        <p><i class="fa-solid fa-user"></i> ' . $user['username'] . '</p>
-                        <p> <i class="fa-solid fa-user"></i> '. $user['email'].'<p>
-                        <p> <i class="fa-solid fa-bookmark"></i> '. $user['role'].'<p>
+                        <p> <i class="fa-solid fa-user"></i> '. $user['email'].'</p>
+                        <p> <i class="fa-solid fa-bookmark"></i> '. $user['role'].'</p>
+                        <a href="?page=user-administration"><button>Modificar</button></a>
                     </div>
                 </div>';
             }

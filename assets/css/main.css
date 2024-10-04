@@ -116,15 +116,17 @@ body {
 
 /* CUSTOM BUTTONS FOR WEBSITE */
 button {
+  background-color: #E6ECF0;
   padding: 6px;
-  color: rgb(0, 0, 0);
+  color: #007bff;
   font-size: 16px;
   border: none;
-  border-radius: 1px;
-  border: 1px solid #4577ff;
+  border-radius: 5px;
   cursor: pointer;
   transition: all 0.66s;
-  background: white;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 }
 
 button:hover {
@@ -138,10 +140,11 @@ input {
   padding: 6px;
   font-size: 16px;
   border: none;
-  border-bottom: 1px solid #ccc;
-  border-radius: 0px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   transition: all 0.66s;
+  margin-bottom: 2px;
 }
 
 input:focus {
@@ -171,14 +174,14 @@ select {
      -moz-appearance: auto;
           appearance: auto;
   background: white;
-  padding: 10px;
+  padding: 5px;
   font-size: 16px;
   border: none;
-  border: 1px solid white;
-  border-bottom: 1px solid #ccc;
-  border-radius: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   transition: all 0.66s;
+  margin-bottom: 2px;
 }
 
 select:focus {
@@ -229,9 +232,9 @@ select {
   max-height: calc(11.11% - 12px);
   padding: 10px;
   margin: 10px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-  border-radius: 0px;
-  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+  border-radius: 5px;
+  background-color: #F1F1F1;
   border-bottom: 1px solid #ffffff;
   transition: border-bottom 0.66s, padding 0.2s;
 }
@@ -629,7 +632,6 @@ select {
 }
 
 #searchbar {
-  /*background-color: aqua;*/
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -666,152 +668,141 @@ select {
 }
 
 #searchbar button {
-  width: 100%;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  width: 100% !important;
 }
 
 #generatePDFBox {
-  margin-bottom: 1000px;
-  margin-left: 25%;
+  /*margin-bottom: 1000px;
+  margin-left: 25%;*/
+  width: 100%;
 }
 
-/*
-#home-list-wrapper {
-    padding: 0px 15px 0px 20px;
-    width: calc( 82% - 35px );
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    height: 89vh;
-    overflow-x: hidden;
-    overflow-y: auto;
+#user-list-wrapper {
+  padding: 0px 15px 0px 20px;
+  width: calc(82% - 35px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 89vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
-#home-list-container {
-    width: 100%;
-    height: 90% !important;
-    overflow-y: scroll;
+#user-list-container {
+  width: 100%;
+  height: 90% !important;
+  overflow-y: scroll;
 }
 
-.home-list-item {
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row; 
-    justify-content: space-between; 
-    align-items: center;
-    width: calc(100% - 40px);
-    padding: 10px;
-    margin: 10px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    border-radius: 0px;
-    background-color: white;
-    border-bottom: 1px solid #ffffff;
-    transition: border-bottom 0.66s, padding 0.2s;
+.user-list-item {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: calc(100% - 40px);
+  padding: 10px;
+  margin: 10px;
+  max-height: calc(11.11% - 12px);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+  border-radius: 0px;
+  background-color: #F1F1F1;
+  border-bottom: 1px solid #ffffff;
+  transition: border-bottom 0.66s, padding 0.2s;
 }
 
-.home-list-item:hover {
-    border-bottom: 1px solid #4577ff;
-    cursor: pointer;
-    padding: 15px;
+.user-list-item:hover {
+  border-bottom: 1px solid #4577ff;
+  cursor: pointer;
+  padding: 15px;
 }
 
-.home-list-item-info {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr; 
-    gap: 10px; 
-    align-items: center;
-    width: 100%;
+.user-list-item-info {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
 }
 
-.home-list-item-info p, .home-list-item-info h3 {
-    white-space: nowrap;
-    margin: 0 0 0 10px;
+.user-list-item-info p, .user-list-item-info h3 {
+  white-space: nowrap;
+  margin: 0 0 0 10px;
 }
 
-.home-list-item-img {
-    width: 3vw;
-    height: 3vw;
-    object-fit: cover;
-    border-radius: 0px;
+.user-list-item-img {
+  width: 3vw;
+  height: 3vw;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 0px;
 }
 
-.home-list-item-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 0px;
+.user-list-item-img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 0px;
 }
 
-#home-list-pagination {
-    width: 100%;
-    height: 10% !important;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center; 
+#user-list-pagination {
+  width: 100%;
+  height: 10% !important;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
 }
 
-#home-list-pagination button {
-    width: 80px;
-    margin: 0px 5px 0px 5px;
+#user-list-pagination button {
+  width: 80px;
+  margin: 0px 5px 0px 5px;
 }
 
-.home-list-pagination-page {
-    width: auto !important;
+.user-list-item-info button {
+  color: red;
 }
 
-.current_pagination {
-    background-color: #4577ff;
-    color: white;
+/* HACE CONFLICTO DE CSS CON LA VISTA/CSS DE user-LIST HAY QUE LLAMAR A LAS CLASSES Y ID DE DIFERENTE FORMA AQUI Y EN EL HTML/PHP/VISTA */
+#createbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  width: 18%;
+  color: rgb(119, 119, 119);
+  height: 89vh !important;
+  padding: 10px;
+  z-index: 5;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 }
 
-.pagination_disabled:hover {
-    background-color: #ccc !important;
-    color: black;
+#createbar label {
+  width: 100%;
+  padding-top: 8px;
+  padding-bottom: 5px;
+  padding-left: 4px;
+  color: #6589C4;
 }
 
-*/
-/* HACE CONFLICTO DE CSS CON LA VISTA/CSS DE HOME-LIST HAY QUE LLAMAR A LAS CLASSES Y ID DE DIFERENTE FORMA AQUI Y EN EL HTML/PHP/VISTA */
-/*
-#searchbar {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    width: 18%;
-    color: rgb(119, 119, 119);
-    height: 89vh !important;
-    padding: 10px;
-    z-index: 5;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+#createbar input {
+  width: calc(100% - 0px);
 }
 
-#searchbar label {
-    width: 100%;
-    padding-top: 8px;
-    padding-bottom: 5px;
-    padding-left: 4px;
-    color: #6589C4;
+#createbar select {
+  width: calc(100% - 0px);
 }
 
-#searchbar input {
-    width: calc(100% - 0px);
+#createbarwrapper {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-#searchbar select {
-    width: calc(100% - 0px);
+#createButton {
+  margin-top: 10px;
+  width: 100%;
 }
 
-#searchbarwrapper {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-#searcherButton {
-    margin-top: 10px;
-    width: 100%;
-}
-*/
 /* TODO: SE DEBEN CAMBIAR IDs NO SE PUEDE USAR LAS MISMAS ID QUE EN LA VISTA DE BUSQUEDA ¡¡¡ CONFLICTOS DE CSS !!! *//*# sourceMappingURL=main.css.map */

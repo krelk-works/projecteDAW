@@ -71,6 +71,8 @@
                 else if ($actualPage == "usuaris") {
                     require_once "views/create/create.php";
                     require_once "views/user-list/user-list.php";
+                }else if($actualPage=="user-administration"){
+                    require_once "views/user-adiministration/user-administration-view.php";
                 }
             }
 

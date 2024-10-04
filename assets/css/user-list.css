@@ -41,9 +41,9 @@
 
 .user-list-item-info {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 0.5fr;
   gap: 10px;
-  align-items: center;
+  align-items: center !important;
   width: 100%;
 }
 
@@ -80,6 +80,10 @@
 #user-list-pagination button {
   width: 80px;
   margin: 0px 5px 0px 5px;
+}
+
+.user-list-item-info button {
+  margin: auto;
 }
 
 /* HACE CONFLICTO DE CSS CON LA VISTA/CSS DE user-LIST HAY QUE LLAMAR A LAS CLASSES Y ID DE DIFERENTE FORMA AQUI Y EN EL HTML/PHP/VISTA *//*# sourceMappingURL=user-list.css.map */
