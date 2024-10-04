@@ -56,7 +56,7 @@
     
         // Check if the session is active and the user is logged in.
         if (session_status() != PHP_SESSION_NONE && isset($_SESSION['username'])) {
-            if ($actualPage != "generatePDF") {
+            if (!isset($_GET['generatePDF'])) {
                 // Always include the navbar.
                 require_once "views/navbar/navbar.php";
             }
@@ -73,8 +73,7 @@
                     require_once "views/user-list/user-list.php";
                 }
                 else if ($actualPage == "generatePDF") {
-                    echo "<style>* {display: none;}</style>";
-                    require_once "views/generatePDF/generatePDF.php";
+                    require_once "controllers/PDFController.php";
                 }
             }
 
