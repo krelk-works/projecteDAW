@@ -57,7 +57,7 @@
   height: 3vw;
   -o-object-fit: cover;
      object-fit: cover;
-  border-radius: 0px;
+  border-radius: 5px;
 }
 
 .home-list-item-img img {
@@ -65,7 +65,7 @@
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  border-radius: 0px;
+  border-radius: 5px;
 }
 
 #home-list-pagination {
