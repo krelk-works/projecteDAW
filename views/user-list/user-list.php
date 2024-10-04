@@ -1,5 +1,5 @@
-<main id="home-list-wrapper">
-    <div id="home-list-container">
+<main id="user-list-wrapper">
+    <div id="user-list-container">
         <?php
             $UserController = new UserController();
             $totalUsers = $UserController->getTotalCount();
@@ -8,11 +8,11 @@
             $offset = ($currentPagePagination - 1) * $limit;
             $data = $UserController->getUsers($limit, $offset); // Asegúrate de modificar el método en el controlador
             foreach ($data as $user) {
-                echo '<div class="home-list-item">
-                    <div class="home-list-item-img">
+                echo '<div class="user-list-item">
+                    <div class="user-list-item-img">
                         <img src="' . $user['profileimg'] . '" alt="Obra 1">
                     </div>
-                    <div class="home-list-item-info">
+                    <div class="user-list-item-info">
                         <h3>' . $user['firstname'] . ' ' . $user['lastname'] . '</h3>
                         <p><i class="fa-solid fa-user"></i> ' . $user['username'] . '</p>
                         <p> <i class="fa-solid fa-user"></i> '. $user['email'].'<p>
@@ -22,7 +22,7 @@
             }
         ?>
     </div>
-    <div id="home-list-pagination">
+    <div id="user-list-pagination">
         <?php
             // CALCULATE TOTAL PAGES
             $totalPages = (int)ceil($totalUsers / $limit);
@@ -37,21 +37,21 @@
 
             // PAGINATION BACK BUTTON
             if ($isBackwardDisabled) {
-                echo '<button id="home-list-pagination-previous" class="' . $disabledClass . '">Anterior</button>';
+                echo '<button id="user-list-pagination-previous" class="' . $disabledClass . '">Anterior</button>';
             } else {
-                echo '<button id="home-list-pagination-previous" onclick="location.href=\'?page=usuaris&pagination=' . (($currentPagePagination > 1) ? ($currentPagePagination - 1) : 1) . '\';">Anterior</button>';
+                echo '<button id="user-list-pagination-previous" onclick="location.href=\'?page=usuaris&pagination=' . (($currentPagePagination > 1) ? ($currentPagePagination - 1) : 1) . '\';">Anterior</button>';
             }
             
             // PAGINATION PAGES
             for ($i = 1; $i <= $totalPages; $i++) {
-                echo '<button class="home-list-pagination-page ' . ($currentPagePagination == $i ? 'current_pagination' : '') . '" onclick="location.href=\'?page=usuaris&pagination=' . $i . '\'">' . $i . '</button>';
+                echo '<button class="user-list-pagination-page ' . ($currentPagePagination == $i ? 'current_pagination' : '') . '" onclick="location.href=\'?page=usuaris&pagination=' . $i . '\'">' . $i . '</button>';
             }  
 
             // PAGINATION NEXT BUTTON
             if ($isForwardDisabled) {
-                echo '<button id="home-list-pagination-next" class="' . $disabledClass . '">Següent</button>';
+                echo '<button id="user-list-pagination-next" class="' . $disabledClass . '">Següent</button>';
             } else {
-                echo '<button id="home-list-pagination-next" onclick="location.href=\'?page=usuaris&pagination=' . (($currentPagePagination <= $totalPages) ? ($currentPagePagination + 1) : $totalPages) . '\';">Següent</button>';
+                echo '<button id="user-list-pagination-next" onclick="location.href=\'?page=usuaris&pagination=' . (($currentPagePagination <= $totalPages) ? ($currentPagePagination + 1) : $totalPages) . '\';">Següent</button>';
             }
         ?>
     </div>

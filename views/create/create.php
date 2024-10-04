@@ -41,8 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-<aside id="searchbar">
-    <form id="searchbarwrapper" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=usuaris" enctype="multipart/form-data">
+<aside id="createbar">
+    <form id="createbarwrapper" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=usuaris" enctype="multipart/form-data">
         <h3>Creació d'usuaris</h3>
         <label for="username">Nom d'usuari</label>
         <input type="text" name="username" id="username" placeholder="Introdueix el nom" required>
@@ -68,6 +68,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         <label for="profileimg">Foto</label>
         <input type="file" name="profileimg" id="profileimg" required>
-        <button type="submit" id="searcherButton">Crear</button>
+        <button type="submit" id="createButton">Crear</button>
     </form>
 </aside>

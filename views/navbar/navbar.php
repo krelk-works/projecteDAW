@@ -18,7 +18,7 @@
 <header>
     <nav id="navbar">
         <!-- Logo -->
-        <a href="" id="logo-link">
+        <a href="index.php" id="logo-link">
             <img src="assets/img/logo.png" width="30" height="30" alt="Logo">
         </a>
         <!-- Navigation menú -->
