@@ -34,19 +34,5 @@
             }
         ?>
     </form>
-    
-    
-    
-    <?php
-        /*
-        if ($_SESSION['role'] != "convidat") {
-            echo 
-            '<form id="searchbarwrapper_" action="controllers/PDFController.php" method="POST" target="_blank">
-                <button type="submit" id="searcherButton_">Descarregar informe</button>
-            </form>';
-        }*/
-
-        //TODO: ESTO NO ESTA BIEN, DEBE LLAMAR AL MISMO INDEX.PHP NO A UNA PAGINA EXTERNA "controllers/PDFController.php"
-    ?>
 </aside>
 
