@@ -1,5 +1,5 @@
-/*
-#searchbar {
+
+#createbar {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -12,7 +12,7 @@
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 }
 
-#searchbar label {
+#createbar label {
     width: 100%;
     padding-top: 8px;
     padding-bottom: 5px;
@@ -20,23 +20,23 @@
     color: #6589C4;
 }
 
-#searchbar input {
+#createbar input {
     width: calc(100% - 0px);
 }
 
-#searchbar select {
+#createbar select {
     width: calc(100% - 0px);
 }
 
-#searchbarwrapper {
+#createbarwrapper {
     display: flex;
     flex-wrap: wrap;
 }
 
-#searcherButton {
+#createButton {
     margin-top: 10px;
     width: 100%;
 }
-*/
+
 
 /* TODO: SE DEBEN CAMBIAR IDs NO SE PUEDE USAR LAS MISMAS ID QUE EN LA VISTA DE BUSQUEDA ¡¡¡ CONFLICTOS DE CSS !!! */

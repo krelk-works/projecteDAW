@@ -1,42 +1,41 @@
 @charset "UTF-8";
-/*
-#searchbar {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    width: 18%;
-    color: rgb(119, 119, 119);
-    height: 89vh !important;
-    padding: 10px;
-    z-index: 5;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+#createbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  width: 18%;
+  color: rgb(119, 119, 119);
+  height: 89vh !important;
+  padding: 10px;
+  z-index: 5;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 }
 
-#searchbar label {
-    width: 100%;
-    padding-top: 8px;
-    padding-bottom: 5px;
-    padding-left: 4px;
-    color: #6589C4;
+#createbar label {
+  width: 100%;
+  padding-top: 8px;
+  padding-bottom: 5px;
+  padding-left: 4px;
+  color: #6589C4;
 }
 
-#searchbar input {
-    width: calc(100% - 0px);
+#createbar input {
+  width: calc(100% - 0px);
 }
 
-#searchbar select {
-    width: calc(100% - 0px);
+#createbar select {
+  width: calc(100% - 0px);
 }
 
-#searchbarwrapper {
-    display: flex;
-    flex-wrap: wrap;
+#createbarwrapper {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-#searcherButton {
-    margin-top: 10px;
-    width: 100%;
+#createButton {
+  margin-top: 10px;
+  width: 100%;
 }
-*/
+
 /* TODO: SE DEBEN CAMBIAR IDs NO SE PUEDE USAR LAS MISMAS ID QUE EN LA VISTA DE BUSQUEDA ¡¡¡ CONFLICTOS DE CSS !!! *//*# sourceMappingURL=create.css.map */
