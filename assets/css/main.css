@@ -720,9 +720,9 @@ select {
 
 .user-list-item-info {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 0.5fr;
   gap: 10px;
-  align-items: center;
+  align-items: center !important;
   width: 100%;
 }
 
@@ -762,7 +762,11 @@ select {
 }
 
 .user-list-item-info button {
-  color: red;
+  margin: auto;
+}
+
+.user-list-pagination-page {
+  width: auto !important;
 }
 
 /* HACE CONFLICTO DE CSS CON LA VISTA/CSS DE user-LIST HAY QUE LLAMAR A LAS CLASSES Y ID DE DIFERENTE FORMA AQUI Y EN EL HTML/PHP/VISTA */
