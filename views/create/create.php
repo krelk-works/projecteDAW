@@ -108,6 +108,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         <label for="profileimg">Foto</label>
         <input type="file" name="profileimg" id="profileimg" required>
-        <button type="submit" id="createButton">Crear</button>
+        <button type="submit" id="createButton"><i class="fa-solid fa-user-plus"></i>Crear</button>
     </form>
 </aside>

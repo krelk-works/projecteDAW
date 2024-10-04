@@ -26,11 +26,11 @@
             <option value="2">Altre museu</option>
             <option value="3">Confiscat</option>
         </select>
-        <button id="searcherButton" type="submit">Cerca</button>
+        <button id="searcherButton" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Cerca</button>
         <?php
             if ($_SESSION['role'] != "convidat") {
                 echo 
-                '<button id="formGeneratePDFButton" type="button">Descarregar informe</button>';
+                '<button id="formGeneratePDFButton" type="button"><i class="fa-solid fa-download"></i>Descarregar informe</button>';
             }
         ?>
     </form>
