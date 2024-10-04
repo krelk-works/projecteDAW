@@ -16,7 +16,7 @@
                         <h3>' . $user['firstname'] . ' ' . $user['lastname'] . '</h3>
                         <p> <i class="fa-solid fa-user"></i> '. $user['email'].'</p>
                         <p> <i class="fa-solid fa-bookmark"></i> '. $user['role'].'</p>
-                        <a href="?page=user-administration"><button>Modificar</button></a>
+                        <a href="?page=user-administration"><button><i class="fa-solid fa-user-pen"></i>Modificar</button></a>
                     </div>
                 </div>';
             }
