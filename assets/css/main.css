@@ -809,4 +809,7 @@ select {
   width: 100%;
 }
 
-/* TODO: SE DEBEN CAMBIAR IDs NO SE PUEDE USAR LAS MISMAS ID QUE EN LA VISTA DE BUSQUEDA ¡¡¡ CONFLICTOS DE CSS !!! *//*# sourceMappingURL=main.css.map */
+/* TODO: SE DEBEN CAMBIAR IDs NO SE PUEDE USAR LAS MISMAS ID QUE EN LA VISTA DE BUSQUEDA ¡¡¡ CONFLICTOS DE CSS !!! */
+.user-modify-wrapper {
+  background-color: red !important;
+}/*# sourceMappingURL=main.css.map */

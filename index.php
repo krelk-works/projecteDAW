@@ -38,6 +38,7 @@
     <link rel="stylesheet" href="assets/css/home-list.css">
     <link rel="stylesheet" href="assets/css/create.css">
     <link rel="stylesheet" href="assets/css/user-list.css">
+    <link rel="stylesheet" href="assets/css/user-administration.css">
 
     <!--<script src="assets/js/main.js" defer></script>-->
     <title>Intranet - Apel·les Fenosa</title>

@@ -1,0 +1,37 @@
+#user-modify-wrapper {
+  display: grid;
+  grid-template-columns: 1fr, 1fr;
+  width: 100%;
+  grid-template-areas: "profile-img user-data" "footer footer";
+  height: 100%;
+}
+
+.profile-img {
+  display: flex;
+  align-items: center;
+  grid-area: "profile-img";
+}
+
+.user-data {
+  display: flex;
+  flex-direction: column;
+  grid-area: "user-data";
+}
+
+.profile-img img {
+  width: 200px;
+  height: 200px;
+}
+
+#user-modify-wrapper footer {
+  grid-area: footer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer button {
+  margin: 6%;
+  width: 6%;
+  height: 8%;
+}/*# sourceMappingURL=user-administration.css.map */
