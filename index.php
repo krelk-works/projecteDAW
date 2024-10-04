@@ -1,4 +1,7 @@
 <?php
+    if (isset($_GET['generatePDF'])) {
+        require_once "controllers/PDFController.php";
+    }
     // Set the session cookie to 1 hour.
     ini_set('session.gc_maxlifetime', 3600);
 
@@ -40,7 +43,6 @@
     <title>Intranet - Apel·les Fenosa</title>
 </head>
 <body>
-    
     <?php
         // Needed to include all classes created.
         require_once "autoload.php";
@@ -53,7 +55,6 @@
 
 
         // Check if the user wants to logout.
-    
         // Check if the session is active and the user is logged in.
         if (session_status() != PHP_SESSION_NONE && isset($_SESSION['username'])) {
             if (!isset($_GET['generatePDF'])) {
@@ -61,7 +62,6 @@
                 require_once "views/navbar/navbar.php";
             }
             //echo "<h1>Benvingut ".$_SESSION['username']."</h1>";
-
             // Check what to load in the main content.
             if (isset($actualPage)) {
                 if ($actualPage == "inici") {
@@ -71,9 +71,6 @@
                 else if ($actualPage == "usuaris") {
                     require_once "views/create/create.php";
                     require_once "views/user-list/user-list.php";
-                }
-                else if ($actualPage == "generatePDF") {
-                    require_once "controllers/PDFController.php";
                 }
             }
 
