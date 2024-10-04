@@ -1,7 +1,4 @@
 <?php
-    if (isset($actualPage) && $actualPage == "generatePDF") {
-        require_once "controllers/PDFController.php";
-    }
     // Set the session cookie to 1 hour.
     ini_set('session.gc_maxlifetime', 3600);
 
@@ -56,8 +53,10 @@
     
         // Check if the session is active and the user is logged in.
         if (session_status() != PHP_SESSION_NONE && isset($_SESSION['username'])) {
-            // Always include the navbar.
-            require_once "views/navbar/navbar.php";
+            if ($actualPage != "generatePDF") {
+                // Always include the navbar.
+                require_once "views/navbar/navbar.php";
+            }
             //echo "<h1>Benvingut ".$_SESSION['username']."</h1>";
 
             // Check what to load in the main content.
@@ -69,6 +68,10 @@
                 else if ($actualPage == "usuaris") {
                     require_once "views/create/create.php";
                     require_once "views/user-list/user-list.php";
+                }
+                else if ($actualPage == "generatePDF") {
+                    echo "<style>* {display: none;}</style>";
+                    require_once "views/generatePDF/generatePDF.php";
                 }
             }
 
