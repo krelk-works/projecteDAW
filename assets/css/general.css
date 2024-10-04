@@ -46,6 +46,7 @@ input {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   transition: all 0.66s;
   margin-bottom: 2px;
+  color: #444444;
 }
 
 input:focus {
@@ -83,6 +84,7 @@ select {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   transition: all 0.66s;
   margin-bottom: 2px;
+  color: #444444;
 }
 
 select:focus {
@@ -95,8 +97,16 @@ select:hover {
 }
 
 select {
-  color: #929292;
+  color: #444444;
   /*font-style: italic;*/
+}
+
+option {
+  color: #444444;
+}
+
+option:hover {
+  background-color: #007bff;
 }
 
 /* Elimina las flechas del scroll en navegadores basados en WebKit */

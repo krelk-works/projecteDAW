@@ -20,6 +20,10 @@
   color: #6589C4;
 }
 
+#createbar h3 {
+  color: #444444;
+}
+
 #createbar input {
   width: calc(100% - 0px);
 }
