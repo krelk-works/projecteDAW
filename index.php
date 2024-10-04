@@ -27,6 +27,7 @@
         // RELOAD WEB PAGE FOR DEVELOPEMENT PURPOSES
         //echo "<meta http-equiv='refresh' content='2;url=index.php'>";
     ?>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">

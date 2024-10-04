@@ -112,9 +112,10 @@
                 $pdf->SetFont('helvetica', 'B', 12);
                 $pdf->Cell(0, 10, $row['Artwork_name'], 0, 1);
                 $pdf->SetFont('helvetica', '', 12);
-                $pdf->Image("../assets/img/example4.jpeg", '', '', 80, 80, '', '', 'T', false, 300, '', false, false, 1, false, false, false);
+                $pdf->Image($row['URL'], '', '', 80, 80, '', '', 'T', false, 300, '', false, false, 1, false, false, false);
                 $pdf->ln(85);
                 $pdf->MultiCell(0, 10, " - ID: " . $ID, 0, 1);
+                $pdf->MultiCell(0, 10, " - Foto: " . "http://localhost:8080/projecteDAW/".$row['URL'], 0, 1);
                 $pdf->MultiCell(0, 10, " - Descripció: " . $row['Description'], 0, 1);
                 $pdf->MultiCell(0, 10, " - Material: " . $row['Material'], 0, 1);
                 $pdf->MultiCell(0, 10, " - Autor: " . $row['Author_name'], 0, 1);

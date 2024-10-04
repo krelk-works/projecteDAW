@@ -198,6 +198,11 @@ select {
   /*font-style: italic;*/
 }
 
+select * {
+  color: pink;
+  background-color: #007bff !important;
+}
+
 /* Elimina las flechas del scroll en navegadores basados en WebKit */
 ::-webkit-scrollbar {
   width: 0;
