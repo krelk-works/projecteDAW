@@ -15,7 +15,7 @@ body {
     flex-wrap: wrap;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 /* CUSTOM BUTTONS FOR WEBSITE */
@@ -112,7 +112,40 @@ option:hover {
 }
 
 /* Elimina las flechas del scroll en navegadores basados en WebKit */
+/*
 ::-webkit-scrollbar {
     width: 0;
     height: 0;
+}*/
+
+/* Elimina los estilos de los enlaces */
+a {
+    all: unset;
+    cursor: pointer;
+}
+
+a:hover {
+    color: #007bff;
+}
+
+.action_button {
+    margin: 0px !important;
+    padding: 5px !important;
+
+    i {
+        margin-right: 5px;
+    }
+}
+
+.delete_button:hover {
+    background-color: #ff4d4d !important;
+    color: white;
+}
+
+.rounded-profile-images {
+    border-radius:50%;
+}
+
+.search_button:hover {
+    padding: 10px;
 }

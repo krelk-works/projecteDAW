@@ -141,7 +141,7 @@
 
         public function getUsers($limit, $offset) {
             $conn = $this->connect();
-            $sql = "SELECT * FROM users LIMIT :limit OFFSET :offset";
+            $sql = "SELECT * FROM users ORDER BY id DESC LIMIT :limit OFFSET :offset";
         
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);

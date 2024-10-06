@@ -1,38 +1,56 @@
 <aside id="searchbar">
-    <form id="searchbarwrapper">
+    <form id="searchbarwrapper" action="<?= $_SERVER['PHP_SELF']; ?>?inici" method="GET">
         <h3>Filtre de busqueda</h3>
         <label for="search">Cerca</label>
-        <input type="text" name="search" id="search" placeholder="Cerca">
-        <label for="search">Autor</label>
-        <select name="" id="author_select" class="custom_options">
-            <option value="0" class="custom_option">Tots</option>
-            <option value="1" class="custom_option">Apel·les Fenosa</option>
-            <option value="2" class="custom_option">Autor 2</option>
-            <option value="3" class="custom_option">Autor 3</option>
+        <input type="text" name="search" id="search" placeholder="Cerca" value="<?php if (isset($_GET['search']))
+            echo $_GET['search']; ?>">
+        <label for="author">Autor</label>
+        <select name="author" id="author">
+            <option value="tots">Tots</option>
+            <?php
+            $authorController = new AuthorController();
+            $data = $authorController->getAuthors();
+            foreach ($data as $author) {
+                echo '<option value="' . $author['Author_ID'] . '"';
+                // Verificar si el autor está seleccionado
+                if (isset($_GET['author']) && $_GET['author'] == $author['Author_ID']) {
+                    echo ' selected';
+                }
+                echo '>' . $author['Author_name'] . '</option>';
+            }
+            ?>
         </select>
         <label for="location">Localització</label>
         <select name="location" id="location" class="custom_options">
-            <option value="0">Totes</option>
-            <option value="1">Primera planta</option>
-            <option value="2">Segona planta</option>
-            <option value="3">Tercera planta</option>
+            <option value="totes">Totes</option>
+            <?php
+            $locationController = new LocationController();
+            $data = $locationController->getLocations();
+            foreach ($data as $location) {
+                echo '<option value="' . $location['Location_ID'] . '"';
+                // Verificar si el valor en $_GET['location'] coincide con la Location_ID
+                if (isset($_GET['location']) && $_GET['location'] == $location['Location_ID']) {
+                    echo ' selected';
+                }
+                echo '>' . $location['Location_name'] . '</option>';
+            }
+            ?>
         </select>
         <label for="year">Any</label>
         <input type="number" name="year" id="year" min="1500" placeholder="Any">
         <label for="status">Estat</label>
         <select name="status" id="status" class="custom_options">
-            <option value="0">Tots</option>
-            <option value="1">Museu</option>
-            <option value="2">Altre museu</option>
-            <option value="3">Confiscat</option>
+            <option value="tots">Tots</option>
+            <option value="museu">Museu</option>
+            <option value="altremuseu">Altre museu</option>
+            <option value="confiscat">Confiscat</option>
         </select>
-        <button id="searcherButton" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Cerca</button>
+        <button id="searcherButton" type="submit" class="search_button"><i class="fa-solid fa-magnifying-glass"></i>Cerca</button>
         <?php
-            if ($_SESSION['role'] != "convidat") {
-                echo 
-                '<button id="formGeneratePDFButton" type="button"><i class="fa-solid fa-download"></i>Descarregar informe</button>';
-            }
+        if ($_SESSION['role'] != "convidat") {
+            echo '<button id="formGeneratePDFButton" type="button"><i class="fa-solid fa-download"></i>Descarregar informe</button>';
+        }
         ?>
+        <button id="resetFilters" type="button" class="delete_button"><i class="fa-solid fa-eraser"></i>Resetejar filtres</button>
     </form>
 </aside>
-

@@ -36,9 +36,8 @@
     <link rel="stylesheet" href="assets/css/login.css">
     <link rel="stylesheet" href="assets/css/navbar.css">
     <link rel="stylesheet" href="assets/css/search.css">
-    <link rel="stylesheet" href="assets/css/home-list.css">
+    <link rel="stylesheet" href="assets/css/lists.css">
     <link rel="stylesheet" href="assets/css/create.css">
-    <link rel="stylesheet" href="assets/css/user-list.css">
     <link rel="stylesheet" href="assets/css/user-administration.css">
 
     <!--<script src="assets/js/main.js" defer></script>-->

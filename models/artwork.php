@@ -23,70 +23,169 @@
             $this->Artwork_name = $Artwork_name;
         }
 
-        /*
-        public function getInfo(){
+        public function getInfo($limit, $offset, $filter = null) {
             $conn = $this->connect();
-            $sql = "SELECT Artwork.Artwork_ID, Artwork.Artwork_name, Artwork.Creation_date , Author.Author_name, Location.Location_name, Images.URL
-             FROM Artwork 
-             INNER JOIN Author ON Artwork.Author_ID = Author.Author_ID 
-             INNER JOIN Location ON Artwork.Location_ID = Location.Location_ID
-             INNER JOIN Images ON Artwork.Artwork_ID = Images.Artwork_ID";
+            
+            // Base SQL query
+            $sql = "SELECT Artwork.Artwork_ID, Artwork.Artwork_name, Artwork.Creation_date, 
+                           Authors.Author_name, Artwork.Conservation, Locations.Location_name, Images.URL
+                    FROM Artwork
+                    INNER JOIN Authors ON Artwork.Author_ID = Authors.Author_ID 
+                    INNER JOIN Locations ON Artwork.Location_ID = Locations.Location_ID
+                    INNER JOIN Images ON Artwork.Artwork_ID = Images.Artwork_ID";
+        
+            // If there are filters, start building the WHERE clause
+            $conditions = [];
+            
+            if (!empty($filter) && is_array($filter)) {
+                // Search filter
+                if (!empty($filter['search'])) {
+                    $conditions[] = "Artwork.Artwork_name LIKE :search";
+                }
+        
+                // Author filter
+                if (!empty($filter['author'])) {
+                    $conditions[] = "Authors.Author_ID = :author";
+                }
+        
+                // Location filter
+                if (!empty($filter['location'])) {
+                    $conditions[] = "Locations.Location_ID = :location";
+                }
+        
+                // Year filter (exact year)
+                if (!empty($filter['year'])) {
+                    $conditions[] = "Artwork.Creation_date = :year";
+                }
+        
+                // Status filter
+                if (!empty($filter['status'])) {
+                    $conditions[] = "Artwork.Conservation = :status";
+                }
+            }
+        
+            // If there are any conditions, append them to the SQL query
+            if (count($conditions) > 0) {
+                $sql .= " WHERE " . implode(" AND ", $conditions);
+            }
+        
+            // Add LIMIT and OFFSET for pagination
+            $sql .= " LIMIT :limit OFFSET :offset";
             
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
+            
+            // Bind the filters
+            if (!empty($filter['search'])) {
+                $searchTerm = "%" . $filter['search'] . "%";
+                $stmt->bindParam(':search', $searchTerm, PDO::PARAM_STR);
+            }
+            if (!empty($filter['author'])) {
+                $stmt->bindParam(':author', $filter['author'], PDO::PARAM_INT);
+            }
+            if (!empty($filter['location'])) {
+                $stmt->bindParam(':location', $filter['location'], PDO::PARAM_INT);
+            }
+            if (!empty($filter['year'])) {
+                $stmt->bindParam(':year', $filter['year'], PDO::PARAM_INT);
+            }
+            if (!empty($filter['status'])) {
+                $stmt->bindParam(':status', $filter['status'], PDO::PARAM_INT);
+            }
         
-            // Execute the statement
-            $stmt->execute();
-        
-            // Fetch the user
-            $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            return $row;
-        }*/
-
-        
-
-        public function getInfo($limit, $offset) {
-            $conn = $this->connect();
-            $sql = "SELECT Artwork.Artwork_ID, Artwork.Artwork_name, Artwork.Creation_date, 
-                           Author.Author_name, Location.Location_name, Images.URL
-                    FROM Artwork 
-                    INNER JOIN Author ON Artwork.Author_ID = Author.Author_ID 
-                    INNER JOIN Location ON Artwork.Location_ID = Location.Location_ID
-                    INNER JOIN Images ON Artwork.Artwork_ID = Images.Artwork_ID
-                    LIMIT :limit OFFSET :offset";
-        
-            // Prepare the SQL statement
-            $stmt = $conn->prepare($sql);
-        
-            // Bind parameters
+            // Bind limit and offset
             $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
             $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
         
-            // Execute the statement
+            // Execute the query
             $stmt->execute();
         
             // Fetch the results
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
+        
 
-        public function getTotalCount() {
+        public function getTotalCount($filter = null) {
             $conn = $this->connect();
-            $sql = "SELECT COUNT(*) FROM Artwork";
+            
+            // Base SQL query to count the total number of artworks
+            $sql = "SELECT COUNT(*) FROM Artwork
+                    INNER JOIN Authors ON Artwork.Author_ID = Authors.Author_ID
+                    INNER JOIN Locations ON Artwork.Location_ID = Locations.Location_ID";
+        
+            // If there are filters, start building the WHERE clause
+            $conditions = [];
+            
+            if (!empty($filter) && is_array($filter)) {
+                // Search filter
+                if (!empty($filter['search'])) {
+                    $conditions[] = "Artwork.Artwork_name LIKE :search";
+                }
+        
+                // Author filter
+                if (!empty($filter['author'])) {
+                    $conditions[] = "Authors.Author_ID = :author";
+                }
+        
+                // Location filter
+                if (!empty($filter['location'])) {
+                    $conditions[] = "Locations.Location_ID = :location";
+                }
+        
+                // Year filter (exact year)
+                if (!empty($filter['year'])) {
+                    $conditions[] = "Artwork.Creation_date = :year";
+                }
+        
+                // Status filter
+                if (!empty($filter['status'])) {
+                    $conditions[] = "Artwork.Conservation = :status";
+                }
+            }
+        
+            // If there are any conditions, append them to the SQL query
+            if (count($conditions) > 0) {
+                $sql .= " WHERE " . implode(" AND ", $conditions);
+            }
+        
+            // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
+            
+            // Bind the filters
+            if (!empty($filter['search'])) {
+                $searchTerm = "%" . $filter['search'] . "%";
+                $stmt->bindParam(':search', $searchTerm, PDO::PARAM_STR);
+            }
+            if (!empty($filter['author'])) {
+                $stmt->bindParam(':author', $filter['author'], PDO::PARAM_INT);
+            }
+            if (!empty($filter['location'])) {
+                $stmt->bindParam(':location', $filter['location'], PDO::PARAM_INT);
+            }
+            if (!empty($filter['year'])) {
+                $stmt->bindParam(':year', $filter['year'], PDO::PARAM_INT);
+            }
+            if (!empty($filter['status'])) {
+                $stmt->bindParam(':status', $filter['status'], PDO::PARAM_INT);
+            }
+        
+            // Execute the query
             $stmt->execute();
+        
+            // Fetch the count result
             return $stmt->fetchColumn();
         }
+        
 
         public function generatePDF() {
             // Get the data to generate the PDF file
             $conn = $this->connect();
             $sql = 
             "SELECT Artwork.ID_char, Artwork.ID_num1, Artwork.ID_num2, Artwork.Artwork_name, 
-            Artwork.Material, Description, Author.Author_name, Artwork.Creation_date, Artwork.Conservation,
+            Artwork.Material, Description, Authors.Author_name, Artwork.Creation_date, Artwork.Conservation,
             Artwork.Register_date, Artwork.Amount, Images.URL
             FROM Artwork 
-            INNER JOIN Author ON Artwork.Author_ID = Author.Author_ID
+            INNER JOIN Authors ON Artwork.Author_ID = Authors.Author_ID
             INNER JOIN Images ON Artwork.Artwork_ID = Images.Artwork_ID";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
