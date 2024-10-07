@@ -9,5 +9,11 @@ class LocationController
         $data = $location->getLocations();
         return $data;
     }
+
+    public function createLocation($location_name, $parent)
+    {
+        $locationModel = new Location();
+        return $locationModel->createLocation($location_name, $parent);
+    }
 }
 ?>
