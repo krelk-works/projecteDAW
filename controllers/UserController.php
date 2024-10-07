@@ -49,6 +49,11 @@ class UserController
     public function deleteUser($username){
         
     }
+    public function getUserData($id){
+        $user= new User();
+        $data = $user->getUserData($id);
+        return $data;   
+    }
 }
 
 ?>

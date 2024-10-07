@@ -30,7 +30,7 @@
                     <h3>' . $user['firstname'] . ' ' . $user['lastname'] . '</h3>
                     <p> <i class="fa-solid fa-user"></i> ' . $user['email'] . '</p>
                     <p> <i class="fa-solid fa-bookmark"></i> ' . $user['role'] . '</p>
-                    <a href="?page=user-administration"><button class="action_button"><i class="fa-solid fa-user-pen"></i>Modificar</button></a>
+                    <a href="?page=user-administration&userID=' . $user['id'] . '"><button class="action_button"><i class="fa-solid fa-user-pen"></i>Modificar</button></a>
                     <a href="?page=user-administration"><button class="action_button delete_button"><i class="fa-solid fa-user-minus"></i>Eliminar</button></a>
             </div>';
         }
