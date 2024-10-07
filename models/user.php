@@ -203,6 +203,12 @@
                 return false;
             }
         }      
-
+        public function getUserInfo($id){
+            $conn=$this->connect();
+            $sql="SELECT username, password, firstname, lastname, email, role, profileimg FROM users WHERE :id";
+            $stmt=$conn->prepare($sql);
+            $stmt->bindParam(':id', $this->$id);
+            return $stmt->fetch(PDO::FETCH_ASSOC);       
+        }
     }
 ?>

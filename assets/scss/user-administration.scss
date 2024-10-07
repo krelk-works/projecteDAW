@@ -1,15 +1,31 @@
 #user-modify-wrapper{
-    display: grid;
-    grid-template-columns: 1fr, 1fr;
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    grid-template-areas: 'profile-img user-data'
-    'footer footer';
-    height: 100%;
+    height: 100vh;
+    margin-top: 5px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+#user-modify-wrapper header{
+    grid-area: 'header';   
+    border-bottom: 1px solid rgb(146, 146, 146);
+    color: rgb(146, 146, 146);
+    font-weight: bold;
+    font-size: 1.5em;
+    width: 80%;
+}
+#user-modify-wrapper section{
+    display: grid;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 80%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'profile-img user-data';
 }
 .profile-img{
-    display: flex;
-    align-items: center;
     grid-area: 'profile-img';
+    text-align: center;
 }
 .user-data{
     display: flex;
@@ -18,16 +34,18 @@
 }
 .profile-img img{
     width: 200px;
+    place-self: center;
     height: 200px;
 }
 #user-modify-wrapper footer{
-    grid-area: footer;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 80%;
+    border-top:1px solid rgb(146, 146, 146) ;
 }
 footer button{
-    margin: 6%;
-    width: 6%;
-    height: 8%;
+    margin: 3vh 3vh;
+    width: 6vw;
+    height: 5vh;
 }
