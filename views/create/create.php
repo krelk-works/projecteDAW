@@ -98,5 +98,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label for="profileimg">Foto</label>
         <input type="file" name="profileimg" id="profileimg" required>
         <button type="submit" id="createButton"><i class="fa-solid fa-user-plus"></i>Crear</button>
+        <button id="searcherButton" type="button" class="search_button" onclick="redirectToSearchUser()">
+            <i class="fa-solid fa-magnifying-glass"></i>Cambiar a filtrado
+        </button>
+
+        <script>
+// Función para redirigir a la vista de search-user
+function redirectToSearchUser() {
+    window.location.href = 'http://localhost:8080/projecteDAW/index.php?page=usuarisfilter'; // Cambia la URL según sea necesario
+}
+</script>
+
     </form>
 </aside>
