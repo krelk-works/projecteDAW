@@ -72,7 +72,12 @@
                 else if ($actualPage == "usuaris") {
                     require_once "views/create/create.php";
                     require_once "views/user-list/user-list.php";
-                }else if($actualPage=="user-administration"){
+                }
+                else if ($actualPage == "localitzacions") {
+                    require_once "views/location-create/location-create.php";
+                    require_once "views/location-list/location-list.php";
+                }
+                else if($actualPage=="user-administration"){
                     require_once "views/user-adiministration/user-administration-view.php";
                 }
             }
