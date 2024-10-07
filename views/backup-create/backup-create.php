@@ -69,8 +69,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </script>";
     }
 }
-*/
+*/    
 ?>
+
 <aside id="createbar">
     <form id="createbarwrapper" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=backups" enctype="multipart/form-data">
         <h3>Creació de backups</h3>

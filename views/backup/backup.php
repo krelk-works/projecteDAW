@@ -1,6 +1,12 @@
 <main class="list-wrapper">
     <div class="list-container">
-        <div class="list-header">
+
+    <div id="myProgress">
+        <div id="myBar"></div>
+    </div>
+
+<br>
+        <div class="list-header list-item-header-backup">
             <a href="">
                 <h4>Nom</h4>
             </a>
@@ -25,7 +31,7 @@
         $offset = ($currentPagePagination - 1) * $limit;
         $data = $UserController->getUsers($limit, $offset);
         foreach ($data as $user) {
-            echo '<div class="list-item">
+            echo '<div class="list-item list-item-backup">
                     <img src="' . $user['profileimg'] . '" alt="' . $user['firstname'] . ' ' . $user['lastname'] . '" class="rounded-profile-images">
                     <h3>' . $user['firstname'] . ' ' . $user['lastname'] . '</h3>
                     <p> <i class="fa-solid fa-user"></i> ' . $user['email'] . '</p>
@@ -109,42 +115,11 @@
         }
         ?>
     </div>
+
 </main>
-
-
-
-
-<!--<!DOCTYPE html>
-<html>
-<style>
-#myProgress {
-  width: 100%;
-  background-color: #ddd;
-   border-radius: 15px;
-   overflow: hidden;
-}
-
-#myBar {
-  width: 1%;
-  height: 30px;
-  background-color: #04AA6D;
-  border-radius: 15px;
-}
-
-</style>
-<body>
-
-<h1>JavaScript Progress Bar</h1>
-
-<div id="myProgress">
-  <div id="myBar"></div>
-</div>
-
-<br>
-<button onclick="move()">Click Me</button> 
-
 <script>
 var i = 0;
+move();
 function move() {
   if (i == 0) {
     i = 1;
@@ -163,6 +138,3 @@ function move() {
   }
 }
 </script>
-
-</body>
-</html>
