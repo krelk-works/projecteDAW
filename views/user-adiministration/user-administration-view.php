@@ -1,7 +1,7 @@
 <?php
     $controller=new UserController();
-    $data = $controller->getUserData($_GET['userID']);
-    var_dump($data);
+    $data = $controller->getUserData((int)$_GET['userID']);
+    print_r($data);
 ?>
 <main id="user-modify-wrapper">
     <header>Modificar usuari</header>

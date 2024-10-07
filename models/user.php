@@ -209,7 +209,7 @@
             $stmt=$conn->prepare($sql);
             $stmt->bindParam(':id', $id);
             if ($stmt->execute()) {
-                return true;
+                return $stmt->fetch(PDO::FETCH_ASSOC);
             } else {
                 return false;
             }
