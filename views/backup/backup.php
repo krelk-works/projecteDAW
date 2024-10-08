@@ -5,7 +5,7 @@
                 0%
             </p>
             <div class="progress-bar-gradient">
-                <div class="progress-bar" style="width: 10%;">
+                <div class="progress-bar" style="width: 20%;">
                 <p class="progressStatus">
                     20%
                 </p>

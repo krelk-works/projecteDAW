@@ -25,7 +25,7 @@
     align-items: center;
     height: 1em;
     /*background: transparent;*/
-    border: 2px solid white;
+    border: 2px solid black;
     transition: width 0.5s ease;
     border-radius: 10px;
 }
@@ -36,15 +36,17 @@
     height: 1em;
     width: 100%;
     border-radius: 10px;
-    background: linear-gradient(90deg, rgba(69, 119, 255, 1) 0%, rgba(251, 191, 7, 1) 63%, rgba(255, 0, 0, 1) 100%);
+    background: linear-gradient(90deg, rgba(69,119,255,1) 46%, rgba(255,184,0,1) 80%, rgba(255,0,0,1) 100%);
 }
 
 .aroundText {
     padding: 10px;
-    color: white;
+    color: black;
+    font-weight: bold;
 }
 
 .progressStatus {
-    color: white;
+    color: black;
     font-size: .9em;
+
 }

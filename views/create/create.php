@@ -8,11 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $role = $_POST['role'];
     $profileimg = 'assets/img/'.$_FILES['profileimg']['name'];
 
-    // Crear el usuario en la base de datos
-    $userController = new UserController();
-    $createdUser = $userController->createUser($username, $password, $firstname, $lastname, $email, $profileimg, $role);
-
-    // Comprobar si se ha subido la imagen
     if (isset($_FILES['profileimg'])) {
         // Recogemos el archivo enviado por el formulario
         $archivo = $_FILES['profileimg']['name'];
@@ -24,21 +19,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $temp = $_FILES['profileimg']['tmp_name'];
             // Se comprueba si el archivo a cargar es correcto observando su extensión y tamaño
             if (!((strpos($tipo, "gif") || strpos($tipo, "jpeg") || strpos($tipo, "jpg") || strpos($tipo, "png")) && ($tamano < 2000000))) {
-                echo '<div><b>Error. La extensión o el tamaño de los archivos no es correcta.<br/>
-                - Se permiten archivos .gif, .jpg, .png. y de 2MB como máximo.</b></div>';
             } else {
                 // Si la imagen es correcta en tamaño y tipo
                 // Se intenta subir al servidor
                 if (move_uploaded_file($temp, 'assets/img/'.$archivo)) {
                     // Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
-                } else {
-                    // Si no se ha podido subir la imagen, mostramos un mensaje de error
-                    echo '<div><b>Ocurrió algún error al subir el fichero. No pudo guardarse.</b></div>';
+                        // Crear el usuario en la base de datos
+                    $userController = new UserController();
+                    $createdUser = $userController->createUser($username, $password, $firstname, $lastname, $email, $profileimg, $role);
                 }
             }
         }
     }
-
     // Verificar si el usuario fue creado correctamente
     if ($createdUser) {
         echo "
