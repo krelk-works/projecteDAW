@@ -1,13 +1,18 @@
 <main class="list-wrapper">
     <div class="list-container">
         <div class="progress-bar-container">
+            <?php  
+                $ds = disk_total_space(".");
+                $dsFree = disk_free_space(".");
+                $dsTotal = (int)(($dsFree / $ds) * 100);
+            ?>
             <p class="aroundText">
                 0%
             </p>
             <div class="progress-bar-gradient">
-                <div class="progress-bar" style="width: 20%;">
+                <div class="progress-bar" style="width: 0%;">
                 <p class="progressStatus">
-                    20%
+                    0%
                 </p>
                 </div>
             </div>
@@ -15,6 +20,7 @@
                 100%
             </p>
         </div>
+
         <div class="list-header list-item-header-backup">
             <a href="">
                 <h4>Nom</h4>
@@ -126,24 +132,15 @@
     </div>
 
 </main>
-<script>
+<script defer>
 var i = 0;
 move();
 function move() {
-  if (i == 0) {
-    i = 1;
-    var elem = document.getElementById("myBar");
-    var width = 1;
-    var id = setInterval(frame, 10);
-    function frame() {
-      if (width >= 70) {
-        clearInterval(id);
-        i = 0;
-      } else {
-        width++;
-        elem.style.width = width + "%";
-      }
-    }
-  }
+    var elem = document.getElementsByClassName("progress-bar");
+    
+    setTimeout(() => {
+        console.log("Ajustando progress bar...");
+        elem.style.width = <?php echo $dsTotal ?> + "%";
+    }, 200);
 }
 </script>
