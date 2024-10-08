@@ -1,13 +1,20 @@
 <main class="list-wrapper">
     <div class="list-container">
-
-    <div id="myProgress">
-        <p class="backupStatusLeft">0%</p>
-        <div id="myBar"></div>
-        <p class="backupStatusRight">70%</p>
-    </div>
-
-<br>
+        <div class="progress-bar-container">
+            <p class="aroundText">
+                0%
+            </p>
+            <div class="progress-bar-gradient">
+                <div class="progress-bar" style="width: 10%;">
+                <p class="progressStatus">
+                    20%
+                </p>
+                </div>
+            </div>
+            <p class="aroundText">
+                100%
+            </p>
+        </div>
         <div class="list-header list-item-header-backup">
             <a href="">
                 <h4>Nom</h4>
