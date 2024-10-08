@@ -132,7 +132,7 @@
     height: 2em;
     max-height: 2em;
     align-items: center;
-    background: linear-gradient(90deg, rgba(69,119,255,1) 0%, rgba(251,191,7,1) 63%, rgba(255,0,0,1) 100%);
+    background-color: gray;
     .backupStatusLeft {
         color: white;
         padding-left: 5px;
@@ -144,11 +144,18 @@
     }
   }
 
-
+  #colorBar {
+    display: flex;
+    width: 1%;
+    background: linear-gradient(90deg, rgba(69,119,255,1) 0%, rgba(251,191,7,1) 63%, rgba(255,0,0,1) 100%);
+    border-radius: 15px;
+    height: 0.5em;
+    max-height: 0.5em;    
+  }
   
   #myBar {
     width: 1%;
-    background-color: transparent;
+    background-color: #4577ff;
     border: 2px solid black;
     border-radius: 15px;
     height: 0.5em;
