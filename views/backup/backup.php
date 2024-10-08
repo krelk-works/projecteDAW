@@ -2,7 +2,9 @@
     <div class="list-container">
 
     <div id="myProgress">
+        <p class="backupStatusLeft">0%</p>
         <div id="myBar"></div>
+        <p class="backupStatusRight">70%</p>
     </div>
 
 <br>
