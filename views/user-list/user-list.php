@@ -31,13 +31,34 @@
                     <p> <i class="fa-solid fa-user"></i> ' . $user['email'] . '</p>
                     <p> <i class="fa-solid fa-bookmark"></i> ' . $user['role'] . '</p>
                     <a href="?page=user-administration&userID=' . $user['id'] . '"><button class="action_button"><i class="fa-solid fa-user-pen"></i>Modificar</button></a>
-                    <a href="?page=user-administration"><button class="action_button delete_button"><i class="fa-solid fa-user-minus"></i>Eliminar</button></a>
+                    <a href="?page=usuaris&confirm=true&userID=' . $user['id'] . '"><button class="action_button delete_button"><i class="fa-solid fa-user-minus"></i>Eliminar</button></a>
             </div>';
         }
         ?>
     </div>
     <div class="list-pagination">
         <?php
+
+        if ($_GET['confirm']) {
+            echo "
+            <script>
+                Swal.fire({
+                    title: 'Eliminar Usuari',
+                    text: 'Estas segur que vols eliminar l\\'usuari?',
+                    showCancelButton: true,
+                    cancelButtonText: 'Tornar',
+                    showConfirmButton: true,
+                    confirmButtonText: 'Estic segur'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = 'http://localhost:8080/projecteDAW/index.php?page=usuaris'; // Redirige a la lista de usuarios
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        window.location.href = 'http://localhost:8080/projecteDAW/index.php?page=usuaris'; // Redirige a la lista de usuarios
+                    }
+                });
+            </script>";
+        }
+
         // CALCULATE TOTAL PAGES
         $totalPages = (int) ceil($totalUsers / $limit);
 
