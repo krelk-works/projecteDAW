@@ -46,8 +46,10 @@ class UserController
         $data = $user->getTotalCount();
         return $data;
     }
-    public function deleteUser($username){
-        
+    public function deleteUser($id){
+        $user = new User();
+        $data = $user->deleteUser($id);
+        return $data;
     }
     public function getUserData($id){
         $user = new User();
