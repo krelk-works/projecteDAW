@@ -122,40 +122,6 @@
 }
 */
 
-#myProgress {
-    opacity: 0.5;
-    display: flex;
-    width: 100%;
-    background-color: grey;
-    border-radius: 15px;
-    overflow: hidden;
-    height: 2em;
-    max-height: 2em;
-    align-items: center;
-    background: linear-gradient(90deg, rgba(69,119,255,1) 0%, rgba(251,191,7,1) 63%, rgba(255,0,0,1) 100%);
-    .backupStatusLeft {
-        color: white;
-        padding-left: 5px;
-        padding-right: 2px;
-    }
-    .backupStatusRight {
-        color: white;
-        padding-right: 5px;
-    }
-  }
-
-
-  
-  #myBar {
-    width: 1%;
-    background-color: transparent;
-    border: 2px solid black;
-    border-radius: 15px;
-    height: 0.5em;
-    max-height: 0.5em;
-    
-}
-
 .list-wrapper {
     /* Resetting the padding and margin */
     padding: 0px;
