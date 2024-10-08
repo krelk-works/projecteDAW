@@ -213,7 +213,26 @@
             } else {
                 return false;
             }
-            //return $stmt->fetch(PDO::FETCH_ASSOC);       
+        }
+        public function updateUser($id,$data){
+            $conn=$this->connect();
+            $sql="UPDATE users SET 
+                username =:username
+                firstname = :firstname, 
+                lastname = :lastname, 
+                email = :email, 
+                password = :password, 
+                role = :role 
+            WHERE id = :id";
+            $stmt=$conn->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':username', $data['username']);
+            $stmt->bindParam(':firstname', $data['firstname']);
+            $stmt->bindParam(':lastname', $data['lastname']);
+            $stmt->bindParam(':email', $data['email']);
+            $stmt->bindParam(':password', $data['password']);
+            $stmt->bindParam(':role', $data['role']);
+            $stmt->execute();
         }
     }
 ?>

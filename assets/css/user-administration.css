@@ -18,37 +18,36 @@
 }
 
 #user-modify-wrapper section {
-  display: grid;
+  display: grid !important;
   margin-top: 5%;
   margin-bottom: 5%;
-  width: 80%;
+  width: 80vw;
   grid-template-columns: 1fr 1fr;
-  grid-template-areas: "profile-img user-data";
+  grid-template-areas: "profile-img" "user-data";
 }
 
 .profile-img {
-  grid-area: "profile-img";
+  grid-area: "profile-img" !important;
   text-align: center;
 }
 
 .user-data {
+  grid-area: "user-data" !important;
   display: flex;
   flex-direction: column;
-  grid-area: "user-data";
 }
 
 .profile-img img {
   border-radius: 10% !important;
-  width: 200px;
+  width: 300px;
   place-self: center;
-  height: 200px;
 }
 
 #user-modify-wrapper footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80%;
+  width: 100%;
   border-top: 1px solid rgb(146, 146, 146);
 }
 
