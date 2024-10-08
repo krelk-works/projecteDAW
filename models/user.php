@@ -205,7 +205,7 @@
         }      
         public function getUserData($id){
             $conn=$this->connect();
-            $sql="SELECT * FROM users WHERE :id";
+            $sql="SELECT * FROM users WHERE id = :id";
             $stmt=$conn->prepare($sql);
             $stmt->bindParam(':id', $id);
             if ($stmt->execute()) {

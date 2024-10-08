@@ -1,37 +1,35 @@
-<?php
-    $controller=new UserController();
-    $data = $controller->getUserData((int)$_GET['userID']);
-    print_r($data);
-?>
 <main id="user-modify-wrapper">
     <header>Modificar usuari</header>
     <section>
-        <div class="profile-img">
-            <img src="assets/img/defaultprofile.png" alt="">
-        </div>
-        <div class="user-data">
             <?php
-                
-
+                $controller=new UserController();
+                $id = intval($_GET['userID']);
+                $data = $controller->getUserData($id);
+                echo '
+                <div class="profile-img">
+                    <img src="'. $data['profileimg'] .'" alt="" class="profile">
+                </div>
+                <div class="user-data">
+                    <label for="nom usuari">Nom usuari</label>
+                    <input type="text" name="nom usuari" id="" value=" ' . $data['username'] .' ">
+                    <label for="nom">Nom</label>
+                    <input type="text" name="nom" id="" value=" ' . $data['firstname'] .' ">
+                    <label for="cognoms">Cognoms</label>
+                    <input type="text" name="cognoms" id="" value=" ' . $data['lastname'] .' ">
+                    <label for="email">email</label>
+                    <input type="email" name="email" id="" value=" ' . $data['email'] .' ">
+                    <label for="contraseña">Contrasenya</label>
+                    <input type="password" name="contrasenya" id="" value=" ' . $data['password'] .' ">
+                    <label for="rol">Rol</label>
+                    <select name="rol" id="status" class="custom_options" value=" ' . $data['role'] . ' ">
+                    
+                        <option value="admin" '.($data['role']=='admin'?'selected':'') .'>Admin</option>
+                        <option value="tecnic" '.($data['role']=='tecnic'?'selected':'') .'>Tecnic</option>
+                        <option value="convidat" '.($data['role']=='convidat'?'selected':'') .'>Convidat</option>
+                    </select>
+                </div>
+                ';
             ?>
-            <label for="nom d'usuari">Nom d'usuari</label>
-            <input type="text" name="nom d'usuari" id="">
-            <label for="nom">Nom</label>
-            <input type="text" name="nom" id="">
-            <label for="cognoms">Cognoms</label>
-            <input type="text" name="cognoms" id="">
-            <label for="cognoms">email</label>
-            <input type="email" name="email" id="">
-            <label for="contraseña">Contrasenya</label>
-            <input type="password" name="contrasenya" id="">
-            <label for="rol">Rol</label>
-            <select name="rol" id="status" class="custom_options">
-                <option value="0">Admin</option>
-                <option value="1">Tecnic</option>
-                <option value="2">Convidat</option>
-            </select>
-            
-        </div>
     </section>
     <footer>
         <button>Confirma</button>
