@@ -120,6 +120,26 @@
 
 }
 */
+#myProgress {
+  opacity: 0.5;
+  display: flex;
+  width: 100%;
+  background-color: grey;
+  border-radius: 15px;
+  overflow: hidden;
+  height: 2em;
+  max-height: 2em;
+}
+
+#myBar {
+  width: 1%;
+  height: 30px;
+  background-color: #4577ff;
+  border-radius: 15px;
+  height: 2em;
+  max-height: 2em;
+}
+
 .list-wrapper {
   /* Resetting the padding and margin */
   padding: 0px;

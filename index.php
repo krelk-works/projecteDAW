@@ -38,6 +38,7 @@
     <link rel="stylesheet" href="assets/css/search.css">
     <link rel="stylesheet" href="assets/css/lists.css">
     <link rel="stylesheet" href="assets/css/create.css">
+    <link rel="stylesheet" href="assets/css/backup.css">
     <link rel="stylesheet" href="assets/css/user-administration.css">
 
     <!--<script src="assets/js/main.js" defer></script>-->
@@ -83,6 +84,10 @@
                 else if ($actualPage == "usuarisfilter") {
                     require_once "views/search-user/search-user.php";
                     require_once "views/user-list/user-list.php";
+                }
+                else if ($actualPage == "backups") {
+                    require_once "views/backup-create/backup-create.php";
+                    require_once "views/backup/backup.php";
                 }
             }
 

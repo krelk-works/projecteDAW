@@ -1,17 +1,23 @@
 <main class="list-wrapper">
     <div class="list-container">
-        <div class="list-header">
+
+    <div id="myProgress">
+        <div id="myBar"></div>
+    </div>
+
+<br>
+        <div class="list-header list-item-header-backup">
             <a href="">
                 <h4>Nom</h4>
             </a>
             <a href="">
-                <h4>Correu</h4>
+                <h4>Creació</h4>
             </a>
             <a href="">
-                <h4>Rol</h4>
+                <h4>Mida</h4>
             </a>
             <a href="">
-                <h4>Modificar</h4>
+                <h4>Descarregar</h4>
             </a>
             <a href="">
                 <h4>Eliminar</h4>
@@ -25,12 +31,12 @@
         $offset = ($currentPagePagination - 1) * $limit;
         $data = $UserController->getUsers($limit, $offset);
         foreach ($data as $user) {
-            echo '<div class="list-item">
+            echo '<div class="list-item list-item-backup">
                     <img src="' . $user['profileimg'] . '" alt="' . $user['firstname'] . ' ' . $user['lastname'] . '" class="rounded-profile-images">
                     <h3>' . $user['firstname'] . ' ' . $user['lastname'] . '</h3>
                     <p> <i class="fa-solid fa-user"></i> ' . $user['email'] . '</p>
                     <p> <i class="fa-solid fa-bookmark"></i> ' . $user['role'] . '</p>
-                    <a href="?page=user-administration&userID=' . $user['id'] . '"><button class="action_button"><i class="fa-solid fa-user-pen"></i>Modificar</button></a>
+                    <a href="?page=user-administration"><button class="action_button"><i class="fa-solid fa-user-pen"></i>Modificar</button></a>
                     <a href="?page=user-administration"><button class="action_button delete_button"><i class="fa-solid fa-user-minus"></i>Eliminar</button></a>
             </div>';
         }
@@ -109,4 +115,26 @@
         }
         ?>
     </div>
+
 </main>
+<script>
+var i = 0;
+move();
+function move() {
+  if (i == 0) {
+    i = 1;
+    var elem = document.getElementById("myBar");
+    var width = 1;
+    var id = setInterval(frame, 10);
+    function frame() {
+      if (width >= 70) {
+        clearInterval(id);
+        i = 0;
+      } else {
+        width++;
+        elem.style.width = width + "%";
+      }
+    }
+  }
+}
+</script>

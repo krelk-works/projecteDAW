@@ -1,0 +1,7 @@
+.list-item-header-backup {
+  margin-top: 10px !important;
+}
+
+.list-item-backup {
+  height: calc((100% - 4em - 110px) / 8) !important;
+}/*# sourceMappingURL=backup.css.map */

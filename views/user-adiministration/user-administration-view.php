@@ -1,4 +1,8 @@
-
+<?php
+    $controller=new UserController();
+    $data = $controller->getUserData((int)$_GET['userID']);
+    print_r($data);
+?>
 <main id="user-modify-wrapper">
     <header>Modificar usuari</header>
     <section>
@@ -16,6 +20,8 @@
             <input type="text" name="nom" id="">
             <label for="cognoms">Cognoms</label>
             <input type="text" name="cognoms" id="">
+            <label for="cognoms">email</label>
+            <input type="email" name="email" id="">
             <label for="contraseña">Contrasenya</label>
             <input type="password" name="contrasenya" id="">
             <label for="rol">Rol</label>
@@ -29,6 +35,5 @@
     </section>
     <footer>
         <button>Confirma</button>
-        <button>Eliminar</button>
     </footer>
 </main>
