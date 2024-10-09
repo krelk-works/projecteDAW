@@ -1,6 +1,6 @@
 <main class="list-wrapper">
-    <div class="list-container-locations">
-        <div class="list-header-locations">
+    <div class="list-container">
+        <div class="list-header list-header-locations">
             <a href="">
                 <h4>Nom</h4>
             </a>
@@ -21,7 +21,7 @@
             if ($location['pare'] == null) {
                 $location['pare'] = "Cap";
             }
-            echo '<div class="list-item">
+            echo '<div class="list-item list-item-location">
                 <p><i class="fa-solid fa-location-dot"></i>' . $location['fill'] . '</p>
                 <p><i class="fa-solid fa-location-dot"></i>' . $location['pare'] . '</p>
             </div>';

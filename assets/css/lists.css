@@ -170,20 +170,20 @@
   border-bottom: 1px solid #ffffff;
   overflow: hidden;
 }
-.list-wrapper .list-container .list-header :first-child {
+.list-wrapper .list-container .list-header a:first-child {
   padding-left: 2px;
   width: calc(30% - 2px);
 }
-.list-wrapper .list-container .list-header :nth-child(2) {
+.list-wrapper .list-container .list-header a:nth-child(2) {
   width: 22.5%;
 }
-.list-wrapper .list-container .list-header :nth-child(3) {
+.list-wrapper .list-container .list-header a:nth-child(3) {
   width: 20%;
 }
-.list-wrapper .list-container .list-header :nth-child(4) {
+.list-wrapper .list-container .list-header a:nth-child(4) {
   width: 13.75%;
 }
-.list-wrapper .list-container .list-header :nth-child(5) {
+.list-wrapper .list-container .list-header a:nth-child(5) {
   width: 13.75%;
 }
 .list-wrapper .list-container .list-item {

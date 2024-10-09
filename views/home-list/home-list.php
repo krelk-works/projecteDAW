@@ -75,8 +75,6 @@ if ($searchTriggered) {
 }
 ?>
 
-
-
 <main class="list-wrapper">
     <div class="list-container">
         <div class="list-header">

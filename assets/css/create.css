@@ -32,6 +32,12 @@
   width: calc(100% - 0px);
 }
 
+#createbar button {
+  width: 100% !important;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 #createbarwrapper {
   display: flex;
   flex-wrap: wrap;

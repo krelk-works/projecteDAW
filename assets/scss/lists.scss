@@ -184,24 +184,24 @@
 
             overflow: hidden;
 
-            :first-child {
+            a:first-child {
                 padding-left: 2px;
                 width: calc(30% - 2px);
             }
 
-            :nth-child(2) {
+            a:nth-child(2) {
                 width: 22.5%;
             }
 
-            :nth-child(3) {
+            a:nth-child(3) {
                 width: 20%;
             }
 
-            :nth-child(4) {
+            a:nth-child(4) {
                 width: 13.75%;
             }
 
-            :nth-child(5) {
+            a:nth-child(5) {
                 width: 13.75%;
             }
         }
