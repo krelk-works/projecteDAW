@@ -61,7 +61,7 @@
         
                 // Status filter
                 if (!empty($filter['status'])) {
-                    $conditions[] = "Estat de conservacio.id = :status";
+                    $conditions[] = "Estatdeconservacio.id= :status";
                 }
             }
         
@@ -140,7 +140,7 @@
         
                 // Status filter
                 if (!empty($filter['status'])) {
-                    $conditions[] = "Artwork.Conservation = :status";
+                    $conditions[] = "Artwork.Conservation_ID = :status";
                 }
             }
         
@@ -183,7 +183,7 @@
             $conn = $this->connect();
             $sql = 
             "SELECT Artwork.ID_char, Artwork.ID_num1, Artwork.ID_num2, Artwork.Artwork_name, 
-            Artwork.Material, Description, Authors.Author_name, Artwork.Creation_date, Artwork.Conservation,
+            Artwork.Material, Description, Authors.Author_name, Artwork.Creation_date, Artwork.Conservation_ID,
             Artwork.Register_date, Artwork.Amount, Images.URL
             FROM Artwork 
             INNER JOIN Authors ON Artwork.Author_ID = Authors.Author_ID

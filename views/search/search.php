@@ -40,10 +40,19 @@
         <input type="number" name="year" id="year" min="1500" placeholder="Any">
         <label for="status">Estat</label>
         <select name="status" id="status" class="custom_options">
-            <option value="tots">Tots</option>
-            <option value="museu">Museu</option>
-            <option value="altremuseu">Altre museu</option>
-            <option value="confiscat">Confiscat</option>
+        <option value="tots">Tots</option>
+            <?php 
+            $statusController = new StatusController();
+            $data = $statusController->getStatus();
+            foreach ($data as $status) {
+                echo '<option value="' . $status['id'] . '"';
+                // Verificar si el valor en $_GET['location'] coincide con la Location_ID
+                if (isset($_GET['text']) && $_GET['text'] == $status['id']) {
+                    echo ' selected';
+                }
+                echo '>' . $status['text'] . '</option>';
+            }
+            ?>
         </select>
         <button id="searcherButton" type="submit" class="search_button"><i class="fa-solid fa-magnifying-glass"></i>Cerca</button>
         <?php
