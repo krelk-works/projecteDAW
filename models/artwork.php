@@ -28,11 +28,12 @@
             
             // Base SQL query
             $sql = "SELECT Artwork.Artwork_ID, Artwork.Artwork_name, Artwork.Creation_date, 
-                           Authors.Author_name, Artwork.Conservation, Locations.Location_name, Images.URL
+                           Authors.Author_name, Estatdeconservacio.text, Locations.Location_name, Images.URL
                     FROM Artwork
                     INNER JOIN Authors ON Artwork.Author_ID = Authors.Author_ID 
                     INNER JOIN Locations ON Artwork.Location_ID = Locations.Location_ID
-                    INNER JOIN Images ON Artwork.Artwork_ID = Images.Artwork_ID";
+                    INNER JOIN Images ON Artwork.Artwork_ID = Images.Artwork_ID
+                    INNER JOIN Estatdeconservacio ON Artwork.Conservation_ID = Estatdeconservacio.id";
         
             // If there are filters, start building the WHERE clause
             $conditions = [];
@@ -60,7 +61,7 @@
         
                 // Status filter
                 if (!empty($filter['status'])) {
-                    $conditions[] = "Artwork.Conservation = :status";
+                    $conditions[] = "Estat de conservacio.id = :status";
                 }
             }
         

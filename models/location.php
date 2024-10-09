@@ -38,6 +38,7 @@
             // Fetch the results
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
+
         public function createLocation($location_name, $parent) {
             $conn = $this->connect();
             // Query para insertar una nueva ubicacion
@@ -55,6 +56,44 @@
             } else {
                 return false;
             }
+        }
+
+        public function getTotalCount() {
+            $conn = $this->connect();
+            
+            // Base SQL query to count the total number of locations
+            $sql = "SELECT COUNT(*) FROM Locations";
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+            // Execute the query
+            $stmt->execute();
+            // Fetch the count result
+            return $stmt->fetchColumn();
+        }
+
+        public function getInfo($limit, $offset) {
+            $conn = $this->connect();
+            
+            // Base SQL query
+            $sql = "SELECT L1.Location_name AS pare, L2.Location_name AS fill 
+            FROM Locations AS L1
+            INNER JOIN Locations AS L2 ON L1.Location_ID = L2.Parent_ID";
+        
+            // Add LIMIT and OFFSET for pagination
+            $sql .= " LIMIT :limit OFFSET :offset";
+            
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+        
+            // Bind limit and offset
+            $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+            $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+        
+            // Execute the query
+            $stmt->execute();
+        
+            // Fetch the results
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
     }
 ?>

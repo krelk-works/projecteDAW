@@ -111,7 +111,7 @@ if ($searchTriggered) {
                 <p><i class="fa-solid fa-user"></i>' . $artwork['Author_name'] . '</p>
                 <p><i class="fa-solid fa-location-dot"></i>' . $artwork['Location_name'] . '</p>
                 <p><i class="fa-solid fa-bookmark"></i>' . $artwork['Creation_date'] . '</p>
-                <p><i class="fa-regular fa-clipboard"></i>' . $artwork['Conservation'] . '</p>
+                <p><i class="fa-regular fa-clipboard"></i>' . $artwork['text'] . '</p>
             </div>';
         }
         ?>

@@ -15,5 +15,19 @@ class LocationController
         $locationModel = new Location();
         return $locationModel->createLocation($location_name, $parent);
     }
+
+    public function getTotalCount()
+    {
+        $location = new Location();
+        $data = $location->getTotalCount();
+        return $data;
+    }
+
+    public function getData($limit, $offset)
+    {
+        $location = new Location();
+        $data = $location->getInfo($limit, $offset);
+        return $data;
+    }
 }
 ?>

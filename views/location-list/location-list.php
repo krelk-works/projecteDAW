@@ -1,48 +1,34 @@
 <main class="list-wrapper">
     <div class="list-container">
-        <div class="list-header">
+        <div class="list-header-locations">
             <a href="">
                 <h4>Nom</h4>
             </a>
             <a href="">
-                <h4>Autor</h4>
-            </a>
-            <a href="">
-                <h4>Ubicació</h4>
-            </a>
-            <a href="">
-                <h4>Data</h4>
-            </a>
-            <a href="">
-                <h4>Estat</h4>
+                <h4>Pare</h4>
             </a>
         </div>
         <?php
-        $ArtworkController = new ArtworkController();
         $locationsController = new LocationController();
 
-        $totalArtworks = $ArtworkController->getTotalCount($searchFilter);
+        $totalLocations = $locationsController->getTotalCount();
         $limit = 8; // Número máximo de obras por página
         $currentPagePagination = isset($_GET['pagination']) ? (int) $_GET['pagination'] : 1;
         $offset = ($currentPagePagination - 1) * $limit;
-        $data = $ArtworkController->getData($limit, $offset, $searchFilter);
+        $data = $locationsController->getData($limit, $offset);
 
-        foreach ($data as $artwork) {
-            /*echo '<div class="list-item">
-                <img src="' . $artwork['URL'] . '" alt="' . $artwork['Artwork_name'] . ' ' . $artwork['Author_name'] . '">
-                <h3>' . $artwork['Artwork_name'] . '</h3>
-                <p><i class="fa-solid fa-user"></i>' . $artwork['Author_name'] . '</p>
-                <p><i class="fa-solid fa-location-dot"></i>' . $artwork['Location_name'] . '</p>
-                <p><i class="fa-solid fa-bookmark"></i>' . $artwork['Creation_date'] . '</p>
-                <p><i class="fa-regular fa-clipboard"></i>' . $artwork['Conservation'] . '</p>
-            </div>';*/
+        foreach ($data as $location) {
+            echo '<div class="list-item">
+                <p><i class="fa-solid fa-location-dot"></i>' . $location['pare'] . '</p>
+                <p><i class="fa-solid fa-location-dot"></i>' . $location['fill'] . '</p>
+            </div>';
         }
         ?>
     </div>
     <div class="list-pagination">
         <?php
         // CALCULATE TOTAL PAGES
-        $totalPages = (int) ceil($totalArtworks / $limit);
+        $totalPages = (int) ceil($totalLocations / $limit);
 
         // CSS VARS
         $disabledClass = 'pagination_disabled';
@@ -52,7 +38,7 @@
         $isForwardDisabled = ($currentPagePagination >= $totalPages) ? true : false;
         $isBackwardDisabled = ($currentPagePagination <= 1) ? true : false;
 
-        function getPaginationFilter()
+        /*function getPaginationFilter()
         {
             if (!empty($searchFilter)) {
                 $filter = '';
@@ -66,23 +52,21 @@
         }
 
         $currentFilter = $urlsearchparams; // Obtener los filtros activos
-        
+        */
         //echo '<script>console.log("currentFilter: ' . $currentFilter . '")</script>';
         
         // FIRST PAGE BUTTON "<<"
-        $firstPageURL = '?pagination=1' . $currentFilter; // Concatenar los filtros a la URL
         if ($currentPagePagination > 1) {
-            echo '<button class="list-pagination-page" onclick="location.href=\'' . $firstPageURL . '\';"><<</button>';
+            echo '<button class="list-pagination-page" onclick="location.href=\'?page=localitzacions&pagination=1\';"><<</button>';
         } else {
             echo '<button class="list-pagination-page ' . $disabledClass . '" disabled><<</button>';
         }
 
         // PAGINATION BACK BUTTON "<"
-        $previousPageURL = '?pagination=' . (($currentPagePagination > 1) ? ($currentPagePagination - 1) : 1) . $currentFilter; // Concatenar los filtros
         if ($isBackwardDisabled) {
             echo '<button class="list-pagination-control ' . $disabledClass . '"><</button>';
         } else {
-            echo '<button class="list-pagination-control" onclick="location.href=\'' . $previousPageURL . '\';"><</button>';
+            echo '<button class="list-pagination-control" onclick="location.href=\'?page=localitzacions&pagination=' . (($currentPagePagination > 1) ? ($currentPagePagination - 1) : 1) . '\';"><</button>';
         }
 
         // Determine the range of pages to show
@@ -101,15 +85,13 @@
         }
 
         // PAGINATION PAGES
-        
         for ($i = $startPage; $i <= $endPage; $i++) {
             if ($i == $currentPagePagination) {
                 // Disable the button if it's the current page
                 echo '<button class="list-pagination-page ' . $currentPaginationClass . ' ' . $disabledClass . '" disabled>' . $i . '</button>';
             } else {
                 // Regular button if it's not the current page
-                $pageURL = '?pagination=' . $i . $currentFilter; // Concatenar los filtros a la URL de cada página
-                echo '<button class="list-pagination-page" onclick="location.href=\'' . $pageURL . '\';">' . $i . '</button>';
+                echo '<button class="list-pagination-page" onclick="location.href=\'?page=localitzacions&pagination=' . $i . '\'">' . $i . '</button>';
             }
         }
 
@@ -120,23 +102,18 @@
         }
 
         // PAGINATION NEXT BUTTON ">"
-        $nextPageURL = '?pagination=' . (($currentPagePagination < $totalPages) ? ($currentPagePagination + 1) : $totalPages) . $currentFilter; // Concatenar los filtros a la URL
         if ($isForwardDisabled) {
             echo '<button class="list-pagination-control ' . $disabledClass . '">></button>';
         } else {
-            echo '<button class="list-pagination-control" onclick="location.href=\'' . $nextPageURL . '\';">></button>';
+            echo '<button class="list-pagination-control" onclick="location.href=\'?page=localitzacions&pagination=' . (($currentPagePagination <= $totalPages) ? ($currentPagePagination + 1) : $totalPages) . '\';">></button>';
         }
 
-
-        // PAGINATION LAST PAGE BUTTON ">>"
-        $lastPageURL = '?pagination=' . $totalPages . $currentFilter; // Concatenar los filtros a la URL
-        
+        // LAST PAGE BUTTON ">>"
         if ($currentPagePagination < $totalPages) {
-            echo '<button class="list-pagination-page" onclick="location.href=\'' . $lastPageURL . '\';">>></button>';
+            echo '<button class="list-pagination-page" onclick="location.href=\'?page=localitzacions&pagination=' . $totalPages . '\';">>></button>';
         } else {
             echo '<button class="list-pagination-page ' . $disabledClass . '" disabled>>></button>';
         }
-
         ?>
     </div>
 </main>
