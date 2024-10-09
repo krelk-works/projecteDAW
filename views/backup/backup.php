@@ -1,25 +1,21 @@
 <main class="list-wrapper">
     <div class="list-container">
-        <div class="progress-bar-container">
-            <?php  
-                $ds = disk_total_space(".");
-                $dsFree = disk_free_space(".");
-                $dsTotal = (int)(($dsFree / $ds) * 100);
-            ?>
-            <p class="aroundText">
-                0%
-            </p>
-            <div class="progress-bar-gradient">
-                <div class="progress-bar" style="width: 0%;">
-                <p class="progressStatus">
-                    0%
-                </p>
-                </div>
-            </div>
-            <p class="aroundText">
-                100%
+<div class="progress-bar-container">
+    <?php  
+        $ds = disk_total_space(".");
+        $dsFree = disk_free_space(".");
+        $dsTotal = (int)(($dsFree / $ds) * 100);
+    ?>
+    <p class="aroundText">0%</p>
+    <div class="progress-bar-gradient">
+        <div class="progress-bar" style="width: 0%;">
+            <p class="progressStatus">
+                <?php echo $dsTotal?>%
             </p>
         </div>
+    </div>
+    <p class="aroundText">100%</p>
+</div>
 
         <div class="list-header list-item-header-backup">
             <a href="">
@@ -51,7 +47,7 @@
                     <h3>' . $user['firstname'] . ' ' . $user['lastname'] . '</h3>
                     <p> <i class="fa-solid fa-user"></i> ' . $user['email'] . '</p>
                     <p> <i class="fa-solid fa-bookmark"></i> ' . $user['role'] . '</p>
-                    <a href="?page=user-administration"><button class="action_button"><i class="fa-solid fa-user-pen"></i>Modificar</button></a>
+                    <a href="?page=user-administration"><button class="action_button"><i class="fa-solid fa-download"></i>Descarregar</button></a>
                     <a href="?page=user-administration"><button class="action_button delete_button"><i class="fa-solid fa-user-minus"></i>Eliminar</button></a>
             </div>';
         }
@@ -136,11 +132,10 @@
 var i = 0;
 move();
 function move() {
-    var elem = document.getElementsByClassName("progress-bar");
+    var elem = document.getElementsByClassName("progress-bar")[0]; // Accede al primer (y único) elemento con esta clase
     
     setTimeout(() => {
-        console.log("Ajustando progress bar...");
-        elem.style.width = <?php echo $dsTotal ?> + "%";
+        elem.style.width = "<?php echo $dsTotal ?>%";
     }, 200);
 }
 </script>
