@@ -19,7 +19,7 @@
 
         foreach ($data as $location) {
             if ($location['pare'] == null) {
-                $location['pare'] = "cap";
+                $location['pare'] = "Cap";
             }
             echo '<div class="list-item">
                 <p><i class="fa-solid fa-location-dot"></i>' . $location['fill'] . '</p>
