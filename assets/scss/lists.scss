@@ -185,8 +185,8 @@
             overflow: hidden;
 
             a:first-child {
-                padding-left: 2px;
-                width: calc(30% - 2px);
+                padding-left: 15px;
+                width: calc(30% - 15px);
             }
 
             a:nth-child(2) {
@@ -281,7 +281,6 @@
             padding: 8px;
             color:#292929
         }
-
 
         .list-item:last-child {
             margin-bottom: 0px !important;

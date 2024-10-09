@@ -1,14 +1,14 @@
 .list-header-locations a:first-child {
-  padding-left: 2px !important;
-  width: calc(45% - 2px) !important;
+  padding-left: 15px !important;
+  width: calc(45% - 15px) !important;
 }
 .list-header-locations a:nth-child(2) {
   width: 55% !important;
 }
 
 .list-item-location p:first-child {
-  padding-left: 2px !important;
-  width: calc(45% - 2px) !important;
+  padding-left: 15px !important;
+  width: calc(45% - 15px) !important;
 }
 .list-item-location p:nth-child(2) {
   width: 55% !important;

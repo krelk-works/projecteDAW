@@ -171,8 +171,8 @@
   overflow: hidden;
 }
 .list-wrapper .list-container .list-header a:first-child {
-  padding-left: 2px;
-  width: calc(30% - 2px);
+  padding-left: 15px;
+  width: calc(30% - 15px);
 }
 .list-wrapper .list-container .list-header a:nth-child(2) {
   width: 22.5%;
