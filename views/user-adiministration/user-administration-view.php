@@ -22,9 +22,8 @@ if(isset($_GET['userID']) && !isset($_POST['id'])){
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //llamar funcion upadte user
-    $confirmation = $controller->updateUser((int)$user_data['id'],$data);
-    //var_dump($confirmation);
-}   
+    $confirmation = $controller->updateUser((int)$data['id'],$data);
+}
 ?>
 
 <main id="user-modify-wrapper">
@@ -70,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 if ($confirmation){
     //echo "<script> alert('Usuario actualizado');</script>";
-/*
+
     echo '<script>
         Swal.fire({
             title: "Enviat!",
@@ -82,7 +81,7 @@ if ($confirmation){
         });
         </script>
     ';
-    /*echo "
+    echo "
     
     <script>
         const button = document.getElementById('submit')
@@ -91,7 +90,7 @@ if ($confirmation){
             
         })
             <head><meta http-equiv='refresh' content='0;url=index.php?page=usuaris'></head>
-    </script>";*/
+    </script>";
 }
 
 ?>

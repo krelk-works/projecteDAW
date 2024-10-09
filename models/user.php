@@ -232,7 +232,6 @@
             $stmt->bindParam(':email', $data['email']);
             $stmt->bindParam(':password', $data['password']);
             $stmt->bindParam(':role', $data['role']);
-            var_dump($stmt);
             if ($stmt->execute()) {
                 return true;
             } else {
