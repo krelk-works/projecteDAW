@@ -77,7 +77,7 @@
             // Base SQL query
             $sql = "SELECT L1.Location_name AS pare, L2.Location_name AS fill 
             FROM Locations AS L1
-            INNER JOIN Locations AS L2 ON L1.Location_ID = L2.Parent_ID";
+            RIGHT JOIN Locations AS L2 ON L1.Location_ID = L2.Parent_ID";
         
             // Add LIMIT and OFFSET for pagination
             $sql .= " LIMIT :limit OFFSET :offset";

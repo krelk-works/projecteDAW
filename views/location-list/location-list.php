@@ -5,7 +5,7 @@
                 <h4>Nom</h4>
             </a>
             <a href="">
-                <h4>Fill</h4>
+                <h4>Pare</h4>
             </a>
         </div>
         <?php
@@ -18,9 +18,12 @@
         $data = $locationsController->getData($limit, $offset);
 
         foreach ($data as $location) {
+            if ($location['pare'] == null) {
+                $location['pare'] = "cap";
+            }
             echo '<div class="list-item">
-                <p><i class="fa-solid fa-location-dot"></i>' . $location['pare'] . '</p>
                 <p><i class="fa-solid fa-location-dot"></i>' . $location['fill'] . '</p>
+                <p><i class="fa-solid fa-location-dot"></i>' . $location['pare'] . '</p>
             </div>';
         }
         ?>
