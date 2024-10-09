@@ -1,11 +1,37 @@
+<?php
+$controller = new UserController();
+
+$data = [];
+
+
+if(isset($_GET['userID']) && !isset($_POST['id'])){
+    $data = $controller->getUserData($_GET['userID']);
+} else if ($_POST['id']) {
+    $data = [
+        'username'   => $_POST['username'],
+        'firstname'  => $_POST['firstname'],
+        'lastname'   => $_POST['lastname'],
+        'email'      => $_POST['email'],
+        'password'   => $_POST['password'],
+        'role'       => $_POST['role'],
+        'id'         => $_POST['id'],
+        'profileimg' => $_POST['profileimg']
+    ];
+}
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    //llamar funcion upadte user
+    $confirmation = $controller->updateUser((int)$user_data['id'],$data);
+    //var_dump($confirmation);
+}   
+?>
+
 <main id="user-modify-wrapper">
     <header>Modificar usuari</header>
-    <form action="" method="POST">
-            <section>
+    <form action="<?=$_SERVER['PHP_SELF'];?>?page=user-administration&userID=<?php echo $_GET["userID"]; ?>" method="POST">
+        <section>
             <?php
-                $controller = new UserController();
-                $id = intval($_GET['userID']);
-                $data = $controller->getUserData($id);
                 //Auto completa los datos del formulario con
                 echo '
                 <div class="profile-img">
@@ -28,34 +54,44 @@
                         <option value="tecnic" '.($data['role']=='tecnic'?'selected':'') .'>Tecnic</option>
                         <option value="convidat" '.($data['role']=='convidat'?'selected':'') .'>Convidat</option>
                     </select>
+                    <input type="hidden" value="'.$_GET["userID"].'" name="id">
+                    <input type="hidden" value="'.$data['profileimg'].'" name="profileimg">
                 </div>
                 ';
             ?>
-            </section>
+        </section>
     <footer>
         <button type="submit" id="submit">Confirma</button>
         </form>
     </footer>
 </main>
+
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Almacenar los datos en un array asociativo
-    $user_data = [
-        'username'   => $_POST['username'],
-        'firstname'  => $_POST['firstname'],
-        'lastname'   => $_POST['lastname'],
-        'email'      => $_POST['email'],
-        'password'   => $_POST['password'],
-        'role'       => $_POST['role']
-    ];
-    //llamar funcion upadte user
-    $controller->updateUser($id,$user_data);
-}   
+
+if ($confirmation){
+    //echo "<script> alert('Usuario actualizado');</script>";
+/*
+    echo '<script>
+        Swal.fire({
+            title: "Enviat!",
+            text: "S\'ha actualitzat correctament!",
+            icon: "success"       
+
+        }).then(() => {
+            location.href = "?page=usuaris";
+        });
+        </script>
+    ';
+    /*echo "
+    
+    <script>
+        const button = document.getElementById('submit')
+        button.addEventListener('click',function(){
+           
+            
+        })
+            <head><meta http-equiv='refresh' content='0;url=index.php?page=usuaris'></head>
+    </script>";*/
+}
+
 ?>
-<script>
-    const button = document.getElementById('submit')
-    button.addEventListener('click',function(){
-        this.disabled=true
-        this.innerText='Enviant...'
-    })
-</script>

@@ -217,7 +217,7 @@
         public function updateUser($id,$data){
             $conn=$this->connect();
             $sql="UPDATE users SET 
-                username =:username
+                username = :username,
                 firstname = :firstname, 
                 lastname = :lastname, 
                 email = :email, 
@@ -232,7 +232,12 @@
             $stmt->bindParam(':email', $data['email']);
             $stmt->bindParam(':password', $data['password']);
             $stmt->bindParam(':role', $data['role']);
-            $stmt->execute();
+            var_dump($stmt);
+            if ($stmt->execute()) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 ?>
