@@ -1,5 +1,5 @@
 <main class="list-wrapper">
-    <div class="list-container">
+    <div class="list-container-locations">
         <div class="list-header-locations">
             <a href="">
                 <h4>Nom</h4>
