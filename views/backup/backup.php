@@ -51,7 +51,7 @@
             echo '<div class="list-item list-item-backup">
                     <img src="' . $user['profileimg'] . '" alt="' . $user['firstname'] . ' ' . $user['lastname'] . '" class="rounded-profile-images">
                     <h3>' . $user['firstname'] . ' ' . $user['lastname'] . '</h3>
-                    <p> <i class="fa-solid fa-user"></i> ' . $user['email'] . '</p>
+                    <p> <i class="fa-solid fa-calendar-days"></i> ' . $user['email'] . '</p>
                     <p> <i class="fa-solid fa-hard-drive"></i> ' . $user['role'] . '</p>
                     <a href="?page=user-administration"><button class="action_button"><i class="fa-solid fa-download"></i>Descarregar</button></a>
                     <a href="?page=user-administration"><button class="action_button delete_button"><i class="fa-solid fa-user-minus"></i>Eliminar</button></a>

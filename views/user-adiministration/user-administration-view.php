@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if ($confirmation){
     //echo "<script> alert('Usuario actualizado');</script>";
 
-    echo '<script>
+    echo '<head><script defer>
         Swal.fire({
             title: "Enviat!",
             text: "S\'ha actualitzat correctament!",
@@ -79,7 +79,7 @@ if ($confirmation){
         }).then(() => {
             location.href = "?page=usuaris";
         });
-        </script>
+        </script></head>
     ';
     echo "
     
@@ -89,7 +89,7 @@ if ($confirmation){
            
             
         })
-            <head><meta http-equiv='refresh' content='0;url=index.php?page=usuaris'></head>
+        <head><meta http-equiv='refresh' content='0;url=index.php?page=usuaris'></head>
     </script>";
 }
 
