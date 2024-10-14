@@ -22,9 +22,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 1em;
+  height: 1.2em;
   /*background: transparent;*/
-  border: 2px solid black;
+  border: 2px solid rgb(169, 245, 255);
   transition: width 0.5s ease;
   border-radius: 10px;
 }
@@ -41,10 +41,12 @@
 .aroundText {
   padding: 10px;
   color: black;
+  color: white;
   font-weight: bold;
 }
 
 .progressStatus {
-  color: black;
+  color: white;
   font-size: 0.9em;
+  padding: 2px;
 }/*# sourceMappingURL=backup.css.map */

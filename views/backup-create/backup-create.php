@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form id="createbarwrapper" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=backups" enctype="multipart/form-data">
         <h3>Creació de backups</h3>
         <label for="username">Nom</label>
-        <input type="text" name="backupname" id="backupname" placeholder="Introdueix el nom de la backup" required>
+        <input type="text" name="backupname" id="backupname" placeholder="(Opcional) Nom de la backup" required>
 
         <button type="submit" id="createButton"><i class="fa-solid fa-user-plus"></i>Crear</button>
     </form>

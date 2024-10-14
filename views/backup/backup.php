@@ -37,16 +37,22 @@
         <?php
         $UserController = new UserController();
         $totalUsers = $UserController->getTotalCount();
+        $totalUsers = 1;
         $limit = 8; // Número máximo de usuarios por página
         $currentPagePagination = isset($_GET['pagination']) ? (int) $_GET['pagination'] : 1;
         $offset = ($currentPagePagination - 1) * $limit;
         $data = $UserController->getUsers($limit, $offset);
+        $data = [
+            ['profileimg' => 'https://cdn0.iconfinder.com/data/icons/HDRV/512/Green_Backup.png', 'firstname' => 'Backup12102024.zip', 'lastname' => '', 'email' => '12/10/2024 12:30', 'role' => '1.50MB'],
+        ];
+        
+        
         foreach ($data as $user) {
             echo '<div class="list-item list-item-backup">
                     <img src="' . $user['profileimg'] . '" alt="' . $user['firstname'] . ' ' . $user['lastname'] . '" class="rounded-profile-images">
                     <h3>' . $user['firstname'] . ' ' . $user['lastname'] . '</h3>
                     <p> <i class="fa-solid fa-user"></i> ' . $user['email'] . '</p>
-                    <p> <i class="fa-solid fa-bookmark"></i> ' . $user['role'] . '</p>
+                    <p> <i class="fa-solid fa-hard-drive"></i> ' . $user['role'] . '</p>
                     <a href="?page=user-administration"><button class="action_button"><i class="fa-solid fa-download"></i>Descarregar</button></a>
                     <a href="?page=user-administration"><button class="action_button delete_button"><i class="fa-solid fa-user-minus"></i>Eliminar</button></a>
             </div>';

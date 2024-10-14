@@ -116,7 +116,11 @@
             } else {
                 if (isset($_POST['username']) && isset($_POST['password'])){
                     $controller = new UserController();
-                    $controller->login($_POST['username'], $_POST['password']);
+                    $isLoggedIn = $controller->login($_POST['username'], $_POST['password']);
+                    
+                    if (!($isLoggedIn)) {
+                        echo "<head><meta http-equiv='refresh' content='0;url=index.php?error-login'><head>";
+                    }
                 }
             }
         }

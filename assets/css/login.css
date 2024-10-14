@@ -85,4 +85,11 @@
   height: 100%;
   -o-object-fit: cover;
   object-fit: cover;
+}
+
+.retry-login-text {
+  font-size: 14px;
+  color: red;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }/*# sourceMappingURL=login.css.map */

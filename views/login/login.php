@@ -27,6 +27,13 @@
                     </label>
                     <input type="password" id="password" name="password" placeholder="Contrasenya" required>
                 </div>
+                <?php
+                    
+                    if (isset($_GET['error-login'])){
+                        echo '<p class="retry-login-text">Usuari o contrasenya incorrectes.</p>';
+                    }
+                ?>
+                
                 <a href="#" class="forgot-password">He oblidat la meva contrasenya</a>
                 <button type="submit" class="login-btn">Login</button>
             </form>
