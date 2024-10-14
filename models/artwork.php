@@ -184,10 +184,11 @@
             $sql = 
             "SELECT Artwork.ID_char, Artwork.ID_num1, Artwork.ID_num2, Artwork.Artwork_name, 
             Description, Authors.Author_name, Artwork.Creation_date, Artwork.Conservation_ID,
-            Artwork.Register_date, Artwork.Amount, Images.URL
+            Artwork.Register_date, Artwork.Amount, Images.URL, Material.text AS material
             FROM Artwork 
             INNER JOIN Authors ON Artwork.Author_ID = Authors.Author_ID
-            INNER JOIN Images ON Artwork.Artwork_ID = Images.Artwork_ID";
+            INNER JOIN Images ON Artwork.Artwork_ID = Images.Artwork_ID
+            INNER JOIN Material ON Artwork.Material_ID = Material.id";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
 
@@ -221,6 +222,7 @@
                 $pdf->MultiCell(0, 10, " - Data de registre: " . $row['Register_date'], 0, 1);
                 $pdf->MultiCell(0, 10, " - Any de creació: " . $row['Creation_date'], 0, 1);
                 $pdf->MultiCell(0, 10, " - Conservació: " . $row['Conservation'], 0, 1);
+                $pdf->MultiCell(0, 10, " - Material: " . $row['material'], 0, 1);
                 $pdf->MultiCell(0, 10, " - Quantitat: " . $row['Amount'], 0, 1);
                 $pdf->AddPage();
             }
