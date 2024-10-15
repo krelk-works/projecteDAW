@@ -26,8 +26,8 @@
         $data = $UserController->getUsers($limit, $offset);
         foreach ($data as $user) {
             echo '<div class="list-item">
-                    <img src="' . $user['profileimg'] . '" alt="' . $user['firstname'] . ' ' . $user['lastname'] . '" class="rounded-profile-images">
-                    <h3>' . $user['firstname'] . ' ' . $user['lastname'] . '</h3>
+                    <img src="' . $user['profile_img'] . '" alt="' . $user['first_name'] . ' ' . $user['last_name'] . '" class="rounded-profile-images">
+                    <h3>' . $user['first_name'] . ' ' . $user['last_name'] . '</h3>
                     <p> <i class="fa-solid fa-user"></i> ' . $user['email'] . '</p>
                     <p> <i class="fa-solid fa-bookmark"></i> ' . $user['role'] . '</p>
                     <a href="?page=user-administration&userID=' . $user['id'] . '"><button class="action_button"><i class="fa-solid fa-user-pen"></i>Modificar</button></a>
