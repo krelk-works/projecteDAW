@@ -1,39 +1,39 @@
 <?php
     require_once("database.php");
     class Artwork extends Database {
-        protected $ArtworkID;
-        protected $Artwork_name;
-        protected $Author_name;
+        protected $id;
+        protected $name;
+        protected $author;
 
-        public function __construct($ArtworkID = null, $Artwork_name = null, $Author_name = null){
-            $this->ArtworkID = $ArtworkID;
-            $this->Artwork_name = $Artwork_name;
-            $this->Author_name = $Author_name;
+        public function __construct($id = null, $name = null, $author = null){
+            $this->id = $id;
+            $this->name = $name;
+            $this->author = $author;
         }
 
-        public function getArtwork_name(){
-            return $this->Artwork_name;
+        public function getname(){
+            return $this->name;
         }
 
-        public function getArtworkID(){
-            return $this->ArtworkID;
+        public function getid(){
+            return $this->id;
         }
 
-        public function setArtwork_name($Artwork_name){
-            $this->Artwork_name = $Artwork_name;
+        public function setname($name){
+            $this->name = $name;
         }
 
         public function getInfo($limit, $offset, $filter = null) {
             $conn = $this->connect();
             
             // Base SQL query
-            $sql = "SELECT Artwork.Artwork_ID, Artwork.Artwork_name, Artwork.Creation_date, 
-                           Authors.Author_name, Estatdeconservacio.text, Locations.Location_name, Images.URL
-                    FROM Artwork
-                    INNER JOIN Authors ON Artwork.Author_ID = Authors.Author_ID 
-                    INNER JOIN Locations ON Artwork.Location_ID = Locations.Location_ID
-                    INNER JOIN Images ON Artwork.Artwork_ID = Images.Artwork_ID
-                    INNER JOIN Estatdeconservacio ON Artwork.Conservation_ID = Estatdeconservacio.id";
+            $sql = "SELECT artworks.id, artworks.name, artworks.creation_date, 
+                           authors.author, conservationstatus.text, locations.name, images.URL
+                    FROM artworks
+                    INNER JOIN authors ON artworks.author = authors.id 
+                    INNER JOIN locations ON artworks.location = locations.id
+                    INNER JOIN images ON artworks.id = images.artwork
+                    INNER JOIN conservationstatus ON artworks.onservation = conservationstatus.id";
         
             // If there are filters, start building the WHERE clause
             $conditions = [];
@@ -41,27 +41,27 @@
             if (!empty($filter) && is_array($filter)) {
                 // Search filter
                 if (!empty($filter['search'])) {
-                    $conditions[] = "Artwork.Artwork_name LIKE :search";
+                    $conditions[] = "artworks.name LIKE :search";
                 }
         
                 // Author filter
                 if (!empty($filter['author'])) {
-                    $conditions[] = "Authors.Author_ID = :author";
+                    $conditions[] = "authors.id = :author";
                 }
         
                 // Location filter
                 if (!empty($filter['location'])) {
-                    $conditions[] = "Locations.Location_ID = :location";
+                    $conditions[] = "locations.id = :location";
                 }
         
                 // Year filter (exact year)
                 if (!empty($filter['year'])) {
-                    $conditions[] = "Artwork.Creation_date = :year";
+                    $conditions[] = "artworks.creation_date = :year";
                 }
         
                 // Status filter
                 if (!empty($filter['status'])) {
-                    $conditions[] = "Estatdeconservacio.id= :status";
+                    $conditions[] = "conservationstatus.id= :status";
                 }
             }
         
@@ -99,20 +99,26 @@
             $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
         
             // Execute the query
-            $stmt->execute();
+            //$stmt->execute();
         
             // Fetch the results
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            //return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if ($stmt->execute()) {
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } else {
+                return false;
+            }
         }
         
 
         public function getTotalCount($filter = null) {
             $conn = $this->connect();
             
-            // Base SQL query to count the total number of artworks
-            $sql = "SELECT COUNT(*) FROM Artwork
-                    INNER JOIN Authors ON Artwork.Author_ID = Authors.Author_ID
-                    INNER JOIN Locations ON Artwork.Location_ID = Locations.Location_ID";
+            // Base SQL query to count the total number of artworkss
+            $sql = "SELECT COUNT(*) FROM artworks
+                    INNER JOIN authors ON artworks.author = authors.id
+                    INNER JOIN locations ON artworks.location = locations.id";
         
             // If there are filters, start building the WHERE clause
             $conditions = [];
@@ -120,27 +126,27 @@
             if (!empty($filter) && is_array($filter)) {
                 // Search filter
                 if (!empty($filter['search'])) {
-                    $conditions[] = "Artwork.Artwork_name LIKE :search";
+                    $conditions[] = "artworks.name LIKE :search";
                 }
         
                 // Author filter
                 if (!empty($filter['author'])) {
-                    $conditions[] = "Authors.Author_ID = :author";
+                    $conditions[] = "authors.id = :author";
                 }
         
                 // Location filter
                 if (!empty($filter['location'])) {
-                    $conditions[] = "Locations.Location_ID = :location";
+                    $conditions[] = "locations.id = :location";
                 }
         
                 // Year filter (exact year)
                 if (!empty($filter['year'])) {
-                    $conditions[] = "Artwork.Creation_date = :year";
+                    $conditions[] = "artworks.creation_date = :year";
                 }
         
                 // Status filter
                 if (!empty($filter['status'])) {
-                    $conditions[] = "Artwork.Conservation_ID = :status";
+                    $conditions[] = "artworks.conservationstatus = :status";
                 }
             }
         
@@ -182,13 +188,13 @@
             // Get the data to generate the PDF file
             $conn = $this->connect();
             $sql = 
-            "SELECT Artwork.ID_char, Artwork.ID_num1, Artwork.ID_num2, Artwork.Artwork_name, 
-            Description, Authors.Author_name, Artwork.Creation_date, Artwork.Conservation_ID,
-            Artwork.Register_date, Artwork.Amount, Images.URL, Material.text AS material
-            FROM Artwork 
-            INNER JOIN Authors ON Artwork.Author_ID = Authors.Author_ID
-            INNER JOIN Images ON Artwork.Artwork_ID = Images.Artwork_ID
-            INNER JOIN Material ON Artwork.Material_ID = Material.id";
+            "SELECT artworks.ID_char, artworks.ID_num1, artworks.ID_num2, artworks.name, 
+            Description, Authors.author, artworks.Creation_date, artworks.Conservation_ID,
+            artworks.Register_date, artworks.Amount, Images.URL, Material.text AS material
+            FROM artworks 
+            INNER JOIN Authors ON artworks.Author_ID = Authors.Author_ID
+            INNER JOIN Images ON artworks.artworks_ID = Images.artworks_ID
+            INNER JOIN Material ON artworks.Material_ID = Material.id";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
 
@@ -211,14 +217,14 @@
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $ID = $row['ID_char'].$row['ID_num1'].".".$row['ID_num2'];
                 $pdf->SetFont('helvetica', 'B', 12);
-                $pdf->Cell(0, 10, $row['Artwork_name'], 0, 1);
+                $pdf->Cell(0, 10, $row['name'], 0, 1);
                 $pdf->SetFont('helvetica', '', 12);
                 $pdf->Image($row['URL'], '', '', 80, 80, '', '', 'T', false, 300, '', false, false, 1, false, false, false);
                 $pdf->ln(85);
                 $pdf->MultiCell(0, 10, " - ID: " . $ID, 0, 1);
                 $pdf->MultiCell(0, 10, " - Foto: " . "http://localhost:8080/projecteDAW/".$row['URL'], 0, 1);
                 $pdf->MultiCell(0, 10, " - Descripció: " . $row['Description'], 0, 1);
-                $pdf->MultiCell(0, 10, " - Autor: " . $row['Author_name'], 0, 1);
+                $pdf->MultiCell(0, 10, " - Autor: " . $row['author'], 0, 1);
                 $pdf->MultiCell(0, 10, " - Data de registre: " . $row['Register_date'], 0, 1);
                 $pdf->MultiCell(0, 10, " - Any de creació: " . $row['Creation_date'], 0, 1);
                 $pdf->MultiCell(0, 10, " - Conservació: " . $row['Conservation'], 0, 1);
