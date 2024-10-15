@@ -60,17 +60,16 @@
         //print human_filesize(1234567, 3); // 1.177MB
         //print human_filesize(123456); // 120.56KB
 
-        $directory = './backups';
-        $directory_wp = '/backups'
+        $directory = '/var/www/html/projecteDAW/backups/';
         $scanned_directory = array_diff(scandir($directory), array('..', '.'));
         //print_r($scanned_directory);
         //echo "<script defer>console.log('".$scanned_directory."');</script>";
 
         foreach ($scanned_directory as $key => $filename) {
-            $file_size = human_filesize(filesize($directory."/".$filename));
-            $file_creation_date = date("F d Y H:i:s.", filemtime($filename));
+            $file_size = human_filesize(filesize($directory.$filename));
+            $file_creation_date = date("F d Y H:i:s.", filemtime($directory.$filename));
 
-            echo $directory."/".$filename;
+            //echo $directory."/".$filename;
             /*if file_exists($directory."/".$filename) {
                 $file_size = human_filesize(filesize($directory."/".$filename));
                 $file_creation_date = date("F d Y H:i:s.", filemtime($filename));
@@ -80,18 +79,15 @@
             if ($file_size && $file_creation_date) {
                 echo '<div class="list-item list-item-backup">
                     <img src="https://cdn0.iconfinder.com/data/icons/HDRV/512/Green_Backup.png" alt="Copia de seguridad '.$filename.'" class="rounded-profile-images">
-                    <h3>' . $filename['filename'] . '</h3>
-                    <p> <i class="fa-solid fa-calendar-days"></i> ' . $filename['filesize'] . '</p>
-                    <p> <i class="fa-solid fa-hard-drive"></i> ' . $filename['created'] . '</p>
-                    <a href="?page=user-administration"><button class="action_button"><i class="fa-solid fa-download"></i>Descarregar</button></a>
+                    <h3>' . $filename . '</h3>
+                    <p> <i class="fa-solid fa-calendar-days"></i> ' . $file_creation_date . '</p>
+                    <p> <i class="fa-solid fa-hard-drive"></i> ' . $file_size . '</p>
+                    <a href="?page=user-administration"><button class="action_button"><i class="fa-solid fa-download"></i>Descargar</button></a>
                     <a href="?page=user-administration"><button class="action_button delete_button"><i class="fa-solid fa-user-minus"></i>Eliminar</button></a>
                 </div>';
             } else {
                 echo "<script>console.log('Error en intentar obtenir el nom del fitxer [index: ".$key."]');</script>";
             }
-            
-
-
 
             //echo "<script defer>console.log('"."$filename was last modified: " . date ("F d Y H:i:s.", filemtime($filename))."');</script>";
 
