@@ -3,19 +3,19 @@
     class User extends Database {
         private $username;
         private $password;
-        private $firstname;
-        private $lastname;
+        private $first_name;
+        private $last_name;
         private $email;
-        private $profileimg;
+        private $profile_img;
         private $role;
 
-        public function __construct($username = null, $password = null, $firstname = null, $lastname = null, $email = null, $profileimg = null, $role = null){
+        public function __construct($username = null, $password = null, $first_name = null, $last_name = null, $email = null, $profile_img = null, $role = null){
             $this->username = $username;
             $this->password = $password;
-            $this->firstname = $firstname;
-            $this->lastname = $lastname;
+            $this->first_name = $first_name;
+            $this->last_name = $last_name;
             $this->email = $email;
-            $this->profileimg = $profileimg;
+            $this->profile_img = $profile_img;
             $this->role = $role;
         }
         
@@ -23,20 +23,20 @@
             return $this->username;
         }
 
-        public function getFirstname(){
-            return $this->firstname;
+        public function getFirst_name(){
+            return $this->first_name;
         }
 
-        public function getLastname(){
-            return $this->lastname;
+        public function getLast_name(){
+            return $this->last_name;
         }
 
         public function getEmail(){
             return $this->email;
         }
 
-        public function getProfileimg(){
-            return $this->profileimg;
+        public function getProfile_img(){
+            return $this->profile_img;
         }
 
         public function getRole(){
@@ -51,20 +51,20 @@
             $this->password = $password;
         }
 
-        public function setFirstname($firstname){
-            $this->firstname = $firstname;
+        public function setFirst_name($first_name){
+            $this->first_name = $first_name;
         }
 
-        public function setLastname($lastname){
-            $this->lastname = $lastname;
+        public function setLast_name($last_name){
+            $this->last_name = $last_name;
         }
 
         public function setEmail($email){
             $this->email = $email;
         }
 
-        public function setProfileimg($profileimg){
-            $this->profileimg = $profileimg;
+        public function setProfile_img($profile_img){
+            $this->profile_img = $profile_img;
         }
 
         public function setRole($role){
@@ -73,17 +73,17 @@
 
         public function update(){
             $conn = $this->connect();
-            $sql = "UPDATE users SET username = :username, firstname = :firstname, lastname = :lastname, email = :email, profileimg = :profileimg WHERE username = :username";
+            $sql = "UPDATE users SET username = :username, first_name = :first_name, last_name = :last_name, email = :email, profile_img = :profile_img WHERE username = :username";
             
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
         
             // Linking parameters securely to avoid SQL injection
             $stmt->bindParam(':username', $this->username);
-            $stmt->bindParam(':firstname', $this->firstname);
-            $stmt->bindParam(':lastname', $this->lastname);
+            $stmt->bindParam(':first_name', $this->first_name);
+            $stmt->bindParam(':last_name', $this->last_name);
             $stmt->bindParam(':email', $this->email);
-            $stmt->bindParam(':profileimg', $this->profileimg);
+            $stmt->bindParam(':profile_img', $this->profile_img);
             $stmt->bindParam(':role', $this->role);
         
             // Execute the statement
@@ -112,16 +112,16 @@
                 if ($password == $row['password']) {
                     // Set the user data
                     $this->username = $row['username'];
-                    $this->firstname = $row['firstname'];
-                    $this->lastname = $row['lastname'];
+                    $this->first_name = $row['first_name'];
+                    $this->last_name = $row['last_name'];
                     $this->email = $row['email'];
-                    $this->profileimg = $row['profileimg'];
+                    $this->profile_img = $row['profile_img'];
                     $this->role = $row['role'];
                     
                     // Send data to UserController to start the web session
                     $controller = new UserController();
-                    $controller->startSession(new User($this->username, $this->password, $this->firstname, $this->lastname, $this->email, $this->profileimg, $this->role));
-                    //$username, $password, $firstname, $lastname, $email, $profileimg, $role
+                    $controller->startSession(new User($this->username, $this->password, $this->first_name, $this->last_name, $this->email, $this->profile_img, $this->role));
+                    //$username, $password, $first_name, $last_name, $email, $profile_img, $role
                 } else {
                     // TODO: Show error message user or password incorrect
                 }
@@ -168,8 +168,8 @@
         public function createUser() {
             $conn = $this->connect();
             // Query para insertar un nuevo usuario
-            $sql = "INSERT INTO users (username, password, first_name, last_name, email, role, profileimg) 
-                    VALUES (:username, :password, :firstname, :lastname, :email, :role, :profileimg)";
+            $sql = "INSERT INTO users (username, password, first_name, last_name, email, role, profile_img) 
+                    VALUES (:username, :password, :first_name, :last_name, :email, :role, :profile_img)";
             
             // Preparar la consulta
             $stmt = $conn->prepare($sql);
@@ -177,10 +177,10 @@
             // Asignar los valores a los parámetros
             $stmt->bindParam(':username', $this->username);
             $stmt->bindParam(':password', $this->password);
-            $stmt->bindParam(':firstname', $this->firstname);
-            $stmt->bindParam(':lastname', $this->lastname);
+            $stmt->bindParam(':first_name', $this->first_name);
+            $stmt->bindParam(':last_name', $this->last_name);
             $stmt->bindParam(':email', $this->email);
-            $stmt->bindParam(':profileimg', $this->profileimg);
+            $stmt->bindParam(':profile_img', $this->profile_img);
             $stmt->bindParam(':role', $this->role);
             
             // Ejecutar la consulta

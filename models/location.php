@@ -27,7 +27,7 @@
 
         public function getLocations() {
             $conn = $this->connect();
-            $sql = "SELECT * FROM Locations";
+            $sql = "SELECT * FROM locations";
 
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
@@ -42,7 +42,7 @@
         public function createLocation($location_name, $parent) {
             $conn = $this->connect();
             // Query para insertar una nueva ubicacion
-            $sql = "INSERT INTO Locations (Location_name, Parent_ID) VALUES (:location_name, :parent)";
+            $sql = "INSERT INTO locations (name, parent) VALUES (:location_name, :parent)";
             
             // Preparar la consulta
             $stmt = $conn->prepare($sql);
@@ -62,7 +62,7 @@
             $conn = $this->connect();
             
             // Base SQL query to count the total number of locations
-            $sql = "SELECT COUNT(*) FROM Locations";
+            $sql = "SELECT COUNT(*) FROM locations";
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
             // Execute the query
@@ -75,9 +75,9 @@
             $conn = $this->connect();
             
             // Base SQL query
-            $sql = "SELECT L1.Location_name AS pare, L2.Location_name AS fill 
-            FROM Locations AS L1
-            RIGHT JOIN Locations AS L2 ON L1.Location_ID = L2.Parent_ID";
+            $sql = "SELECT L1.name AS pare, L2.name AS fill 
+            FROM locations AS L1
+            RIGHT JOIN locations AS L2 ON L1.id = L2.parent";
         
             // Add LIMIT and OFFSET for pagination
             $sql .= " LIMIT :limit OFFSET :offset";

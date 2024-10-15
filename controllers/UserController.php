@@ -18,19 +18,19 @@ class UserController
     {
         // Store user data in session variables.
         $_SESSION['username'] = $user->getUsername();
-        $_SESSION['firstname'] = $user->getFirstname();
-        $_SESSION['lastname'] = $user->getLastname();
+        $_SESSION['first_name'] = $user->getFirst_name();
+        $_SESSION['last_name'] = $user->getLast_name();
         $_SESSION['email'] = $user->getEmail();
-        $_SESSION['profileimg'] = $user->getProfileimg();
+        $_SESSION['profile_img'] = $user->getProfile_img();
         $_SESSION['role'] = $user->getRole();
 
         // Redirect user to the home page.
         echo "<head><meta http-equiv='refresh' content='0;url=index.php'></head>";
     }
 
-    public function createUser($username, $password, $firstname, $lastname, $email, $profileimg, $role)
+    public function createUser($username, $password, $first_name, $last_name, $email, $profile_img, $role)
     {
-        $userModel = new User($username, $password, $firstname, $lastname, $email, $profileimg, $role);
+        $userModel = new User($username, $password, $first_name, $last_name, $email, $profile_img, $role);
         return $userModel->createUser();
     }
 

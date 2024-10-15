@@ -26,12 +26,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $locationController = new LocationController();
             $data = $locationController->getLocations();
             foreach ($data as $location) {
-                echo '<option value="' . $location['Location_ID'] . '"';
+                echo '<option value="' . $location['id'] . '"';
                 // Verificar si el valor en $_GET['location'] coincide con la Location_ID
-                if (isset($_GET['location']) && $_GET['location'] == $location['Location_ID']) {
+                if (isset($_GET['location']) && $_GET['location'] == $location['id']) {
                     echo ' selected';
                 }
-                echo '>' . $location['Location_name'] . '</option>';
+                echo '>' . $location['name'] . '</option>';
             }
             ?>
         </select>

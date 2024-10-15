@@ -101,14 +101,14 @@ if ($searchTriggered) {
         $currentPagePagination = isset($_GET['pagination']) ? (int) $_GET['pagination'] : 1;
         $offset = ($currentPagePagination - 1) * $limit;
         $data = $ArtworkController->getData($limit, $offset, $searchFilter);
-
+        
         foreach ($data as $artwork) {
             echo '<div class="list-item">
-                <img src="' . $artwork['URL'] . '" alt="' . $artwork['Artwork_name'] . ' ' . $artwork['Author_name'] . '">
-                <h3>' . $artwork['Artwork_name'] . '</h3>
-                <p><i class="fa-solid fa-user"></i>' . $artwork['Author_name'] . '</p>
-                <p><i class="fa-solid fa-location-dot"></i>' . $artwork['Location_name'] . '</p>
-                <p><i class="fa-solid fa-bookmark"></i>' . $artwork['Creation_date'] . '</p>
+                <img src="' . $artwork['URL'] . '" alt="' . $artwork['name'] . ' ' . $artwork['author'] . '">
+                <h3>' . $artwork['name'] . '</h3>
+                <p><i class="fa-solid fa-user"></i>' . $artwork['author'] . '</p>
+                <p><i class="fa-solid fa-location-dot"></i>' . $artwork['location'] . '</p>
+                <p><i class="fa-solid fa-bookmark"></i>' . $artwork['creation_date'] . '</p>
                 <p><i class="fa-regular fa-clipboard"></i>' . $artwork['text'] . '</p>
             </div>';
         }
