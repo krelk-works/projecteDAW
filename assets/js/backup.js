@@ -12,11 +12,12 @@ if (document.querySelector("#createBackupButton")) {
     })
 }
 
-if (document.querySelector(".list-item-backup")) {
-    let listItems = document.querySelectorAll(".list-item-backup");
+if (document.querySelector(".list-item-backup-filename")) {
+    let listItems = document.querySelectorAll(".list-item-backup-filename");
     listItems.forEach((listItem) => {
         listItem.addEventListener("click", () => {
-            let backupName = listItem.getAttribute("data-backupname");
+            //backupName = listItem.getAttribute("data-backupname");
+            let backupName = listItem.innerHTML.toString();
             Swal.fire({
                 icon: 'warning',
                 title: 'Estàs segur de restaurar aquest backup?',

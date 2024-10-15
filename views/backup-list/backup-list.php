@@ -48,9 +48,9 @@
 
         foreach ($backups as $backup) {
             $urlformat = str_replace(' ', '%', $backup['filename']);
-            echo '<div class="list-item list-item-backup" data-backupname="'.$backup['filename'].'">
+            echo '<div class="list-item list-item-backup">
                 <img src="https://cdn0.iconfinder.com/data/icons/HDRV/512/Green_Backup.png" alt="Copia de seguridad ' . $backup['filename'] . '" class="rounded-profile-images">
-                <h3>' . $backup['filename'] . '</h3>
+                <h3 class="list-item-backup-filename">' . $backup['filename'] . '</h3>
                 <p> <i class="fa-solid fa-calendar-days"></i> ' . $backup['created'] . '</p>
                 <p> <i class="fa-solid fa-hard-drive"></i> ' . $backup['filesize'] . '</p>
                 <a href="?page=backups&download_backup='.$urlformat.'&pagination='.$currentPagePagination.'" class=""><button class="action_button"><i class="fa-solid fa-download"></i>Descargar</button></a>
