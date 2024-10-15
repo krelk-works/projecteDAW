@@ -52,3 +52,25 @@
     padding: 2px;
 
 }
+
+#createBackupButton {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.animated-border {
+    border: 2px solid orange; /* Borde inicial */
+    animation: borderColorChange 2s infinite; /* Animación de 2 segundos que se repite infinitamente */
+}
+
+@keyframes borderColorChange {
+    0% {
+        border-color: orange;
+    }
+    50% {
+        border-color: transparent;
+    }
+    100% {
+        border-color: orange;
+    }
+}

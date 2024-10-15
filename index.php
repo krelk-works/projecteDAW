@@ -1,7 +1,38 @@
 <?php
+    // CONSTANTS
+
+    const HOST = "http://localhost:8080/projecteDAW/";
+
+    const BACKUP_DIRECTORY = '/var/www/html/projecteDAW/backups/';
+
+    // Check if the user wants to download a backup
+    if (isset($_GET['download_backup'])) {
+        $urlunformat = str_replace('%', ' ', $_GET['download_backup']);
+        $filePath = BACKUP_DIRECTORY . $urlunformat;
+    
+        // Verifica si el archivo existe
+        if (file_exists($filePath)) {
+            // Establece las cabeceras para la descarga
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename="' . basename($filePath) . '"');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($filePath));
+    
+            // Envía el archivo al navegador
+            readfile($filePath);
+    
+            //exit; // Termina el script después de la descarga
+        }
+    }
+
+    // Check if the user wants to generate a PDF
     if (isset($_GET['generatePDF'])) {
         require_once "controllers/PDFController.php";
     }
+
     // Set the session cookie to 1 hour.
     ini_set('session.gc_maxlifetime', 3600);
 
@@ -28,6 +59,7 @@
         //echo "<meta http-equiv='refresh' content='2;url=index.php'>";
     ?>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="assets/js/backup.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">

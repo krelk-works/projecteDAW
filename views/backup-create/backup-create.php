@@ -1,83 +1,98 @@
-<?php 
-/*
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
-    $email = $_POST['email'];
-    $role = $_POST['role'];
-    $profileimg = 'assets/img/'.$_FILES['profileimg']['name'];
+<?php
 
-    // Crear el usuario en la base de datos
-    $userController = new UserController();
-    $createdUser = $userController->createUser($username, $password, $firstname, $lastname, $email, $profileimg, $role);
-
-    // Comprobar si se ha subido la imagen
-    if (isset($_FILES['profileimg'])) {
-        // Recogemos el archivo enviado por el formulario
-        $archivo = $_FILES['profileimg']['name'];
-        // Si el archivo contiene algo
-        if (isset($archivo) && $archivo != "") {
-            // Obtenemos algunos datos sobre el archivo
-            $tipo = $_FILES['profileimg']['type'];
-            $tamano = $_FILES['profileimg']['size'];
-            $temp = $_FILES['profileimg']['tmp_name'];
-            // Se comprueba si el archivo a cargar es correcto observando su extensión y tamaño
-            if (!((strpos($tipo, "gif") || strpos($tipo, "jpeg") || strpos($tipo, "jpg") || strpos($tipo, "png")) && ($tamano < 2000000))) {
-                echo '<div><b>Error. La extensión o el tamaño de los archivos no es correcta.<br/>
-                - Se permiten archivos .gif, .jpg, .png. y de 2MB como máximo.</b></div>';
-            } else {
-                // Si la imagen es correcta en tamaño y tipo
-                // Se intenta subir al servidor
-                if (move_uploaded_file($temp, 'assets/img/'.$archivo)) {
-                    // Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
-                } else {
-                    // Si no se ha podido subir la imagen, mostramos un mensaje de error
-                    echo '<div><b>Ocurrió algún error al subir el fichero. No pudo guardarse.</b></div>';
-                }
-            }
-        }
-    }
-
-    // Verificar si el usuario fue creado correctamente
-    if ($createdUser) {
+if (isset($_GET['backupname'])) {
+    //echo "Hola Backup";
+    //echo "<script>alert('Petición de backup: ".$_GET['backupname']."')</script>";
+    $filename = !empty($_GET['backupname']) ? str_replace('%', ' ', $_GET['backupname']) : null;
+    $backupController = new BackupController();
+    $createdBackup = $backupController->create($filename);
+    if ($createdBackup) {
         echo "
         <script>
-            Swal.fire({
-                icon: 'success',
-                title: '¡Backup Creat!',
-                text: 'El backup s'ha creat exitosament.',
-                showConfirmButton: true,
-                confirmButtonText: 'OK'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = 'http://localhost:8080/projecteDAW/index.php?page=backups'; // Redirige a la lista de usuarios
-                }
-            });
+            window.onload = function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Backup Creat!',
+                    html: `El backup <strong>" . $createdBackup . "</strong> s'ha generat correctament.`,
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK'
+                });
+            };
         </script>";
     } else {
         echo "
         <script>
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'Hubo un problema al crear el usuario.',
-                showConfirmButton: true,
-                confirmButtonText: 'Intentar de nuevo'
-            });
+            window.onload = function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    html: `Hi ha hagut un problema en la creació del Backup.`,
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK'
+                });
+            };
         </script>";
     }
 }
-*/    
+
+if (isset($_GET['delete_file']) && isset($_GET['confirmed'])) {
+    $backupController = new BackupController();
+    $urlunformat = str_replace('%', ' ', $_GET['delete_file']);
+    $deletedBackup = $backupController->removeBackup($urlunformat);
+    if ($deletedBackup) {
+        echo "
+        <script>
+            window.onload = function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Backup Eliminat!',
+                    html: `El backup <strong>" . $urlunformat . "</strong> s'ha eliminat exitosament.`,
+                    timer: 1800,
+                    showConfirmButton: false
+                });
+            };
+        </script>";
+    } else {
+        echo "
+        <script>
+            window.onload = function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Hubo un problema al eliminar el backup.',
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK'
+                });
+            };
+        </script>";
+    }
+} elseif (isset($_GET['delete_file']) && !isset($_GET['confirmed'])) {
+    $urlunformat = str_replace('%', ' ', $_GET['delete_file']);
+    echo "
+    <script>
+        Swal.fire({
+            icon: 'warning',
+            title: 'Eliminar Backup',
+            html: `Estàs segur que vols eliminar el backup <strong>" . $urlunformat . "</strong>?`,
+            showCancelButton: true,
+            cancelButtonText: 'No',
+            showConfirmButton: true,
+            confirmButtonText: 'Si'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'index.php?page=backups&delete_file=".$urlunformat."&confirmed';
+            }
+        });
+    </script>";
+}
 ?>
 
 <aside id="createbar">
-    <form id="createbarwrapper" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=backups" enctype="multipart/form-data">
+    <form id="createbarwrapper" action="<?= $_SERVER['PHP_SELF']; ?>" method="GET">
         <h3>Creació de backups</h3>
-        <label for="username">Nom</label>
-        <input type="text" name="backupname" id="backupname" placeholder="(Opcional) Nom de la backup" required>
-
-        <button type="submit" id="createButton"><i class="fa-solid fa-user-plus"></i>Crear</button>
+        <label for="backupname">Nom</label>
+        <input type="text" name="backupname" id="backupname" placeholder="(Opcional) Nom de la backup">
+        <input type="hidden" name="page" value="backups">
+        <button type="submit" id="createBackupButton"><i class="fa-solid fa-user-plus"></i>Crear</button>
     </form>
 </aside>

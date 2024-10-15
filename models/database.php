@@ -12,7 +12,7 @@
                 $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 return $this->db;
             } catch(PDOException $e) {
-                echo "<br><h1>Error a la base de dades -> </h1><br><br><br>".$e;
+                //echo "<br><h1>Error a la base de dades -> </h1><br><br><br>".$e;
             }
         }
     }
