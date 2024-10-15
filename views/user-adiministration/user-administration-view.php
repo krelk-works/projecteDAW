@@ -71,12 +71,14 @@ if ($confirmation){
     //echo "<script> alert('Usuario actualizado');</script>";
 
     echo '<head><script defer>
+        // Oculta todo el contenido de la página antes de mostrar la alerta
         Swal.fire({
             title: "Enviat!",
             text: "S\'ha actualitzat correctament!",
             icon: "success"       
 
         }).then(() => {
+            //redirigir a la a pagina de usuarios
             window.location.href = "?page=usuaris";
         });
         </script></head>
