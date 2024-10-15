@@ -17,7 +17,7 @@
 
         public function getStatus() {
             $conn = $this->connect();
-            $sql = "SELECT * FROM Estatdeconservacio";
+            $sql = "SELECT * FROM conservationstatus";
 
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);

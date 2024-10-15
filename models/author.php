@@ -3,7 +3,7 @@
     class Author extends Database {
         public function getAuthors() {
             $conn = $this->connect();
-            $sql = "SELECT Author_ID, Author_name FROM Authors";
+            $sql = "SELECT id, name FROM authors";
 
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);

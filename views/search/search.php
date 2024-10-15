@@ -1,5 +1,5 @@
 <aside id="searchbar">
-<button id="searcherButton" type="button" class="search_button" onclick="redirectToSearchUser()">
+<!--<button id="searcherButton" type="button" class="search_button" onclick="redirectToSearchUser()">
             <i class="fa-solid fa-magnifying-glass"></i>Cambiar a filtrado
         </button>
 
@@ -7,7 +7,7 @@
 // Función para redirigir a la vista de search-user
 function redirectToSearchUser() {
     window.location.href = 'http://localhost:8080/projecteDAW/index.php?page=artwork-create'; // Cambia la URL según sea necesario
-}
+}-->
 </script>
     <form id="searchbarwrapper" action="<?= $_SERVER['PHP_SELF']; ?>?inici" method="GET">
         <h3>Filtre de busqueda</h3>
@@ -21,35 +21,35 @@ function redirectToSearchUser() {
             $authorController = new AuthorController();
             $data = $authorController->getAuthors();
             foreach ($data as $author) {
-                echo '<option value="' . $author['Author_ID'] . '"';
+                echo '<option value="' . $author['id'] . '"';
                 // Verificar si el autor está seleccionado
-                if (isset($_GET['author']) && $_GET['author'] == $author['Author_ID']) {
+                if (isset($_GET['author']) && $_GET['author'] == $author['id']) {
                     echo ' selected';
                 }
-                echo '>' . $author['Author_name'] . '</option>';
+                echo '>' . $author['name'] . '</option>';
             }
             ?>
         </select>
         <label for="location">Localització</label>
-        <select name="location" id="location" class="custom_options">
+        <select name="location" id="location">
             <option value="totes">Totes</option>
             <?php
             $locationController = new LocationController();
             $data = $locationController->getLocations();
             foreach ($data as $location) {
-                echo '<option value="' . $location['Location_ID'] . '"';
+                echo '<option value="' . $location['id'] . '"';
                 // Verificar si el valor en $_GET['location'] coincide con la Location_ID
-                if (isset($_GET['location']) && $_GET['location'] == $location['Location_ID']) {
+                if (isset($_GET['location']) && $_GET['location'] == $location['id']) {
                     echo ' selected';
                 }
-                echo '>' . $location['Location_name'] . '</option>';
+                echo '>' . $location['name'] . '</option>';
             }
             ?>
         </select>
         <label for="year">Any</label>
         <input type="number" name="year" id="year" min="1500" placeholder="Any">
         <label for="status">Estat</label>
-        <select name="status" id="status" class="custom_options">
+        <select name="status" id="status">
         <option value="tots">Tots</option>
             <?php 
             $statusController = new StatusController();
@@ -57,7 +57,7 @@ function redirectToSearchUser() {
             foreach ($data as $status) {
                 echo '<option value="' . $status['id'] . '"';
                 // Verificar si el valor en $_GET['location'] coincide con la Location_ID
-                if (isset($_GET['text']) && $_GET['text'] == $status['id']) {
+                if (isset($_GET['status']) && $_GET['status'] == $status['id']) {
                     echo ' selected';
                 }
                 echo '>' . $status['text'] . '</option>';

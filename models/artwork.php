@@ -27,13 +27,12 @@
             $conn = $this->connect();
             
             // Base SQL query
-            $sql = "SELECT artworks.id, artworks.name, artworks.creation_date, 
-                           authors.author, conservationstatus.text, locations.name, images.URL
+            $sql = "SELECT artworks.id, artworks.name AS artwork_name, artworks.creation_date, authors.name AS author_name, conservationstatus.text, locations.name AS location_name, images.URL
                     FROM artworks
-                    INNER JOIN authors ON artworks.author = authors.id 
+                    INNER JOIN authors ON artworks.author = authors.id
                     INNER JOIN locations ON artworks.location = locations.id
                     INNER JOIN images ON artworks.id = images.artwork
-                    INNER JOIN conservationstatus ON artworks.onservation = conservationstatus.id";
+                    INNER JOIN conservationstatus ON artworks.conservation = conservationstatus.id";
         
             // If there are filters, start building the WHERE clause
             $conditions = [];
@@ -146,7 +145,7 @@
         
                 // Status filter
                 if (!empty($filter['status'])) {
-                    $conditions[] = "artworks.conservationstatus = :status";
+                    $conditions[] = "artworks.conservation = :status";
                 }
             }
         
