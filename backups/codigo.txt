@@ -1,0 +1,443 @@
+MODELO USER:
+
+<?php
+    require_once("database.php");
+    class User extends Database {
+        private $username;
+        private $password;
+        private $first_name;
+        private $last_name;
+        private $email;
+        private $profile_img;
+        private $role;
+
+        public function __construct($username = null, $password = null, $first_name = null, $last_name = null, $email = null, $profile_img = null, $role = null){
+            $this->username = $username;
+            $this->password = $password;
+            $this->first_name = $first_name;
+            $this->last_name = $last_name;
+            $this->email = $email;
+            $this->profile_img = $profile_img;
+            $this->role = $role;
+        }
+        
+        public function getUsername(){
+            return $this->username;
+        }
+
+        public function getFirst_name(){
+            return $this->first_name;
+        }
+
+        public function getLast_name(){
+            return $this->last_name;
+        }
+
+        public function getEmail(){
+            return $this->email;
+        }
+
+        public function getProfile_img(){
+            return $this->profile_img;
+        }
+
+        public function getRole(){
+            return $this->role;
+        }
+
+        public function setUsername($username){
+            $this->username = $username;
+        }
+
+        public function setPassword($password){
+            $this->password = $password;
+        }
+
+        public function setFirst_name($first_name){
+            $this->first_name = $first_name;
+        }
+
+        public function setLast_name($last_name){
+            $this->last_name = $last_name;
+        }
+
+        public function setEmail($email){
+            $this->email = $email;
+        }
+
+        public function setProfile_img($profile_img){
+            $this->profile_img = $profile_img;
+        }
+
+        public function setRole($role){
+            $this->role = $role;
+        }
+
+        public function update(){
+            $conn = $this->connect();
+            $sql = "UPDATE users SET username = :username, first_name = :first_name, last_name = :last_name, email = :email, profile_img = :profile_img WHERE username = :username";
+            
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+        
+            // Linking parameters securely to avoid SQL injection
+            $stmt->bindParam(':username', $this->username);
+            $stmt->bindParam(':first_name', $this->first_name);
+            $stmt->bindParam(':last_name', $this->last_name);
+            $stmt->bindParam(':email', $this->email);
+            $stmt->bindParam(':profile_img', $this->profile_img);
+            $stmt->bindParam(':role', $this->role);
+        
+            // Execute the statement
+            $stmt->execute();
+        }
+
+        public function login($username, $password){
+            $conn = $this->connect();
+            $sql = "SELECT * FROM users WHERE username = :username AND password = :password";
+            
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+        
+            // Linking parameters securely to avoid SQL injection
+            $stmt->bindParam(':username', $username);
+            $stmt->bindParam(':password', $password);
+        
+            // Execute the statement
+            $stmt->execute();
+        
+            // Fetch the user
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+            // If the query returns a row then...
+            if ($row) {
+                if ($password == $row['password']) {
+                    // Set the user data
+                    $this->username = $row['username'];
+                    $this->first_name = $row['first_name'];
+                    $this->last_name = $row['last_name'];
+                    $this->email = $row['email'];
+                    $this->profile_img = $row['profile_img'];
+                    $this->role = $row['role'];
+                    
+                    // Send data to UserController to start the web session
+                    $controller = new UserController();
+                    $controller->startSession(new User($this->username, $this->password, $this->first_name, $this->last_name, $this->email, $this->profile_img, $this->role));
+                    //$username, $password, $first_name, $last_name, $email, $profile_img, $role
+                } else {
+                    // TODO: Show error message user or password incorrect
+                }
+            }
+        }/*
+        public function getUsers($limit, $offset){
+            $conn = $this->connect();
+            $sql = "SELECT * FROM users";
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            if($row){
+                return $row;
+            }
+        
+        }  */ 
+
+        public function getUsers($limit, $offset) {
+            $conn = $this->connect();
+            $sql = "SELECT * FROM users ORDER BY id DESC LIMIT :limit OFFSET :offset";
+        
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+        
+            // Bind parameters
+            $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+            $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+        
+            // Execute the statement
+            $stmt->execute();
+        
+            // Fetch the results
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function getTotalCount() {
+            $conn = $this->connect();
+            $sql = "SELECT COUNT(*) FROM users";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchColumn();
+        }
+
+        public function createUser() {
+            $conn = $this->connect();
+            // Query para insertar un nuevo usuario
+            $sql = "INSERT INTO users (username, password, first_name, last_name, email, role, profile_img) 
+                    VALUES (:username, :password, :first_name, :last_name, :email, :role, :profile_img)";
+            
+            // Preparar la consulta
+            $stmt = $conn->prepare($sql);
+            //echo ($sql);
+            // Asignar los valores a los parámetros
+            $stmt->bindParam(':username', $this->username);
+            $stmt->bindParam(':password', $this->password);
+            $stmt->bindParam(':first_name', $this->first_name);
+            $stmt->bindParam(':last_name', $this->last_name);
+            $stmt->bindParam(':email', $this->email);
+            $stmt->bindParam(':profile_img', $this->profile_img);
+            $stmt->bindParam(':role', $this->role);
+            
+            // Ejecutar la consulta
+            if ($stmt->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        public function deleteUser($id){
+            $conn = $this->connect();
+            // Query to delete user
+            $sql="DELETE FROM users WHERE id = :id";
+            $stmt=$conn->prepare($sql);
+            $stmt->bindParam(':id', $id);
+
+            if ($stmt->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        }      
+        public function getUserData($id){
+            $conn=$this->connect();
+            $sql="SELECT * FROM users WHERE id = :id";
+            $stmt=$conn->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            if ($stmt->execute()) {
+                return $stmt->fetch(PDO::FETCH_ASSOC);
+            } else {
+                return false;
+            }
+        }
+        public function updateUser($id,$data){
+            $conn=$this->connect();
+            $sql="UPDATE users SET 
+                username = :username,
+                first_name = :first_name, 
+                last_name = :last_name, 
+                email = :email, 
+                password = :password, 
+                role = :role 
+            WHERE id = :id";
+            $stmt=$conn->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':username', $data['username']);
+            $stmt->bindParam(':first_name', $data['first_name']);
+            $stmt->bindParam(':last_name', $data['last_name']);
+            $stmt->bindParam(':email', $data['email']);
+            $stmt->bindParam(':password', $data['password']);
+            $stmt->bindParam(':role', $data['role']);
+            if ($stmt->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+?>
+
+
+CONTROLLER USER:
+
+<?php
+include_once("models/user.php");
+
+class UserController
+{
+    public function showLoginView()
+    {
+        require_once "views/login/login.php";
+    }
+
+    public function login($username, $password)
+    {
+        $user = new User(); // Create a new user object.
+        $user->login($username, $password); // Call the login method from the user object.
+    }
+
+    public function startSession($user)
+    {
+        // Store user data in session variables.
+        $_SESSION['username'] = $user->getUsername();
+        $_SESSION['first_name'] = $user->getFirst_name();
+        $_SESSION['last_name'] = $user->getLast_name();
+        $_SESSION['email'] = $user->getEmail();
+        $_SESSION['profile_img'] = $user->getProfile_img();
+        $_SESSION['role'] = $user->getRole();
+
+        // Redirect user to the home page.
+        echo "<head><meta http-equiv='refresh' content='0;url=index.php'></head>";
+    }
+
+    public function createUser($username, $password, $first_name, $last_name, $email, $profile_img, $role)
+    {
+        $userModel = new User($username, $password, $first_name, $last_name, $email, $profile_img, $role);
+        return $userModel->createUser();
+    }
+
+    public function getUsers($limit, $offset)
+    {
+        $user = new User();
+        return $user->getUsers($limit, $offset);
+    }
+
+    public function getTotalCount()
+    {
+        $user = new User(); // Create a new user object.
+        $data = $user->getTotalCount();
+        return $data;
+    }
+    public function deleteUser($id){
+        $user = new User();
+        $data = $user->deleteUser($id);
+        return $data;
+    }
+    public function getUserData($id){
+        $user = new User();
+        $data = $user->getUserData($id);
+        return $data;
+    }
+    public function updateUser($id, $user_data){
+        $user = new User();
+        $confirmation = $user->updateUser($id,$user_data);
+        return $confirmation;
+    }
+}
+?>
+
+
+VISTA CREATE:
+
+<?php 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $email = $_POST['email'];
+    $role = $_POST['role'];
+    $profileimg = 'assets/img/'.$_FILES['profileimg']['name'];
+
+    if (isset($_FILES['profileimg'])) {
+        // Recogemos el archivo enviado por el formulario
+        $archivo = $_FILES['profileimg']['name'];
+        // Si el archivo contiene algo
+        if (isset($archivo) && $archivo != "") {
+            // Obtenemos algunos datos sobre el archivo
+            $tipo = $_FILES['profileimg']['type'];
+            $tamano = $_FILES['profileimg']['size'];
+            $temp = $_FILES['profileimg']['tmp_name'];
+            // Se comprueba si el archivo a cargar es correcto observando su extensión y tamaño
+            if (!((strpos($tipo, "gif") || strpos($tipo, "jpeg") || strpos($tipo, "jpg") || strpos($tipo, "png")) && ($tamano < 2000000))) {
+            } else {
+                // Si la imagen es correcta en tamaño y tipo
+                // Se intenta subir al servidor
+                if (move_uploaded_file($temp, 'assets/img/'.$archivo)) {
+                    // Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
+                        // Crear el usuario en la base de datos
+                    $userController = new UserController();
+                    $createdUser = $userController->createUser($username, $password, $firstname, $lastname, $email, $profileimg, $role);
+                }
+            }
+        }
+    }
+    // Verificar si el usuario fue creado correctamente
+    if ($createdUser) {
+        echo "
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: '¡Usuario Creado!',
+                text: 'El usuario se ha creado exitosamente.',
+                showConfirmButton: true,
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = 'http://localhost:8080/projecteDAW/index.php?page=usuaris'; // Redirige a la lista de usuarios
+                }
+            });
+        </script>";
+    } else {
+        echo "
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Hubo un problema al crear el usuario.',
+                showConfirmButton: true,
+                confirmButtonText: 'Intentar de nuevo'
+            });
+        </script>";
+    }
+}
+?>
+
+<aside id="createbar">
+    <form id="searchbarwrapper" action="<?= $_SERVER['PHP_SELF']; ?>?inici" method="GET">
+        <h3>Filtre de busqueda</h3>
+        <label for="search">Cerca</label>
+        <input type="text" name="search" id="search" placeholder="Cerca" value="<?php if (isset($_GET['search']))
+            echo $_GET['search']; ?>">
+        <label for="role">Rol</label>
+        <select name="role" id="role">
+            <option value="admin">Admin</option>
+            <option value="tecnic">Tecnic</option>
+            <option value="convidat">Convidat</option>
+        </select>
+
+        <button id="searcherButton" type="submit" class="search_button"><i class="fa-solid fa-magnifying-glass"></i>Cerca</button>
+    
+        <button id="resetFilters" type="button" class="delete_button"><i class="fa-solid fa-eraser"></i>Resetejar filtres</button>
+        <!--
+        <button id="searcherButton" type="button" class="search_button" onclick="redirectToSearchUser()">
+            <i class="fa-solid fa-magnifying-glass"></i>Cambiar a creacion
+        </button>
+-->
+    </form>
+    <form id="createbarwrapper" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=usuaris" enctype="multipart/form-data">
+        <h3>Creació d'usuaris</h3>
+        <label for="username">Nom d'usuari</label>
+        <input type="text" name="username" id="username" placeholder="Introdueix el nom" required>
+        
+        <label for="password">Contrasenya</label>
+        <input type="password" name="password" id="password" placeholder="Introdueix la contrasenya" required>
+        
+        <label for="firstname">Nom</label>
+        <input type="firstname" name="firstname" id="firstname" placeholder="Introdueix el nom" required>
+
+        <label for="lastname">Cognom</label>
+        <input type="lastname" name="lastname" id="lastname" placeholder="Introdueix el cognom" required>
+
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Introdueix l'email" required>
+
+        <label for="role">Rol</label>
+        <select name="role" id="role" required>
+            <option value="admin">admin</option>
+            <option value="tecnic">tecnic</option>
+            <option value="convidat">convidat</option>
+        </select>
+        
+        <label for="profileimg">Foto</label>
+        <input type="file" name="profileimg" id="profileimg" required>
+        <button type="submit" id="createButton"><i class="fa-solid fa-user-plus"></i>Crear</button>
+        <!--<button id="searcherButton" type="button" class="search_button" onclick="redirectToSearchUser()">
+            <i class="fa-solid fa-magnifying-glass"></i>Cambiar a filtrado
+        </button>-->
+
+        <script>
+// Función para redirigir a la vista de search-user
+function redirectToSearchUser() {
+    window.location.href = 'http://localhost:8080/projecteDAW/index.php?page=usuarisfilter'; // Cambia la URL según sea necesario
+}
+</script>
+
+    </form>
+</aside>
