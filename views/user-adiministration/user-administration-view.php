@@ -8,14 +8,14 @@ if(isset($_GET['userID']) && !isset($_POST['id'])){
     $data = $controller->getUserData($_GET['userID']);
 } else if ($_POST['id']) {
     $data = [
-        'username'   => $_POST['username'],
-        'firstname'  => $_POST['firstname'],
-        'lastname'   => $_POST['lastname'],
-        'email'      => $_POST['email'],
-        'password'   => $_POST['password'],
-        'role'       => $_POST['role'],
-        'id'         => $_POST['id'],
-        'profileimg' => $_POST['profileimg']
+        'username'    => $_POST['username'],
+        'first_name'  => $_POST['first_name'],
+        'last_name'   => $_POST['last_name'],
+        'email'       => $_POST['email'],
+        'password'    => $_POST['password'],
+        'role'        => $_POST['role'],
+        'id'          => $_POST['id'],
+        'profile_img' => $_POST['profile_img']
     ];
 }
 
@@ -34,15 +34,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 //Auto completa los datos del formulario con
                 echo '
                 <div class="profile-img">
-                    <img src="'. $data['profileimg'] .'" alt="" class="profile">
+                    <img src="'. $data['profile_img'] .'" alt="" class="profile">
                 </div>
                 <div class="user-data">
                     <label for="nom usuari">Nom usuari</label>
                     <input type="text" name="username" value="' . $data['username'] .'">
                     <label for="nom">Nom</label>
-                    <input type="text" name="firstname" value="' . $data['firstname'] .'">
+                    <input type="text" name="first_name" value="' . $data['first_name'] .'">
                     <label for="cognoms">Cognoms</label>
-                    <input type="text" name="lastname" value="' . $data['lastname'] .'">
+                    <input type="text" name="last_name" value="' . $data['last_name'] .'">
                     <label for="email">Email</label>
                     <input type="email" name="email" value="' . $data['email'] .'">
                     <label for="contraseña">Contrasenya</label>
@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <option value="convidat" '.($data['role']=='convidat'?'selected':'') .'>Convidat</option>
                     </select>
                     <input type="hidden" value="'.$_GET["userID"].'" name="id">
-                    <input type="hidden" value="'.$data['profileimg'].'" name="profileimg">
+                    <input type="hidden" value="'.$data['profile_img'].'" name="profileimg">
                 </div>
                 ';
             ?>
@@ -77,20 +77,10 @@ if ($confirmation){
             icon: "success"       
 
         }).then(() => {
-            location.href = "?page=usuaris";
+            window.location.href = "?page=usuaris";
         });
         </script></head>
     ';
-    echo "
-    
-    <script>
-        const button = document.getElementById('submit')
-        button.addEventListener('click',function(){
-           
-            
-        })
-        <head><meta http-equiv='refresh' content='0;url=index.php?page=usuaris'></head>
-    </script>";
 }
 
 ?>

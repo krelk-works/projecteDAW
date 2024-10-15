@@ -168,7 +168,7 @@
         public function createUser() {
             $conn = $this->connect();
             // Query para insertar un nuevo usuario
-            $sql = "INSERT INTO users (username, password, firstname, lastname, email, role, profileimg) 
+            $sql = "INSERT INTO users (username, password, first_name, last_name, email, role, profileimg) 
                     VALUES (:username, :password, :firstname, :lastname, :email, :role, :profileimg)";
             
             // Preparar la consulta
@@ -218,8 +218,8 @@
             $conn=$this->connect();
             $sql="UPDATE users SET 
                 username = :username,
-                firstname = :firstname, 
-                lastname = :lastname, 
+                first_name = :first_name, 
+                last_name = :last_name, 
                 email = :email, 
                 password = :password, 
                 role = :role 
@@ -227,8 +227,8 @@
             $stmt=$conn->prepare($sql);
             $stmt->bindParam(':id', $id);
             $stmt->bindParam(':username', $data['username']);
-            $stmt->bindParam(':firstname', $data['firstname']);
-            $stmt->bindParam(':lastname', $data['lastname']);
+            $stmt->bindParam(':first_name', $data['first_name']);
+            $stmt->bindParam(':last_name', $data['last_name']);
             $stmt->bindParam(':email', $data['email']);
             $stmt->bindParam(':password', $data['password']);
             $stmt->bindParam(':role', $data['role']);

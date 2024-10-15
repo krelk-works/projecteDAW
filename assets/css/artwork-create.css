@@ -1,3 +1,91 @@
+@charset "UTF-8";
+.container-create {
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  width: 100%;
+}
+
 .artwork-create-container {
-  background-color: red;
+  width: 100%; /* Ajustar al 100% del contenedor */
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.artwork-create-container form {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+}
+
+.form-left, .form-right {
+  width: 48%; /* Ajustar para que ambas columnas ocupen más espacio */
+}
+
+.form-left label, .form-right label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-left input, .form-right input, .form-left .custom-select, .form-right .custom-select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Estilos específicos para select */
+.custom-select {
+  width: 95%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.custom_options {
+  width: 100%;
+  padding: 10px;
+}
+
+.images {
+  text-align: center;
+}
+
+.image-preview {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.image-preview img {
+  width: 80px;
+  height: 80px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.add-image-btn {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  cursor: pointer;
 }/*# sourceMappingURL=artwork-create.css.map */
