@@ -41,6 +41,7 @@
     <link rel="stylesheet" href="assets/css/backup.css">
     <link rel="stylesheet" href="assets/css/user-administration.css">
     <link rel="stylesheet" href="assets/css/locations.css">
+    <link rel="stylesheet" href="assets/css/artwork-create.css">
 
     <!--<script src="assets/js/main.js" defer></script>-->
     <title>Intranet - Apel·les Fenosa</title>
@@ -89,6 +90,9 @@
                 else if ($actualPage == "backups") {
                     require_once "views/backup-create/backup-create.php";
                     require_once "views/backup/backup.php";
+                }
+                else if ($actualPage == "artwork-create") {
+                    require_once "views/artwork-create/artwork-create.php";
                 }
             }
 
