@@ -88,7 +88,7 @@
                 }
                 else if ($actualPage == "backups") {
                     require_once "views/backup-create/backup-create.php";
-                    require_once "views/backup/backup.php";
+                    require_once "views/backup-list/backup-list.php";
                 }
             }
 
