@@ -30,7 +30,7 @@
                 <?php
                     
                     if (isset($_GET['error-login'])){
-                        echo '<p class="retry-login-text">Usuari o contrasenya incorrectes.</p>';
+                        echo '<p class="retry-login-text">* Usuari o contrasenya incorrectes.</p>';
                     }
                 ?>
                 
