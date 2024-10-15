@@ -80,7 +80,9 @@ if (isset($_GET['delete_file']) && isset($_GET['confirmed'])) {
             confirmButtonText: 'Si'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = 'index.php?page=backups&delete_file=".$urlunformat."&confirmed';
+                delete_backup_button = document.querySelector('.delete_backup_button');
+                delete_backup_button_topagination = delete_backup_button.getAttribute('topagination');
+                window.location.href = 'index.php?page=backups&delete_file=".$urlunformat."&confirmed&pagination='+delete_backup_button_topagination;
             }
         });
     </script>";

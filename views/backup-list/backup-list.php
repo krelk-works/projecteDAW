@@ -54,7 +54,7 @@
                 <p> <i class="fa-solid fa-calendar-days"></i> ' . $backup['created'] . '</p>
                 <p> <i class="fa-solid fa-hard-drive"></i> ' . $backup['filesize'] . '</p>
                 <a href="?page=backups&download_backup='.$urlformat.'&pagination='.$currentPagePagination.'" class=""><button class="action_button"><i class="fa-solid fa-download"></i>Descargar</button></a>
-                <a href="?page=backups&delete_file='.$urlformat.'&pagination='.$futurePagination.'" class="delete_backup_button"><button class="action_button delete_button"><i class="fa-solid fa-user-minus"></i>Eliminar</button></a>
+                <a href="?page=backups&delete_file='.$urlformat.'&pagination='.$currentPagePagination.'" class="delete_backup_button" topagination="'.$futurePagination.'"><button class="action_button delete_button"><i class="fa-solid fa-user-minus"></i>Eliminar</button></a>
             </div>';
         }
         ?>
