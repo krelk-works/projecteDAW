@@ -1,0 +1,9 @@
+.list-item-expositions :nth-child(2) {
+  width: 41% !important;
+}
+.list-item-expositions :nth-child(3) {
+  width: 36.5% !important;
+}
+.list-item-expositions :nth-child(4) {
+  width: 22.5% !important;
+}/*# sourceMappingURL=exposition-list.css.map */

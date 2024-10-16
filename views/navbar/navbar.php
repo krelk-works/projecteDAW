@@ -33,10 +33,16 @@
                 if ($_SESSION['role'] != "convidat") {
 
                     // Variables to change the style of the selected option
+                    $expositionManagementStyle = $actualPage == "exposicions" ? "border-bottom: 2px solid #007bff;" : "";
                     $userManagementStyle = $actualPage == "usuaris" ? "border-bottom: 2px solid #007bff;" : "";
                     $locationManagementStyle = $actualPage == "localitzacions" ? "border-bottom: 2px solid #007bff;" : "";
                     $vocabularyManagementStyle = $actualPage == "vocabulari" ? "border-bottom: 2px solid #007bff;" : "";
                     $backupManagementStyle = $actualPage == "backups" ? "border-bottom: 2px solid #007bff;" : "";
+
+                    // Exposition management
+                    echo "<li>";
+                        echo "<a href='?page=expositions' style='$expositionManagementStyle'>Exposicions</a>";
+                    echo "</li>";
 
                     // User management
                     echo "<li>";

@@ -2,6 +2,7 @@
     <div class="artwork-create-container">
         <form action="" class="artwork-create-form">
             <div class="form-left">
+                
                 <label for="registre">Nº Registre</label>
                 <input type="text" name="registre" value="No seleccionat">
 
@@ -130,7 +131,7 @@
                     <button type="button" class="add-image-btn">+</button>
                 </div>
 
-                <button type="submit" class="submit-btn">Crear obra</button>
+                <button type="submit" class="submit-btn">Actualitzar obra</button>
                 
             </div>
         </form>

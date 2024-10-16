@@ -75,6 +75,7 @@
     <link rel="stylesheet" href="assets/css/locations.css">
     <link rel="stylesheet" href="assets/css/artwork-create.css">
     <link rel="stylesheet" href="assets/css/vocabulary.css">
+    <link rel="stylesheet" href="assets/css/exposition-list.css">
 
     <!--<script src="assets/js/main.js" defer></script>-->
     <title>Intranet - Apel·les Fenosa</title>
@@ -129,6 +130,13 @@
                 }
                 else if ($actualPage == "vocabulari") {
                     require_once "views/vocabulary/vocabulary.php";
+                }
+                else if ($actualPage == "artwork-administration") {
+                    require_once "views/artwork-administration/artwork-administration.php";
+                }
+                else if ($actualPage == "expositions") {
+                    require_once "views/exposition-aside/exposition-aside.php";
+                    require_once "views/exposition/exposition.php";
                 }
             }
 
