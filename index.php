@@ -129,6 +129,9 @@
                 else if ($actualPage == "artwork-administration") {
                     require_once "views/artwork-administration/artwork-administration.php";
                 }
+                else if ($actualPage == "expositions") {
+                    require_once "views/exposition/exposition.php";
+                }
             }
 
             
