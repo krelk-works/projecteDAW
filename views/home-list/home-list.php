@@ -105,7 +105,7 @@ if ($searchTriggered) {
         foreach ($data as $artwork) {
             echo '<div class="list-item">
                 <img src="' . $artwork['URL'] . '" alt="' . $artwork['artwork_name'] . ' ' . $artwork['author_name'] . '">
-                <h3>' . $artwork['artwork_name'] . '</h3>
+                <a href="?page=artwork-administration&artworkID=' . $artwork['id'] . '"><h3>' . $artwork['artwork_name'] . '</h3>                </a>
                 <p><i class="fa-solid fa-user"></i>' . $artwork['author_name'] . '</p>
                 <p><i class="fa-solid fa-location-dot"></i>' . $artwork['location_name'] . '</p>
                 <p><i class="fa-solid fa-bookmark"></i>' . $artwork['creation_date'] . '</p>
