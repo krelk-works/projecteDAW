@@ -74,6 +74,7 @@
     <link rel="stylesheet" href="assets/css/user-administration.css">
     <link rel="stylesheet" href="assets/css/locations.css">
     <link rel="stylesheet" href="assets/css/artwork-create.css">
+    <link rel="stylesheet" href="assets/css/vocabulary.css">
 
     <!--<script src="assets/js/main.js" defer></script>-->
     <title>Intranet - Apel·les Fenosa</title>
@@ -125,6 +126,9 @@
                 }
                 else if ($actualPage == "artwork-create") {
                     require_once "views/artwork-create/artwork-create.php";
+                }
+                else if ($actualPage == "vocabulari") {
+                    require_once "views/vocabulary/vocabulary.php";
                 }
             }
 

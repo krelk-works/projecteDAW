@@ -35,6 +35,7 @@
                     // Variables to change the style of the selected option
                     $userManagementStyle = $actualPage == "usuaris" ? "border-bottom: 2px solid #007bff;" : "";
                     $locationManagementStyle = $actualPage == "localitzacions" ? "border-bottom: 2px solid #007bff;" : "";
+                    $vocabularyManagementStyle = $actualPage == "vocabulari" ? "border-bottom: 2px solid #007bff;" : "";
                     $backupManagementStyle = $actualPage == "backups" ? "border-bottom: 2px solid #007bff;" : "";
 
                     // User management
@@ -45,6 +46,11 @@
                     // Location management
                     echo "<li>";
                         echo "<a href='?page=localitzacions' style='$locationManagementStyle'>Localitzacions</a>";
+                    echo "</li>";
+
+                    // Vocabulary management
+                    echo "<li>";
+                        echo "<a href='?page=vocabulari' style='$vocabularyManagementStyle'>Vocabularis</a>";
                     echo "</li>";
 
                     // Backup management

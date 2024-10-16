@@ -1,0 +1,143 @@
+#vocabulary-wrapper {
+    display: flex;
+    width: 100%;
+    height: 89vh;
+    /*background-color: blue;*/
+    padding: 10px;
+
+    #vocabulary-container {
+        width: 100%;
+        height: 100%;
+        /*background-color: aqua;*/
+
+        #vocabulary-header {
+            width: 100%;
+            height: calc(3em - 10px);
+            text-align: center;
+            /*background-color: brown;*/
+            h2 {
+                margin-bottom: 10px;
+            }
+        }
+
+        #vocabulary-items {
+            display: flex;
+            flex-wrap: wrap;
+            height: calc(100% - 3em);
+            width: 100%;
+            /*background-color: burlywood;*/
+            padding: 10px;
+
+            .vocabulary-item-simple {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                align-items: center;
+                width: calc(33.33% - 20px);
+                margin: 10px;
+                height: 40%;
+                background-color: #fafafa;
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                border-radius: 5px;
+                overflow: hidden;
+
+                h4 {
+                    margin: 0px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 2em;
+                    width: 100%;
+                    /*background-color: aqua;*/
+                    border-bottom: 1px solid #868686;
+                    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                }
+
+                input {
+                    height: 2em;
+                    width: 70%;
+                    padding: 0px !important;
+                    margin: 0px !important;
+                    padding-left: 10px !important;
+                    padding-right: 10px !important;
+                }
+
+                button {
+                    height: 2em;
+                    width: calc(28% - 20px);
+                    padding: 0px !important;
+                    margin: 0px !important;
+                }
+
+                .delete_vocabulary_button:hover {
+                    background-color: red !important;
+                }
+
+                .list-vocabulary-item-simple {
+                    height: calc(100% - 6em);
+                    width: 100%;
+                    overflow-x: hidden;
+                    overflow-y: auto;
+                    /*background-color: chocolate;*/
+
+                    .item-vocabulary {
+                        display: flex;
+                        height: calc(20% - 8px);
+                        flex-wrap: wrap;
+                        justify-content: space-around;
+                        align-items: center;
+                        padding-left: 10px;
+                        margin: 5px;
+                        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+                        transition: all .22s;
+                        border-bottom: 1px solid rgba(0, 0, 0, 0);
+                        border-radius: 5px;
+
+                        p {
+                            width: 85%;
+                        }
+
+                        button {
+                            margin: 0;
+                            padding: 0;
+                            width: calc(15% - 20px);
+                            height: 70%;
+                        }
+                    }
+
+                    .item-vocabulary:hover {
+                        border-bottom: 1px solid blue;
+                    }
+                }
+            }
+
+            
+
+            .vocabulary-item-composed {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                align-items: center;
+                width: calc(66.66% - 20px);
+                margin: 10px;
+                height: 40%;
+                background-color: #fafafa;
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                border-radius: 5px;
+                overflow: hidden;
+
+                h4 {
+                    margin: 0px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 2em;
+                    width: 100%;
+                    /*background-color: aqua;*/
+                    border-bottom: 1px solid #868686;
+                    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                }
+            }
+        }
+    }
+}

@@ -12,6 +12,9 @@ body {
   flex-wrap: wrap;
   width: 100vw;
   height: 100vh;
+  --sb-track-color: #c2c2c2;
+  --sb-thumb-color: #4577ff;
+  --sb-size: 8px;
   /*overflow: hidden;*/
 }
 
@@ -148,4 +151,25 @@ a:hover {
 
 .search_button:hover {
   padding: 10px;
+}
+
+/* Custom Scroll Bar */
+.list-vocabulary-item-simple::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+.list-vocabulary-item-simple::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 10px;
+}
+
+.list-vocabulary-item-simple::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 10px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  .list-vocabulary-item-simple {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  }
 }/*# sourceMappingURL=general.css.map */

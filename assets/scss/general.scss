@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import 'vars';
+
 * {
     margin: 0;
     padding: 0;
@@ -15,6 +16,9 @@ body {
     flex-wrap: wrap;
     width: 100vw;
     height: 100vh;
+    --sb-track-color: #c2c2c2;
+    --sb-thumb-color: #4577ff;
+    --sb-size: 8px;
     /*overflow: hidden;*/
 }
 
@@ -33,7 +37,7 @@ button {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 }
 
-button > * {
+button>* {
     padding-right: 5px;
 }
 
@@ -42,6 +46,7 @@ button:hover {
     background-color: #5d88ff;
     color: white;
 }
+
 /* ------------------------------ */
 
 /* CUSTOM INPUT FIELDS FOR WEBSITE */
@@ -67,9 +72,11 @@ input:hover {
 }
 
 input::placeholder {
-    color: #929292;;
+    color: #929292;
+    ;
     /*font-style: italic;*/
 }
+
 /* ------------------------------ */
 
 /* CUSTOM SELECT FIELDS FOR WEBSIT */
@@ -143,9 +150,30 @@ a:hover {
 }
 
 .rounded-profile-images {
-    border-radius:50%;
+    border-radius: 50%;
 }
 
 .search_button:hover {
     padding: 10px;
+}
+
+/* Custom Scroll Bar */
+.list-vocabulary-item-simple::-webkit-scrollbar {
+    width: var(--sb-size);
+}
+
+.list-vocabulary-item-simple::-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+    border-radius: 10px;
+}
+
+.list-vocabulary-item-simple::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    border-radius: 10px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+    .list-vocabulary-item-simple {
+        scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+    }
 }
