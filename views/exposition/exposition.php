@@ -20,12 +20,18 @@
         $data = $ArtworkController->getData($limit, $offset, $searchFilter);
         
         foreach ($data as $artwork) {
+            $randomNumber = mt_rand(0, mt_getrandmax()) / mt_getrandmax(); // BORRAR ESTO CUANDO SE IMPLEMENTE EL MODELO
             echo '<div class="list-item list-item-expositions">
                 <img src="' . $artwork['URL'] . '" alt="' . $artwork['artwork_name'] . ' ' . $artwork['author_name'] . '">
                 <a href="?page=artwork-administration&artworkID=' . $artwork['id'] . '"><h3>' . $artwork['artwork_name'] . '</h3>                </a>
-                <p><i class="fa-solid fa-location-dot"></i>' . $artwork['location_name'] . '</p>
-                <p><i class="fa-solid"></i>' . 'si' . '</p>
-            </div>';
+                <p><i class="fa-solid fa-location-dot"></i>' . $artwork['location_name'] . '</p>';
+                if ($randomNumber >= 0.5) { // para simular distintos estados de exposicion. BORRAR CUANDO SE IMPLEMENTE EL MODELO
+                    echo '<p><i class="fa-solid"></i>' . 'si' . '</p>';
+                }
+                else {
+                    echo '<p><i class="fa-solid"></i>' . 'no' . '</p>';
+                }
+            echo '</div>';
             //var_dump($artwork);
         }
         ?>
