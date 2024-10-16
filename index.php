@@ -74,6 +74,7 @@
     <link rel="stylesheet" href="assets/css/user-administration.css">
     <link rel="stylesheet" href="assets/css/locations.css">
     <link rel="stylesheet" href="assets/css/artwork-create.css">
+    <link rel="stylesheet" href="assets/css/exposition-list.css">
 
     <!--<script src="assets/js/main.js" defer></script>-->
     <title>Intranet - Apel·les Fenosa</title>
@@ -130,6 +131,7 @@
                     require_once "views/artwork-administration/artwork-administration.php";
                 }
                 else if ($actualPage == "expositions") {
+                    require_once "views/exposition-aside/exposition-aside.php";
                     require_once "views/exposition/exposition.php";
                 }
             }
