@@ -1,0 +1,39 @@
+.create-exposition-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 89vh;
+}
+
+.create-exposition {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gainsboro;
+  border-radius: 15px;
+  height: 50vh;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.artwork-list-item-create-exposition {
+  display: flex;
+  align-items: center;
+  background-color: red;
+  border-radius: 15px;
+  background-color: #f1f1f1;
+  justify-content: space-between;
+  margin: 10px;
+  width: 400px;
+  height: 5rem;
+}
+.artwork-list-item-create-exposition :first-child {
+  border-radius: 100%;
+  margin-left: 15px;
+  width: 3rem;
+  height: 3rem;
+}
+.artwork-list-item-create-exposition :nth-child(3) {
+  margin-right: 30px;
+}/*# sourceMappingURL=create-exposition.css.map */

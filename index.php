@@ -76,6 +76,7 @@
     <link rel="stylesheet" href="assets/css/artwork-create.css">
     <link rel="stylesheet" href="assets/css/vocabulary.css">
     <link rel="stylesheet" href="assets/css/exposition-list.css">
+    <link rel="stylesheet" href="assets/css/create-exposition.css">
 
     <!--<script src="assets/js/main.js" defer></script>-->
     <title>Intranet - Apel·les Fenosa</title>
@@ -137,6 +138,9 @@
                 else if ($actualPage == "expositions") {
                     require_once "views/exposition-aside/exposition-aside.php";
                     require_once "views/exposition/exposition.php";
+                }
+                else if ($actualPage == "create-exposition") {
+                    require_once "views/create-exposition/create-exposition.php";
                 }
             }
 
