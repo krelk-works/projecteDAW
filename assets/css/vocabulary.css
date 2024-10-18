@@ -4,6 +4,9 @@
   height: 89vh;
   /*background-color: blue;*/
   padding: 10px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin-right: 5px !important;
 }
 #vocabulary-wrapper #vocabulary-container {
   width: 100%;
@@ -123,4 +126,52 @@
   /*background-color: aqua;*/
   border-bottom: 1px solid #868686;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .mixed_inputs {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  background-color: grey;
+  justify-content: space-around;
+  align-items: center;
+  height: 2.5em;
+}
+#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .mixed_inputs input {
+  /*width: 30%;*/
+}
+#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .mixed_inputs input:first-child {
+  width: 40%;
+}
+#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .mixed_inputs input:nth-child(2), #vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .mixed_inputs input:last-child {
+  width: 10%;
+}
+#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .mixed_inputs button {
+  width: 10%;
+  height: 90%;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .mixed_headers {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  background-color: grey;
+  justify-content: flex-start;
+  align-items: center;
+  height: 1.5em;
+}
+#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .mixed_headers p {
+  display: flex;
+  background-color: aqua;
+  padding-left: 5px;
+}
+#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .mixed_headers p:first-child {
+  width: 40%;
+}
+#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .mixed_headers p:nth-child(2), #vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .mixed_headers p:last-child {
+  width: 30%;
+}
+#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .mixed_inputs {
+  display: flex;
+  width: 100%;
 }/*# sourceMappingURL=vocabulary.css.map */

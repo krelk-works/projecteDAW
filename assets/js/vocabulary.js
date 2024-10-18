@@ -83,6 +83,49 @@ if (document.querySelector(".expositiontypes_delete_button")) {
     })
 }
 
+if (document.querySelector(".author_delete_button")) {
+    let listItems = document.querySelectorAll(".author_delete_button");
+    listItems.forEach((listItem) => {
+        listItem.addEventListener("click", () => {
+            let valueAttribute = listItem.getAttribute("value");
+            Swal.fire({
+                icon: 'warning',
+                title: 'Estàs segur en esborrar aquest element del vocabulari?',
+                showConfirmButton: true,
+                confirmButtonText: 'Si, esborrar',
+                showCancelButton: true,
+                cancelButtonText: 'Cancel·lar',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                   window.location.href = 'index.php?page=vocabulari' + '&delete_author=' + valueAttribute;
+                }
+            });
+        })
+    })
+}
+
+if (document.querySelector(".genericclassifications_delete_button")) {
+    let listItems = document.querySelectorAll(".genericclassifications_delete_button");
+    listItems.forEach((listItem) => {
+        listItem.addEventListener("click", () => {
+            let valueAttribute = listItem.getAttribute("value");
+            Swal.fire({
+                icon: 'warning',
+                title: 'Estàs segur en esborrar aquest element del vocabulari?',
+                showConfirmButton: true,
+                confirmButtonText: 'Si, esborrar',
+                showCancelButton: true,
+                cancelButtonText: 'Cancel·lar',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                   window.location.href = 'index.php?page=vocabulari' + '&delete_genericclassification=' + valueAttribute;
+                }
+            });
+        })
+    })
+}
+
+
 if (document.querySelector("#new_entry_type")) {
     let newEntryType = document.querySelector("#new_entry_type");
     newEntryType.addEventListener("click", () => {

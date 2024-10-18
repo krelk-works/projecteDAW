@@ -106,5 +106,109 @@ class VocabularyController
         $data = $expositiontypes->deleteExpositionType($id);
         return $data;
     }
+
+    public function addAuthor($name)
+    {
+        $authors = new Vocabulary();
+        $data = $authors->addAuthor($name);
+        return $data;
+    }
+
+    public function getAuthors()
+    {
+        $authors = new Vocabulary();
+        $data = $authors->getAuthors();
+        return $data;
+    }
+
+    public function deleteAuthor($id) {
+        $authors = new Vocabulary();
+        $data = $authors->deleteAuthor($id);
+        return $data;
+    }
+
+    public function addGenericClassification($text)
+    {
+        $authors = new Vocabulary();
+        $data = $authors->addGenericClassification($text);
+        return $data;
+    }
+
+    public function getGenericClassifications()
+    {
+        $genericclassifications = new Vocabulary();
+        $data = $genericclassifications->getGenericClassifications();
+        return $data;
+    }
+
+    public function deleteGenericClassification($id)
+    {
+        $genericclassifications = new Vocabulary();
+        $data = $genericclassifications->deleteGenericClassification($id);
+        return $data;
+    }
+
+    public function addMaterial($text)
+    {
+        $materials = new Vocabulary();
+        $data = $materials->addMaterial($text);
+        return $data;
+    }
+
+    public function getMaterials()
+    {
+        $materials = new Vocabulary();
+        $data = $materials->getMaterials();
+        return $data;
+    }
+
+    public function deleteMaterial($id)
+    {
+        $materials = new Vocabulary();
+        $data = $materials->deleteMaterial($id);
+        return $data;
+    }
+
+    public function addTecnique($text)
+    {
+        $tecniques = new Vocabulary();
+        $data = $tecniques->addTecnique($text);
+        return $data;
+    }
+
+    public function getTecniques()
+    {
+        $tecniques = new Vocabulary();
+        $data = $tecniques->getTecniques();
+        return $data;
+    }
+
+    public function deleteTecnique($id)
+    {
+        $tecniques = new Vocabulary();
+        $data = $tecniques->deleteTecnique($id);
+        return $data;
+    }
+
+    public function addGetty($text)
+    {
+        $getty = new Vocabulary();
+        $data = $getty->addGetty($text);
+        return $data;
+    }
+
+    public function getGettys()
+    {
+        $getty = new Vocabulary();
+        $data = $getty->getGettys();
+        return $data;
+    }
+
+    public function deleteGetty($id)
+    {
+        $getty = new Vocabulary();
+        $data = $getty->deleteGetty($id);
+        return $data;
+    }
 }
 ?>

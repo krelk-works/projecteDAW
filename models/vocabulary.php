@@ -225,5 +225,229 @@
             // Execute the statement
             return $stmt->execute();
         }
+
+        public function addAuthor($name)
+        {
+            $conn = $this->connect();
+            $sql = "INSERT INTO authors (name) VALUES (:name)";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Bind the parameters
+            $stmt->bindParam(':name', $name);
+
+            // Execute the statement
+            return $stmt->execute();
+        }
+
+        public function getAuthors()
+        {
+            $conn = $this->connect();
+            $sql = "SELECT * FROM authors";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Execute the statement
+            $stmt->execute();
+        
+            // Fetch the results
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function deleteAuthor($id) {
+            $conn = $this->connect();
+            $sql = "DELETE FROM authors WHERE id = :id";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Bind the parameters
+            $stmt->bindParam(':id', $id);
+
+            // Execute the statement
+            return $stmt->execute();
+        }
+
+        public function addGenericClassification($text)
+        {
+            $conn = $this->connect();
+            $sql = "INSERT INTO genericclassifications (text) VALUES (:text)";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Bind the parameters
+            $stmt->bindParam(':text', $text);
+
+            // Execute the statement
+            return $stmt->execute();
+        }
+
+        public function getGenericClassifications()
+        {
+            $conn = $this->connect();
+            $sql = "SELECT * FROM genericclassifications";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Execute the statement
+            $stmt->execute();
+        
+            // Fetch the results
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function deleteGenericClassification($id)
+        {
+            $conn = $this->connect();
+            $sql = "DELETE FROM genericclassifications WHERE id = :id";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Bind the parameters
+            $stmt->bindParam(':id', $id);
+
+            // Execute the statement
+            return $stmt->execute();
+        }
+
+        public function addMaterial($text)
+        {
+            $conn = $this->connect();
+            $sql = "INSERT INTO materials (text) VALUES (:text)";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Bind the parameters
+            $stmt->bindParam(':text', $text);
+
+            // Execute the statement
+            return $stmt->execute();
+        }
+
+        public function getMaterials()
+        {
+            $conn = $this->connect();
+            $sql = "SELECT * FROM materials";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Execute the statement
+            $stmt->execute();
+        
+            // Fetch the results
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function deleteMaterial($id)
+        {
+            $conn = $this->connect();
+            $sql = "DELETE FROM materials WHERE id = :id";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Bind the parameters
+            $stmt->bindParam(':id', $id);
+
+            // Execute the statement
+            return $stmt->execute();
+        }
+
+        public function addTecnique($text)
+        {
+            $conn = $this->connect();
+            $sql = "INSERT INTO tecniques (text) VALUES (:text)";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Bind the parameters
+            $stmt->bindParam(':text', $text);
+
+            // Execute the statement
+            return $stmt->execute();
+        }
+
+        public function getTecniques()
+        {
+            $conn = $this->connect();
+            $sql = "SELECT * FROM tecniques";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Execute the statement
+            $stmt->execute();
+        
+            // Fetch the results
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function deleteTecnique($id)
+        {
+            $conn = $this->connect();
+            $sql = "DELETE FROM tecniques WHERE id = :id";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Bind the parameters
+            $stmt->bindParam(':id', $id);
+
+            // Execute the statement
+            return $stmt->execute();
+        }
+
+        public function addGetty($text)
+        {
+            $conn = $this->connect();
+            $sql = "INSERT INTO tecniquegettycodes (text) VALUES (:text)";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Bind the parameters
+            $stmt->bindParam(':text', $text);
+
+            // Execute the statement
+            return $stmt->execute();
+        }
+
+        public function getGettys()
+        {
+            $conn = $this->connect();
+            $sql = "SELECT * FROM tecniquegettycodes";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Execute the statement
+            $stmt->execute();
+        
+            // Fetch the results
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function deleteGetty($id)
+        {
+            $conn = $this->connect();
+            $sql = "DELETE FROM tecniquegettycodes WHERE id = :id";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Bind the parameters
+            $stmt->bindParam(':id', $id);
+
+            // Execute the statement
+            return $stmt->execute();
+        }
     }
 ?>

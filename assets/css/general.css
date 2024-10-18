@@ -153,7 +153,7 @@ a:hover {
   padding: 10px;
 }
 
-/* Custom Scroll Bar */
+/* Custom Scroll Bar for Vocabulary Items */
 .list-vocabulary-item-simple::-webkit-scrollbar {
   width: var(--sb-size);
 }
@@ -170,6 +170,26 @@ a:hover {
 
 @supports not selector(::-webkit-scrollbar) {
   .list-vocabulary-item-simple {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  }
+}
+/* Custom Scroll Bar for Vocabulary Wrapper */
+#vocabulary-wrapper::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+#vocabulary-wrapper::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 10px;
+}
+
+#vocabulary-wrapper::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 10px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  #vocabulary-wrapper {
     scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
   }
 }/*# sourceMappingURL=general.css.map */
