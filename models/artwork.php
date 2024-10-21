@@ -181,6 +181,8 @@
             // Fetch the count result
             return $stmt->fetchColumn();
         }
+
+        
         
 
         public function generatePDF() {

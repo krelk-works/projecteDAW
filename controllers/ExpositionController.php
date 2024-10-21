@@ -10,5 +10,7 @@ class ExpositionController
         $data = $exposition->getActiveExpositions();
         return $data;
     }
+
+    
 }
 ?>

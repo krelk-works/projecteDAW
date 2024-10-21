@@ -15,7 +15,21 @@
                 <input type="text" name="mida" value="No seleccionat">
 
                 <label for="autor">Autor</label>
-                <input type="text" name="autor" value="No seleccionat">
+                <select name="autor" class="custom_options">
+                <option value="tots">Tots</option>
+                    <?php
+                    $vocabularyController = new VocabularyController();
+                    $data = $vocabularyController->getAuthors();
+                    foreach ($data as $author) {
+                        echo '<option value="' . $author['id'] . '"';
+                        // Verificar si el autor está seleccionado
+                        if (isset($_GET['author']) && $_GET['author'] == $author['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $author['name'] . '</option>';
+                    }
+                    ?>
+                </select>
 
                 <label for="titol">Titol</label>
                 <select name="titol" class="custom_options">
@@ -23,8 +37,21 @@
                 </select>
 
                 <label for="datacio">Datació</label>
-                <input type="text" name="datacio" value="No seleccionat">
-
+                <select name="datacio" class="custom_options">
+                <option value="tots">Tots</option>
+                    <?php
+                    $vocabularyController = new VocabularyController();
+                    $data = $vocabularyController->getDatations();
+                    foreach ($data as $datation) {
+                        echo '<option value="' . $datation['id'] . '"';
+                        // Verificar si el autor está seleccionado
+                        if (isset($_GET['datation']) && $_GET['datation'] == $datation['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $datation['text'] . '</option>';
+                    }
+                    ?>
+                </select>
                 <label for="ubicacio">Ubicació</label>
                 <input type="text" name="ubicacio" value="No seleccionat">
 
@@ -35,13 +62,41 @@
                 <input type="text" name="nom-del-museu" value="No seleccionat">
 
                 <label for="data-registre">Classificació generica</label>
-                <input type="text" name="classificacio-generica" value="No seleccionat">
+                <select name="classificacio-generica" class="custom_options">
+                <option value="tots">Tots</option>
+                    <?php
+                    $vocabularyController = new VocabularyController();
+                    $data = $vocabularyController->getGenericClassifications();
+                    foreach ($data as $generic) {
+                        echo '<option value="' . $generic['id'] . '"';
+                        // Verificar si el autor está seleccionado
+                        if (isset($_GET['generic']) && $_GET['generic'] == $generic['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $generic['text'] . '</option>';
+                    }
+                    ?>
+                </select>
 
                 <label for="data-registre">Mides maximes</label>
                 <input type="text" name="mides-maximes" value="No seleccionat">
 
                 <label for="data-registre">Material</label>
-                <input type="text" name="material" value="No seleccionat">
+                <select name="material" class="custom_options">
+                <option value="tots">Tots</option>
+                    <?php
+                    $vocabularyController = new VocabularyController();
+                    $data = $vocabularyController->getMaterials();
+                    foreach ($data as $material) {
+                        echo '<option value="' . $material['id'] . '"';
+                        // Verificar si el autor está seleccionado
+                        if (isset($_GET['material']) && $_GET['material'] == $material['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $material['text'] . '</option>';
+                    }
+                    ?>
+                </select>
 
                 <label for="data-registre">Baixa</label>
                 <input type="text" name="baixa" value="No seleccionat">
@@ -62,7 +117,21 @@
                 <input type="text" name="altres-numeros" value="No seleccionat">
 
                 <label for="data-registre">Exposició</label>
-                <input type="text" name="exposicio" value="No seleccionat">
+                <select name="exposicio" class="custom_options">
+                <option value="tots">Tots</option>
+                    <?php
+                    $expositionController = new ExpositionController();
+                    $data = $expositionController->getActiveExpositions();
+                    foreach ($data as $exposition) {
+                        echo '<option value="' . $exposition['id'] . '"';
+                        // Verificar si el autor está seleccionado
+                        if (isset($_GET['exposition']) && $_GET['exposition'] == $exposition['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $exposition['name'] . '</option>';
+                    }
+                    ?>
+                </select>
 
                 <label for="data-registre">Data inici fi exposicio</label>
                 <input type="text" name="data-exposicio" value="No seleccionat">
@@ -78,7 +147,19 @@
 
                 <label for="estat-conservacio">Estat de conservació</label>
                 <select name="estat-conservacio" class="custom_options">
-                    <option value="No seleccionat">No seleccionat</option>
+                <option value="tots">Tots</option>
+                    <?php
+                    $vocabularyController = new VocabularyController();
+                    $data = $vocabularyController->getConservationStatuses();
+                    foreach ($data as $status) {
+                        echo '<option value="' . $status['id'] . '"';
+                        // Verificar si el autor está seleccionado
+                        if (isset($_GET['status']) && $_GET['status'] == $status['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $status['text'] . '</option>';
+                    }
+                    ?>
                 </select>
 
                 <label for="valoracio">Valoració econòmica</label>
@@ -91,7 +172,21 @@
                 <input type="text" name="descripcio" value="No seleccionat">
 
                 <label for="data-registre">Tecnica</label>
-                <input type="text" name="tecnica" value="No seleccionat">
+                <select name="tecnica" class="custom_options">
+                <option value="tots">Tots</option>
+                    <?php
+                    $vocabularyController = new VocabularyController();
+                    $data = $vocabularyController->getTecniques();
+                    foreach ($data as $tecnica) {
+                        echo '<option value="' . $tecnica['id'] . '"';
+                        // Verificar si el autor está seleccionado
+                        if (isset($_GET['tecnica']) && $_GET['tecnica'] == $tecnica['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $tecnica['text'] . '</option>';
+                    }
+                    ?>
+                </select>
 
                 <label for="data-registre">Anys inicias-finals</label>
                 <input type="text" name="anys" value="No seleccionat">
