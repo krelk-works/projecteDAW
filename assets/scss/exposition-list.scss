@@ -1,14 +1,46 @@
-.list-item-expositions {
-
-    :nth-child(2) {
-        width: 41% !important;
+.list-header-expositions {
+    a:first-child {
+        width: 30% !important;
     }
 
-    :nth-child(3) {
-        width: 36.5% !important;
-    }
-
-    :nth-child(4) {
+    a:nth-child(2) {
         width: 22.5% !important;
     }
+
+    a:nth-child(3) {
+        width: 20% !important;
+    }
+
+    a:nth-child(4) {
+        width: 13.75% !important;
+    }
+
+    a:nth-child(5) {
+        width: 13.75% !important;
+    }
+}
+
+
+.list-item-expositions {
+        
+        :first-child {
+            margin-left: 16px;
+            width: 50% !important;
+        }
+
+        :nth-child(2) {
+            width: 20% !important;
+        }
+
+        :nth-child(3) {
+            width: 10% !important;
+        }
+
+        :nth-child(4) {
+            width: 10% !important;
+        }
+
+        :nth-child(5) {
+            width: 10% !important;
+        }
 }

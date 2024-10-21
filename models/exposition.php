@@ -6,10 +6,9 @@
             $conn = $this->connect();
             
             // Base SQL query
-            $sql = "SELECT start_date, end_date, artworks.name AS name, URL, expositions.id 
-            FROM expositions 
-            INNER JOIN artworks ON artworks.exposition = expositions.id
-            INNER JOIN images ON artworks.id = images.artwork
+            $sql = "SELECT start_date, end_date, name, expositionlocation, text
+            FROM expositions
+            INNER JOIN expositiontypes ON expositions.expositiontype = expositiontypes.id
             WHERE end_date > CURDATE()";
             
             // Prepare the SQL statement
