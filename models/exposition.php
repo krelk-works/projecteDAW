@@ -6,7 +6,7 @@
             $conn = $this->connect();
             
             // Base SQL query
-            $sql = "SELECT * 
+            $sql = "SELECT start_date, end_date, artworks.name AS name, URL, expositions.id 
             FROM expositions 
             INNER JOIN artworks ON artworks.exposition = expositions.id
             INNER JOIN images ON artworks.id = images.artwork

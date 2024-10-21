@@ -14,11 +14,10 @@
         <?php
         $ExpositionController = new ExpositionController();
         $expoData = $ExpositionController->getActiveExpositions();
-        print_r($expoData);
         foreach ($expoData as $exposition) {
             echo '<div class="list-item list-item-expositions">
                 <img src="' . $exposition['URL'] . '" alt="' . $exposition['name'] . '">
-                <a href="?page=artwork-administration&artworkID=' . $exposition['id'] . '"><h3>' . $exposition['artwork_name'] . '</h3></a>
+                <a href="?page=artwork-administration&artworkID=' . $exposition['id'] . '"><h3>' . $exposition['name'] . '</h3></a>
                 <p><i class="fa-solid fa-location-dot"></i>' . $exposition['start_date'] . '</p>
                 <p><i class="fa-solid fa-location-dot"></i>' . $exposition['end_date'] . '</p>';
             //var_dump($exposition);
