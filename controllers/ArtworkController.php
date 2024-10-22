@@ -18,5 +18,12 @@ class ArtworkController
         $data = $artwork->getTotalCount($filter);
         return $data;
     }
+
+    public function createArtwork($artwork_name, $artwork_description, $artwork_author, $artwork_creation_date, $artwork_technique, $artwork_material, $artwork_dimensions, $artwork_image, $artwork_location, $artwork_status)
+    {
+        $artwork = new Artwork($artwork_name, $artwork_description, $artwork_author, $artwork_creation_date, $artwork_technique, $artwork_material, $artwork_dimensions, $artwork_image, $artwork_location, $artwork_status);
+        return $artwork->createArtwork();
+    }
 }
 ?>
+

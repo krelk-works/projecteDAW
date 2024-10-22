@@ -1,65 +1,42 @@
 <?php 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $registre = $_POST['registre'];
-    $objecte = $_POST['objecte'];
-    $procedencia = $_POST['procedencia'];
-    $mida = $_POST['mida'];
-    $autor = $_POST['autor'];
-    $titol = $_POST['titol'];
-    $datacio = $_POST['datacio'];
-    $ubicacio = $_POST['ubicacio'];
-    $data_registre = $_POST['data-registre'];
-    $nom_del_museu = $_POST['nom-del-museu'];
-    $classificacio_generica = $_POST['classificacio-generica'];
-    $mides_maximes = $_POST['mides-maximes'];
-    $material = $_POST['material'];
-    $baixa = $_POST['baixa'];
-    $causa_baixa = $_POST['causa-baixa'];
-    $data_baixa = $_POST['data-baixa'];
-    $persona_baixa = $_POST['persona-baixa'];
-    $altres_numeros = $_POST['altres-numeros'];
-    $exposicio = $_POST['exposicio'];
-    $data_exposicio = $_POST['data-exposicio'];
-    $exemplars = $_POST['exemplars'];
-    $data_ingres = $_POST['data-ingres'];
-    $estat_conservacio = $_POST['estat-conservacio'];
-    $valoracio = $_POST['valoracio'];
-    $bibliografia = $_POST['bibliografia'];
-    $descripcio = $_POST['descripcio'];
-    $tecnica = $_POST['tecnica'];
-    $anys = $_POST['anys'];
-    $data_inici_ubicacio = $_POST['data-inici-ubicació'];
-    $comentari = $_POST['comentari'];
-    $forma_ingres = $_POST['forma-ingres'];
-    $lloc_execucio = $_POST['lloc-execucio'];
-    $lloc_procedencia = $_POST['lloc-procedencia'];
-    $tiratge = $_POST['tiratge'];
-    $codi_restauracio = $_POST['codi-restauracio'];
-    $data_restauracio = $_POST['data-restauració'];
-    $historia_objecte = $_POST['historia-objecte'];
-    echo "
-    <script>
-        Swal.fire({
-            icon: 'success',
-            title: '¡Obra Creada!',
-            text: 'La obra se ha creado exitosamente.',
-            showConfirmButton: true,
-            confirmButtonText: 'OK'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = 'http://localhost:8080/projecteDAW/index.php?page=artwork-create'; 
-            }
-        });
-    </script>";
-    $artworkController = new ArtworkController();
-    $createdArtwork = $artworkController->createArtwork($registre, $objecte, $procedencia, $mida, $autor, $titol, $datacio, $ubicacio,
-    $data_registre, $nom_del_museu, $classificacio_generica, $mides_maximes, $material, $baixa, $causa_baixa, $data_baixa, $persona_baixa,
-    $altres_numeros, $exposicio, $data_exposicio, $exemplars, $data_ingres, $estat_conservacio, $valoracio, $bibliografia, $descripcio,
-    $tecnica, $anys, $data_inici_ubicacio, $comentari, $forma_ingres, $lloc_execucio, $lloc_procedencia, $tiratge, $codi_restauracio,
-    $data_restauracio, $historia_objecte, $profileimg);
-
-
-    if ($createdArtwork) {
+    if (!empty($_POST)) {
+        $registre = $_POST['registre'];
+        $objecte = $_POST['objecte'];
+        $procedencia = $_POST['procedencia'];
+        $mida = $_POST['mida'];
+        $autor = $_POST['autor'];
+        $titol = $_POST['titol'];
+        $datacio = $_POST['datacio'];
+        $ubicacio = $_POST['ubicacio'];
+        $data_registre = $_POST['data-registre'];
+        $nom_del_museu = $_POST['nom-del-museu'];
+        $classificacio_generica = $_POST['classificacio-generica'];
+        $mides_maximes = $_POST['mides-maximes'];
+        $material = $_POST['material'];
+        $baixa = $_POST['baixa'];
+        $causa_baixa = $_POST['causa-baixa'];
+        $data_baixa = $_POST['data-baixa'];
+        $persona_baixa = $_POST['persona-baixa'];
+        $altres_numeros = $_POST['altres-numeros'];
+        $exemplars = $_POST['exemplars'];
+        $data_ingres = $_POST['data-ingres'];
+        $estat_conservacio = $_POST['estat-conservacio'];
+        $valoracio = $_POST['valoracio'];
+        $bibliografia = $_POST['bibliografia'];
+        $descripcio = $_POST['descripcio'];
+        $tecnica = $_POST['tecnica'];
+        $anys = $_POST['anys'];
+        $data_inici_ubicacio = $_POST['data-inici-ubicació'];
+        $comentari = $_POST['comentari'];
+        $forma_ingres = $_POST['forma-ingres'];
+        $lloc_execucio = $_POST['lloc-execucio'];
+        $lloc_procedencia = $_POST['lloc-procedencia'];
+        $tiratge = $_POST['tiratge'];
+        $codi_restauracio = $_POST['codi-restauracio'];
+        $data_restauracio = $_POST['data-restauració'];
+        $historia_objecte = $_POST['historia-objecte'];
+        
         echo "
         <script>
             Swal.fire({
@@ -74,13 +51,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             });
         </script>";
+        
+        $artworkController = new ArtworkController();
+        $createdArtwork = $artworkController->createArtwork($registre, $objecte, $procedencia, $mida, $autor, $titol, $datacio, $ubicacio,
+        $data_registre, $nom_del_museu, $classificacio_generica, $mides_maximes, $material, $baixa, $causa_baixa, $data_baixa, $persona_baixa,
+        $altres_numeros, $exemplars, $data_ingres, $estat_conservacio, $valoracio, $bibliografia, $descripcio,
+        $tecnica, $anys, $data_inici_ubicacio, $comentari, $forma_ingres, $lloc_execucio, $lloc_procedencia, $tiratge, $codi_restauracio,
+        $data_restauracio, $historia_objecte, $profileimg);
+
+        if ($createdArtwork) {
+            echo "
+            <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Obra Creada!',
+                    text: 'La obra se ha creado exitosamente.',
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = 'http://localhost:8080/projecteDAW/index.php?page=artwork-create'; 
+                    }
+                });
+            </script>";
+        } else {
+            echo "
+            <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Hubo un problema al crear la obra.',
+                    showConfirmButton: true,
+                    confirmButtonText: 'Intentar de nuevo'
+                });
+            </script>";
+        }
     } else {
         echo "
         <script>
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: 'Hubo un problema al crear la obra.',
+                text: 'El formulario está vacío.',
                 showConfirmButton: true,
                 confirmButtonText: 'Intentar de nuevo'
             });
@@ -92,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <div class="container-create">
     <div class="artwork-create-container">
-        <form class="artwork-create-form" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=inici" enctype="multipart/form-data" >
+        <form class="artwork-create-form" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=artwork-create" enctype="multipart/form-data" >
             <div class="form-left">
                 <label for="registre">Nº Registre</label>
                 <input type="text" name="registre" placeholder="No seleccionat">
@@ -145,8 +157,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ?>
                 </select>
                 <label for="ubicacio">Ubicació</label>
-                <input type="text" name="ubicacio" placeholder="No seleccionat">
-
+                <select name="ubicacio" class="custom_options">
+                <option placeholder="tots">Tots</option>
+                    <?php
+                    $locationController = new LocationController();
+                    $data = $locationController->getLocations();
+                    foreach ($data as $location) {
+                        echo '<option value="' . $location['id'] . '"';
+                        // Verificar si el autor está seleccionado
+                        if (isset($_GET['location']) && $_GET['location'] == $location['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $location['name'] . '</option>';
+                    }
+                    ?>
+                </select>
                 <label for="data-registre">Data registre</label>
                 <input type="text" name="data-registre" placeholder="No seleccionat">
 
@@ -195,8 +220,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 
                 <label for="data-registre">Causa baixa</label>
-                <input type="text" name="causa-baixa" placeholder="No seleccionat">
-
+                <select name="causa-baixa" class="custom_options">
+                <option placeholder="tots">Tots</option>
+                <?php
+                    $vocabularyController = new VocabularyController();
+                    $data = $vocabularyController->getCancelCauses();
+                    foreach ($data as $cause) {
+                        echo '<option value="' . $cause['id'] . '"';
+                        // Verificar si el autor está seleccionado
+                        if (isset($_GET['cause']) && $_GET['cause'] == $cause['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $cause['text'] . '</option>';
+                    }
+                    ?>
+                </select>
 
                 <label for="data-registre">Data de baixa</label>
                 <input type="text" name="data-baixa" placeholder="No seleccionat">
@@ -208,25 +246,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="data-registre">Altres numeros d'identificacio</label>
                 <input type="text" name="altres-numeros" placeholder="No seleccionat">
 
-                <label for="data-registre">Exposició</label>
-                <select name="exposicio" class="custom_options">
-                <option placeholder="tots">Tots</option>
-                    <?php
-                    $expositionController = new ExpositionController();
-                    $data = $expositionController->getActiveExpositions();
-                    foreach ($data as $exposition) {
-                        echo '<option value="' . $exposition['id'] . '"';
-                        // Verificar si el autor está seleccionado
-                        if (isset($_GET['exposition']) && $_GET['exposition'] == $exposition['id']) {
-                            echo ' selected';
-                        }
-                        echo '>' . $exposition['name'] . '</option>';
-                    }
-                    ?>
-                </select>
 
-                <label for="data-registre">Data inici fi exposicio</label>
-                <input type="text" name="data-exposicio" placeholder="No seleccionat">
+
+
             </div>
 
             <div class="form-right">
@@ -290,7 +312,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" name="data-inici-ubicació" placeholder="No seleccionat">
 
                 <label for="data-registre">Forma d'ingres</label>
-                <input type="text" name="forma-ingres" placeholder="No seleccionat">
+                <select name="forma-ingres" class="custom_options">
+                <option placeholder="tots">Tots</option>
+                <?php
+                    $vocabularyController = new VocabularyController();
+                    $data = $vocabularyController->getEntry();
+                    foreach ($data as $entry) {
+                        echo '<option value="' . $entry['id'] . '"';
+                        // Verificar si el autor está seleccionado
+                        if (isset($_GET['entry']) && $_GET['entry'] == $entry['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $entry['text'] . '</option>';
+                    }
+                    ?>
+                </select>
                 
                 <label for="data-registre">Lloc d'execucio</label>
                 <input type="text" name="lloc-execucio" placeholder="No seleccionat">
@@ -309,6 +345,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <label for="data-registre">Historia de l'objecte</label>
                 <input type="text" name="historia-objecte" placeholder="No seleccionat">
+
+                <label for="data-registre">Getty</label>
+                <select name="getty" class="custom_options">
+                <option placeholder="tots">Tots</option>
+                <?php
+                    $vocabularyController = new VocabularyController();
+                    $data = $vocabularyController->getGettys();
+                    foreach ($data as $getty) {
+                        echo '<option value="' . $getty['id'] . '"';
+                        // Verificar si el autor está seleccionado
+                        if (isset($_GET['getty']) && $_GET['getty'] == $getty['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $entry['text'] . '</option>';
+                    }
+                    ?>
+                </select>
+
                 <div class="images">
                     <div class="image-preview">
                         <img src="assets/img/messi.jpg" alt="Imagen 1">
