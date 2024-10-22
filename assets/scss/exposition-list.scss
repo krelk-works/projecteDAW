@@ -22,25 +22,27 @@
 
 
 .list-item-expositions {
-        
-        :first-child {
-            margin-left: 16px;
-            width: 50% !important;
-        }
+    width: 100% !important;
 
-        :nth-child(2) {
-            width: 20% !important;
-        }
+    h3:first-child{
+        gap: 4px;
+        margin-left: 20px;
+        width: 30% !important;
+    }
 
-        :nth-child(3) {
-            width: 10% !important;
-        }
+    :nth-child(2) {
+        width: 22.5% !important;
+    }
 
-        :nth-child(4) {
-            width: 10% !important;
-        }
+    :nth-child(3) {
+        width: 20% !important;
+    }
 
-        :nth-child(5) {
-            width: 10% !important;
-        }
+    :nth-child(4) {
+        width: 13.75% !important;
+    }
+
+    :nth-child(5) {
+        width: 13.75% !important;
+    }
 }

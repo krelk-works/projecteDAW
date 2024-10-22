@@ -14,19 +14,23 @@
   width: 13.75% !important;
 }
 
-.list-item-expositions :first-child {
-  margin-left: 16px;
-  width: 50% !important;
+.list-item-expositions {
+  width: 100% !important;
+}
+.list-item-expositions h3:first-child {
+  gap: 4px;
+  margin-left: 20px;
+  width: 30% !important;
 }
 .list-item-expositions :nth-child(2) {
-  width: 20% !important;
+  width: 22.5% !important;
 }
 .list-item-expositions :nth-child(3) {
-  width: 10% !important;
+  width: 20% !important;
 }
 .list-item-expositions :nth-child(4) {
-  width: 10% !important;
+  width: 13.75% !important;
 }
 .list-item-expositions :nth-child(5) {
-  width: 10% !important;
+  width: 13.75% !important;
 }/*# sourceMappingURL=exposition-list.css.map */

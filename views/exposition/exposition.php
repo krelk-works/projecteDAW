@@ -22,12 +22,11 @@
         $expoData = $ExpositionController->getActiveExpositions();
         foreach ($expoData as $exposition) {
             echo '<div class="list-item list-item-expositions">
-                <p>' . $exposition['name'] . '</p>
-                <p>' . $exposition['start_date'] . '</p>
-                <p>' . $exposition['end_date'] . '</p>
-                <p>' . $exposition['expositionlocation'] . '</p>
-                <p>' . $exposition['text'] . '</p>';
-            //var_dump($exposition);
+                    <h3> <i class="fa-solid fa-landmark"></i> ' . $exposition['name'] . '</h3>
+                    <p>' . $exposition['start_date'] . '</p>
+                    <p>' . $exposition['end_date'] . '</p>
+                    <p>' . $exposition['expositionlocation'] . '</p>
+                    <p>' . $exposition['text'] . '</p></div>';
         }
         ?>
     </div>

@@ -1,4 +1,4 @@
-<?php
+g<?php
     require_once("database.php");
     class Vocabulary extends Database {
 
