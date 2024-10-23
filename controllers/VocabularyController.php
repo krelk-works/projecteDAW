@@ -217,5 +217,26 @@ class VocabularyController
         $data = $getty->deleteGetty($id);
         return $data;
     }
+
+    public function addGettyTecnique($text)
+    {
+        $gettytecnique = new Vocabulary();
+        $data = $gettytecnique->addGettyTecnique($text);
+        return $data;
+    }
+
+    public function getGettyTecniques()
+    {
+        $gettytecnique = new Vocabulary();
+        $data = $gettytecnique->getGettyTecniques();
+        return $data;
+    }
+
+    public function deleteGettyTecnique($id)
+    {
+        $gettytecnique = new Vocabulary();
+        $data = $gettytecnique->deleteGettyTecnique($id);
+        return $data;
+    }
 }
 ?>

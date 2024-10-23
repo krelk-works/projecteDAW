@@ -1,6 +1,6 @@
 <?php
 
-$searchTriggered = isset($_GET['search']) || isset($_GET['author']) || isset($_GET['location']) || isset($_GET['year']) || isset($_GET['status']);
+$searchTriggered = isset($_GET['search']) || isset($_GET['author']) || isset($_GET['location']) || isset($_GET['year']) || isset($_GET['conservationstatus']);
 $searchFilter = null;
 $urlsearchparams = '';
 
@@ -10,7 +10,7 @@ if ($searchTriggered) {
         'author' => null,
         'location' => null,
         'year' => null,
-        'status' => null
+        'conservationstatus' => null
     ];
 
     if (isset($_GET['search'])) {
@@ -55,14 +55,14 @@ if ($searchTriggered) {
         }
     }
 
-    if (isset($_GET['status'])) {
-        $status = $_GET['status'];
+    if (isset($_GET['conservationstatus'])) {
+        $conservationstatus = $_GET['conservationstatus'];
 
-        if (!empty($status) && $status != "tots") {
+        if (!empty($conservationstatus) && $conservationstatus != "tots") {
             /* Debugging */
-            //echo "<script>console.log('status: " . $status . "');</script>";
+            //echo "<script>console.log('conservationstatus: " . $conservationstatus . "');</script>";
             /* --- */
-            $searchFilter['status'] = $status;
+            $searchFilter['conservationstatus'] = $conservationstatus;
         }
     }
 

@@ -32,7 +32,7 @@
                     INNER JOIN authors ON artworks.author = authors.id
                     INNER JOIN locations ON artworks.location = locations.id
                     INNER JOIN images ON artworks.id = images.artwork
-                    INNER JOIN conservationstatus ON artworks.conservation = conservationstatus.id";
+                    INNER JOIN conservationstatus ON artworks.conservationstatus = conservationstatus.id";
         
             // If there are filters, start building the WHERE clause
             $conditions = [];
@@ -145,7 +145,7 @@
         
                 // Status filter
                 if (!empty($filter['status'])) {
-                    $conditions[] = "artworks.conservation = :status";
+                    $conditions[] = "artworks.conservationstatus = :status";
                 }
             }
         
@@ -183,34 +183,19 @@
         }
 
         
-        public function createArtwork($registre, $objecte, $procedencia, $mida, $autor, $titol, $datacio, $ubicacio, $data_registre, $nom_del_museu, $classificacio_generica, $mides_maximes, $material, $baixa, $causa_baixa, $data_baixa, $persona_baixa, $altres_numeros, $exposicio, $data_exposicio, $exemplars, $data_ingres, $estat_conservacio, $valoracio, $bibliografia, $descripcio, $tecnica, $anys, $data_inici_ubicacio, $comentari, $forma_ingres, $lloc_execucio, $lloc_procedencia, $tiratge, $codi_restauracio, $data_restauracio, $historia_objecte, $image) {
+        public function createArtwork($nom_del_museu, $id_letter, $id_num1, $id_num2, $objecte, $descripcio,
+        $procedencia, $data_registre, $creation_date, $height, $width, $depth, $titol, $originplace, $executionplace, $tiratge, $altres_numeros,
+        $cost, $amount, $historia_objecte, $ubicacio, $autor, $material, $exposition, $cancel, $causa_baixa, $estat_conservacio, $datacio, $entry, 
+        $expositiontype, $classificacio_generica, $materialgettycode, $tecniquegetty){
             $conn = $this->connect();
+            $sql = "INSERT INTO artworks (museumname, id_letter, id_num1, id_num2, name, description, provenancecollection, register_date, creation_date, 
+            height, width, depth, title, originplace, executionplace, triage, otheridnumbers, cost, amount, history, location, author, material, exposition, 
+            cancel, cancelcause, conservationstatus, datation, entry, expositiontype, genericclassification, materialgettycode, movement, restoration, 
+            tecnique, tecniquegettycode) VALUES (:museumname, :id_letter, :id_num1, :id_num2, :name, :description, :provenancecollection, :register_date,
+            :creation_date, :height, :width, :depth, :title, :originplace, :executionplace, :triage, :otheridnumbers, :cost, :amount, :history, :location,
+            :author, :material, :exposition, :cancel, :cancelcause, :conservationstatus, :datation, :entry, :expositiontype, :genericclassification,
+            :materialgettycode, :movement, :restoration, :tecnique, :tecniquegettycode)";
 
-            $sql = "INSERT INTO artworks (museumname, name, description, provenancecollection, register_date, creation_date, height, title, originplace,
-            executionplace, triage, otheridnumbers, cost, amount, history)
-                VALUES (:nom_del_museu, :objecte, :descripcio, :procedencia,:data_registre, :datacio, :mida, :titol,:lloc_procedencia ,:lloc_execucio, :tiratge,
-                :altres_numeros, :valoracio, :exemplars, :historia_objecte)";
-
-            
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':nom_del_museu', $nom_del_museu, PDO::PARAM_STR);
-            $stmt->bindParam(':objecte', $objecte, PDO::PARAM_STR);
-            $stmt->bindParam(':descripcio', $descripcio, PDO::PARAM_STR);
-            $stmt->bindParam(':procedencia', $procedencia, PDO::PARAM_STR);
-            $stmt->bindParam(':data_registre', $data_registre, PDO::PARAM_STR);
-            $stmt->bindParam(':datacio', $datacio, PDO::PARAM_STR);
-            $stmt->bindParam(':mida', $mida, PDO::PARAM_STR);
-            $stmt->bindParam(':titol', $titol, PDO::PARAM_STR);
-            $stmt->bindParam(':lloc_procedencia', $lloc_procedencia, PDO::PARAM_STR);
-            $stmt->bindParam(':lloc_execucio', $lloc_execucio, PDO::PARAM_STR);
-            $stmt->bindParam(':tiratge', $tiratge, PDO::PARAM_STR);
-            $stmt->bindParam(':altres_numeros', $altres_numeros, PDO::PARAM_STR);
-            $stmt->bindParam(':valoracio', $valoracio, PDO::PARAM_STR);
-            $stmt->bindParam(':exemplars', $exemplars, PDO::PARAM_STR);
-            $stmt->bindParam(':historia_objecte', $historia_objecte, PDO::PARAM_STR);
-            $stmt->execute();
-            $artwork_id = $conn->lastInsertId();
-            
         }
 
         public function generatePDF() {

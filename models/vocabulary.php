@@ -423,7 +423,7 @@
         public function addGetty($text)
         {
             $conn = $this->connect();
-            $sql = "INSERT INTO tecniquegettycodes (text) VALUES (:text)";
+            $sql = "INSERT INTO materialgettycodes (text) VALUES (:text)";
 
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
@@ -438,7 +438,7 @@
         public function getGettys()
         {
             $conn = $this->connect();
-            $sql = "SELECT * FROM tecniquegettycodes";
+            $sql = "SELECT * FROM materialgettycodes";
 
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
@@ -451,6 +451,51 @@
         }
 
         public function deleteGetty($id)
+        {
+            $conn = $this->connect();
+            $sql = "DELETE FROM materialgettycodes WHERE id = :id";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Bind the parameters
+            $stmt->bindParam(':id', $id);
+
+            // Execute the statement
+            return $stmt->execute();
+        }
+
+        public function addGettyTecnique($text)
+        {
+            $conn = $this->connect();
+            $sql = "INSERT INTO tecniquegettycodes (text) VALUES (:text)";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Bind the parameters
+            $stmt->bindParam(':text', $text);
+
+            // Execute the statement
+            return $stmt->execute();
+        }
+
+        public function getGettyTecniques()
+        {
+            $conn = $this->connect();
+            $sql = "SELECT * FROM tecniquegettycodes";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Execute the statement
+            $stmt->execute();
+        
+            // Fetch the results
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function deleteGettyTecnique($id)
         {
             $conn = $this->connect();
             $sql = "DELETE FROM tecniquegettycodes WHERE id = :id";

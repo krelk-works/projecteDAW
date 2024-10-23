@@ -19,9 +19,9 @@ class ArtworkController
         return $data;
     }
 
-    public function createArtwork($artwork_name, $artwork_description, $artwork_author, $artwork_creation_date, $artwork_technique, $artwork_material, $artwork_dimensions, $artwork_image, $artwork_location, $artwork_status)
+    public function createArtwork($artwork_name, $artwork_description, $artwork_author, $artwork_creation_date, $artwork_technique, $artwork_material, $artwork_dimensions, $artwork_image, $artwork_location, $artwork_conservationstatus)
     {
-        $artwork = new Artwork($artwork_name, $artwork_description, $artwork_author, $artwork_creation_date, $artwork_technique, $artwork_material, $artwork_dimensions, $artwork_image, $artwork_location, $artwork_status);
+        $artwork = new Artwork($artwork_name, $artwork_description, $artwork_author, $artwork_creation_date, $artwork_technique, $artwork_material, $artwork_dimensions, $artwork_image, $artwork_location, $artwork_conservationstatus);
         return $artwork->createArtwork();
     }
 }
