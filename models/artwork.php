@@ -195,6 +195,46 @@
             :creation_date, :height, :width, :depth, :title, :originplace, :executionplace, :triage, :otheridnumbers, :cost, :amount, :history, :location,
             :author, :material, :exposition, :cancel, :cancelcause, :conservationstatus, :datation, :entry, :expositiontype, :genericclassification,
             :materialgettycode, :movement, :restoration, :tecnique, :tecniquegettycode)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':museumname', $nom_del_museu, PDO::PARAM_STR);
+            $stmt->bindParam(':id_letter', $id_letter, PDO::PARAM_STR);
+            $stmt->bindParam(':id_num1', $id_num1, PDO::PARAM_INT);
+            $stmt->bindParam(':id_num2', $id_num2, PDO::PARAM_INT);
+            $stmt->bindParam(':name', $objecte, PDO::PARAM_STR);
+            $stmt->bindParam(':description', $descripcio, PDO::PARAM_STR);
+            $stmt->bindParam(':provenancecollection', $procedencia, PDO::PARAM_STR);
+            $stmt->bindParam(':register_date', $data_registre, PDO::PARAM_STR);
+            $stmt->bindParam(':creation_date', $creation_date, PDO::PARAM_STR);
+            $stmt->bindParam(':height', $height, PDO::PARAM_INT);
+            $stmt->bindParam(':width', $width, PDO::PARAM_INT);
+            $stmt->bindParam(':depth', $depth, PDO::PARAM_INT);
+            $stmt->bindParam(':title', $titol, PDO::PARAM_STR);
+            $stmt->bindParam(':originplace', $originplace, PDO::PARAM_STR);
+            $stmt->bindParam(':executionplace', $executionplace, PDO::PARAM_STR);
+            $stmt->bindParam(':triage', $tiratge, PDO::PARAM_STR);
+            $stmt->bindParam(':otheridnumbers', $altres_numeros, PDO::PARAM_STR);
+            $stmt->bindParam(':cost', $cost, PDO::PARAM_STR);
+            $stmt->bindParam(':amount', $amount, PDO::PARAM_INT);
+            $stmt->bindParam(':history', $historia_objecte, PDO::PARAM_STR);
+            $stmt->bindParam(':location', $ubicacio, PDO::PARAM_INT);
+            $stmt->bindParam(':author', $autor, PDO::PARAM_INT);
+            $stmt->bindParam(':material', $material, PDO::PARAM_INT);
+            $stmt->bindParam(':exposition', $exposition, PDO::PARAM_INT);
+            $stmt->bindParam(':cancel', $cancel, PDO::PARAM_INT);
+            $stmt->bindParam(':cancelcause', $causa_baixa, PDO::PARAM_INT);
+            $stmt->bindParam(':conservationstatus', $estat_conservacio, PDO::PARAM_INT);
+            $stmt->bindParam(':datation', $datacio, PDO::PARAM_STR);
+            $stmt->bindParam(':entry', $entry, PDO::PARAM_STR);
+            $stmt->bindParam(':expositiontype', $expositiontype, PDO::PARAM_INT);
+            $stmt->bindParam(':genericclassification', $classificacio_generica, PDO::PARAM_INT);
+            $stmt->bindParam(':materialgettycode', $materialgettycode, PDO::PARAM_INT);
+            $stmt->bindParam(':movement', $movement, PDO::PARAM_STR);
+            $stmt->bindParam(':restoration', $restoration, PDO::PARAM_STR);
+            $stmt->bindParam(':tecnique', $tecnique, PDO::PARAM_STR);
+            $stmt->bindParam(':tecniquegettycode', $tecniquegettycode, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->rowCount();
+            
 
         }
 
