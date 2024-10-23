@@ -185,15 +185,15 @@
         
         public function createArtwork($nom_del_museu, $id_letter, $id_num1, $id_num2, $objecte, $descripcio,
         $procedencia, $data_registre, $creation_date, $height, $width, $depth, $titol, $originplace, $executionplace, $tiratge, $altres_numeros,
-        $cost, $amount, $historia_objecte, $ubicacio, $autor, $material, $exposition, $cancel, $causa_baixa, $estat_conservacio, $datacio, $entry, 
+        $cost, $amount, $historia_objecte, $ubicacio, $autor, $material, /*$exposition, $cancel,*/ $causa_baixa, $estat_conservacio, $datacio, $entry, 
         $expositiontype, $classificacio_generica, $materialgettycode, $tecniquegetty){
             $conn = $this->connect();
             $sql = "INSERT INTO artworks (museumname, id_letter, id_num1, id_num2, name, description, provenancecollection, register_date, creation_date, 
-            height, width, depth, title, originplace, executionplace, triage, otheridnumbers, cost, amount, history, location, author, material, exposition, 
-            cancel, cancelcause, conservationstatus, datation, entry, expositiontype, genericclassification, materialgettycode, movement, restoration, 
+            height, width, depth, title, originplace, executionplace, triage, otheridnumbers, cost, amount, history, location, author, material,/* exposition,
+            cancel, */cancelcause, conservationstatus, datation, entry, expositiontype, genericclassification, materialgettycode, movement, restoration, 
             tecnique, tecniquegettycode) VALUES (:museumname, :id_letter, :id_num1, :id_num2, :name, :description, :provenancecollection, :register_date,
             :creation_date, :height, :width, :depth, :title, :originplace, :executionplace, :triage, :otheridnumbers, :cost, :amount, :history, :location,
-            :author, :material, :exposition, :cancel, :cancelcause, :conservationstatus, :datation, :entry, :expositiontype, :genericclassification,
+            :author, :material, /*:exposition, :cancel,*/ :cancelcause, :conservationstatus, :datation, :entry, :expositiontype, :genericclassification,
             :materialgettycode, :movement, :restoration, :tecnique, :tecniquegettycode)";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':museumname', $nom_del_museu, PDO::PARAM_STR);
@@ -219,8 +219,8 @@
             $stmt->bindParam(':location', $ubicacio, PDO::PARAM_INT);
             $stmt->bindParam(':author', $autor, PDO::PARAM_INT);
             $stmt->bindParam(':material', $material, PDO::PARAM_INT);
-            $stmt->bindParam(':exposition', $exposition, PDO::PARAM_INT);
-            $stmt->bindParam(':cancel', $cancel, PDO::PARAM_INT);
+            //$stmt->bindParam(':exposition', $exposition, PDO::PARAM_INT);
+            //$stmt->bindParam(':cancel', $cancel, PDO::PARAM_INT);
             $stmt->bindParam(':cancelcause', $causa_baixa, PDO::PARAM_INT);
             $stmt->bindParam(':conservationstatus', $estat_conservacio, PDO::PARAM_INT);
             $stmt->bindParam(':datation', $datacio, PDO::PARAM_STR);
@@ -234,7 +234,7 @@
             $stmt->bindParam(':tecniquegettycode', $tecniquegettycode, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->rowCount();
-            
+
 
         }
 
