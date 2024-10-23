@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="artwork-create-container">
         <form class="artwork-create-form" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=artwork-create" enctype="multipart/form-data">
             <div class="form-left">
-
+                <h2>Creacion de obras</h2>
                 <label for="nom-del-museu">Nom del museu</label>
                 <input type="text" name="nom-del-museu" placeholder="No seleccionat">
 
