@@ -3,7 +3,6 @@ include_once("models/exposition.php");
 
 class ExpositionController
 {
-
     public function getActiveExpositions()
     {
         $exposition = new Exposition();
@@ -11,6 +10,10 @@ class ExpositionController
         return $data;
     }
 
-    
+    public function createExposition($name, $expoloc, $expotype, $sd, $ed) {
+        $exposition = new Exposition();
+        $check = $exposition->createExposition($name, $expoloc, $expotype, $sd, $ed);
+        return $check;
+    }
 }
 ?>

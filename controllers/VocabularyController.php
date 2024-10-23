@@ -100,6 +100,13 @@ class VocabularyController
         return $data;
     }
 
+    public function getExpositionID($expotype)
+    {
+        $expositiontypes = new Vocabulary();
+        $data = $expositiontypes->getExpositionID($expotype);
+        return $data;
+    }
+
     public function deleteExpositionType($id)
     {
         $expositiontypes = new Vocabulary();

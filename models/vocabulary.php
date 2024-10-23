@@ -1,4 +1,4 @@
-g<?php
+<?php
     require_once("database.php");
     class Vocabulary extends Database {
 
@@ -209,6 +209,21 @@ g<?php
         
             // Fetch the results
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function getExpositionID($expotype)
+        {
+            $conn = $this->connect();
+            $sql = "SELECT id FROM expositiontypes WHERE text ='" . $expotype . "'";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Execute the statement
+            $stmt->execute();
+        
+            // Fetch the results
+            return $stmt->fetch(PDO::FETCH_ASSOC);
         }
 
         public function deleteExpositionType($id)
