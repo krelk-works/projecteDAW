@@ -1,41 +1,39 @@
 <?php 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($_POST)) {
-        $registre = $_POST['registre'];
-        $objecte = $_POST['objecte'];
-        $procedencia = $_POST['procedencia'];
-        $mida = $_POST['mida'];
-        $autor = $_POST['autor'];
-        $titol = $_POST['titol'];
-        $datacio = $_POST['datacio'];
-        $ubicacio = $_POST['ubicacio'];
-        $data_registre = $_POST['data-registre'];
         $nom_del_museu = $_POST['nom-del-museu'];
-        $classificacio_generica = $_POST['classificacio-generica'];
-        $mides_maximes = $_POST['mides-maximes'];
-        $material = $_POST['material'];
-        $baixa = $_POST['baixa'];
-        $causa_baixa = $_POST['causa-baixa'];
-        $data_baixa = $_POST['data-baixa'];
-        $persona_baixa = $_POST['persona-baixa'];
-        $altres_numeros = $_POST['altres-numeros'];
-        $exemplars = $_POST['exemplars'];
-        $data_ingres = $_POST['data-ingres'];
-        $estat_conservacio = $_POST['estat-conservacio'];
-        $valoracio = $_POST['valoracio'];
-        $bibliografia = $_POST['bibliografia'];
+        $id_letter = $_POST['id_letter'];
+        $id_num1 = $_POST['id_num1'];
+        $id_num2 = $_POST['id_num2'];
+        $objecte = $_POST['objecte'];
         $descripcio = $_POST['descripcio'];
-        $tecnica = $_POST['tecnica'];
-        $anys = $_POST['anys'];
-        $data_inici_ubicacio = $_POST['data-inici-ubicació'];
-        $comentari = $_POST['comentari'];
-        $forma_ingres = $_POST['forma-ingres'];
-        $lloc_execucio = $_POST['lloc-execucio'];
-        $lloc_procedencia = $_POST['lloc-procedencia'];
+        $procedencia = $_POST['procedencia'];
+        $data_registre = $_POST['data-registre'];
+        $creation_date = $_POST['creation_date'];
+        $height = $_POST['height'];
+        $width = $_POST['width'];
+        $depth = $_POST['depth'];
+        $titol = $_POST['titol'];
+        $originplace = $_POST['originplace'];
+        $executionplace = $_POST['executionplace'];
         $tiratge = $_POST['tiratge'];
-        $codi_restauracio = $_POST['codi-restauracio'];
-        $data_restauracio = $_POST['data-restauració'];
+        $altres_numeros = $_POST['altres-numeros'];
+        $cost = $_POST['cost'];
+        $amount = $_POST['amount'];
         $historia_objecte = $_POST['historia-objecte'];
+        $ubicacio = $_POST['ubicacio'];
+        $autor = $_POST['autor'];
+        $material = $_POST['material'];
+        $exposition = $_POST['exposition'];
+        $cancel = $_POST['cancel'];
+        $causa_baixa = $_POST['causa-baixa'];
+        $estat_conservacio = $_POST['estat-conservacio'];
+        $datacio = $_POST['datacio'];
+        $entry = $_POST['entry'];
+        $expositiontype = $_POST['expositiontype'];
+        $classificacio_generica = $_POST['classificacio-generica'];
+        $materialgettycode = $_POST['materialgettycode'];
+        $tecniquegetty = $_POST['tecniquegetty'];
         
         echo "
         <script>
@@ -53,11 +51,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </script>";
         
         $artworkController = new ArtworkController();
-        $createdArtwork = $artworkController->createArtwork($registre, $objecte, $procedencia, $mida, $autor, $titol, $datacio, $ubicacio,
-        $data_registre, $nom_del_museu, $classificacio_generica, $mides_maximes, $material, $baixa, $causa_baixa, $data_baixa, $persona_baixa,
-        $altres_numeros, $exemplars, $data_ingres, $estat_conservacio, $valoracio, $bibliografia, $descripcio,
-        $tecnica, $anys, $data_inici_ubicacio, $comentari, $forma_ingres, $lloc_execucio, $lloc_procedencia, $tiratge, $codi_restauracio,
-        $data_restauracio, $historia_objecte, $profileimg);
+        $createdArtwork = $artworkController->createArtwork($registre, $nom_del_museu, $id_letter, $id_num1, $id_num2, $objecte, $descripcio,
+        $procedencia, $data_registre, $creation_date, $height, $width, $depth, $titol, $originplace, $executionplace, $tiratge, $altres_numeros,
+        $cost, $amount, $historia_objecte, $ubicacio, $autor, $material, $exposition, $cancel, $causa_baixa, $estat_conservacio, $datacio, $entry, 
+        $expositiontype, $classificacio_generica, $materialgettycode, $tecniquegetty);
 
         if ($createdArtwork) {
             echo "
@@ -101,32 +98,100 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-
 <div class="container-create">
     <div class="artwork-create-container">
-        <form class="artwork-create-form" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=artwork-create" enctype="multipart/form-data" >
+        <form class="artwork-create-form" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=artwork-create" enctype="multipart/form-data">
             <div class="form-left">
-                <label for="registre">Nº Registre</label>
-                <input type="text" name="registre" placeholder="No seleccionat">
+
+                <label for="nom-del-museu">Nom del museu</label>
+                <input type="text" name="nom-del-museu" placeholder="No seleccionat">
+
+                <label for="id-letter">ID Letter</label>
+                <input type="text" name="id_letter" placeholder="No seleccionat">
+
+                <label for="id-num1">ID Num1</label>
+                <input type="text" name="id_num1" placeholder="No seleccionat">
+
+                <label for="id-num2">ID Num2</label>
+                <input type="text" name="id_num2" placeholder="No seleccionat">
 
                 <label for="objecte">Nom objecte</label>
                 <input type="text" name="objecte" placeholder="No seleccionat">
 
+                <label for="descripcio">Descripció</label>
+                <input type="text" name="descripcio" placeholder="No seleccionat">
+
                 <label for="procedencia">Col·lecció de procedència</label>
                 <input type="text" name="procedencia" placeholder="No seleccionat">
 
-                <label for="mida">Mida</label>
-                <input type="text" name="mida" placeholder="No seleccionat">
+                <label for="data-registre">Data registre</label>
+                <input type="text" name="data-registre" placeholder="No seleccionat">
 
+                <label for="data-registre">Data de creació</label>
+                <input type="text" name="creation_date" placeholder="No seleccionat">
+
+                <label for="mida">Alçada</label>
+                <input type="text" name="height" placeholder="No seleccionat">
+
+                <label for="mida">Amplada</label>
+                <input type="text" name="width" placeholder="No seleccionat">
+
+                <label for="mida">Profunditat</label>
+                <input type="text" name="depth" placeholder="No seleccionat">
+
+                <label for="titol">Titol</label>
+                <input type="text" name="titol" placeholder="No seleccionat">
+
+
+                <label for="lloc-procedencia">Lloc d'origen</label>
+                <input type="text" name="originplace" placeholder="No seleccionat">
+
+                <label for="lloc-execucio">Lloc d'execució</label>
+                <input type="text" name="executionplace" placeholder="No seleccionat">
+
+                <label for="tiratge">Tiratge</label>
+                <input type="text" name="tiratge" placeholder="No seleccionat">
+
+                <label for="altres-numeros">Altres números d'identificació</label>
+                <input type="text" name="altres-numeros" placeholder="No seleccionat">
+
+                <label for="valoracio">Cost</label>
+                <input type="text" name="cost" placeholder="No seleccionat">
+
+        
+
+            </div>
+
+            <div class="form-right">
+            <label for="exemplars">Quantitat</label>
+                <input type="text" name="amount" placeholder="No seleccionat">
+
+                <label for="historia-objecte">Història</label>
+                <input type="text" name="historia-objecte" placeholder="No seleccionat">
+
+                <label for="ubicacio">Ubicació</label>
+                <select name="ubicacio" class="custom_options">
+                    <option placeholder="tots">Tots</option>
+                    <?php
+                    $locationController = new LocationController();
+                    $data = $locationController->getLocations();
+                    foreach ($data as $location) {
+                        echo '<option value="' . $location['id'] . '"';
+                        if (isset($_GET['location']) && $_GET['location'] == $location['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $location['name'] . '</option>';
+                    }
+                    ?>
+                </select>
                 <label for="autor">Autor</label>
                 <select name="autor" class="custom_options">
-                <option placeholder="tots">Tots</option>
+                    <option placeholder="tots">Tots</option>
                     <?php
                     $vocabularyController = new VocabularyController();
                     $data = $vocabularyController->getAuthors();
                     foreach ($data as $author) {
                         echo '<option value="' . $author['id'] . '"';
-                        // Verificar si el autor está seleccionado
                         if (isset($_GET['author']) && $_GET['author'] == $author['id']) {
                             echo ' selected';
                         }
@@ -135,99 +200,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ?>
                 </select>
 
-                <label for="titol">Titol</label>
-                <select name="titol" class="custom_options">
-                    <option placeholder="No seleccionat">No seleccionat</option>
-                </select>
-
-                <label for="datacio">Datació</label>
-                <select name="datacio" class="custom_options">
-                <option placeholder="tots">Tots</option>
-                    <?php
-                    $vocabularyController = new VocabularyController();
-                    $data = $vocabularyController->getDatations();
-                    foreach ($data as $datation) {
-                        echo '<option value="' . $datation['id'] . '"';
-                        // Verificar si el autor está seleccionado
-                        if (isset($_GET['datation']) && $_GET['datation'] == $datation['id']) {
-                            echo ' selected';
-                        }
-                        echo '>' . $datation['text'] . '</option>';
-                    }
-                    ?>
-                </select>
-                <label for="ubicacio">Ubicació</label>
-                <select name="ubicacio" class="custom_options">
-                <option placeholder="tots">Tots</option>
-                    <?php
-                    $locationController = new LocationController();
-                    $data = $locationController->getLocations();
-                    foreach ($data as $location) {
-                        echo '<option value="' . $location['id'] . '"';
-                        // Verificar si el autor está seleccionado
-                        if (isset($_GET['location']) && $_GET['location'] == $location['id']) {
-                            echo ' selected';
-                        }
-                        echo '>' . $location['name'] . '</option>';
-                    }
-                    ?>
-                </select>
-                <label for="data-registre">Data registre</label>
-                <input type="text" name="data-registre" placeholder="No seleccionat">
-
-                <label for="data-registre">Nom del museu</label>
-                <input type="text" name="nom-del-museu" placeholder="No seleccionat">
-
-                <label for="data-registre">Classificació generica</label>
-                <select name="classificacio-generica" class="custom_options">
-                <option placeholder="tots">Tots</option>
-                    <?php
-                    $vocabularyController = new VocabularyController();
-                    $data = $vocabularyController->getGenericClassifications();
-                    foreach ($data as $generic) {
-                        echo '<option value="' . $generic['id'] . '"';
-                        // Verificar si el autor está seleccionado
-                        if (isset($_GET['generic']) && $_GET['generic'] == $generic['id']) {
-                            echo ' selected';
-                        }
-                        echo '>' . $generic['text'] . '</option>';
-                    }
-                    ?>
-                </select>
-
-                <label for="data-registre">Mides maximes</label>
-                <input type="text" name="mides-maximes" placeholder="No seleccionat">
-
-                <label for="data-registre">Material</label>
+                <label for="material">Material</label>
                 <select name="material" class="custom_options">
-                <option placeholder="tots">Tots</option>
+                    <option placeholder="tots">Tots</option>
                     <?php
                     $vocabularyController = new VocabularyController();
                     $data = $vocabularyController->getMaterials();
                     foreach ($data as $material) {
                         echo '<option value="' . $material['id'] . '"';
-                        // Verificar si el autor está seleccionado
                         if (isset($_GET['material']) && $_GET['material'] == $material['id']) {
                             echo ' selected';
                         }
                         echo '>' . $material['text'] . '</option>';
                     }
                     ?>
+
+                </select>
+                <label for="exposicio">Exposició</label>
+                <select name="exposition" class="custom_options">
+                    <option placeholder="tots">Tots</option>
+                    <?php
+                    $expositionController = new ExpositionController();
+                    $data = $expositionController->getActiveExpositions();
+                    foreach ($data as $exposition) {
+                        echo '<option value="' . $exposition['id'] . '"';
+                        if (isset($_GET['exposition']) && $_GET['exposition'] == $exposition['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $exposition['name'] . '</option>';
+                    }
+                    ?>
+
                 </select>
 
-                <label for="data-registre">Baixa</label>
-                <input type="text" name="baixa" placeholder="No seleccionat">
+                <label for="baixa">Cancel·lació</label>
+                <input type="text" name="cancel" placeholder="No seleccionat">
 
-                
-                <label for="data-registre">Causa baixa</label>
+                <label for="causa-baixa">Causa de cancel·lació</label>
                 <select name="causa-baixa" class="custom_options">
-                <option placeholder="tots">Tots</option>
-                <?php
+                    <option placeholder="tots">Tots</option>
+                    <?php
                     $vocabularyController = new VocabularyController();
                     $data = $vocabularyController->getCancelCauses();
                     foreach ($data as $cause) {
                         echo '<option value="' . $cause['id'] . '"';
-                        // Verificar si el autor está seleccionado
                         if (isset($_GET['cause']) && $_GET['cause'] == $cause['id']) {
                             echo ' selected';
                         }
@@ -236,38 +252,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ?>
                 </select>
 
-                <label for="data-registre">Data de baixa</label>
-                <input type="text" name="data-baixa" placeholder="No seleccionat">
-
-
-                <label for="data-registre">Persona autoritzada baixa</label>
-                <input type="text" name="persona-baixa" placeholder="No seleccionat">
-
-                <label for="data-registre">Altres numeros d'identificacio</label>
-                <input type="text" name="altres-numeros" placeholder="No seleccionat">
-
-
-
-
-            </div>
-
-            <div class="form-right">
-
-                <label for="exemplars">Nombre d'exemplars</label>
-                <input type="text" name="exemplars" placeholder="No seleccionat">
-
-                <label for="data-ingres">Data d'ingres</label>
-                <input type="text" name="data-ingres" placeholder="No seleccionat">
 
                 <label for="estat-conservacio">Estat de conservació</label>
                 <select name="estat-conservacio" class="custom_options">
-                <option placeholder="tots">Tots</option>
+                    <option placeholder="tots">Tots</option>
                     <?php
                     $vocabularyController = new VocabularyController();
                     $data = $vocabularyController->getConservationStatuses();
                     foreach ($data as $status) {
                         echo '<option value="' . $status['id'] . '"';
-                        // Verificar si el autor está seleccionado
                         if (isset($_GET['status']) && $_GET['status'] == $status['id']) {
                             echo ' selected';
                         }
@@ -276,91 +269,76 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ?>
                 </select>
 
-                <label for="valoracio">Valoració econòmica</label>
-                <input type="text" name="valoracio" placeholder="No seleccionat">
-
-                <label for="bibliografia">Bibliografia</label>
-                <input type="text" name="bibliografia" placeholder="No seleccionat">
-
-                <label for="descripcio">Descripció</label>
-                <input type="text" name="descripcio" placeholder="No seleccionat">
-
-                <label for="data-registre">Tecnica</label>
-                <select name="tecnica" class="custom_options">
-                <option placeholder="tots">Tots</option>
+                <label for="datacio">Datació</label>
+                <select name="datacio" class="custom_options">
+                    <option placeholder="tots">Tots</option>
                     <?php
                     $vocabularyController = new VocabularyController();
-                    $data = $vocabularyController->getTecniques();
-                    foreach ($data as $tecnica) {
-                        echo '<option value="' . $tecnica['id'] . '"';
-                        // Verificar si el autor está seleccionado
-                        if (isset($_GET['tecnica']) && $_GET['tecnica'] == $tecnica['id']) {
+                    $data = $vocabularyController->getDatations();
+                    foreach ($data as $datation) {
+                        echo '<option value="' . $datation['id'] . '"';
+                        if (isset($_GET['datation']) && $_GET['datation'] == $datation['id']) {
                             echo ' selected';
                         }
-                        echo '>' . $tecnica['text'] . '</option>';
+                        echo '>' . $datation['text'] . '</option>';
                     }
                     ?>
                 </select>
 
-                <label for="data-registre">Anys inicias-finals</label>
-                <input type="text" name="anys" placeholder="No seleccionat">
+                <label for="data-ingres">Data d'ingres</label>
+                <input type="text" name="entry" placeholder="No seleccionat">
 
-                <label for="data-registre">Data inici fi ubicació</label>
-                <input type="text" name="data-inici-ubicació" placeholder="No seleccionat">
+                <label for="tipus-exposicio">Tipus d'exposició</label>
+                <input type="text" name="expositiontype" placeholder="No seleccionat">
 
-                <label for="data-registre">Comentari</label>
-                <input type="text" name="data-inici-ubicació" placeholder="No seleccionat">
-
-                <label for="data-registre">Forma d'ingres</label>
-                <select name="forma-ingres" class="custom_options">
-                <option placeholder="tots">Tots</option>
-                <?php
+                <label for="classificacio-generica">Classificació genèrica</label>
+                <select name="classificacio-generica" class="custom_options">
+                    <option placeholder="tots">Tots</option>
+                    <?php
                     $vocabularyController = new VocabularyController();
-                    $data = $vocabularyController->getEntry();
-                    foreach ($data as $entry) {
-                        echo '<option value="' . $entry['id'] . '"';
-                        // Verificar si el autor está seleccionado
-                        if (isset($_GET['entry']) && $_GET['entry'] == $entry['id']) {
+                    $data = $vocabularyController->getGenericClassifications();
+                    foreach ($data as $generic) {
+                        echo '<option value="' . $generic['id'] . '"';
+                        if (isset($_GET['generic']) && $_GET['generic'] == $generic['id']) {
                             echo ' selected';
                         }
-                        echo '>' . $entry['text'] . '</option>';
+                        echo '>' . $generic['text'] . '</option>';
                     }
                     ?>
                 </select>
-                
-                <label for="data-registre">Lloc d'execucio</label>
-                <input type="text" name="lloc-execucio" placeholder="No seleccionat">
-                
-                <label for="data-registre">Lloc de procedencia</label>
-                <input type="text" name="lloc-procedencia" placeholder="No seleccionat">
 
-                <label for="data-registre">Nº tiratge</label>
-                <input type="text" name="tiratge" placeholder="No seleccionat">
-
-                <label for="data-registre">Codi restauració</label>
-                <input type="text" name="codi-restauracio" placeholder="No seleccionat">
-
-                <label for="data-registre">Data inici fi restauració</label>
-                <input type="text" name="data-restauració" placeholder="No seleccionat">
-
-                <label for="data-registre">Historia de l'objecte</label>
-                <input type="text" name="historia-objecte" placeholder="No seleccionat">
-
-                <label for="data-registre">Getty</label>
-                <select name="getty" class="custom_options">
-                <option placeholder="tots">Tots</option>
-                <?php
+                <label for="material-getty-code">Codi de material (Getty)</label>
+                <select name="materialgettycode" class="custom_options">
+                    <option placeholder="tots">Tots</option>
+                    <?php
                     $vocabularyController = new VocabularyController();
                     $data = $vocabularyController->getGettys();
                     foreach ($data as $getty) {
                         echo '<option value="' . $getty['id'] . '"';
-                        // Verificar si el autor está seleccionado
                         if (isset($_GET['getty']) && $_GET['getty'] == $getty['id']) {
                             echo ' selected';
                         }
-                        echo '>' . $entry['text'] . '</option>';
+                        echo '>' . $getty['text'] . '</option>';
                     }
                     ?>
+
+                </select>
+
+                <label for="tecnique-getty">Material (Getty)</label>
+                <select name="tecniquegetty" class="custom_options">
+                    <option placeholder="tots">Tots</option>
+                    <?php
+                    $vocabularyController = new VocabularyController();
+                    $data = $vocabularyController->getGettyTecniques();
+                    foreach ($data as $gettytecnique) {
+                        echo '<option value="' . $gettytecnique['id'] . '"';
+                        if (isset($_GET['gettytecnique']) && $_GET['gettytecnique'] == $gettytecnique['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $gettytecnique['text'] . '</option>';
+                    }
+                    ?>
+
                 </select>
 
                 <div class="images">
@@ -372,7 +350,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <button type="submit" class="submit-btn">Crear obra</button>
-                
             </div>
         </form>
     </div>
