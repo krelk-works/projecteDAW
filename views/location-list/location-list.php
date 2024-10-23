@@ -2,4 +2,4 @@
 
 
 ?>
-<script src="/assets/js/locations.js"/>
+<script src="/assets/js/locations.js">
