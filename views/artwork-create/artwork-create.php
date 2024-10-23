@@ -24,8 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $ubicacio = $_POST['ubicacio'];
         $autor = $_POST['autor'];
         $material = $_POST['material'];
-        $exposition = $_POST['exposition'];
-        $cancel = $_POST['cancel'];
+        //$exposition = $_POST['exposition'];
+        //$cancel = $_POST['cancel'];
         $causa_baixa = $_POST['causa-baixa'];
         $estat_conservacio = $_POST['estat-conservacio'];
         $datacio = $_POST['datacio'];
@@ -35,25 +35,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $materialgettycode = $_POST['materialgettycode'];
         $tecniquegetty = $_POST['tecniquegetty'];
         
-        echo "
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: '¡Obra Creada!',
-                text: 'La obra se ha creado exitosamente.',
-                showConfirmButton: true,
-                confirmButtonText: 'OK'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = 'http://localhost:8080/projecteDAW/index.php?page=artwork-create'; 
-                }
-            });
-        </script>";
-        
         $artworkController = new ArtworkController();
-        $createdArtwork = $artworkController->createArtwork($registre, $nom_del_museu, $id_letter, $id_num1, $id_num2, $objecte, $descripcio,
+        $createdArtwork = $artworkController->createArtwork($nom_del_museu, $id_letter, $id_num1, $id_num2, $objecte, $descripcio,
         $procedencia, $data_registre, $creation_date, $height, $width, $depth, $titol, $originplace, $executionplace, $tiratge, $altres_numeros,
-        $cost, $amount, $historia_objecte, $ubicacio, $autor, $material, $exposition, $cancel, $causa_baixa, $estat_conservacio, $datacio, $entry, 
+        $cost, $amount, $historia_objecte, $ubicacio, $autor, $material, /*$exposition, $cancel, */$causa_baixa, $estat_conservacio, $datacio, $entry, 
         $expositiontype, $classificacio_generica, $materialgettycode, $tecniquegetty);
 
         if ($createdArtwork) {
@@ -67,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     confirmButtonText: 'OK'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = 'http://localhost:8080/projecteDAW/index.php?page=artwork-create'; 
+                        window.location.href = 'http://localhost:8080/projecteDAW/index.php?'; 
                     }
                 });
             </script>";
@@ -216,10 +201,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ?>
 
                 </select>
-                <label for="exposicio">Exposició</label>
+                <!-- <label for="exposicio">Exposició</label>
                 <select name="exposition" class="custom_options">
                     <option placeholder="tots">Tots</option>
                     <?php
+                    /*
                     $expositionController = new ExpositionController();
                     $data = $expositionController->getActiveExpositions();
                     foreach ($data as $exposition) {
@@ -229,13 +215,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         }
                         echo '>' . $exposition['name'] . '</option>';
                     }
+                        */
                     ?>
 
-                </select>
-
+                </select>-->
+                <!--
                 <label for="baixa">Cancel·lació</label>
                 <input type="text" name="cancel" placeholder="No seleccionat">
-
+                -->
                 <label for="causa-baixa">Causa de cancel·lació</label>
                 <select name="causa-baixa" class="custom_options">
                     <option placeholder="tots">Tots</option>
@@ -285,12 +272,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ?>
                 </select>
 
-                <label for="data-ingres">Data d'ingres</label>
-                <input type="text" name="entry" placeholder="No seleccionat">
+                <label for="entry">Tipus d'ingres</label></label>
+                <select name="entry" class="custom_options">
+                    <option placeholder="tots">Tots</option>
+                    <?php
+                    $vocabularyController = new VocabularyController();
+                    $data = $vocabularyController->getEntry();
+                    foreach ($data as $entry) {
+                        echo '<option value="' . $entry['id'] . '"';
+                        if (isset($_GET['entry']) && $_GET['entry'] == $entry['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $entry['text'] . '</option>';
+                    }
+                    ?>
+                </select>
 
                 <label for="tipus-exposicio">Tipus d'exposició</label>
-                <input type="text" name="expositiontype" placeholder="No seleccionat">
-
+                <select name="expositiontype" class="custom_options">
+                    <option placeholder="tots">Tots</option>
+                    <?php
+                    $vocabularyController = new VocabularyController();
+                    $data = $vocabularyController->getExpositionTypes();
+                    foreach ($data as $expositiontype) {
+                        echo '<option value="' . $expositiontype['id'] . '"';
+                        if (isset($_GET['expositiontype']) && $_GET['expositiontype'] == $expositiontype['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $expositiontype['text'] . '</option>';
+                    }
+                    ?>
+                </select>
                 <label for="classificacio-generica">Classificació genèrica</label>
                 <select name="classificacio-generica" class="custom_options">
                     <option placeholder="tots">Tots</option>

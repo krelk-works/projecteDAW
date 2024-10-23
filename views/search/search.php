@@ -68,6 +68,7 @@ function redirectToSearchUser() {
         <?php
         if ($_SESSION['role'] != "convidat") {
             echo '<button id="formGeneratePDFButton" type="button"><i class="fa-solid fa-download"></i>Descarregar informe</button>';
+            echo '<a href="?page=artwork-create"><button id="createartwork" type="button"><i class="fa-solid fa-download"></i>Crear obra</button></a>';
         }
         ?>
         <button id="resetFilters" type="button" class="delete_button"><i class="fa-solid fa-eraser"></i>Resetejar filtres</button>
