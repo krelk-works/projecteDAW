@@ -87,21 +87,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="artwork-create-container">
         <form class="artwork-create-form" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=artwork-create" enctype="multipart/form-data">
             <div class="form-left">
-
+                <h2>Creacion de obras</h2>
                 <label for="nom-del-museu">Nom del museu</label>
                 <input type="text" name="nom-del-museu" placeholder="No seleccionat">
 
                 <label for="id-letter">ID Letter</label>
-                <input type="text" name="id_letter" placeholder="No seleccionat">
+                <input type="text" name="id_letter" placeholder="No seleccionat" required>
 
                 <label for="id-num1">ID Num1</label>
-                <input type="text" name="id_num1" placeholder="No seleccionat">
+                <input type="text" name="id_num1" placeholder="No seleccionat" required>
 
                 <label for="id-num2">ID Num2</label>
                 <input type="text" name="id_num2" placeholder="No seleccionat">
 
                 <label for="objecte">Nom objecte</label>
-                <input type="text" name="objecte" placeholder="No seleccionat">
+                <input type="text" name="objecte" placeholder="No seleccionat" required>
 
                 <label for="descripcio">Descripció</label>
                 <input type="text" name="descripcio" placeholder="No seleccionat">
@@ -110,10 +110,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" name="procedencia" placeholder="No seleccionat">
 
                 <label for="data-registre">Data registre</label>
-                <input type="text" name="data-registre" placeholder="No seleccionat">
+                <input type="text" name="data-registre" placeholder="No seleccionat" required>
 
                 <label for="data-registre">Data de creació</label>
-                <input type="text" name="creation_date" placeholder="No seleccionat">
+                <input type="text" name="creation_date" placeholder="No seleccionat" required>
 
                 <label for="mida">Alçada</label>
                 <input type="text" name="height" placeholder="No seleccionat">
@@ -141,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" name="altres-numeros" placeholder="No seleccionat">
 
                 <label for="valoracio">Cost</label>
-                <input type="text" name="cost" placeholder="No seleccionat">
+                <input type="text" name="cost" placeholder="No seleccionat" required>
 
         
 
@@ -149,14 +149,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="form-right">
             <label for="exemplars">Quantitat</label>
-                <input type="text" name="amount" placeholder="No seleccionat">
+                <input type="text" name="amount" placeholder="No seleccionat" required>
 
                 <label for="historia-objecte">Història</label>
                 <input type="text" name="historia-objecte" placeholder="No seleccionat">
 
                 <label for="ubicacio">Ubicació</label>
-                <select name="ubicacio" class="custom_options">
-                    <option placeholder="tots">Tots</option>
+                <select name="ubicacio" class="custom_options" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+
                     <?php
                     $locationController = new LocationController();
                     $data = $locationController->getLocations();
@@ -170,8 +171,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ?>
                 </select>
                 <label for="autor">Autor</label>
-                <select name="autor" class="custom_options">
-                    <option placeholder="tots">Tots</option>
+                <select name="autor" class="custom_options" required>
+                <option value="" disabled selected>Selecciona una opción</option>
                     <?php
                     $vocabularyController = new VocabularyController();
                     $data = $vocabularyController->getAuthors();
@@ -187,7 +188,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <label for="material">Material</label>
                 <select name="material" class="custom_options">
-                    <option placeholder="tots">Tots</option>
+                <option value="" disabled selected>Selecciona una opción</option>
                     <?php
                     $vocabularyController = new VocabularyController();
                     $data = $vocabularyController->getMaterials();
@@ -225,7 +226,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 -->
                 <label for="causa-baixa">Causa de cancel·lació</label>
                 <select name="causa-baixa" class="custom_options">
-                    <option placeholder="tots">Tots</option>
+                <option value="" disabled selected>Selecciona una opción</option>
                     <?php
                     $vocabularyController = new VocabularyController();
                     $data = $vocabularyController->getCancelCauses();
@@ -241,8 +242,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
                 <label for="estat-conservacio">Estat de conservació</label>
-                <select name="estat-conservacio" class="custom_options">
-                    <option placeholder="tots">Tots</option>
+                <select name="estat-conservacio" class="custom_options" required>
+                <option value="" disabled selected>Selecciona una opción</option>
                     <?php
                     $vocabularyController = new VocabularyController();
                     $data = $vocabularyController->getConservationStatuses();
@@ -257,8 +258,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </select>
 
                 <label for="datacio">Datació</label>
-                <select name="datacio" class="custom_options">
-                    <option placeholder="tots">Tots</option>
+                <select name="datacio" class="custom_options" required>
+                <option value="" disabled selected>Selecciona una opción</option>
                     <?php
                     $vocabularyController = new VocabularyController();
                     $data = $vocabularyController->getDatations();
@@ -273,8 +274,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </select>
 
                 <label for="entry">Tipus d'ingres</label></label>
-                <select name="entry" class="custom_options">
-                    <option placeholder="tots">Tots</option>
+                <select name="entry" class="custom_options" required>
+                <option value="" disabled selected>Selecciona una opción</option>
                     <?php
                     $vocabularyController = new VocabularyController();
                     $data = $vocabularyController->getEntry();
@@ -290,7 +291,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <label for="tipus-exposicio">Tipus d'exposició</label>
                 <select name="expositiontype" class="custom_options">
-                    <option placeholder="tots">Tots</option>
+                <option value="" disabled selected>Selecciona una opción</option>
                     <?php
                     $vocabularyController = new VocabularyController();
                     $data = $vocabularyController->getExpositionTypes();
@@ -305,7 +306,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </select>
                 <label for="classificacio-generica">Classificació genèrica</label>
                 <select name="classificacio-generica" class="custom_options">
-                    <option placeholder="tots">Tots</option>
+                <option value="" disabled selected>Selecciona una opción</option>
                     <?php
                     $vocabularyController = new VocabularyController();
                     $data = $vocabularyController->getGenericClassifications();
@@ -321,7 +322,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <label for="material-getty-code">Codi de material (Getty)</label>
                 <select name="materialgettycode" class="custom_options">
-                    <option placeholder="tots">Tots</option>
+                <option value="" disabled selected>Selecciona una opción</option>
                     <?php
                     $vocabularyController = new VocabularyController();
                     $data = $vocabularyController->getGettys();
@@ -338,7 +339,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <label for="tecnique-getty">Material (Getty)</label>
                 <select name="tecniquegetty" class="custom_options">
-                    <option placeholder="tots">Tots</option>
+                <option value="" disabled selected>Selecciona una opción</option>
                     <?php
                     $vocabularyController = new VocabularyController();
                     $data = $vocabularyController->getGettyTecniques();

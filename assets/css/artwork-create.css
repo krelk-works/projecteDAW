@@ -46,6 +46,14 @@
   border-radius: 5px;
 }
 
+.form-left h2 {
+  margin-bottom: 55px;
+}
+
+.form-right {
+  margin-top: 80px;
+}
+
 /* Estilos específicos para select */
 .custom-select select {
   width: 80%;
