@@ -29,5 +29,11 @@ class LocationController
         $data = $location->getInfo($limit, $offset);
         return $data;
     }
+    public function getLocationsJSON() 
+    {
+        $location = new Location();
+        $data=$location->getLocationsJSON();
+        return $data;
+    }
 }
 ?>

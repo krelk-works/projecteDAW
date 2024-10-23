@@ -22,27 +22,27 @@
 
 
 .list-item-expositions {
-    width: 100% !important;
-
-    h3:first-child{
+    width: 100%;
+    
+    :nth-child(){
         gap: 4px;
         margin-left: 20px;
-        width: 30% !important;
+        width: 30% ;
     }
 
     :nth-child(2) {
-        width: 22.5% !important;
+        width: 22.5%;
     }
 
     :nth-child(3) {
-        width: 20% !important;
+        width: 20%;
     }
 
     :nth-child(4) {
-        width: 13.75% !important;
+        width: 13.75%;
     }
 
     :nth-child(5) {
-        width: 13.75% !important;
+        width: 13.75%;
     }
 }
