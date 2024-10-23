@@ -10,6 +10,13 @@ class ExpositionController
         return $data;
     }
 
+    public function getAllExpositions()
+    {
+        $exposition = new Exposition();
+        $data = $exposition->getAllExpositions();
+        return $data;
+    }
+
     public function createExposition($name, $expoloc, $expotype, $sd, $ed) {
         $exposition = new Exposition();
         $check = $exposition->createExposition($name, $expoloc, $expotype, $sd, $ed);

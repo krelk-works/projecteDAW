@@ -23,24 +23,16 @@
             $conn = $this->connect();
             
             // Base SQL query
-            $sql = "SELECT * 
-            FROM expositions 
-            INNER JOIN artwork ON artwork.exposition = expositions.id";
+            $sql = "SELECT start_date, end_date, name, expositionlocation, text
+            FROM expositions
+            INNER JOIN expositiontypes ON expositions.expositiontype = expositiontypes.id";
             
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
-        
-            // Execute the query
-            //$stmt->execute();
-        
-            // Fetch the results
-            //return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            if ($stmt->execute()) {
-                return $stmt->fetchAll(PDO::FETCH_ASSOC);
-            } else {
-                return false;
-            }
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
         public function createExposition($name, $expoloc, $expotype, $sd, $ed) {

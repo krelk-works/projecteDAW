@@ -1,3 +1,16 @@
+<?php
+    session_start();
+    $toggleState = $_SESSION['expositionFilter'] ? true : false;
+    if ($toggleState) {
+        $ExpositionController = new ExpositionController();
+        $expoData = $ExpositionController->getAllExpositions();
+    } 
+    else {
+        $ExpositionController = new ExpositionController();
+        $expoData = $ExpositionController->getActiveExpositions();
+    }
+?>
+
 <main class="list-wrapper">
     <div class="list-container">
         <div class="list-header list-header-expositions">
@@ -18,8 +31,6 @@
             </a>
         </div>
         <?php
-        $ExpositionController = new ExpositionController();
-        $expoData = $ExpositionController->getActiveExpositions();
         foreach ($expoData as $exposition) {
             echo    '<div class="list-item list-item-expositions">
                         <h3> <i class="fa-solid fa-landmark"></i> ' . $exposition['name'] . '</h3>
