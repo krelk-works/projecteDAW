@@ -1,10 +1,10 @@
 .list-header-expositions {
     a:first-child {
-        width: 30% !important;
+        width: 20% !important;
     }
 
     a:nth-child(2) {
-        width: 22.5% !important;
+        width: 20% !important;
     }
 
     a:nth-child(3) {
@@ -12,37 +12,34 @@
     }
 
     a:nth-child(4) {
-        width: 13.75% !important;
+        width: 20% !important;
     }
 
     a:nth-child(5) {
-        width: 13.75% !important;
+        width: 20% !important;
     }
 }
 
 
 .list-item-expositions {
-    width: 100%;
-    
-    :nth-child(){
-        gap: 4px;
-        margin-left: 20px;
-        width: 30% ;
+    :nth-child(1) {
+        width: 20% !important;
+        margin-left: 12px !important;
     }
 
     :nth-child(2) {
-        width: 22.5%;
+        width: 20% !important;
     }
 
     :nth-child(3) {
-        width: 20%;
+        width: 20% !important;
     }
 
     :nth-child(4) {
-        width: 13.75%;
+        width: 20% !important;
     }
 
     :nth-child(5) {
-        width: 13.75%;
+        width: 20% !important;
     }
 }

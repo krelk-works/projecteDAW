@@ -33,7 +33,7 @@
         <?php
         foreach ($expoData as $exposition) {
             echo    '<div class="list-item list-item-expositions">
-                        <h3> <i class="fa-solid fa-landmark"></i> ' . $exposition['name'] . '</h3>
+                        <h3>' . $exposition['name'] . '</h3>
                         <p>' . $exposition['start_date'] . '</p>
                         <p>' . $exposition['end_date'] . '</p>
                         <p>' . $exposition['expositionlocation'] . '</p>
