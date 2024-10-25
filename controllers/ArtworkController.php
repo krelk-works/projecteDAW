@@ -18,5 +18,18 @@ class ArtworkController
         $data = $artwork->getTotalCount($filter);
         return $data;
     }
+
+    public function createArtwork($nom_del_museu, $id_letter, $id_num1, $id_num2, $objecte, $descripcio,
+    $procedencia, $data_registre, $creation_date, $height, $width, $depth, $titol, $originplace, $executionplace, $tiratge, $altres_numeros,
+    $cost, $amount, $historia_objecte, $ubicacio, $autor, $material, /*$exposition, $cancel,*/ $causa_baixa, $estat_conservacio, $datacio, $entry, 
+    $expositiontype, $classificacio_generica, $materialgettycode, $tecniquegetty){
+        $artwork = new Artwork();
+        $data = $artwork->createArtwork($nom_del_museu, $id_letter, $id_num1, $id_num2, $objecte, $descripcio,
+        $procedencia, $data_registre, $creation_date, $height, $width, $depth, $titol, $originplace, $executionplace, $tiratge, $altres_numeros,
+        $cost, $amount, $historia_objecte, $ubicacio, $autor, $material, /*$exposition, $cancel,*/ $causa_baixa, $estat_conservacio, $datacio, $entry, 
+        $expositiontype, $classificacio_generica, $materialgettycode, $tecniquegetty);
+        return $data;
+    }
 }
 ?>
+

@@ -38,7 +38,10 @@
 }
 .profile-img img{
     border-radius: 10% !important;
-    width: 300px;
+    max-width: 350px !important;
+    max-height: 350px !important;
+    width: auto !important;
+    height: auto !important;
     place-self: center;
 }
 #user-modify-wrapper footer{

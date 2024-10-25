@@ -1,14 +1,45 @@
+.list-header-expositions {
+    a:first-child {
+        width: 20% !important;
+    }
+
+    a:nth-child(2) {
+        width: 20% !important;
+    }
+
+    a:nth-child(3) {
+        width: 20% !important;
+    }
+
+    a:nth-child(4) {
+        width: 20% !important;
+    }
+
+    a:nth-child(5) {
+        width: 20% !important;
+    }
+}
+
+
 .list-item-expositions {
+    :nth-child(1) {
+        width: 20% !important;
+        margin-left: 12px !important;
+    }
 
     :nth-child(2) {
-        width: 41% !important;
+        width: 20% !important;
     }
 
     :nth-child(3) {
-        width: 36.5% !important;
+        width: 20% !important;
     }
 
     :nth-child(4) {
-        width: 22.5% !important;
+        width: 20% !important;
+    }
+
+    :nth-child(5) {
+        width: 20% !important;
     }
 }

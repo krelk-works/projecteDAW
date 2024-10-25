@@ -95,5 +95,12 @@
             // Fetch the results
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
+        public function getLocationsJSON(){
+            $LocationController = new LocationController;
+            $data=$LocationController->getLocations();
+            //Returns $data in json format
+            header('Content-Type: application/json');
+            echo json_encode($data);
+        }
     }
 ?>

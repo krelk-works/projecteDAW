@@ -140,9 +140,6 @@
                     require_once "views/exposition-aside/exposition-aside.php";
                     require_once "views/exposition/exposition.php";
                 }
-                else if ($actualPage == "create-exposition") {
-                    require_once "views/create-exposition/create-exposition.php";
-                }
             }
 
             

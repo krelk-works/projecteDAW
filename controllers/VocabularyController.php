@@ -100,6 +100,13 @@ class VocabularyController
         return $data;
     }
 
+    public function getExpositionID($expotype)
+    {
+        $expositiontypes = new Vocabulary();
+        $data = $expositiontypes->getExpositionID($expotype);
+        return $data;
+    }
+
     public function deleteExpositionType($id)
     {
         $expositiontypes = new Vocabulary();
@@ -208,6 +215,27 @@ class VocabularyController
     {
         $getty = new Vocabulary();
         $data = $getty->deleteGetty($id);
+        return $data;
+    }
+
+    public function addGettyTecnique($text)
+    {
+        $gettytecnique = new Vocabulary();
+        $data = $gettytecnique->addGettyTecnique($text);
+        return $data;
+    }
+
+    public function getGettyTecniques()
+    {
+        $gettytecnique = new Vocabulary();
+        $data = $gettytecnique->getGettyTecniques();
+        return $data;
+    }
+
+    public function deleteGettyTecnique($id)
+    {
+        $gettytecnique = new Vocabulary();
+        $data = $gettytecnique->deleteGettyTecnique($id);
         return $data;
     }
 }

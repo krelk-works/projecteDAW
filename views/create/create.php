@@ -87,19 +87,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form id="createbarwrapper" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=usuaris" enctype="multipart/form-data">
         <h3>Creació d'usuaris</h3>
         <label for="username">Nom d'usuari</label>
-        <input type="text" name="username" id="username" placeholder="Introdueix el nom" required>
+        <input type="text" name="username" id="username" placeholder="Introdueix el nom" maxlength="30" required>
         
         <label for="password">Contrasenya</label>
-        <input type="password" name="password" id="password" placeholder="Introdueix la contrasenya" required>
+        <input type="password" name="password" id="password" placeholder="Introdueix la contrasenya" maxlength="30" required>
         
         <label for="firstname">Nom</label>
-        <input type="firstname" name="firstname" id="firstname" placeholder="Introdueix el nom" required>
+        <input type="firstname" name="firstname" id="firstname" placeholder="Introdueix el nom" maxlength="30" required>
 
         <label for="lastname">Cognom</label>
-        <input type="lastname" name="lastname" id="lastname" placeholder="Introdueix el cognom" required>
+        <input type="lastname" name="lastname" id="lastname" placeholder="Introdueix el cognom" maxlength="30" required>
 
         <label for="email">Email</label>
-        <input type="email" name="email" id="email" placeholder="Introdueix l'email" required>
+        <input type="email" name="email" id="email" placeholder="Introdueix l'email" maxlength="30" required>
 
         <label for="role">Rol</label>
         <select name="role" id="role" required>
