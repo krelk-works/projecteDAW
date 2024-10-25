@@ -84,7 +84,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form id="createbarwrapper" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=expositions&filter=exampleFilter" enctype="multipart/form-data">
         <h3>Filtre</h3>
         <label for="name">Mostra les exposicions que ja han acabat</label>
-        <input type="checkbox" id="toggleSwitch" name="toggleSwitch">
+        <?php
+            if ($_SESSION['expositionFilter'] == 1) {
+                echo '<input type="checkbox" id="toggleSwitch" name="toggleSwitch" checked>';
+            } else {
+                echo '<input type="checkbox" id="toggleSwitch" name="toggleSwitch">';
+            }
+        ?>
         <button type="submit" id="filterExpoButton" value="Guardar">Filtra</button>
     </form>
 </aside>
