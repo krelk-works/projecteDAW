@@ -1,53 +1,38 @@
 if (document.querySelector("#artworksearch")) {
-    const headerCode = `
-        <div class="list-header">
-            <a href=""><h4>Nom</h4></a>
-            <a href=""><h4>Autor</h4></a>
-            <a href=""><h4>Ubicació</h4></a>
-            <a href=""><h4>Data</h4></a>
-            <a href=""><h4>Estat</h4></a>
-        </div>
-    `;
+    /* Funciones para el buscador de obras */
+    function debounce(fn, delay) {
+        let timer = null
 
-    let inputSearch = document.querySelector("#artworksearch");
+        return (...args) => {
+            if (timer) clearTimeout(timer)
+            timer = setTimeout(() => fn(...args), delay)
+        }
+    }
 
-    // Código para cuando se haya cargado la página y no haya nada escrito -> Mostrar todas las obras
-    if (inputSearch.value === "") { // Si el input está vacío, mostrar todos los artworks
+    // Función para obtener las obras a través de la API
+    const getArtworksAPI = (value) => {
         setLoadingStatus();
-        fetch('http://localhost:8080/projecteDAW/apis/artworksAPI.php?search=')
+        fetch('http://localhost:8080/projecteDAW/apis/artworksAPI.php?search=' + value)
         .then(response => response.json()) // Convertir la respuesta a JSON
         .then(data => { // Mostrar los datos en la consola
-            // console.log(data);
             let HTMLCode = generateHTMLCode(data);
             document.querySelector(".list-container").innerHTML = HTMLCode;
         });
     }
 
-    // Código para cuando se escriba en el input -> Mostrar las obras que coincidan con la búsqueda
-    inputSearch.addEventListener("input", (element) => {
-        // console.log("Petición de búsqueda: "+element.target.value);
-        setLoadingStatus();
-        fetch('http://localhost:8080/projecteDAW/apis/artworksAPI.php?search='+element.target.value)
-        .then(response => response.json()) // Convertir la respuesta a JSON
-        .then(data => { // Mostrar los datos en la consola
-            // console.log(data);
-            let HTMLCode = generateHTMLCode(data);
-            document.querySelector(".list-container").innerHTML = HTMLCode;
-        });
-    });
+    // De-bounce version of the clickHandler Function
+    const debouncedgetArtworksAPI = debounce(getArtworksAPI, 500)
 
     function generateHTMLCode($artworks) {
-        
-        
         let HTMLCode = headerCode;
         $artworks.forEach(artwork => {
             HTMLCode += '<div class="list-item">';
-                HTMLCode += '<img src="' + artwork.URL + '" alt="' + artwork.artwork_name + ' ' + artwork.author_name + '">';
-                HTMLCode += '<a href="?page=artwork-administration&artworkID=' + artwork.id + '"><h3>' + artwork.artwork_name + '</h3></a>';
-                HTMLCode += '<p><i class="fa-solid fa-user"></i>' + artwork.author_name + '</p>';
-                HTMLCode += '<p><i class="fa-solid fa-location-dot"></i>' + artwork.location_name + '</p>';
-                HTMLCode += '<p><i class="fa-solid fa-bookmark"></i>' + artwork.creation_date + '</p>';
-                HTMLCode += '<p><i class="fa-regular fa-clipboard"></i>' + artwork.text + '</p>';
+            HTMLCode += '<img src="' + artwork.URL + '" alt="' + artwork.artwork_name + ' ' + artwork.author_name + '">';
+            HTMLCode += '<a href="?page=artwork-administration&artworkID=' + artwork.id + '"><h3>' + artwork.artwork_name + '</h3></a>';
+            HTMLCode += '<p><i class="fa-solid fa-user"></i>' + artwork.author_name + '</p>';
+            HTMLCode += '<p><i class="fa-solid fa-location-dot"></i>' + artwork.location_name + '</p>';
+            HTMLCode += '<p><i class="fa-solid fa-bookmark"></i>' + artwork.creation_date + '</p>';
+            HTMLCode += '<p><i class="fa-regular fa-clipboard"></i>' + artwork.text + '</p>';
             HTMLCode += '</div>';
         });
 
@@ -62,4 +47,28 @@ if (document.querySelector("#artworksearch")) {
         HTMLCode += '<div class="loader-container"><div class="loader"></div></div>';
         document.querySelector(".list-container").innerHTML = HTMLCode;
     }
+    /* ----------------------------------- */
+
+    const headerCode = `
+        <div class="list-header">
+            <a href=""><h4>Nom</h4></a>
+            <a href=""><h4>Autor</h4></a>
+            <a href=""><h4>Ubicació</h4></a>
+            <a href=""><h4>Data</h4></a>
+            <a href=""><h4>Estat</h4></a>
+        </div>
+    `;
+
+    let inputSearch = document.querySelector("#artworksearch");
+
+    // Código para cuando se haya cargado la página y no haya nada escrito -> Mostrar todas las obras
+    if (inputSearch.value === "") { // Si el input está vacío, mostrar todos los artworks
+        debouncedgetArtworksAPI(inputSearch.value);
+    }
+
+    // Código para cuando se escriba en el input -> Mostrar las obras que coincidan con la búsqueda
+    inputSearch.addEventListener("input", (element) => {
+        debouncedgetArtworksAPI(element.target.value);
+    });
+
 }
