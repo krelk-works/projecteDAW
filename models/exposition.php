@@ -6,7 +6,7 @@
             $conn = $this->connect();
             
             // Base SQL query
-            $sql = "SELECT start_date, end_date, name, expositionlocation, text
+            $sql = "SELECT start_date, end_date, name, expositionlocation, text, expositions.id
             FROM expositions
             INNER JOIN expositiontypes ON expositions.expositiontype = expositiontypes.id
             WHERE end_date > CURDATE()";
@@ -23,12 +23,33 @@
             $conn = $this->connect();
             
             // Base SQL query
-            $sql = "SELECT start_date, end_date, name, expositionlocation, text
+            $sql = "SELECT start_date, end_date, name, expositionlocation, text, expositions.id
             FROM expositions
             INNER JOIN expositiontypes ON expositions.expositiontype = expositiontypes.id";
             
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
+
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+
+        public function getRelatedArtworks($id) {
+            $conn = $this->connect();
+            
+            // Base SQL query
+            $sql = "SELECT artworks.*, images.URL
+                FROM artworks
+                INNER JOIN images ON artworks.id = images.artwork
+                INNER JOIN expositionsartworks ON artworks.id = expositionsartworks.artwork
+                WHERE expositionsartworks.exposition = :id;
+                ";
+            
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':id', $id);
 
             $stmt->execute();
 

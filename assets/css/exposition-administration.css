@@ -1,0 +1,26 @@
+.list-header-exposition-admin a:first-child {
+  width: 33.3% !important;
+}
+.list-header-exposition-admin a:nth-child(2) {
+  width: 33.3% !important;
+}
+.list-header-exposition-admin a:nth-child(3) {
+  width: 33.3% !important;
+}
+
+.list-item-exposition-admin :nth-child(1) {
+  width: 33.3% !important;
+  margin-left: 30px !important;
+}
+.list-item-exposition-admin :nth-child(2) {
+  width: 10% !important;
+  margin-left: 20px !important;
+}
+.list-item-exposition-admin :nth-child(3) {
+  width: 33.3% !important;
+  margin-right: 15px !important;
+}
+
+.expo_button {
+  padding-right: 75px !important;
+}/*# sourceMappingURL=exposition-administration.css.map */

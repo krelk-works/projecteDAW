@@ -61,7 +61,11 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="assets/js/backup.js" defer></script>
     <script src="assets/js/vocabulary.js" defer></script>
+<<<<<<< HEAD
     <script src="assets/js/artworksearcher.js" defer></script>
+=======
+    <script src="assets/js/locations.js" defer></script>
+>>>>>>> refs/remotes/origin/main
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -79,6 +83,8 @@
     <link rel="stylesheet" href="assets/css/vocabulary.css">
     <link rel="stylesheet" href="assets/css/exposition-list.css">
     <link rel="stylesheet" href="assets/css/create-exposition.css">
+    <link rel="stylesheet" href="assets/css/exposition-administration.css">
+    <link rel="stylesheet" href="assets/css/add-artwork-to-exposition.css">
 
     <!--<script src="assets/js/main.js" defer></script>-->
     <title>Intranet - Apel·les Fenosa</title>
@@ -140,6 +146,10 @@
                 else if ($actualPage == "expositions") {
                     require_once "views/exposition-aside/exposition-aside.php";
                     require_once "views/exposition/exposition.php";
+                }
+                else if ($actualPage == "exposition-administration") {
+                    require_once "views/add-artwork-to-exposition/add-artwork-to-exposition.php"; 
+                    require_once "views/exposition-administration/exposition-administration.php";
                 }
             }
 
