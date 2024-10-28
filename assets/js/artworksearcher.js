@@ -1,4 +1,6 @@
 if (document.querySelector("#artworksearch")) {
+    let isLoading = false;
+    
     /* Funciones para el buscador de obras */
     function debounce(fn, delay) {
         let timer = null
@@ -16,6 +18,7 @@ if (document.querySelector("#artworksearch")) {
         .then(data => { // Mostrar los datos en la consola
             let HTMLCode = generateHTMLCode(data);
             document.querySelector(".list-container").innerHTML = HTMLCode;
+            isLoading = false;
         });
     }
 
@@ -42,9 +45,12 @@ if (document.querySelector("#artworksearch")) {
     }
 
     function setLoadingStatus() {
-        let HTMLCode = headerCode;
-        HTMLCode += '<div class="loader-container"><div class="loader"></div></div>';
-        document.querySelector(".list-container").innerHTML = HTMLCode;
+        if (!isLoading) {
+            isLoading = !isLoading;
+            let HTMLCode = headerCode;
+            HTMLCode += '<div class="loader-container"><div class="loader"></div></div>';
+            document.querySelector(".list-container").innerHTML = HTMLCode;
+        }
     }
     /* ----------------------------------- */
 
