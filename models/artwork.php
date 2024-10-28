@@ -289,5 +289,21 @@
 
             return $pdf;
         }
+
+        public function searchArtwork($search){
+            $conn = $this->connect();
+            $sql = "SELECT artworks.id, artworks.name AS artwork_name, artworks.creation_date, authors.name AS author_name, conservationstatus.text, locations.name AS location_name, images.URL
+                    FROM artworks
+                    INNER JOIN authors ON artworks.author = authors.id
+                    INNER JOIN locations ON artworks.location = locations.id
+                    INNER JOIN images ON artworks.id = images.artwork
+                    INNER JOIN conservationstatus ON artworks.conservationstatus = conservationstatus.id
+                    WHERE artworks.name LIKE :search OR authors.name LIKE :search OR locations.name LIKE :search OR conservationstatus.text LIKE :search";
+            $stmt = $conn->prepare($sql);
+            $searchTerm = "%" . $search . "%";
+            $stmt->bindParam(':search', $searchTerm, PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
     }
 ?>

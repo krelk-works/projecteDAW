@@ -198,3 +198,81 @@ a:hover {
         scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
     }
 }
+
+/* Custom Scroll Bar for Artwork List */
+.list-container-javascript::-webkit-scrollbar {
+    width: var(--sb-size);
+}
+
+.list-container-javascript::-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+    border-radius: 10px;
+}
+
+.list-container-javascript::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    border-radius: 10px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+    .list-container-javascript {
+        scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+    }
+}
+
+/* CSS for Loader */
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.loader {
+    width: 100%;
+    border: 8px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 8px solid #3498db;
+    width: 54px;
+    height: 54px;
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        border-top: 8px solid #3498db;
+    }
+
+    50% {
+        -webkit-transform: rotate(180deg);
+        border-top: 8px solid #8de3fd;
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        border-top: 8px solid #3498db;
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+        border-top: 8px solid #3498db;
+    }
+
+    50% {
+        transform: rotate(180deg);
+        border-top: 8px solid #8de3fd;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        border-top: 8px solid #3498db;
+    }
+}

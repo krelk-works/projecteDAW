@@ -272,4 +272,10 @@
 .list-wrapper .list-pagination .current_pagination {
   background-color: #4577ff;
   color: white;
+}
+
+.list-container-javascript {
+  height: 100% !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
 }/*# sourceMappingURL=lists.css.map */

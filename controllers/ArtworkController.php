@@ -30,6 +30,12 @@ class ArtworkController
         $expositiontype, $classificacio_generica, $materialgettycode, $tecniquegetty);
         return $data;
     }
+
+    public function searchArtwork($searchFilter){
+        $artwork = new Artwork();
+        $data = $artwork->searchArtwork($searchFilter);
+        return $data;
+    }
 }
 ?>
 
