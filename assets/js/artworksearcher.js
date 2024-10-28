@@ -11,7 +11,6 @@ if (document.querySelector("#artworksearch")) {
 
     // Función para obtener las obras a través de la API
     const getArtworksAPI = (value) => {
-        setLoadingStatus();
         fetch('http://localhost:8080/projecteDAW/apis/artworksAPI.php?search=' + value)
         .then(response => response.json()) // Convertir la respuesta a JSON
         .then(data => { // Mostrar los datos en la consola
@@ -63,11 +62,13 @@ if (document.querySelector("#artworksearch")) {
 
     // Código para cuando se haya cargado la página y no haya nada escrito -> Mostrar todas las obras
     if (inputSearch.value === "") { // Si el input está vacío, mostrar todos los artworks
+        setLoadingStatus();
         debouncedgetArtworksAPI(inputSearch.value);
     }
 
     // Código para cuando se escriba en el input -> Mostrar las obras que coincidan con la búsqueda
     inputSearch.addEventListener("input", (element) => {
+        setLoadingStatus();
         debouncedgetArtworksAPI(element.target.value);
     });
 
