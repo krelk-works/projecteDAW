@@ -30,6 +30,18 @@ class ArtworkController
         $expositiontype, $classificacio_generica, $materialgettycode, $tecniquegetty);
         return $data;
     }
+
+    public function getArtworkData($id){
+        $artwork = new Artwork();
+        $data = $artwork->getArtworkData($id);
+        return $data;
+    }
+
+    public function updateArtwork($id, $artwork_data){
+        $artwork = new Artwork();
+        $confirmation = $artwork->updateArtwork($id,$artwork_data);
+        return $confirmation;
+    }
 }
 ?>
 

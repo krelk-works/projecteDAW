@@ -92,13 +92,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" name="nom-del-museu" placeholder="No seleccionat">
 
                 <label for="id-letter">ID Letter</label>
-                <input type="text" name="id_letter" placeholder="No seleccionat" required>
+                <input type="text" id="id_letter" name="id_letter" maxlength="1" pattern="[A-Z]" placeholder="No seleccionat" required>
 
                 <label for="id-num1">ID Num1</label>
-                <input type="text" name="id_num1" placeholder="No seleccionat" required>
+                <input type="number" id="id_num1" name="id_num1" min="0" max="9" placeholder="No seleccionat" required>
 
                 <label for="id-num2">ID Num2</label>
-                <input type="text" name="id_num2" placeholder="No seleccionat">
+                <input type="number" id="id_num2" name="id_num2" min="0" max="9" placeholder="No seleccionat" required>
 
                 <label for="objecte">Nom objecte</label>
                 <input type="text" name="objecte" placeholder="No seleccionat" required>
@@ -109,20 +109,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="procedencia">Col·lecció de procedència</label>
                 <input type="text" name="procedencia" placeholder="No seleccionat">
 
-                <label for="data-registre">Data registre</label>
+                <label for="data-registre">Data registre YYYY/MM/DD</label>
                 <input type="text" name="data-registre" placeholder="No seleccionat" required>
 
-                <label for="data-registre">Data de creació</label>
+                <label for="data-registre">Data de creació YYYY/MM/DD</label>
                 <input type="text" name="creation_date" placeholder="No seleccionat" required>
 
                 <label for="mida">Alçada</label>
-                <input type="text" name="height" placeholder="No seleccionat">
+                <input type="number" name="height" placeholder="No seleccionat">
 
                 <label for="mida">Amplada</label>
-                <input type="text" name="width" placeholder="No seleccionat">
+                <input type="number" name="width" placeholder="No seleccionat">
 
                 <label for="mida">Profunditat</label>
-                <input type="text" name="depth" placeholder="No seleccionat">
+                <input type="number" name="depth" placeholder="No seleccionat">
 
                 <label for="titol">Titol</label>
                 <input type="text" name="titol" placeholder="No seleccionat">
@@ -138,10 +138,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" name="tiratge" placeholder="No seleccionat">
 
                 <label for="altres-numeros">Altres números d'identificació</label>
-                <input type="text" name="altres-numeros" placeholder="No seleccionat">
+                <input type="number" name="altres-numeros" placeholder="No seleccionat">
 
                 <label for="valoracio">Cost</label>
-                <input type="text" name="cost" placeholder="No seleccionat" required>
+                <input type="number" name="cost" placeholder="No seleccionat" required>
 
         
 
@@ -149,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="form-right">
             <label for="exemplars">Quantitat</label>
-                <input type="text" name="amount" placeholder="No seleccionat" required>
+                <input type="number" name="amount" placeholder="No seleccionat" required>
 
                 <label for="historia-objecte">Història</label>
                 <input type="text" name="historia-objecte" placeholder="No seleccionat">

@@ -32,8 +32,8 @@ class UserController
     {
         $userModel = new User($username, $password, $first_name, $last_name, $email, $profile_img, $role);
         return $userModel->createUser();
+    
     }
-
     public function getUsers($limit, $offset)
     {
         $user = new User();
@@ -61,5 +61,12 @@ class UserController
         $confirmation = $user->updateUser($id,$user_data);
         return $confirmation;
     }
+
+    public function getIdByUsername($username){
+        $user = new User();
+        $data = $user->getIdByUsername($username);
+        return $data;
+    }
+    
 }
 ?>

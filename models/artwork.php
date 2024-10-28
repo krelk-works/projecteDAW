@@ -238,6 +238,94 @@
 
         }
 
+        public function getArtworkData($id){
+            $id = (int)$id;
+            $conn=$this->connect();
+            $sql="SELECT * FROM artworks WHERE id = :id";
+            $stmt=$conn->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            if ($stmt->execute()) {
+                return $stmt->fetch(PDO::FETCH_ASSOC);
+            } else {
+                return false;
+            }
+        }
+
+        public function updateArtwork($id,$data){
+            $conn=$this->connect();
+            $sql="UPDATE artworks SET 
+            museumname = :museumname,
+            id_letter = :id_letter,
+            id_num1 = :id_num1,
+            id_num2 = :id_num2,
+            name = :name,
+            description = :description,
+            provenancecollection = :provenancecollection,
+            register_date = :register_date,
+            creation_date = :creation_date,
+            height = :height,
+            width = :width,
+            depth = :depth,
+            title = :title,
+            originplace = :originplace,
+            executionplace = :executionplace,
+            triage = :triage,
+            otheridnumbers = :otheridnumbers,
+            cost = :cost,
+            amount = :amount,
+            history = :history,
+            location = :location,
+            author = :author,
+            material = :material,
+            cancelcause = :cancelcause,
+            conservationstatus = :conservationstatus,
+            datation = :datation,
+            entry = :entry,
+            expositiontype = :expositiontype,
+            genericclassification = :genericclassification,
+            materialgettycode = :materialgettycode,
+            tecniquegettycode = :tecniquegettycode
+            WHERE id = :id";
+            $stmt=$conn->prepare($sql);
+            $stmt->bindParam(':museumname', $data['museumname'], PDO::PARAM_STR);
+            $stmt->bindParam(':id_letter', $data['id_letter'], PDO::PARAM_STR);
+            $stmt->bindParam(':id_num1', $data['id_num1'], PDO::PARAM_INT);
+            $stmt->bindParam(':id_num2', $data['id_num2'], PDO::PARAM_INT);
+            $stmt->bindParam(':name', $data['name'], PDO::PARAM_STR);
+            $stmt->bindParam(':description', $data['description'], PDO::PARAM_STR);
+            $stmt->bindParam(':provenancecollection', $data['provenancecollection'], PDO::PARAM_STR);
+            $stmt->bindParam(':register_date', $data['register_date'], PDO::PARAM_STR);
+            $stmt->bindParam(':creation_date', $data['creation_date'], PDO::PARAM_STR);
+            $stmt->bindParam(':height', $data['height'], PDO::PARAM_INT);
+            $stmt->bindParam(':width', $data['width'], PDO::PARAM_INT);
+            $stmt->bindParam(':depth', $data['depth'], PDO::PARAM_INT);
+            $stmt->bindParam(':title', $data['title'], PDO::PARAM_STR);
+            $stmt->bindParam(':originplace', $data['originplace'], PDO::PARAM_STR);
+            $stmt->bindParam(':executionplace', $data['executionplace'], PDO::PARAM_STR);
+            $stmt->bindParam(':triage', $data['triage'], PDO::PARAM_STR);
+            $stmt->bindParam(':otheridnumbers', $data['otheridnumbers'], PDO::PARAM_STR);
+            $stmt->bindParam(':cost', $data['cost'], PDO::PARAM_STR);
+            $stmt->bindParam(':amount', $data['amount'], PDO::PARAM_INT);
+            $stmt->bindParam(':history', $data['history'], PDO::PARAM_STR);
+            $stmt->bindParam(':location', $data['location'], PDO::PARAM_INT);
+            $stmt->bindParam(':author', $data['author'], PDO::PARAM_INT);
+            $stmt->bindParam(':material', $data['material'], PDO::PARAM_INT);
+            $stmt->bindParam(':cancelcause', $data['cancelcause'], PDO::PARAM_INT);
+            $stmt->bindParam(':conservationstatus', $data['conservationstatus'], PDO::PARAM_INT);
+            $stmt->bindParam(':datation', $data['datation'], PDO::PARAM_STR);
+            $stmt->bindParam(':entry', $data['entry'], PDO::PARAM_STR);
+            $stmt->bindParam(':expositiontype', $data['expositiontype'], PDO::PARAM_INT);
+            $stmt->bindParam(':genericclassification', $data['genericclassification'], PDO::PARAM_INT);
+            $stmt->bindParam(':materialgettycode', $data['materialgettycode'], PDO::PARAM_INT);
+            $stmt->bindParam(':tecniquegettycode', $data['tecniquegettycode'], PDO::PARAM_INT);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            if ($stmt->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         public function generatePDF() {
             // Get the data to generate the PDF file
             $conn = $this->connect();

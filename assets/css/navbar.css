@@ -1,3 +1,4 @@
+@charset "UTF-8";
 #navbar {
   width: 100vw !important;
   height: 11vh !important;
@@ -261,6 +262,28 @@
   position: relative;
   width: 80px;
   height: 80px;
+}
+
+.navideño {
+  margin-top: 30px;
+  margin-left: -280px;
+  position: absolute;
+  width: 90px;
+  height: 90px;
+}
+
+.navidad {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+}
+
+.navidad2 {
+  margin-top: 17px;
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  margin-left: 313px;
 }
 
 .profile-image {
