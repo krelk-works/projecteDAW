@@ -4,14 +4,12 @@
   height: 89vh;
   /*background-color: blue;*/
   padding: 10px;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;
   margin-right: 5px !important;
 }
 #vocabulary-wrapper #vocabulary-container {
   width: 100%;
-  height: 100%;
-  /*background-color: aqua;*/
+  /*height: 100%;*/
 }
 #vocabulary-wrapper #vocabulary-container #vocabulary-header {
   width: 100%;
@@ -25,10 +23,12 @@
 #vocabulary-wrapper #vocabulary-container #vocabulary-items {
   display: flex;
   flex-wrap: wrap;
-  height: calc(100% - 3em);
+  height: calc(100% - 3em - 10px);
   width: 100%;
-  /*background-color: burlywood;*/
   padding: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-top: 10px;
 }
 #vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-simple {
   display: flex;
@@ -41,7 +41,7 @@
   background-color: #fafafa;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: 5px;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 #vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-simple h4 {
   margin: 0px;

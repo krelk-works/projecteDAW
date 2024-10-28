@@ -26,7 +26,7 @@
     }
 
     if (isset($_GET['delete_genericclassification'])) {
-        $vocabularyController->deleteAuthor($_GET['delete_genericclassification']);
+        $vocabularyController->deleteGenericClassification($_GET['delete_genericclassification']);
     }
 
     if (isset($_GET['add_entry'])) {

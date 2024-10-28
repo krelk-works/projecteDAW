@@ -41,7 +41,7 @@
                         <p>' . $exposition['end_date'] . '</p>
                         <p>' . $exposition['expositionlocation'] . '</p>
                         <p>' . $exposition['text'] . '</p>
-                        <a href="?page=exposition-administration&expoID=' . $exposition['id'] . '"><button class="action_button">Gestionar</button></a>
+                        <a href="?page=exposition-administration&expoID=' . $exposition['id'] . '"><button class="action_button expo_button">Gestionar</button></a>
                     </div>';
         }
         ?>

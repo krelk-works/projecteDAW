@@ -35,6 +35,27 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
+
+        public function getRelatedArtworks($id) {
+            $conn = $this->connect();
+            
+            // Base SQL query
+            $sql = "SELECT artworks.*, images.URL
+                FROM artworks
+                INNER JOIN images ON artworks.id = images.artwork
+                INNER JOIN expositionsartworks ON artworks.id = expositionsartworks.artwork
+                WHERE expositionsartworks.exposition = :id;
+                ";
+            
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':id', $id);
+
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
         public function createExposition($name, $expoloc, $expotype, $sd, $ed) {
             $conn = $this->connect();
             $sql = "INSERT INTO expositions (name, expositionlocation, expositiontype, start_date, end_date) 

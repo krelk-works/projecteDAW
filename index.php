@@ -61,6 +61,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="assets/js/backup.js" defer></script>
     <script src="assets/js/vocabulary.js" defer></script>
+    <script src="assets/js/artworksearcher.js" defer></script>
     <script src="assets/js/locations.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -79,6 +80,8 @@
     <link rel="stylesheet" href="assets/css/vocabulary.css">
     <link rel="stylesheet" href="assets/css/exposition-list.css">
     <link rel="stylesheet" href="assets/css/create-exposition.css">
+    <link rel="stylesheet" href="assets/css/exposition-administration.css">
+    <link rel="stylesheet" href="assets/css/add-artwork-to-exposition.css">
 
     <!--<script src="assets/js/main.js" defer></script>-->
     <title>Intranet - Apel·les Fenosa</title>
