@@ -140,6 +140,10 @@
                     require_once "views/exposition-aside/exposition-aside.php";
                     require_once "views/exposition/exposition.php";
                 }
+                else if ($actualPage == "exposition-administration") {
+                    require_once "views/add-artwork-to-exposition/add-artwork-to-exposition.php"; 
+                    require_once "views/exposition-administration/exposition-administration.php";
+                }
             }
 
             

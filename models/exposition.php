@@ -6,7 +6,7 @@
             $conn = $this->connect();
             
             // Base SQL query
-            $sql = "SELECT start_date, end_date, name, expositionlocation, text
+            $sql = "SELECT start_date, end_date, name, expositionlocation, text, expositions.id
             FROM expositions
             INNER JOIN expositiontypes ON expositions.expositiontype = expositiontypes.id
             WHERE end_date > CURDATE()";
@@ -23,7 +23,7 @@
             $conn = $this->connect();
             
             // Base SQL query
-            $sql = "SELECT start_date, end_date, name, expositionlocation, text
+            $sql = "SELECT start_date, end_date, name, expositionlocation, text, expositions.id
             FROM expositions
             INNER JOIN expositiontypes ON expositions.expositiontype = expositiontypes.id";
             

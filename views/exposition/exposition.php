@@ -29,6 +29,9 @@
             <a href="">
                 <h4>Tipus exposició</h4>
             </a>
+            <a href="">
+                <h4>Opcions</h4>
+            </a>
         </div>
         <?php
         foreach ($expoData as $exposition) {
@@ -38,6 +41,7 @@
                         <p>' . $exposition['end_date'] . '</p>
                         <p>' . $exposition['expositionlocation'] . '</p>
                         <p>' . $exposition['text'] . '</p>
+                        <a href="?page=exposition-administration&expoID=' . $exposition['id'] . '"><button class="action_button">Gestionar</button></a>
                     </div>';
         }
         ?>
