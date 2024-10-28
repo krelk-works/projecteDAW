@@ -17,6 +17,13 @@ class ExpositionController
         return $data;
     }
 
+    public function getRelatedArtworks($id)
+    {
+        $exposition = new Exposition();
+        $data = $exposition->getRelatedArtworks($id);
+        return $data;
+    }
+
     public function createExposition($name, $expoloc, $expotype, $sd, $ed) {
         $exposition = new Exposition();
         $check = $exposition->createExposition($name, $expoloc, $expotype, $sd, $ed);
