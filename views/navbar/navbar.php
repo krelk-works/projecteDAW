@@ -19,6 +19,10 @@
     <nav id="navbar">
         <!-- Logo -->
         <a href="index.php" id="logo-link">
+        <div class="navideño">
+                <img class="navidad" src="assets/img/navidaa.gif" alt="Navidad">
+                <!--<img class="navidad2" src="assets/img/navidaa.gif" alt="Navidad">-->
+            </div>
             <img src="assets/img/logo.png" width="30" height="30" alt="Logo">
         </a>
         <!-- Navigation menú -->
@@ -75,7 +79,12 @@
                 <div class="menu-button-container">
                     <button class="menu-button" onclick="toggleMenu()">☰</button>
                     <div class="dropdown-menu" id="dropdownMenu">
-                        <a href="#"><i class="fa-solid fa-user"></i><?php echo $_SESSION['username']; ?></a>
+                    <?php 
+                    
+                    
+
+                    echo "<a href='?page=user-administration&userID=" . $_SESSION['id'] . "'><i class='fa-solid fa-user'></i>" . $_SESSION['username'] . "</a>";
+                    ?>
                         <a href="#" id="logoutButton"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
                     </div>
                 </div>

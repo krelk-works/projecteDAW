@@ -238,5 +238,13 @@
                 return false;
             }
         }
+        public function getIdByUsername($username){
+            $conn = $this->connect();
+            $sql = "SELECT id FROM users WHERE username = :username";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':username', $username);
+            $stmt->execute();
+            return $stmt->fetchColumn();
+        }
     }
 ?>

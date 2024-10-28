@@ -1,128 +1,301 @@
+<?php 
+
+$controller = new ArtworkController();
+$data = [];
+
+if (isset($_GET['artworkID'])) {
+    $data = $controller->getArtworkData((int)$_GET['artworkID']);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    //llamar funcion upadte user
+    $confirmation = $controller->updateArtwork((int)$data['id'],$data);
+}
+
+?>
+
+
 <div class="container-create">
     <div class="artwork-create-container">
-        <form action="" class="artwork-create-form">
+        <form class="artwork-create-form" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=artwork-administration&artworkId=<?php echo $_GET["artworkId"]; ?>" enctype="multipart/form-data">
             <div class="form-left">
-                
-                <label for="registre">Nº Registre</label>
-                <input type="text" name="registre" value="No seleccionat">
+                <h2>Creacion de obras</h2>
 
-                <label for="objecte">Nom objecte</label>
-                <input type="text" name="objecte" value="No seleccionat">
+                <?php 
 
-                <label for="procedencia">Col·lecció de procedència</label>
-                <input type="text" name="procedencia" value="No seleccionat">
+                    echo '
+                        <label for="nom-del-museu">Nom del museu</label>
+                        <input type="text" name="nom-del-museu" placeholder="No seleccionat" value="'.$data['museumname'].'">
+                    ';
 
-                <label for="mida">Mida</label>
-                <input type="text" name="mida" value="No seleccionat">
+                    echo '
+                        <label for="id-letter">ID Letter</label>
+                        <input type="text" id="id_letter" name="id_letter" maxlength="1" pattern="[A-Z]" placeholder="No seleccionat" required value="'.$data['id_letter'].'">
+                    ';
 
-                <label for="autor">Autor</label>
-                <input type="text" name="autor" value="No seleccionat">
+                    echo '
+                        <label for="id-num1">ID Num1</label>
+                        <input type="number" id="id_num1" name="id_num1" min="0" max="9" placeholder="No seleccionat" required value="'.$data['id_num1'].'">
+                    ';
 
-                <label for="titol">Titol</label>
-                <select name="titol" class="custom_options">
-                    <option value="No seleccionat">No seleccionat</option>
-                </select>
+                    echo '
+                        <label for="id-num2">ID Num2</label>
+                        <input type="number" id="id_num2" name="id_num2" min="0" max="9" placeholder="No seleccionat" required value="'.$data['id_num2'].'">
+                    ';
 
-                <label for="datacio">Datació</label>
-                <input type="text" name="datacio" value="No seleccionat">
+                    echo '
+                        <label for="objecte">Nom objecte</label>
+                        <input type="text" name="objecte" placeholder="No seleccionat" required value="'.$data['name'].'">
+                    ';
 
-                <label for="ubicacio">Ubicació</label>
-                <input type="text" name="ubicacio" value="No seleccionat">
+                    echo '
+                        <label for="descripcio">Descripció</label>
+                        <input type="text" name="descripcio" placeholder="No seleccionat" value="'.$data['description'].'">
+                    ';
 
-                <label for="data-registre">Data registre</label>
-                <input type="text" name="data-registre" value="No seleccionat">
+                    echo '
+                        <label for="procedencia">Col·lecció de procedència</label>
+                        <input type="text" name="procedencia" placeholder="No seleccionat" value="'.$data['provenancecollection'].'">
+                    ';
 
-                <label for="data-registre">Nom del museu</label>
-                <input type="text" name="nom-del-museu" value="No seleccionat">
+                    echo '
+                        <label for="data-registre">Data registre YYYY/MM/DD</label>
+                        <input type="text" name="data-registre" placeholder="No seleccionat" required value="'.$data['register_date'].'">
+                    ';
 
-                <label for="data-registre">Classificació generica</label>
-                <input type="text" name="classificacio-generica" value="No seleccionat">
+                    echo '
+                        <label for="data-registre">Data de creació YYYY/MM/DD</label>
+                        <input type="text" name="creation_date" placeholder="No seleccionat" required value="'.$data['creation_date'].'">
+                    ';
 
-                <label for="data-registre">Mides maximes</label>
-                <input type="text" name="mides-maximes" value="No seleccionat">
+                    echo '
+                        <label for="mida">Alçada</label>
+                        <input type="number" name="height" placeholder="No seleccionat" value="'.$data['height'].'">
+                    ';
 
-                <label for="data-registre">Material</label>
-                <input type="text" name="material" value="No seleccionat">
+                    echo '
+                        <label for="mida">Amplada</label>
+                        <input type="number" name="width" placeholder="No seleccionat" value="'.$data['width'].'">
+                    ';
 
-                <label for="data-registre">Baixa</label>
-                <input type="text" name="baixa" value="No seleccionat">
+                    echo '
+                        <label for="mida">Profunditat</label>
+                        <input type="number" name="depth" placeholder="No seleccionat" value="'.$data['depth'].'">
+                    ';
 
-                
-                <label for="data-registre">Causa baixa</label>
-                <input type="text" name="causa-baixa" value="No seleccionat">
+                    echo '
+                        <label for="titol">Titol</label>
+                        <input type="text" name="titol" placeholder="No seleccionat" value="'.$data['title'].'">
+                    ';
 
+                    echo '
+                        <label for="lloc-procedencia">Lloc d\'origen</label>
+                        <input type="text" name="originplace" placeholder="No seleccionat" value="'.$data['originplace'].'">
+                    ';
 
-                <label for="data-registre">Data de baixa</label>
-                <input type="text" name="data-baixa" value="No seleccionat">
+                    echo '
+                        <label for="lloc-execucio">Lloc d\'execució</label>
+                        <input type="text" name="executionplace" placeholder="No seleccionat" value="'.$data['executionplace'].'">
+                    ';
 
+                    echo '
+                        <label for="tiratge">Tiratge</label>
+                        <input type="text" name="tiratge" placeholder="No seleccionat" value="'.$data['tirage'].'">
+                    ';
 
-                <label for="data-registre">Persona autoritzada baixa</label>
-                <input type="text" name="persona-baixa" value="No seleccionat">
+                    echo '
+                        <label for="altres-numeros">Altres números d\'identificació</label>
+                        <input type="number" name="altres-numeros" placeholder="No seleccionat" value="'.$data['otheridnumbers'].'">
+                    ';
 
-                <label for="data-registre">Altres numeros d'identificacio</label>
-                <input type="text" name="altres-numeros" value="No seleccionat">
+                    echo '
+                        <label for="valoracio">Cost</label>
+                        <input type="number" name="cost" placeholder="No seleccionat" required value="'.$data['cost'].'">
+                    ';
+                ?>
 
-                <label for="data-registre">Exposició</label>
-                <input type="text" name="exposicio" value="No seleccionat">
-
-                <label for="data-registre">Data inici fi exposicio</label>
-                <input type="text" name="data-exposicio" value="No seleccionat">
             </div>
 
             <div class="form-right">
+                <?php
+                    echo '
+                        <label for="exemplars">Quantitat</label>
+                        <input type="number" name="amount" placeholder="No seleccionat" required value="'.$data['amount'].'">
+                    ';
 
-                <label for="exemplars">Nombre d'exemplars</label>
-                <input type="text" name="exemplars" value="No seleccionat">
+                    echo '
+                        <label for="historia-objecte">Història</label>
+                        <input type="text" name="historia-objecte" placeholder="No seleccionat" value="'.$data['history'].'">
+                    ';
 
-                <label for="data-ingres">Data d'ingres</label>
-                <input type="text" name="data-ingres" value="No seleccionat">
+                    echo '
+                        <label for="ubicacio">Ubicació</label>
+                        <select name="ubicacio" class="custom_options" required>
+                            <option selected > </option>
+                    ';
+                    $locationController = new LocationController();
+                    $locations = $locationController->getLocations();
+                    foreach ($locations as $location) {
+                        echo '<option value="' . $data['location'] . '"';
+                        if (isset($data['ubicacio']) && $data['ubicacio'] == $location['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $location['name'] . '</option>';
+                    }
+                    echo '</select>';
 
-                <label for="estat-conservacio">Estat de conservació</label>
-                <select name="estat-conservacio" class="custom_options">
-                    <option value="No seleccionat">No seleccionat</option>
-                </select>
+                    echo '
+                        <label for="autor">Autor</label>
+                        <select name="autor" class="custom_options" required>
+                            <option disabled></option>
+                    ';
+                    $vocabularyController = new VocabularyController();
+                    $authors = $vocabularyController->getAuthors();
+                    foreach ($authors as $author) {
+                        echo '<option value="' . $data['name'] . '"';
+                        if (isset($data['autor']) && $data['autor'] == $author['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $author['name'] . '</option>';
+                    }
+                    echo '</select>';
 
-                <label for="valoracio">Valoració econòmica</label>
-                <input type="text" name="valoracio" value="No seleccionat">
+                    echo '
+                        <label for="material">Material</label>
+                        <select name="material" class="custom_options">
+                            <option value="" disabled selected>Selecciona una opción</option>
+                    ';
+                    $materials = $vocabularyController->getMaterials();
+                    foreach ($materials as $material) {
+                        echo '<option value="' . $material['id'] . '"';
+                        if (isset($data['material']) && $data['material'] == $material['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $material['text'] . '</option>';
+                    }
+                    echo '</select>';
 
-                <label for="bibliografia">Bibliografia</label>
-                <input type="text" name="bibliografia" value="No seleccionat">
+                    echo '
+                        <label for="causa-baixa">Causa de cancel·lació</label>
+                        <select name="causa-baixa" class="custom_options">
+                            <option value="" disabled selected>Selecciona una opción</option>
+                    ';
+                    $causes = $vocabularyController->getCancelCauses();
+                    foreach ($causes as $cause) {
+                        echo '<option value="' . $cause['id'] . '"';
+                        if (isset($data['causa-baixa']) && $data['causa-baixa'] == $cause['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $cause['text'] . '</option>';
+                    }
+                    echo '</select>';
 
-                <label for="descripcio">Descripció</label>
-                <input type="text" name="descripcio" value="No seleccionat">
+                    echo '
+                        <label for="estat-conservacio">Estat de conservació</label>
+                        <select name="estat-conservacio" class="custom_options" required>
+                            <option value="" disabled selected>Selecciona una opción</option>
+                    ';
+                    $statuses = $vocabularyController->getConservationStatuses();
+                    foreach ($statuses as $status) {
+                        echo '<option value="' . $status['id'] . '"';
+                        if (isset($data['estat-conservacio']) && $data['estat-conservacio'] == $status['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $status['text'] . '</option>';
+                    }
+                    echo '</select>';
 
-                <label for="data-registre">Tecnica</label>
-                <input type="text" name="tecnica" value="No seleccionat">
+                    echo '
+                        <label for="datacio">Datació</label>
+                        <select name="datacio" class="custom_options" required>
+                            <option value="" disabled selected>Selecciona una opción</option>
+                    ';
+                    $datations = $vocabularyController->getDatations();
+                    foreach ($datations as $datation) {
+                        echo '<option value="' . $datation['id'] . '"';
+                        if (isset($data['datacio']) && $data['datacio'] == $datation['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $datation['text'] . '</option>';
+                    }
+                    echo '</select>';
 
-                <label for="data-registre">Anys inicias-finals</label>
-                <input type="text" name="anys" value="No seleccionat">
+                    echo '
+                        <label for="entry">Tipus d\'ingres</label>
+                        <select name="entry" class="custom_options" required>
+                            <option value="" disabled selected>Selecciona una opción</option>
+                    ';
+                    $entries = $vocabularyController->getEntry();
+                    foreach ($entries as $entry) {
+                        echo '<option value="' . $entry['id'] . '"';
+                        if (isset($data['entry']) && $data['entry'] == $entry['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $entry['text'] . '</option>';
+                    }
+                    echo '</select>';
 
-                <label for="data-registre">Data inici fi ubicació</label>
-                <input type="text" name="data-inici-ubicació" value="No seleccionat">
+                    echo '
+                        <label for="tipus-exposicio">Tipus d\'exposició</label>
+                        <select name="expositiontype" class="custom_options">
+                            <option value="" disabled selected>Selecciona una opción</option>
+                    ';
+                    $expositiontypes = $vocabularyController->getExpositionTypes();
+                    foreach ($expositiontypes as $expositiontype) {
+                        echo '<option value="' . $expositiontype['id'] . '"';
+                        if (isset($data['expositiontype']) && $data['expositiontype'] == $expositiontype['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $expositiontype['text'] . '</option>';
+                    }
+                    echo '</select>';
 
-                <label for="data-registre">Comentari</label>
-                <input type="text" name="data-inici-ubicació" value="No seleccionat">
+                    echo '
+                        <label for="classificacio-generica">Classificació genèrica</label>
+                        <select name="classificacio-generica" class="custom_options">
+                            <option value="" disabled selected>Selecciona una opción</option>
+                    ';
+                    $generics = $vocabularyController->getGenericClassifications();
+                    foreach ($generics as $generic) {
+                        echo '<option value="' . $generic['id'] . '"';
+                        if (isset($data['classificacio-generica']) && $data['classificacio-generica'] == $generic['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $generic['text'] . '</option>';
+                    }
+                    echo '</select>';
 
-                <label for="data-registre">Forma d'ingres</label>
-                <input type="text" name="forma-ingres" value="No seleccionat">
-                
-                <label for="data-registre">Lloc d'execucio</label>
-                <input type="text" name="lloc-execucio" value="No seleccionat">
-                
-                <label for="data-registre">Lloc de procedencia</label>
-                <input type="text" name="lloc-procedencia" value="No seleccionat">
+                    echo '
+                        <label for="material-getty-code">Codi de material (Getty)</label>
+                        <select name="materialgettycode" class="custom_options">
+                            <option value="" disabled selected>Selecciona una opción</option>
+                    ';
+                    $gettycodes = $vocabularyController->getGettyCodes();
+                    foreach ($gettycodes as $getty) {
+                        echo '<option value="' . $getty['id'] . '"';
+                        if (isset($data['materialgettycode']) && $data['materialgettycode'] == $getty['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $getty['text'] . '</option>';
+                    }
+                    echo '</select>';
 
-                <label for="data-registre">Nº tiratge</label>
-                <input type="text" name="tiratge" value="No seleccionat">
+                    echo '
+                        <label for="tecnique-getty">Material (Getty)</label>
+                        <select name="tecniquegetty" class="custom_options">
+                            <option value="" disabled selected>Selecciona una opción</option>
+                    ';
+                    $gettytecniques = $vocabularyController->getGettyTecniques();
+                    foreach ($gettytecniques as $gettytecnique) {
+                        echo '<option value="' . $gettytecnique['id'] . '"';
+                        if (isset($data['tecniquegetty']) && $data['tecniquegetty'] == $gettytecnique['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $gettytecnique['text'] . '</option>';
+                    }
+                    echo '</select>';
+                ?>
 
-                <label for="data-registre">Codi restauració</label>
-                <input type="text" name="codi-restauracio" value="No seleccionat">
-
-                <label for="data-registre">Data inici fi restauració</label>
-                <input type="text" name="data-restauració" value="No seleccionat">
-
-                <label for="data-registre">Historia de l'objecte</label>
-                <input type="text" name="historia-objecte" value="No seleccionat">
                 <div class="images">
                     <div class="image-preview">
                         <img src="assets/img/messi.jpg" alt="Imagen 1">
@@ -131,8 +304,7 @@
                     <button type="button" class="add-image-btn">+</button>
                 </div>
 
-                <button type="submit" class="submit-btn">Actualitzar obra</button>
-                
+                <button type="submit" class="submit-btn">Crear obra</button>
             </div>
         </form>
     </div>
