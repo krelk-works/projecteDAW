@@ -78,5 +78,23 @@
                 return false;
             }
         }
+
+        public function uploadArtworkToExposition($IDs, $expoID) {
+            $conn = $this->connect();
+        
+            $sql = "INSERT INTO expositionsartworks (exposition, artwork) VALUES (:expoID, :artworkID)";
+            $stmt = $conn->prepare($sql);
+        
+            foreach ($IDs as $artworkID) {
+                $stmt->bindParam(':expoID', $expoID);
+                $stmt->bindParam(':artworkID', $artworkID);
+                
+                if (!$stmt->execute()) {
+                    return false;
+                }
+            }
+        
+            return true;
+        }
     }
 ?>

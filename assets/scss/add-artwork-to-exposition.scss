@@ -1,3 +1,22 @@
-* {
-    //cositas
+.artworkCheckboxList { 
+    display: flex;
+    flex-direction: column;
+    max-height: 500px;
+    overflow-y: auto;
+    width: 100%;
+    gap: 10px;
+}
+
+.artworkCheckbox {
+    display: flex;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 5px;
+    border-radius: 5px;
+    background-color: #F1F1F1;
+    border-bottom: 1px solid #ffffff;
+    transition: border-bottom 0.66s, padding 0.2s;
+}
+
+.checkboxStyles {
+    margin-left: -50px;
 }

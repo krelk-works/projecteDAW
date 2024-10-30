@@ -42,9 +42,16 @@ class ArtworkController
         $confirmation = $artwork->updateArtwork($id,$artwork_data);
         return $confirmation;
     }
+
     public function searchArtwork($searchFilter){
         $artwork = new Artwork();
         $data = $artwork->searchArtwork($searchFilter);
+        return $data;
+    }
+
+    public function getArtworkList($ID){
+        $artwork = new Artwork();
+        $data = $artwork->getArtworkList($ID);
         return $data;
     }
 }

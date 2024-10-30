@@ -29,5 +29,11 @@ class ExpositionController
         $check = $exposition->createExposition($name, $expoloc, $expotype, $sd, $ed);
         return $check;
     }
+
+    public function uploadArtworkToExposition($IDs, $expoID) {
+        $exposition = new Exposition();
+        $check = $exposition->uploadArtworkToExposition($IDs, $expoID);
+        return $check;
+    }
 }
 ?>

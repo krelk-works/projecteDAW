@@ -109,6 +109,24 @@
                 return false;
             }
         }
+
+        public function getArtworkList($ID) {
+            $conn = $this->connect();
+            
+            $sql = "SELECT artworks.name, artworks.id
+                    FROM artworks
+                    LEFT JOIN expositionsartworks ON artworks.id = expositionsartworks.artwork 
+                    AND expositionsartworks.exposition =". $ID ."
+                    WHERE expositionsartworks.artwork IS NULL";
+
+            $stmt = $conn->prepare($sql);
+
+            if ($stmt->execute()) {
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } else {
+                return false;
+            }
+        }
         
 
         public function getTotalCount($filter = null) {
