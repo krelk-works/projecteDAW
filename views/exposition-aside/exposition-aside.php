@@ -59,29 +59,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <aside id="createbar">
-    <form id="createbarwrapper" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=expositions" enctype="multipart/form-data">
-        <h3>Crear noves exposicions</h3>
-        <label for="name">Nom de l'exposició</label>
-        <input type="text" name="name" id="name" placeholder="Introdueix el nom de l'exposició" required>
-        <label for="expoloc">Lloc de l'exposició</label>
-        <input type="text" name="expoloc" id="expoloc" placeholder="Introdueix el lloc de l'exposició" required>
-        <label for="expotype">Tipus d'exposició</label>
-        <select name="expotype" id="expotype" required>
-        <?php
-            $vocabularyController = new VocabularyController();
-            $data = $vocabularyController->getExpositionTypes();
-            foreach ($data as $d) {
-                echo "<option value='".$d['text']."' id='expotype' name='expotype'>".$d['text']."</option>";
-            }
-        ?>
-        </select>
-        <label for="start_date">Data d'inici</label>
-        <input type="date" name="start_date" id="start_date" required>
-        <label for="end_date">Data de finalització</label>
-        <input type="date" name="end_date" id="end_date" required>
-        <button type="submit" id="createExpoButton">Crear exposició</button>
-    </form>
-    <form id="createbarwrapper" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=expositions&filter=exampleFilter" enctype="multipart/form-data">
+    <button class="accordion default_active">Cercador d'exposicions</button>
+    <div class="panel">
+        <form id="searchbarwrapper">
+            <label for="search">Cercador</label>
+            <input type="text" name="artworksearch" id="artworksearch" placeholder="Nom de la exposició...">
+            <!-- TODO: Hay que darle estilos a este element de filtrado :|! Eliminas los atributos styles previamente. -->
+            <label for="name" style="width: 80%">Mostra les exposicions que ja han acabat</label>
+            <input type="checkbox" id="toggleSwitch" name="toggleSwitch" style="width: 20%; max-height: 24px">
+        </form>
+    </div>
+    <button class="accordion">Creació d'exposicions</button>
+    <div class="panel">
+        <form id="createbarwrapper" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=expositions" enctype="multipart/form-data">
+            <!-- <h3>Crear noves exposicions</h3> -->
+            <label for="name">Nom de l'exposició</label>
+            <input type="text" name="name" id="name" placeholder="Introdueix el nom de l'exposició" required>
+            <label for="expoloc">Lloc de l'exposició</label>
+            <input type="text" name="expoloc" id="expoloc" placeholder="Introdueix el lloc de l'exposició" required>
+            <label for="expotype">Tipus d'exposició</label>
+            <select name="expotype" id="expotype" required>
+            <?php
+                $vocabularyController = new VocabularyController();
+                $data = $vocabularyController->getExpositionTypes();
+                foreach ($data as $d) {
+                    echo "<option value='".$d['text']."' id='expotype' name='expotype'>".$d['text']."</option>";
+                }
+            ?>
+            </select>
+            <label for="start_date">Data d'inici</label>
+            <input type="date" name="start_date" id="start_date" required>
+            <label for="end_date">Data de finalització</label>
+            <input type="date" name="end_date" id="end_date" required>
+            <button type="submit" id="createExpoButton">Crear exposició</button>
+        </form>
+    </div>
+    
+    <!-- <form id="createbarwrapper" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=expositions&filter=exampleFilter" enctype="multipart/form-data">
         <h3>Filtre</h3>
         <label for="name">Mostra les exposicions que ja han acabat</label>
         <?php
@@ -92,5 +106,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         ?>
         <button type="submit" id="filterExpoButton" value="Guardar">Filtra</button>
-    </form>
+    </form> -->
 </aside>
