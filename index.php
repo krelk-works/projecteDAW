@@ -63,6 +63,7 @@
     <script src="assets/js/vocabulary.js" defer></script>
     <script src="assets/js/artworksearcher.js" defer></script>
     <script src="assets/js/locations.js" defer></script>
+    <script src="assets/js/accordion-element.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">

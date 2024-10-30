@@ -27,4 +27,29 @@ function redirectToSearchUser() {
 </script>
 
     </form>
+
+
+    <div class="accordion">
+  <div class="accordion-item">
+    <button class="accordion-header">Sección 1</button>
+    <div class="accordion-content">
+      <p>Contenido de la sección 1</p>
+    </div>
+  </div>
+  
+  <div class="accordion-item">
+    <button class="accordion-header">Sección 2</button>
+    <div class="accordion-content">
+      <p>Contenido de la sección 2</p>
+    </div>
+  </div>
+  
+  <div class="accordion-item">
+    <button class="accordion-header">Sección 3</button>
+    <div class="accordion-content">
+      <p>Contenido de la sección 3</p>
+    </div>
+  </div>
+</div>
+
 </aside>

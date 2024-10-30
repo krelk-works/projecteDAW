@@ -59,7 +59,7 @@ if (document.querySelector("#artworksearch")) {
             <a href=""><h4>Nom</h4></a>
             <a href=""><h4>Autor</h4></a>
             <a href=""><h4>Ubicació</h4></a>
-            <a href=""><h4>Data</h4></a>
+            <a href=""><h4>Datació</h4></a>
             <a href=""><h4>Estat</h4></a>
         </div>
     `;

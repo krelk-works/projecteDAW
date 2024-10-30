@@ -1,9 +1,9 @@
 @import 'vars';
 #searchbar {
-    display: flex;
-    flex-wrap: wrap;
+    display: block;
+    /*flex-wrap: wrap;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: flex-start;*/
     width: 18%;
     color: rgb(119, 119, 119);
     height: 89vh !important;

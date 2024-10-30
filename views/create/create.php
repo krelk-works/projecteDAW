@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <aside id="createbar">
-    <form id="searchbarwrapper" action="<?= $_SERVER['PHP_SELF']; ?>?inici" method="GET">
+    <!-- <form id="searchbarwrapper" action="<?= $_SERVER['PHP_SELF']; ?>?inici" method="GET">
         <h3>Filtre de busqueda</h3>
         <label for="search">Cerca</label>
         <input type="text" name="search" id="search" placeholder="Cerca" value="<?php if (isset($_GET['search']))
@@ -78,11 +78,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button id="searcherButton" type="submit" class="search_button"><i class="fa-solid fa-magnifying-glass"></i>Cerca</button>
     
         <button id="resetFilters" type="button" class="delete_button"><i class="fa-solid fa-eraser"></i>Resetejar filtres</button>
-        <!--
-        <button id="searcherButton" type="button" class="search_button" onclick="redirectToSearchUser()">
-            <i class="fa-solid fa-magnifying-glass"></i>Cambiar a creacion
-        </button>
--->
     </form>
     <form id="createbarwrapper" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=usuaris" enctype="multipart/form-data">
         <h3>Creació d'usuaris</h3>
@@ -111,16 +106,66 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label for="profileimg">Foto</label>
         <input type="file" name="profileimg" id="profileimg" required>
         <button type="submit" id="createButton"><i class="fa-solid fa-user-plus"></i>Crear</button>
-        <!--<button id="searcherButton" type="button" class="search_button" onclick="redirectToSearchUser()">
-            <i class="fa-solid fa-magnifying-glass"></i>Cambiar a filtrado
-        </button>-->
 
         <script>
-// Función para redirigir a la vista de search-user
-function redirectToSearchUser() {
-    window.location.href = 'http://localhost:8080/projecteDAW/index.php?page=usuarisfilter'; // Cambia la URL según sea necesario
-}
-</script>
+            function redirectToSearchUser() {
+                window.location.href = 'http://localhost:8080/projecteDAW/index.php?page=usuarisfilter'; // Cambia la URL según sea necesario
+            }
+        </script>
+    </form> -->
 
-    </form>
+    <button class="accordion default_active">Cercador d'usuaris</button>
+    <div class="panel">
+        <form id="searchbarwrapper" action="<?= $_SERVER['PHP_SELF']; ?>?inici" method="GET">
+            <label for="search">Cerca</label>
+            <input type="text" name="search" id="search" placeholder="Cerca" value="<?php if (isset($_GET['search']))
+                echo $_GET['search']; ?>">
+            <label for="role">Rol</label>
+            <select name="role" id="role">
+                <option value="">tots</option>
+                <option value="admin">admin</option>
+                <option value="tecnic">tecnic</option>
+                <option value="convidat">convidat</option>
+            </select>
+
+            <button id="searcherButton" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Cerca</button>
+        </form>
+    </div>
+
+    <button class="accordion">Creació d'usuaris</button>
+    <div class="panel">
+        <form id="createbarwrapper" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=usuaris" enctype="multipart/form-data">
+            <label for="username">Nom d'usuari</label>
+            <input type="text" name="username" id="username" placeholder="Introdueix el nom" maxlength="30" required>
+            
+            <label for="password">Contrasenya</label>
+            <input type="password" name="password" id="password" placeholder="Introdueix la contrasenya" maxlength="30" required>
+            
+            <label for="firstname">Nom</label>
+            <input type="firstname" name="firstname" id="firstname" placeholder="Introdueix el nom" maxlength="30" required>
+
+            <label for="lastname">Cognom</label>
+            <input type="lastname" name="lastname" id="lastname" placeholder="Introdueix el cognom" maxlength="30" required>
+
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="Introdueix l'email" maxlength="30" required>
+
+            <label for="role">Rol</label>
+            <select name="role" id="role" required>
+                <option value="admin">admin</option>
+                <option value="tecnic">tecnic</option>
+                <option value="convidat">convidat</option>
+            </select>
+            
+            <label for="profileimg">Foto</label>
+            <input type="file" name="profileimg" id="profileimg" required>
+            <button type="submit" id="createButton"><i class="fa-solid fa-user-plus"></i>Crear</button>
+
+            <script>
+                function redirectToSearchUser() {
+                    window.location.href = 'http://localhost:8080/projecteDAW/index.php?page=usuarisfilter'; // Cambia la URL según sea necesario
+                }
+            </script>
+        </form>
+    </div>
 </aside>

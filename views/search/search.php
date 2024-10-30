@@ -9,9 +9,12 @@ function redirectToSearchUser() {
     window.location.href = 'http://localhost:8080/projecteDAW/index.php?page=artwork-create'; // Cambia la URL según sea necesario
 }-->
 </script>
-    <form id="searchbarwrapper">
-        <h3>Filtre de busqueda</h3>
-        <label for="search">Cerca</label>
-        <input type="text" name="artworksearch" id="artworksearch" placeholder="Cerca">
-    </form>
+    
+    <button class="accordion default_active">Cerca d'obres</button>
+    <div class="panel">
+        <form id="searchbarwrapper">
+            <label for="search">Cercador</label>
+            <input type="text" name="artworksearch" id="artworksearch" placeholder="Nom d'obra, autor, ubicació, estat...">
+        </form>
+    </div>
 </aside>
