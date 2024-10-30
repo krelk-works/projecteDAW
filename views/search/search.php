@@ -17,4 +17,10 @@ function redirectToSearchUser() {
             <input type="text" name="artworksearch" id="artworksearch" placeholder="Nom d'obra, autor, ubicació, estat...">
         </form>
     </div>
+
+    <button class="accordion">Opcions</button>
+    <div class="panel">
+        <button><i class="fa-solid fa-plus"></i> Crear obra</button>
+        <button><i class="fa-regular fa-file-pdf"></i> Generar informe</button>
+    </div>
 </aside>

@@ -63,12 +63,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="panel">
         <form id="searchbarwrapper">
             <label for="search">Cercador</label>
-            <input type="text" name="artworksearch" id="artworksearch" placeholder="Nom de la exposició...">
+            <input type="text" name="pending" id="pending" placeholder="Nom de la exposició...">
             <!-- TODO: Hay que darle estilos a este element de filtrado :|! Eliminas los atributos styles previamente. -->
-            <label for="name" style="width: 80%">Mostra les exposicions que ja han acabat</label>
-            <input type="checkbox" id="toggleSwitch" name="toggleSwitch" style="width: 20%; max-height: 24px">
+            <label for="name" style="width: 80%;">Exposicions finalitzades</label>
+            <input type="checkbox" id="toggleSwitch" name="toggleSwitch" style="width: 20%; height: 24px;">
         </form>
     </div>
+    
     <button class="accordion">Creació d'exposicions</button>
     <div class="panel">
         <form id="createbarwrapper" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=expositions" enctype="multipart/form-data">
@@ -94,17 +95,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit" id="createExpoButton">Crear exposició</button>
         </form>
     </div>
-    
-    <!-- <form id="createbarwrapper" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=expositions&filter=exampleFilter" enctype="multipart/form-data">
-        <h3>Filtre</h3>
-        <label for="name">Mostra les exposicions que ja han acabat</label>
-        <?php
-            if ($_SESSION['expositionFilter'] == 1) {
-                echo '<input type="checkbox" id="toggleSwitch" name="toggleSwitch" checked>';
-            } else {
-                echo '<input type="checkbox" id="toggleSwitch" name="toggleSwitch">';
-            }
-        ?>
-        <button type="submit" id="filterExpoButton" value="Guardar">Filtra</button>
-    </form> -->
 </aside>
