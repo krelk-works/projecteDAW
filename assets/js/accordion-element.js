@@ -27,6 +27,6 @@ for (let i = 0; i < acc.length; i++) {
         accordion.classList.remove("default_active");
         accordion.classList.toggle("active");
         panel.style.maxHeight = panel.scrollHeight + "px";
-        console.log("Se ha detectado un acordeón con la clase default_active");
+        // console.log("Se ha detectado un acordeón con la clase default_active");
     }
 }

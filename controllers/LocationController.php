@@ -1,5 +1,5 @@
 <?php
-include_once("../models/location.php");
+include_once("models/location.php");
 
 class LocationController
 {
