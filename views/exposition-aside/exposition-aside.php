@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // comprovar si las fechas son validas y tienen sentido
         $currentDate = new DateTime();
         $currentDate = $currentDate->format('Y-m-d');
-        if ($start_date > $currentDate && $end_date >= $start_date) {
+        if ($start_date >= $currentDate && $end_date >= $start_date) {
             // enviar datos al controlador
             $expositionController = new ExpositionController();
             $check = $expositionController->createExposition($name, $expoloc, $expotype['id'], $start_date, $end_date);
