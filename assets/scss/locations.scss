@@ -19,3 +19,46 @@
         width: 55% !important;
     }
 }
+
+/* Estilos generales para el árbol */
+.panel-tree {
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.location-node {
+    list-style: none;
+    margin: 6px;
+    padding-left: 0px;
+}
+
+.location-node label {
+    cursor: pointer;
+    color: #464646 !important; /* Color negro por defecto */
+    padding: 4px;
+}
+
+.location-node.open > label {
+    color: #007bff !important; /* Color azul solo para los elementos con la clase .open */
+}
+
+/* Flecha de despliegue solo en nodos con hijos */
+.location-node.has-children > label::before {
+    content: '▸';
+    display: inline-block;
+    width: 20px;
+    transition: transform 0.3s ease;
+}
+
+.location-node.open.has-children > label::before {
+    transform: rotate(90deg);
+}
+
+.location-node-children {
+    display: none;
+    padding-left: 20px;
+}
+
+.location-node.open > .location-node-children {
+    display: block;
+}

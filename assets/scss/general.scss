@@ -7,6 +7,7 @@
     box-sizing: border-box;
     /*font-family: 'Courier New', Courier, monospace;*/
     font-family: "Roboto", Sans-serif;
+    user-select: none;
 }
 
 
@@ -331,9 +332,10 @@ a:hover {
 }
 
 .panel {
-    padding: 0px;
+    padding: 0;
     background-color: white;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
+    /*background-color: #444444;*/
 }

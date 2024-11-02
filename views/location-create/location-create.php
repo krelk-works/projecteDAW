@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <aside id="createbar">
-    <button class="accordion default_active">Cerca de localitzacions</button>
+    <!-- <button class="accordion default_active">Creació de localitzacions</button>
     <div class="panel">
         <form id="createbarwrapper" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=localitzacions" enctype="multipart/form-data">
             <label for="location_name">Nom de la ubicació</label>
@@ -24,24 +24,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <select name="location" id="location">
                 <option value="sense">sense</option>
                 <?php
-                $locationController = new LocationController();
-                $data = $locationController->getLocations();
-                foreach ($data as $location) {
-                    echo '<option value="' . $location['id'] . '"';
-                    // Verificar si el valor en $_GET['location'] coincide con la Location_ID
-                    if (isset($_GET['location']) && $_GET['location'] == $location['id']) {
-                        echo ' selected';
-                    }
-                    echo '>' . $location['name'] . '</option>';
-                }
+                // $locationController = new LocationController();
+                // $data = $locationController->getLocations();
+                // foreach ($data as $location) {
+                //     echo '<option value="' . $location['id'] . '"';
+                //     // Verificar si el valor en $_GET['location'] coincide con la Location_ID
+                //     if (isset($_GET['location']) && $_GET['location'] == $location['id']) {
+                //         echo ' selected';
+                //     }
+                //     echo '>' . $location['name'] . '</option>';
+                // }
                 ?>
             </select>
             <button type="submit" id="createButton"><i class="fa-solid fa-user-plus"></i>Crear</button>
         </form>
-    </div>
+    </div> -->
 
-    <button class="accordion">Arbre de localitzacions</button>
-    <div class="panel">
-        Animos Eric!!!
+    <button class="accordion default_active">Arbre de localitzacions</button>
+    <div class="panel panel-tree">
+        <!-- <div id="tree-container"><div class="loader-container"><div class="loader"></div></div></div> -->
+        <div id="location-tree-container"><div class="loader-container"><div class="loader"></div></div></div>
     </div>
 </aside>
+
+<script src="assets/js/locations.js"></script>

@@ -1,5 +1,21 @@
 <?php
-include_once("models/location.php");
+$isApiCalled = false;
+
+// APIS
+if (isset($_GET['location'])) {
+    $isApiCalled = true;
+    if ($_GET['location'] == "all") {
+        // Nos aseguramos de cargar el modelo de Location
+        include_once("../models/location.php");
+        // ----------------------------------------------
+        $location = new Location();
+        $data=$location->getLocationsJSON();
+        echo $data;
+    }
+}
+
+// En caso de no ser una solicitud de api cargamos el modelo para el controlador
+!$isApiCalled ? include_once("models/location.php") : exit();
 
 class LocationController
 {

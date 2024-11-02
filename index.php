@@ -59,10 +59,10 @@
         //echo "<meta http-equiv='refresh' content='2;url=index.php'>";
     ?>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="assets/js/backup.js" defer></script>
     <script src="assets/js/vocabulary.js" defer></script>
     <script src="assets/js/artworksearcher.js" defer></script>
-    <script src="assets/js/locations.js" defer></script>
     <script src="assets/js/accordion-element.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
