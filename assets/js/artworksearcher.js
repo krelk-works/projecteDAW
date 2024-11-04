@@ -78,4 +78,10 @@ if (document.querySelector("#artworksearch")) {
         debouncedgetArtworksAPI(element.target.value);
     });
 
+    let createNewArtworkButton = document.querySelector("#new-artwork");
+
+    createNewArtworkButton.addEventListener("click", () => {
+        window.location.href = "?page=artwork-create";
+    });
+
 }

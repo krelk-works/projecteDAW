@@ -20,7 +20,7 @@ function redirectToSearchUser() {
 
     <button class="accordion">Opcions</button>
     <div class="panel">
-        <button><i class="fa-solid fa-plus"></i> Crear obra</button>
+        <button id="new-artwork"><i class="fa-solid fa-plus"></i> Crear obra</button>
         <button><i class="fa-regular fa-file-pdf"></i> Generar informe</button>
     </div>
 </aside>
