@@ -111,18 +111,17 @@
         }
 
         public function getArtowrksByLocations($locations) {
-            var_dump($locations);
             $conn = $this->connect();
             $sql = 'SELECT artworks.id, artworks.name AS artwork_name, authors.name AS author_name, locations.name AS location_name, images.URL
                     FROM artworks
                     INNER JOIN authors ON artworks.author = authors.id
                     INNER JOIN locations ON artworks.location = locations.id
                     INNER JOIN images ON artworks.id = images.artwork
-                    WHERE artworks.location IN (' . implode(',', $locations) . ')';
+                    WHERE artworks.location IN (' . $locations . ')';
             $stmt = $conn->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return json_encode($result);
+            return $result;
         }
 
         public function getArtworkList($ID) {

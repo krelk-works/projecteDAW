@@ -2,7 +2,7 @@ let currentLocation = []; // Variable para almacenar las IDs del elemento selecc
 
 function populateArtWorkLocationSelect() {
     console.log('Current Location:', currentLocation);
-    fetch("http://localhost:8080/projecteDAW/controllers/ArtworkController.php", {
+    fetch("http://localhost:8080/projecteDAW/controllers/ArtworkController.php?getArtworksAtLocations", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -10,13 +10,19 @@ function populateArtWorkLocationSelect() {
         body: JSON.stringify({ currentLocation: currentLocation }) // Convertir el array a JSON
     })
     .then(response => response.text()) // Leer la respuesta completa como texto
-    .then(text => {
-        console.log("Raw response from server:", text); // Mostrar la respuesta cruda en consola
-        const data = JSON.parse(text); // Convertir a JSON si es posible
-        console.log("Parsed response:", data);
+    .then(response => {
+        // console.log("Raw response from server:", response); // Mostrar la respuesta cruda en consola
+        const data = JSON.parse(response); // Convertir a JSON si es posible
+        // console.log("Parsed response:", data);
+        console.log(data.message, data.message.length);
+
+        // response.message.forEach(element => {
+        //     console.log("Se ha recibido la obra: "+element.artwork_name);
+        // });
     })
     .catch(error => {
         console.error("Error sending currentLocation:", error);
+        console.log(error);
     });
     
 }
@@ -89,6 +95,7 @@ function renderLocationTree(data, containerId) {
         // Actualizar currentLocation con la jerarquía del primer nodo raíz
         currentLocation = getHierarchyIds(firstRootNode, nodeMap);
         console.log("Initial Current Location:", currentLocation);
+        // populateArtWorkLocationSelect(); // Llamar a la función para enviar la ubicación actual
     }
 }
 
@@ -117,9 +124,11 @@ function toggleNode(nodeElement, nodeId, nodeMap) {
         const parentNode = nodeMap[nodeId].parentElement;
         currentLocation = parentNode ? getHierarchyIds(parentNode.id, nodeMap) : [];
     }
+    // Nos aseguramos que hayan IDs de localizaciones para enviar una petición de llenado de obras en el frontend
+    currentLocation.length > 0 ? populateArtWorkLocationSelect() : null; // Llamar a la función para enviar la ubicación actual
 
     // Registrar en consola el valor actual de currentLocation
-    console.log("Current Location:", currentLocation);
+    // console.log("Current Location:", currentLocation);
 }
 
 // Función para cerrar todos los nodos hijos recursivamente
@@ -128,31 +137,33 @@ function closeChildNodes(nodeElement) {
     childNodes.forEach(child => child.classList.remove('open'));
 }
 
-// Función para obtener el ID del nodo, sus padres y sus hijos
+// Función para obtener el ID del nodo más profundo seleccionado y sus hijos inmediatos
 function getHierarchyIds(nodeId, nodeMap) {
     const ids = new Set();
-    
-    // Añadir el ID del nodo seleccionado
-    ids.add(nodeId);
+    let currentNode = nodeMap[nodeId];
 
-    // Añadir los IDs de todos los padres
-    let parentNode = nodeMap[nodeId];
-    while (parentNode.parent) {
-        ids.add(parentNode.parent);
-        parentNode = nodeMap[parentNode.parent];
+    // Recorrer hacia abajo hasta encontrar el nodo más profundo seleccionado
+    while (currentNode.children.length > 0) {
+        const openChild = currentNode.children.find(child => child.element.classList.contains('open'));
+        if (openChild) {
+            currentNode = openChild;
+        } else {
+            break;
+        }
     }
 
-    // Añadir los IDs de todos los hijos
-    function addChildIds(node) {
-        node.children.forEach(child => {
-            ids.add(child.id);
-            addChildIds(child); // Recursividad para añadir hijos de los hijos
-        });
-    }
-    addChildIds(nodeMap[nodeId]);
+    // Añadir el ID del nodo más profundo seleccionado
+    ids.add(currentNode.id);
+
+    // Añadir los IDs de los hijos inmediatos del nodo más profundo seleccionado
+    currentNode.children.forEach(child => {
+        ids.add(child.id);
+    });
 
     return Array.from(ids); // Convertir el Set a un Array
 }
+
+
 
 // Función para actualizar la altura máxima del contenedor .panel-tree
 function updatePanelMaxHeight() {
@@ -184,7 +195,6 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             renderLocationTree(data, 'location-tree-container');
             updatePanelMaxHeight(); // Calcular la altura inicial del panel
-            populateArtWorkLocationSelect(); // Llamar a la función para enviar la ubicación actual
         })
         .catch(error => {
             console.error('Error fetching location data:', error);
