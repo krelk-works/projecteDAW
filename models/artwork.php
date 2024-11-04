@@ -112,12 +112,15 @@
 
         public function getArtowrksByLocations($locations) {
             $conn = $this->connect();
-            $sql = 'SELECT artworks.id, artworks.name AS artwork_name, authors.name AS author_name, locations.name AS location_name, images.URL
+
+            // Base SQL query
+            $sql = "SELECT artworks.id, artworks.name AS artwork_name, artworks.creation_date, authors.name AS author_name, conservationstatus.text, locations.name AS location_name, images.URL
                     FROM artworks
                     INNER JOIN authors ON artworks.author = authors.id
                     INNER JOIN locations ON artworks.location = locations.id
                     INNER JOIN images ON artworks.id = images.artwork
-                    WHERE artworks.location IN (' . $locations . ')';
+                    INNER JOIN conservationstatus ON artworks.conservationstatus = conservationstatus.id
+                    WHERE artworks.location IN (" . $locations . ") ORDER BY locations.name ASC";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

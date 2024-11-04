@@ -1,7 +1,16 @@
 let currentLocation = []; // Variable para almacenar las IDs del elemento seleccionado y su jerarquía
+const headerCode = `
+    <div class="list-header">
+        <a href=""><h4>Nom</h4></a>
+        <a href=""><h4>Autor</h4></a>
+        <a href=""><h4>Ubicació</h4></a>
+        <a href=""><h4>Datació</h4></a>
+        <a href=""><h4>Estat</h4></a>
+    </div>
+`;
 
 function populateArtWorkLocationSelect() {
-    console.log('Current Location:', currentLocation);
+    // console.log('Current Location:', currentLocation);
     fetch("http://localhost:8080/projecteDAW/controllers/ArtworkController.php?getArtworksAtLocations", {
         method: "POST",
         headers: {
@@ -11,17 +20,30 @@ function populateArtWorkLocationSelect() {
     })
     .then(response => response.text()) // Leer la respuesta completa como texto
     .then(response => {
-        // console.log("Raw response from server:", response); // Mostrar la respuesta cruda en consola
-        const data = JSON.parse(response); // Convertir a JSON si es posible
-        // console.log("Parsed response:", data);
-        console.log(data.message, data.message.length);
-
-        // response.message.forEach(element => {
-        //     console.log("Se ha recibido la obra: "+element.artwork_name);
-        // });
+        try {
+            const artworks = JSON.parse(response); // Convertir a JSON si es posible
+            let HTMLCode = headerCode;
+            artworks.message.forEach(artwork => {
+                // console.log("Se ha recibido la obra: "+element.artwork_name);
+                HTMLCode += '<div class="list-item">';
+                HTMLCode += '<img src="' + artwork.URL + '" alt="' + artwork.artwork_name + ' ' + artwork.author_name + '">';
+                HTMLCode += '<a href="?page=artwork-administration&artworkID=' + artwork.id + '"><h3>' + artwork.artwork_name + '</h3></a>';
+                HTMLCode += '<p><i class="fa-solid fa-user"></i>' + artwork.author_name + '</p>';
+                HTMLCode += '<p><i class="fa-solid fa-location-dot"></i>' + artwork.location_name + '</p>';
+                HTMLCode += '<p><i class="fa-solid fa-bookmark"></i>' + artwork.creation_date + '</p>';
+                HTMLCode += '<p><i class="fa-regular fa-clipboard"></i>' + artwork.text + '</p>';
+                HTMLCode += '</div>';
+            });
+            if (artworks.message.length === 0) {
+                HTMLCode += '<div><h2>No s\'han trobat resultats</h2><p>Intenti amb un altre localització.</p></div>';
+            }
+            document.querySelector(".list-container").innerHTML = HTMLCode;
+        } catch (error) {
+            console.error("Error parsing response:", error);
+        }
+        
     })
     .catch(error => {
-        console.error("Error sending currentLocation:", error);
         console.log(error);
     });
     
@@ -94,7 +116,7 @@ function renderLocationTree(data, containerId) {
         
         // Actualizar currentLocation con la jerarquía del primer nodo raíz
         currentLocation = getHierarchyIds(firstRootNode, nodeMap);
-        console.log("Initial Current Location:", currentLocation);
+        // console.log("Initial Current Location:", currentLocation);
         // populateArtWorkLocationSelect(); // Llamar a la función para enviar la ubicación actual
     }
 }
