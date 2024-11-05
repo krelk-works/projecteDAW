@@ -20,9 +20,9 @@ function populateArtWorkLocationSelect() {
     })
     .then(response => response.text()) // Leer la respuesta completa como texto
     .then(response => {
+        let HTMLCode = headerCode;
         try {
             const artworks = JSON.parse(response); // Convertir a JSON si es posible
-            let HTMLCode = headerCode;
             artworks.message.forEach(artwork => {
                 // console.log("Se ha recibido la obra: "+element.artwork_name);
                 HTMLCode += '<div class="list-item">';
@@ -39,6 +39,8 @@ function populateArtWorkLocationSelect() {
             }
             document.querySelector(".list-container").innerHTML = HTMLCode;
         } catch (error) {
+            HTMLCode += '<div><h2>Error en la cerca</h2><p>No s\'han pogut trobar obres a la base de dades.</p></div>';
+            document.querySelector(".list-container").innerHTML = HTMLCode;
             console.error("Error parsing response:", error);
         }
         
