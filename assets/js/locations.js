@@ -212,7 +212,7 @@ function updatePanelMaxHeight() {
 // Renderizar el árbol al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
     // Cargar datos de ubicación desde la API al cargar la pagina
-    fetch('http://localhost:8080/projecteDAW/controllers/locationController.php?location=all')
+    fetch('http://localhost:8080/projecteDAW/controllers/LocationController.php?location=all')
         .then(response => response.json())
         .then(data => {
             renderLocationTree(data, 'location-tree-container');
