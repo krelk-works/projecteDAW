@@ -35,12 +35,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $materialgettycode = $_POST['materialgettycode'];
         $tecniquegetty = $_POST['tecniquegetty'];
         
+        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+            $uploadDir = 'assets/img/';
+            $imageTmpName = $_FILES['image']['tmp_name'];
+            $imageName = basename($_FILES['image']['name']);
+            $imagePath = $uploadDir . $imageName;
+
+            // Mover el archivo cargado al directorio de destino
+            if (move_uploaded_file($imageTmpName, $imagePath)) {
+                //echo "Imagen subida con éxito.";
+                // Aquí puedes guardar la ruta de la imagen en la base de datos, si es necesario
+            } else {
+                echo "Error al subir la imagen.";
+            }
+        } else {
+            echo "No se ha seleccionado ninguna imagen o hubo un error al subirla.";
+        }
+        $image = $imagePath;
         $artworkController = new ArtworkController();
         $createdArtwork = $artworkController->createArtwork($nom_del_museu, $id_letter, $id_num1, $id_num2, $objecte, $descripcio,
         $procedencia, $data_registre, $creation_date, $height, $width, $depth, $titol, $originplace, $executionplace, $tiratge, $altres_numeros,
         $cost, $amount, $historia_objecte, $ubicacio, $autor, $material, /*$exposition, $cancel, */$causa_baixa, $estat_conservacio, $datacio, $entry, 
-        $expositiontype, $classificacio_generica, $materialgettycode, $tecniquegetty);
-
+        $expositiontype, $classificacio_generica, $materialgettycode, $tecniquegetty, $image);
+        var_dump($createdArtwork);
         if ($createdArtwork) {
             echo "
             <script>
@@ -80,7 +97,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             });
         </script>";
     }
-}
+    }
+
 ?>
 
 <div class="container-create">
@@ -359,7 +377,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <img src="assets/img/messi.jpg" alt="Imagen 1">
                         <img src="assets/img/bicho.png" alt="Imagen 2">
                     </div>
-                    <button type="button" class="add-image-btn">+</button>
+                    <label for="image">Subir Imagen</label>
+                        <input type="file" name="image" accept="image/*" required>
                 </div>
 
                 <button type="submit" class="submit-btn">Crear obra</button>

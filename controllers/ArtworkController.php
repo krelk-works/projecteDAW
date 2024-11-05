@@ -144,8 +144,9 @@ class ArtworkController
         $expositiontype,
         $classificacio_generica,
         $materialgettycode,
-        $tecniquegetty
-    ) {
+        $tecniquegetty,
+        $image
+) {
         $artwork = new Artwork();
         $data = $artwork->createArtwork(
             $nom_del_museu,
@@ -178,7 +179,8 @@ class ArtworkController
             $expositiontype,
             $classificacio_generica,
             $materialgettycode,
-            $tecniquegetty
+            $tecniquegetty,
+            $image
         );
         return $data;
     }

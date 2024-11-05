@@ -27,11 +27,10 @@
             $conn = $this->connect();
             
             // Base SQL query
-            $sql = "SELECT artworks.id, artworks.name AS artwork_name, artworks.creation_date, authors.name AS author_name, conservationstatus.text, locations.name AS location_name, images.URL
+            $sql = "SELECT artworks.id, artworks.name AS artwork_name, artworks.creation_date, authors.name AS author_name, conservationstatus.text, locations.name AS location_name, artworks.image AS artwork_image
                     FROM artworks
                     INNER JOIN authors ON artworks.author = authors.id
                     INNER JOIN locations ON artworks.location = locations.id
-                    INNER JOIN images ON artworks.id = images.artwork
                     INNER JOIN conservationstatus ON artworks.conservationstatus = conservationstatus.id";
         
             // If there are filters, start building the WHERE clause
@@ -221,15 +220,15 @@
         public function createArtwork($nom_del_museu, $id_letter, $id_num1, $id_num2, $objecte, $descripcio,
         $procedencia, $data_registre, $creation_date, $height, $width, $depth, $titol, $originplace, $executionplace, $tiratge, $altres_numeros,
         $cost, $amount, $historia_objecte, $ubicacio, $autor, $material, /*$exposition, $cancel,*/ $causa_baixa, $estat_conservacio, $datacio, $entry, 
-        $expositiontype, $classificacio_generica, $materialgettycode, $tecniquegetty){
+        $expositiontype, $classificacio_generica, $materialgettycode, $tecniquegetty, $image) {
             $conn = $this->connect();
             $sql = "INSERT INTO artworks (museumname, id_letter, id_num1, id_num2, name, description, provenancecollection, register_date, creation_date, 
             height, width, depth, title, originplace, executionplace, triage, otheridnumbers, cost, amount, history, location, author, material,/* exposition,
             cancel, */cancelcause, conservationstatus, datation, entry, expositiontype, genericclassification, materialgettycode, movement, restoration, 
-            tecnique, tecniquegettycode) VALUES (:museumname, :id_letter, :id_num1, :id_num2, :name, :description, :provenancecollection, :register_date,
+            tecnique, tecniquegettycode, image) VALUES (:museumname, :id_letter, :id_num1, :id_num2, :name, :description, :provenancecollection, :register_date,
             :creation_date, :height, :width, :depth, :title, :originplace, :executionplace, :triage, :otheridnumbers, :cost, :amount, :history, :location,
             :author, :material, /*:exposition, :cancel,*/ :cancelcause, :conservationstatus, :datation, :entry, :expositiontype, :genericclassification,
-            :materialgettycode, :movement, :restoration, :tecnique, :tecniquegettycode)";
+            :materialgettycode, :movement, :restoration, :tecnique, :tecniquegettycode, :image)";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':museumname', $nom_del_museu, PDO::PARAM_STR);
             $stmt->bindParam(':id_letter', $id_letter, PDO::PARAM_STR);
@@ -267,9 +266,9 @@
             $stmt->bindParam(':restoration', $restoration, PDO::PARAM_STR);
             $stmt->bindParam(':tecnique', $tecnique, PDO::PARAM_STR);
             $stmt->bindParam(':tecniquegettycode', $tecniquegettycode, PDO::PARAM_INT);
+            $stmt->bindParam(':image', $image, PDO::PARAM_STR);
             $stmt->execute();
             return $stmt->rowCount();
-
 
         }
 
@@ -415,11 +414,10 @@
 
         public function searchArtwork($search){
             $conn = $this->connect();
-            $sql = "SELECT artworks.id, artworks.name AS artwork_name, artworks.creation_date, authors.name AS author_name, conservationstatus.text, locations.name AS location_name, images.URL
+            $sql = "SELECT artworks.id, artworks.name AS artwork_name, artworks.creation_date, authors.name AS author_name, conservationstatus.text, locations.name AS location_name, artworks.image AS artwork_image
                     FROM artworks
                     INNER JOIN authors ON artworks.author = authors.id
                     INNER JOIN locations ON artworks.location = locations.id
-                    INNER JOIN images ON artworks.id = images.artwork
                     INNER JOIN conservationstatus ON artworks.conservationstatus = conservationstatus.id
                     WHERE artworks.name LIKE :search OR authors.name LIKE :search OR locations.name LIKE :search OR conservationstatus.text LIKE :search";
             $stmt = $conn->prepare($sql);
