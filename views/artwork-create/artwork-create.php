@@ -110,13 +110,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" name="nom-del-museu" placeholder="No seleccionat">
 
                 <label for="id-letter">ID Letter</label>
-                <input type="text" id="id_letter" name="id_letter" maxlength="1" pattern="[A-Z]" placeholder="No seleccionat" required>
+                <input type="text" id="id_letter" name="id_letter" maxlength="1" pattern="[A-Z]" placeholder="No seleccionat">
 
                 <label for="id-num1">ID Num1</label>
-                <input type="number" id="id_num1" name="id_num1" min="0" max="9" placeholder="No seleccionat" required>
+                <input type="number" id="id_num1" name="id_num1" min="10001" max="99999" value="<?php
+                    $artworkController = new ArtworkController();
+                    $data = $artworkController->getNextIdNum1();
+                    echo $data;
+                ?>" placeholder="No seleccionat" required>
+
+
 
                 <label for="id-num2">ID Num2</label>
-                <input type="number" id="id_num2" name="id_num2" min="0" max="9" placeholder="No seleccionat" required>
+                <input type="number" id="id_num2" name="id_num2" min="0" max="99" placeholder="No seleccionat" required>
 
                 <label for="objecte">Nom objecte</label>
                 <input type="text" name="objecte" placeholder="No seleccionat" required>

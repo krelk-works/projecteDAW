@@ -23,6 +23,29 @@
             $this->name = $name;
         }
 
+
+        public function getNextIdNum1() {
+            // Conectar a la base de datos
+            $conn = $this->connect();
+            
+            // Consulta para obtener el valor máximo de `id_num1`
+            $sql = "SELECT MAX(id_num1) AS max_id FROM artworks";
+            $stmt = $conn->prepare($sql);
+            
+            // Ejecuta la consulta y verifica el resultado
+            if ($stmt->execute()) {
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                
+                // Si no hay registros, empieza en 10001; si los hay, retorna el siguiente valor de `id_num1`
+                return isset($row['max_id']) && $row['max_id'] !== null ? $row['max_id'] + 1 : 10001;
+            } else {
+                return false; // Manejo de error en caso de fallo en la consulta
+            }
+        }
+        
+        
+
+
         public function getInfo($limit, $offset, $filter = null) {
             $conn = $this->connect();
             

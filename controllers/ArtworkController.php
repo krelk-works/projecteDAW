@@ -98,6 +98,18 @@ if (isset($_GET['getArtworksAtLocations'])) {
 class ArtworkController
 {
 
+    public function getNextIdNum1() {
+        // Crear una nueva instancia de Artwork (suponiendo que tu modelo se llama Artwork)
+        $artwork = new Artwork();
+        
+        // Llamar al método en el modelo para obtener el siguiente ID
+        $data = $artwork->getNextIdNum1();
+        
+        return $data;
+    }
+    
+    
+
     public function getData($limit, $offset, $filter = null)
     {
         $artwork = new Artwork(); // Create a new user object.
