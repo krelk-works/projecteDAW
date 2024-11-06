@@ -106,8 +106,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form class="artwork-create-form" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=artwork-create" enctype="multipart/form-data">
             <div class="form-left">
                 <h2>Creacion de obras</h2>
-                <label for="nom-del-museu">Nom del museu</label>
-                <input type="text" name="nom-del-museu" placeholder="No seleccionat">
+
+                <h3>Identificacio de l'obra</h3><br>
 
                 <label for="id-letter">ID Letter</label>
                 <input type="text" id="id_letter" name="id_letter" maxlength="1" pattern="[A-Z]" placeholder="No seleccionat">
@@ -119,81 +119,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     echo $data;
                 ?>" placeholder="No seleccionat" required>
 
-
-
                 <label for="id-num2">ID Num2</label>
                 <input type="number" id="id_num2" name="id_num2" min="0" max="99" placeholder="No seleccionat" required>
 
                 <label for="objecte">Nom objecte</label>
                 <input type="text" name="objecte" placeholder="No seleccionat" required>
 
-                <label for="descripcio">Descripció</label>
-                <input type="text" name="descripcio" placeholder="No seleccionat">
-
-                <label for="procedencia">Col·lecció de procedència</label>
-                <input type="text" name="procedencia" placeholder="No seleccionat">
-
-                <label for="data-registre">Data registre YYYY/MM/DD</label>
-                <input type="text" name="data-registre" placeholder="No seleccionat" required>
-
-                <label for="data-registre">Data de creació YYYY/MM/DD</label>
-                <input type="text" name="creation_date" placeholder="No seleccionat" required>
-
-                <label for="mida">Alçada</label>
-                <input type="number" name="height" placeholder="No seleccionat">
-
-                <label for="mida">Amplada</label>
-                <input type="number" name="width" placeholder="No seleccionat">
-
-                <label for="mida">Profunditat</label>
-                <input type="number" name="depth" placeholder="No seleccionat">
-
                 <label for="titol">Titol</label>
                 <input type="text" name="titol" placeholder="No seleccionat">
+                <br><br>
+                <h3>Informació de l'obra</h3><br>
 
-
-                <label for="lloc-procedencia">Lloc d'origen</label>
-                <input type="text" name="originplace" placeholder="No seleccionat">
-
-                <label for="lloc-execucio">Lloc d'execució</label>
-                <input type="text" name="executionplace" placeholder="No seleccionat">
-
-                <label for="tiratge">Tiratge</label>
-                <input type="text" name="tiratge" placeholder="No seleccionat">
-
-                <label for="altres-numeros">Altres números d'identificació</label>
-                <input type="number" name="altres-numeros" placeholder="No seleccionat">
-
-                <label for="valoracio">Cost</label>
-                <input type="number" name="cost" placeholder="No seleccionat" required>
-
-        
-
-            </div>
-
-            <div class="form-right">
-            <label for="exemplars">Quantitat</label>
-                <input type="number" name="amount" placeholder="No seleccionat" required>
-
-                <label for="historia-objecte">Història</label>
-                <input type="text" name="historia-objecte" placeholder="No seleccionat">
-
-                <label for="ubicacio">Ubicació</label>
-                <select name="ubicacio" class="custom_options" required>
-                <option value="" disabled selected>Selecciona una opción</option>
-
-                    <?php
-                    $locationController = new LocationController();
-                    $data = $locationController->getLocations();
-                    foreach ($data as $location) {
-                        echo '<option value="' . $location['id'] . '"';
-                        if (isset($_GET['location']) && $_GET['location'] == $location['id']) {
-                            echo ' selected';
-                        }
-                        echo '>' . $location['name'] . '</option>';
-                    }
-                    ?>
-                </select>
                 <label for="autor">Autor</label>
                 <select name="autor" class="custom_options" required>
                 <option value="" disabled selected>Selecciona una opción</option>
@@ -209,6 +145,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     }
                     ?>
                 </select>
+
+                <label for="data-registre">Data registre YYYY/MM/DD</label>
+                <input type="text" name="data-registre" placeholder="No seleccionat" required>
+
+                <label for="data-registre">Data de creació YYYY/MM/DD</label>
+                <input type="text" name="creation_date" placeholder="No seleccionat" required>
+
+                <label for="datacio">Datació</label>
+                <select name="datacio" class="custom_options" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                    <?php
+                    $vocabularyController = new VocabularyController();
+                    $data = $vocabularyController->getDatations();
+                    foreach ($data as $datation) {
+                        echo '<option value="' . $datation['id'] . '"';
+                        if (isset($_GET['datation']) && $_GET['datation'] == $datation['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $datation['text'] . '</option>';
+                    }
+                    ?>
+                </select>
+
+                <label for="descripcio">Descripció</label>
+                <input type="text" name="descripcio" placeholder="No seleccionat">
+                <br><br>
+                <h3>Caracteristiques de l'obra</h3><br>
+
+                <label for="mida">Alçada</label>
+                <input type="number" name="height" placeholder="No seleccionat">
+
+                <label for="mida">Amplada</label>
+                <input type="number" name="width" placeholder="No seleccionat">
+
+                <label for="mida">Profunditat</label>
+                <input type="number" name="depth" placeholder="No seleccionat">
+
+                <label for="valoracio">Cost</label>
+                <input type="number" name="cost" placeholder="No seleccionat" required>
+
+                <label for="exemplars">Quantitat</label>
+                <input type="number" name="amount" placeholder="No seleccionat" required>
 
                 <label for="material">Material</label>
                 <select name="material" class="custom_options">
@@ -226,6 +204,162 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ?>
 
                 </select>
+                <label for="classificacio-generica">Classificació genèrica</label>
+                <select name="classificacio-generica" class="custom_options">
+                <option value="" disabled selected>Selecciona una opción</option>
+                    <?php
+                    $vocabularyController = new VocabularyController();
+                    $data = $vocabularyController->getGenericClassifications();
+                    foreach ($data as $generic) {
+                        echo '<option value="' . $generic['id'] . '"';
+                        if (isset($_GET['generic']) && $_GET['generic'] == $generic['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $generic['text'] . '</option>';
+                    }
+                    ?>
+                </select>
+
+                <label for="estat-conservacio">Estat de conservació</label>
+                <select name="estat-conservacio" class="custom_options" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                    <?php
+                    $vocabularyController = new VocabularyController();
+                    $data = $vocabularyController->getConservationStatuses();
+                    foreach ($data as $status) {
+                        echo '<option value="' . $status['id'] . '"';
+                        if (isset($_GET['status']) && $_GET['status'] == $status['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $status['text'] . '</option>';
+                    }
+                    ?>
+                </select>
+
+                <label for="material-getty-code">Codi de material (Getty)</label>
+                <select name="materialgettycode" class="custom_options">
+                <option value="" disabled selected>Selecciona una opción</option>
+                    <?php
+                    $vocabularyController = new VocabularyController();
+                    $data = $vocabularyController->getGettys();
+                    foreach ($data as $getty) {
+                        echo '<option value="' . $getty['id'] . '"';
+                        if (isset($_GET['getty']) && $_GET['getty'] == $getty['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $getty['text'] . '</option>';
+                    }
+                    ?>
+
+                </select>
+
+                <label for="tecnique-getty">Material (Getty)</label>
+                <select name="tecniquegetty" class="custom_options">
+                <option value="" disabled selected>Selecciona una opción</option>
+                    <?php
+                    $vocabularyController = new VocabularyController();
+                    $data = $vocabularyController->getGettyTecniques();
+                    foreach ($data as $gettytecnique) {
+                        echo '<option value="' . $gettytecnique['id'] . '"';
+                        if (isset($_GET['gettytecnique']) && $_GET['gettytecnique'] == $gettytecnique['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $gettytecnique['text'] . '</option>';
+                    }
+                    ?>
+
+                </select>
+
+            
+
+
+        
+
+            </div>
+
+            <div class="form-right">
+
+            <br><br>
+                <h3>Procedencia de l'obra</h3><br>
+
+                <label for="nom-del-museu">Nom del museu</label>
+                <input type="text" name="nom-del-museu" placeholder="No seleccionat">
+
+                <label for="procedencia">Col·lecció de procedència</label>
+                <input type="text" name="procedencia" placeholder="No seleccionat">
+
+                <label for="lloc-procedencia">Lloc d'origen</label>
+                <input type="text" name="originplace" placeholder="No seleccionat">
+
+                <label for="entry">Tipus d'ingres</label></label>
+                <select name="entry" class="custom_options" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                    <?php
+                    $vocabularyController = new VocabularyController();
+                    $data = $vocabularyController->getEntry();
+                    foreach ($data as $entry) {
+                        echo '<option value="' . $entry['id'] . '"';
+                        if (isset($_GET['entry']) && $_GET['entry'] == $entry['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $entry['text'] . '</option>';
+                    }
+                    ?>
+                </select>
+                
+                <br><br>
+                <h3>Ubicacio de l'obra</h3><br>
+                <label for="ubicacio">Ubicació</label>
+                <select name="ubicacio" class="custom_options" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+
+                    <?php
+                    $locationController = new LocationController();
+                    $data = $locationController->getLocations();
+                    foreach ($data as $location) {
+                        echo '<option value="' . $location['id'] . '"';
+                        if (isset($_GET['location']) && $_GET['location'] == $location['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $location['name'] . '</option>';
+                    }
+                    ?>
+                </select>
+            <label for="lloc-execucio">Lloc d'execució</label>
+                <input type="text" name="executionplace" placeholder="No seleccionat">
+
+                <label for="tipus-exposicio">Tipus d'exposició</label>
+                <select name="expositiontype" class="custom_options">
+                <option value="" disabled selected>Selecciona una opción</option>
+                    <?php
+                    $vocabularyController = new VocabularyController();
+                    $data = $vocabularyController->getExpositionTypes();
+                    foreach ($data as $expositiontype) {
+                        echo '<option value="' . $expositiontype['id'] . '"';
+                        if (isset($_GET['expositiontype']) && $_GET['expositiontype'] == $expositiontype['id']) {
+                            echo ' selected';
+                        }
+                        echo '>' . $expositiontype['text'] . '</option>';
+                    }
+                    ?>
+                </select>
+
+                <br><br>
+                <h3>Altres dades</h3><br>
+                
+
+                <label for="tiratge">Tiratge</label>
+                <input type="text" name="tiratge" placeholder="No seleccionat">
+
+                <label for="altres-numeros">Altres números d'identificació</label>
+                <input type="number" name="altres-numeros" placeholder="No seleccionat">
+                
+                <label for="historia-objecte">Història</label>
+                <input type="text" name="historia-objecte" placeholder="No seleccionat">
+
+                
+
+
                 <!-- <label for="exposicio">Exposició</label>
                 <select name="exposition" class="custom_options">
                     <option placeholder="tots">Tots</option>
@@ -265,118 +399,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </select>
 
 
-                <label for="estat-conservacio">Estat de conservació</label>
-                <select name="estat-conservacio" class="custom_options" required>
-                <option value="" disabled selected>Selecciona una opción</option>
-                    <?php
-                    $vocabularyController = new VocabularyController();
-                    $data = $vocabularyController->getConservationStatuses();
-                    foreach ($data as $status) {
-                        echo '<option value="' . $status['id'] . '"';
-                        if (isset($_GET['status']) && $_GET['status'] == $status['id']) {
-                            echo ' selected';
-                        }
-                        echo '>' . $status['text'] . '</option>';
-                    }
-                    ?>
-                </select>
 
-                <label for="datacio">Datació</label>
-                <select name="datacio" class="custom_options" required>
-                <option value="" disabled selected>Selecciona una opción</option>
-                    <?php
-                    $vocabularyController = new VocabularyController();
-                    $data = $vocabularyController->getDatations();
-                    foreach ($data as $datation) {
-                        echo '<option value="' . $datation['id'] . '"';
-                        if (isset($_GET['datation']) && $_GET['datation'] == $datation['id']) {
-                            echo ' selected';
-                        }
-                        echo '>' . $datation['text'] . '</option>';
-                    }
-                    ?>
-                </select>
 
-                <label for="entry">Tipus d'ingres</label></label>
-                <select name="entry" class="custom_options" required>
-                <option value="" disabled selected>Selecciona una opción</option>
-                    <?php
-                    $vocabularyController = new VocabularyController();
-                    $data = $vocabularyController->getEntry();
-                    foreach ($data as $entry) {
-                        echo '<option value="' . $entry['id'] . '"';
-                        if (isset($_GET['entry']) && $_GET['entry'] == $entry['id']) {
-                            echo ' selected';
-                        }
-                        echo '>' . $entry['text'] . '</option>';
-                    }
-                    ?>
-                </select>
+            
 
-                <label for="tipus-exposicio">Tipus d'exposició</label>
-                <select name="expositiontype" class="custom_options">
-                <option value="" disabled selected>Selecciona una opción</option>
-                    <?php
-                    $vocabularyController = new VocabularyController();
-                    $data = $vocabularyController->getExpositionTypes();
-                    foreach ($data as $expositiontype) {
-                        echo '<option value="' . $expositiontype['id'] . '"';
-                        if (isset($_GET['expositiontype']) && $_GET['expositiontype'] == $expositiontype['id']) {
-                            echo ' selected';
-                        }
-                        echo '>' . $expositiontype['text'] . '</option>';
-                    }
-                    ?>
-                </select>
-                <label for="classificacio-generica">Classificació genèrica</label>
-                <select name="classificacio-generica" class="custom_options">
-                <option value="" disabled selected>Selecciona una opción</option>
-                    <?php
-                    $vocabularyController = new VocabularyController();
-                    $data = $vocabularyController->getGenericClassifications();
-                    foreach ($data as $generic) {
-                        echo '<option value="' . $generic['id'] . '"';
-                        if (isset($_GET['generic']) && $_GET['generic'] == $generic['id']) {
-                            echo ' selected';
-                        }
-                        echo '>' . $generic['text'] . '</option>';
-                    }
-                    ?>
-                </select>
+        
 
-                <label for="material-getty-code">Codi de material (Getty)</label>
-                <select name="materialgettycode" class="custom_options">
-                <option value="" disabled selected>Selecciona una opción</option>
-                    <?php
-                    $vocabularyController = new VocabularyController();
-                    $data = $vocabularyController->getGettys();
-                    foreach ($data as $getty) {
-                        echo '<option value="' . $getty['id'] . '"';
-                        if (isset($_GET['getty']) && $_GET['getty'] == $getty['id']) {
-                            echo ' selected';
-                        }
-                        echo '>' . $getty['text'] . '</option>';
-                    }
-                    ?>
-
-                </select>
-
-                <label for="tecnique-getty">Material (Getty)</label>
-                <select name="tecniquegetty" class="custom_options">
-                <option value="" disabled selected>Selecciona una opción</option>
-                    <?php
-                    $vocabularyController = new VocabularyController();
-                    $data = $vocabularyController->getGettyTecniques();
-                    foreach ($data as $gettytecnique) {
-                        echo '<option value="' . $gettytecnique['id'] . '"';
-                        if (isset($_GET['gettytecnique']) && $_GET['gettytecnique'] == $gettytecnique['id']) {
-                            echo ' selected';
-                        }
-                        echo '>' . $gettytecnique['text'] . '</option>';
-                    }
-                    ?>
-
-                </select>
 
                 <div class="images">
                     <div class="image-preview">

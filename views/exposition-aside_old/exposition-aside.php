@@ -74,18 +74,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="panel">
         <form id="searchbarwrapper" method="POST">
             <label for="search">Cercador</label>
-            <input type="text" name="expositionsearch" id="expositionsearch" placeholder="Nom de la exposició...">
-            <!--<div class="endedExpoFilter">
+            <input type="text" name="pending" id="pending" placeholder="Nom de la exposició...">
+            <div class="endedExpoFilter">
                 <label for="toggleSwitch">Exposicions finalitzades</label>
                 <?php 
-                /* if ($_SESSION['expositionFilter'] == 1) {
+                if ($_SESSION['expositionFilter'] == 1) {
                     echo "<input type='checkbox' id='toggleSwitch' name='toggleSwitch' class='endedExpoCheckbox' checked onchange='this.form.submit()''>";
                 } else if ($_SESSION['expositionFilter'] == 0 || !isset($_SESSION['expositionFilter'])) {
                     echo "<input type='checkbox' id='toggleSwitch' name='toggleSwitch' class='endedExpoCheckbox' onchange='this.form.submit()''>";
-                } */
+                }
                 ?>
-            </div>-->
-            <!--<button type="submit" id="submitButton">Envia</button>-->
+            </div>
+            <button type="submit" id="submitButton">Envia</button>
         </form>
     </div>
     
@@ -114,4 +114,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit" id="createExpoButton">Crear exposició</button>
         </form>
     </div>
+    <div><?php print_r($_SESSION); ?></div>
 </aside>
