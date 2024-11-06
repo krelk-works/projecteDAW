@@ -96,5 +96,22 @@
         
             return true;
         }
+
+        public function searchExposition($search){
+            $conn = $this->connect();
+
+            $sql = "SELECT start_date, end_date, name, expositionlocation, text, expositions.id
+            FROM expositions
+            INNER JOIN expositiontypes ON expositions.expositiontype = expositiontypes.id
+            WHERE expositions.name LIKE :search";
+
+            $stmt = $conn->prepare($sql);
+            $searchTerm = "%" . $search . "%";
+
+            $stmt->bindParam(':search', $searchTerm, PDO::PARAM_STR);
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
     }
 ?>

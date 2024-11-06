@@ -63,6 +63,7 @@
     <script src="assets/js/backup.js" defer></script>
     <script src="assets/js/vocabulary.js" defer></script>
     <script src="assets/js/artworksearcher.js" defer></script>
+    <script src="assets/js/expositionsearcher.js" defer></script>
     <script src="assets/js/accordion-element.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

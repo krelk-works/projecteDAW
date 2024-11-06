@@ -36,3 +36,33 @@
         margin-right: 30px;
     }
 }
+
+.endedExpoFilter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: -1px;
+    width: 100%;
+    height: 40px;
+}
+
+.endedExpoCheckbox {
+    appearance: none !important;
+    width: 20px !important;
+    height: 20px !important;
+    border: 2px solid #c2c2c2 !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+    transition: background-color 0.15s !important;
+}
+
+.endedExpoCheckbox:checked {
+    background-color: #4577ff !important;
+}
+
+svg {
+    position: absolute;
+    left: 305px;
+    bottom: 702px;
+}
