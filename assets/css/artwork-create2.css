@@ -1,0 +1,77 @@
+#artwork-create-container {
+  height: 89vh;
+  width: 100%;
+  background-color: aquamarine;
+  color: #464646;
+}
+#artwork-create-container .artwork-create-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: blueviolet;
+}
+#artwork-create-container .artwork-create-header h1, #artwork-create-container .artwork-create-header hr {
+  width: 100%;
+}
+#artwork-create-container .artwork-create-header h1 {
+  text-align: center;
+}
+#artwork-create-container .artwork-create-box {
+  width: 100%;
+  height: 400px;
+  background-color: burlywood;
+  padding: 20px;
+}
+#artwork-create-container .artwork-create-box .artwork-create-box-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+}
+#artwork-create-container .artwork-create-box .artwork-create-box-header h3, #artwork-create-container .artwork-create-box .artwork-create-box-header hr {
+  width: 100%;
+}
+#artwork-create-container .artwork-create-box .artwork-create-box-header h3 {
+  padding-left: 10px;
+}
+#artwork-create-container .artwork-create-box .artwork-create-box-elements {
+  padding: 10px;
+}
+#artwork-create-container .artwork-create-box .artwork-create-box-elements .acb-element-1-2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 50% !important;
+  background-color: cadetblue !important;
+}
+#artwork-create-container .artwork-create-box .artwork-create-box-elements .acb-element-1-2 label {
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+#artwork-create-container .artwork-create-box .artwork-create-box-elements .acb-element-1-2 input[type=number], #artwork-create-container .artwork-create-box .artwork-create-box-elements .acb-element-1-2 select {
+  /*padding-left: 10px;
+  padding-right: 10px;*/
+}
+
+.custom-select-1 {
+  width: 10% !important;
+  text-align: center;
+}
+
+.custom-number-imput-1 {
+  width: 25% !important;
+}
+
+.custom-number-imput-2 {
+  width: 15% !important;
+}
+
+.custom-number-imput-3 {
+  width: 42% !important;
+}/*# sourceMappingURL=artwork-create2.css.map */

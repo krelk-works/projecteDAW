@@ -66,7 +66,7 @@
     <script src="assets/js/accordion-element.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/fa.all.min.css">
    <!--<link rel="stylesheet" href="assets/css/main.css">-->
     <link rel="stylesheet" href="assets/css/general.css">
     <link rel="stylesheet" href="assets/css/login.css">
@@ -78,6 +78,7 @@
     <link rel="stylesheet" href="assets/css/user-administration.css">
     <link rel="stylesheet" href="assets/css/locations.css">
     <link rel="stylesheet" href="assets/css/artwork-create.css">
+    <link rel="stylesheet" href="assets/css/artwork-create2.css">
     <link rel="stylesheet" href="assets/css/vocabulary.css">
     <link rel="stylesheet" href="assets/css/exposition-list.css">
     <link rel="stylesheet" href="assets/css/create-exposition.css">
@@ -134,6 +135,9 @@
                 }
                 else if ($actualPage == "artwork-create") {
                     require_once "views/artwork-create/artwork-create.php";
+                }
+                else if ($actualPage == "artwork-create2") {
+                    require_once "views/artwork-create/artwork-create2.php";
                 }
                 else if ($actualPage == "vocabulari") {
                     require_once "views/vocabulary/vocabulary.php";
