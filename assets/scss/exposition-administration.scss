@@ -1,32 +1,39 @@
 .list-header-exposition-admin {
     a:first-child {
-        width: 33.3% !important;
+        width: 25% !important;
+        margin-left: 50px;
     }
 
     a:nth-child(2) {
-        width: 33.3% !important;
+        width: 25% !important;
     }
 
     a:nth-child(3) {
-        width: 33.3% !important;
+        width: 25% !important;
+    }
+    a:nth-child(4) {
+        width: 25% !important;
     }
 }
 
 
 .list-item-exposition-admin {
     :nth-child(1) {
-        width: 33.3% !important;
-        margin-left: 30px !important;
+        width: 25% !important;
+        margin-left: 80px;
     }
 
     :nth-child(2) {
-        width: 10% !important;
-        margin-left: 20px !important;
+        width: 25% !important;
+        margin-left: 17%;
     }
 
     :nth-child(3) {
-        width: 33.3% !important;
-        margin-right: 15px !important;
+        width: 25% !important;
+    }
+
+    :nth-child(4) {
+        width: 25% !important;
     }
 }
 
