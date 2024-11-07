@@ -28,7 +28,7 @@ if (isset($_GET['getArtworksAtLocations'])) {
         // Declaramos el modelo que usaremos.
         $model = new Artwork();
         // Obtenemos los datos de las obras en las localizaciones correspondientes.
-        $artworksCallback = $model->getArtworksByLocations($idsOnString);
+        $artworksCallback = $model->getArtowrksByLocations($idsOnString);
         // Configuramos los datos de la respuesta
         $response = [
             "status" => "success",
