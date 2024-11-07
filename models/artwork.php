@@ -383,6 +383,16 @@
             }
         }
 
+        public function getLastIdByLetter($letter) {
+            $conn = $this->connect();
+            $sql = "SELECT id_num1 FROM artworks WHERE id_letter = :letter ORDER BY id_num1 DESC LIMIT 1";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':letter', $letter, PDO::PARAM_STR);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $row['id_num1'];
+        }
+
         public function generatePDF() {
             // Get the data to generate the PDF file
             $conn = $this->connect();
