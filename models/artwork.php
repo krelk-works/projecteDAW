@@ -24,7 +24,7 @@
         }
 
 
-        public function getNextIdNum1() {
+        public function getNextIdNum1($letter = null) {
             // Conectar a la base de datos
             $conn = $this->connect();
             
@@ -42,9 +42,6 @@
                 return false; // Manejo de error en caso de fallo en la consulta
             }
         }
-        
-        
-
 
         public function getInfo($limit, $offset, $filter = null) {
             $conn = $this->connect();
