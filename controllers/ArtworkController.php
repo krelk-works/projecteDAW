@@ -28,7 +28,7 @@ if (isset($_GET['getArtworksAtLocations'])) {
         // Declaramos el modelo que usaremos.
         $model = new Artwork();
         // Obtenemos los datos de las obras en las localizaciones correspondientes.
-        $artworksCallback = $model->getArtowrksByLocations($idsOnString);
+        $artworksCallback = $model->getArtworksByLocations($idsOnString);
         // Configuramos los datos de la respuesta
         $response = [
             "status" => "success",
@@ -118,12 +118,32 @@ class ArtworkController
         return $data;
     }
 
+    public function getLastIdByLetter($letter)
+    {
+        $artwork = new Artwork(); // Create a new user object.
+        $data = $artwork->getLastIdByLetter($letter);
+        return $data;
+    }
+
     public function getTotalCount($filter = null)
     {
         $artwork = new Artwork(); // Create a new user object.
         $data = $artwork->getTotalCount($filter);
         return $data;
     }
+
+    public function updateIdLetter()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_letter'])) {
+            $idLetter = $_POST['id_letter'];
+            
+            // Simplemente devolvemos el id_letter recibido en la respuesta
+            echo json_encode(['success' => true, 'id_letter' => $idLetter]);
+        } else {
+            echo json_encode(['success' => false, 'error' => 'No se recibió el ID Letter correctamente.']);
+        }
+    }
+
 
     public function createArtwork(
         $nom_del_museu,
