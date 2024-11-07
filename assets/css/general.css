@@ -136,6 +136,18 @@ a:hover {
   color: #007bff;
 }
 
+textarea {
+  padding: 6px;
+  font-size: 16px;
+  border: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  /*transition: all 0.66s;*/
+  margin-bottom: 2px;
+  color: #444444;
+}
+
 .action_button {
   margin: 0px !important;
   padding: 5px !important;
