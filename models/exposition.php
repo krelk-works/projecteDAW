@@ -97,6 +97,22 @@
             return true;
         }
 
+        public function deleteArtworkFromExposition($expoID, $artworkID) {
+            $conn = $this->connect();
+        
+            $sql = "DELETE FROM expositionsartworks WHERE exposition = :expoID AND artwork = :artworkID";
+            $stmt = $conn->prepare($sql);
+        
+            $stmt->bindParam(':expoID', $expoID);
+            $stmt->bindParam(':artworkID', $artworkID);
+                
+            if ($stmt->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         public function searchExposition($search){
             $conn = $this->connect();
 

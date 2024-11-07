@@ -35,5 +35,11 @@ class ExpositionController
         $check = $exposition->uploadArtworkToExposition($IDs, $expoID);
         return $check;
     }
+
+    public function deleteArtworkFromExposition ($expoID, $artworkID) {
+        $exposition = new Exposition();
+        $check = $exposition->deleteArtworkFromExposition($expoID, $artworkID);
+        return $check;
+    }
 }
 ?>
