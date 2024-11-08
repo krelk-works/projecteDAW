@@ -25,7 +25,7 @@
     color: #6589C4;
 }
 
-#searchbar input {
+#searchbar input[type="text"] {
     width: calc(100% - 0px);
 }
 
@@ -37,6 +37,15 @@
     /*background-color: blueviolet;*/
     display: flex;
     flex-wrap: wrap;
+
+    #searchby {
+        width: auto !important;
+        margin-left: 5px;
+        height: auto !important;
+        margin-right: 5px;
+        box-shadow: none !important;
+        transform: translateY(2px);
+    }
 }
 
 #searchbar button {
@@ -52,3 +61,6 @@
     width: 100%;
 }
 
+#searchbylabel {
+    width: auto !important;
+}

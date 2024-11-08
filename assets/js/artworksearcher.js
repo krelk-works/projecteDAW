@@ -1,5 +1,25 @@
+let canceledOnly = false;
+
 if (document.querySelector("#artworksearch")) {
     let isLoading = false;
+
+    if (document.getElementById('searchby')) {
+        const onlyCanceledCheckbox = document.getElementById('searchby');
+    
+        onlyCanceledCheckbox.addEventListener('change', () => {
+            if (onlyCanceledCheckbox.checked) {
+                canceledOnly = true;
+                setLoadingStatus();
+                debouncedgetArtworksAPI(inputSearch.value);
+                
+            } else {
+                canceledOnly = false;
+                setLoadingStatus();
+                debouncedgetArtworksAPI(inputSearch.value);
+                
+            }
+        });
+    }
     
     /* Funciones para el buscador de obras */
     function debounce(fn, delay) {
@@ -27,17 +47,33 @@ if (document.querySelector("#artworksearch")) {
 
     function generateHTMLCode($artworks) {
         let HTMLCode = headerCode;
-        $artworks.forEach(artwork => {
-            HTMLCode += '<div class="list-item">';
-            HTMLCode += '<img src="' + artwork.artwork_image + '" alt="' + artwork.artwork_name + ' ' + artwork.author_name + '">';
-            HTMLCode += '<a href="?page=artwork-administration&artworkID=' + artwork.id + '"><h3>' + artwork.artwork_name + '</h3></a>';
-            HTMLCode += '<p><i class="fa-solid fa-user"></i>' + artwork.author_name + '</p>';
-            HTMLCode += '<p><i class="fa-solid fa-location-dot"></i>' + artwork.location_name + '</p>';
-            HTMLCode += '<p><i class="fa-solid fa-bookmark"></i>' + artwork.creation_date + '</p>';
-            HTMLCode += '<p><i class="fa-regular fa-clipboard"></i>' + artwork.text + '</p>';
-            HTMLCode += '</div>';
-        });
-
+        if (canceledOnly) {
+            $artworks.forEach(artwork => {
+                if (artwork.artwork_cancelcause) {
+                    HTMLCode += '<div class="list-item">';
+                    HTMLCode += '<img src="' + artwork.artwork_image + '" alt="' + artwork.artwork_name + ' ' + artwork.author_name + '">';
+                    HTMLCode += '<a href="?page=artwork-administration&artworkID=' + artwork.id + '"><h3>' + artwork.artwork_name + '</h3></a>';
+                    HTMLCode += '<p><i class="fa-solid fa-user"></i>' + artwork.author_name + '</p>';
+                    HTMLCode += '<p><i class="fa-solid fa-location-dot"></i>' + artwork.location_name + '</p>';
+                    HTMLCode += '<p><i class="fa-solid fa-bookmark"></i>' + artwork.creation_date + '</p>';
+                    HTMLCode += '<p><i class="fa-regular fa-clipboard"></i>' + artwork.text + '</p>';
+                    HTMLCode += '</div>';
+                }
+            });
+        } else {
+            $artworks.forEach(artwork => {
+                if (!artwork.artwork_cancelcause) {
+                    HTMLCode += '<div class="list-item">';
+                    HTMLCode += '<img src="' + artwork.artwork_image + '" alt="' + artwork.artwork_name + ' ' + artwork.author_name + '">';
+                    HTMLCode += '<a href="?page=artwork-administration&artworkID=' + artwork.id + '"><h3>' + artwork.artwork_name + '</h3></a>';
+                    HTMLCode += '<p><i class="fa-solid fa-user"></i>' + artwork.author_name + '</p>';
+                    HTMLCode += '<p><i class="fa-solid fa-location-dot"></i>' + artwork.location_name + '</p>';
+                    HTMLCode += '<p><i class="fa-solid fa-bookmark"></i>' + artwork.creation_date + '</p>';
+                    HTMLCode += '<p><i class="fa-regular fa-clipboard"></i>' + artwork.text + '</p>';
+                    HTMLCode += '</div>';
+                }
+            });
+        }
         if ($artworks.length === 0) {
             HTMLCode += '<div><h2>No s\'han trobat resultats</h2><p>Intenti amb un altre filtre de cerca.</p></div>';
         }
