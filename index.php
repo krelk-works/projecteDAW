@@ -64,11 +64,12 @@
     <script src="assets/js/vocabulary.js" defer></script>
     <script src="assets/js/artworksearcher.js" defer></script>
     <script src="assets/js/expositionsearcher.js" defer></script>
+    <script src="assets/js/usersearcher.js" defer></script>
     <script src="assets/js/accordion-element.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/fa.all.min.css">
-   <!--<link rel="stylesheet" href="assets/css/main.css">-->
+   <!--<link rel="stylesheet" href="assets/css/main.css">-->    
     <link rel="stylesheet" href="assets/css/general.css">
     <link rel="stylesheet" href="assets/css/login.css">
     <link rel="stylesheet" href="assets/css/navbar.css">
