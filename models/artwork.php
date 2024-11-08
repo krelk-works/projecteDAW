@@ -395,56 +395,53 @@
         }
 
         public function generatePDF() {
-            // Get the data to generate the PDF file
+            require_once 'vendor/autoload.php';
+        
             $conn = $this->connect();
-            $sql = 
-            "SELECT artworks.ID_char, artworks.ID_num1, artworks.ID_num2, artworks.name, 
-            Description, Authors.author, artworks.Creation_date, artworks.Conservation_ID,
-            artworks.Register_date, artworks.Amount, Images.URL, Material.text AS material
-            FROM artworks 
-            INNER JOIN Authors ON artworks.Author_ID = Authors.Author_ID
-            INNER JOIN Images ON artworks.artworks_ID = Images.artworks_ID
-            INNER JOIN Material ON artworks.Material_ID = Material.id";
+            $sql = "SELECT *
+                    FROM artworks";
+            
             $stmt = $conn->prepare($sql);
             $stmt->execute();
-
-            // PDF base config
-            $pdf = new TCPDF();
-            $pdf->SetCreator(PDF_CREATOR);
-            $pdf->SetAuthor('Me');
-            $pdf->SetTitle('Informe de fitxes');
-            $pdf->SetSubject('');
-            $pdf->SetKeywords('TCPDF, PDF, MySQL');
-
-            // PDF styles
-            $pdf->setPrintHeader(false);
-            $pdf->setPrintFooter(false);
-            $pdf->AddPage();
-            $pdf->SetFont('helvetica','',25);
-            $pdf->Cell(30, 20, "Informe de fitxes", 0, 1);
-
-            // Insert data into PDF Format
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $ID = $row['ID_char'].$row['ID_num1'].".".$row['ID_num2'];
-                $pdf->SetFont('helvetica', 'B', 12);
-                $pdf->Cell(0, 10, $row['name'], 0, 1);
-                $pdf->SetFont('helvetica', '', 12);
-                $pdf->Image($row['URL'], '', '', 80, 80, '', '', 'T', false, 300, '', false, false, 1, false, false, false);
-                $pdf->ln(85);
-                $pdf->MultiCell(0, 10, " - ID: " . $ID, 0, 1);
-                $pdf->MultiCell(0, 10, " - Foto: " . "http://localhost:8080/projecteDAW/".$row['URL'], 0, 1);
-                $pdf->MultiCell(0, 10, " - Descripció: " . $row['Description'], 0, 1);
-                $pdf->MultiCell(0, 10, " - Autor: " . $row['author'], 0, 1);
-                $pdf->MultiCell(0, 10, " - Data de registre: " . $row['Register_date'], 0, 1);
-                $pdf->MultiCell(0, 10, " - Any de creació: " . $row['Creation_date'], 0, 1);
-                $pdf->MultiCell(0, 10, " - Conservació: " . $row['Conservation'], 0, 1);
-                $pdf->MultiCell(0, 10, " - Material: " . $row['material'], 0, 1);
-                $pdf->MultiCell(0, 10, " - Quantitat: " . $row['Amount'], 0, 1);
-                $pdf->AddPage();
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);  // Obtener todos los resultados
+        
+            $html2pdf = new \Spipu\Html2Pdf\Html2Pdf('P', 'A4', 'es');
+            
+            $htmlContent = '
+            <html>
+                <head>
+                </head>
+                <body>
+                    <h1>Informe d\'obres</h1>
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nom</th>
+                                <th>Data de creació</th>
+                            </tr>
+                        </thead>
+                        <tbody>';
+            
+            foreach ($data as $artwork) {
+                $htmlContent .= '
+                <tr>
+                    <td>' . $artwork["id_letter"] . $artwork["id_num1"] . $artwork["id_num2"] . '</td>
+                    <td>' . $artwork["name"] . '</td>
+                    <td>' . $artwork["creation_date"] . '</td>
+                </tr>';
             }
-
-            return $pdf;
-        }
+        
+            $htmlContent .= '
+                        </tbody>
+                    </table>
+                </body>
+            </html>';
+        
+            $html2pdf->writeHTML($htmlContent);
+        
+            return $html2pdf;
+        }        
 
         public function searchArtwork($search){
             $conn = $this->connect();

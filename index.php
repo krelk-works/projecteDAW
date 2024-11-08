@@ -28,11 +28,6 @@
         }
     }
 
-    // Check if the user wants to generate a PDF
-    if (isset($_GET['generatePDF'])) {
-        require_once "controllers/PDFController.php";
-    }
-
     // Set the session cookie to 1 hour.
     ini_set('session.gc_maxlifetime', 3600);
 
@@ -44,6 +39,11 @@
 
     // Start the session.
     session_start();
+        
+    // Check if the user wants to generate a PDF
+    if (isset($_GET['generatePDF'])) {
+        require_once "controllers/PDFController.php";
+    }
 ?>
 <!DOCTYPE html>
 <html lang="ca">

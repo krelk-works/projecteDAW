@@ -1,0 +1,11 @@
+{
+    "name": "root/projecte-daw",
+    "autoload": {
+        "psr-4": {
+            "Root\\ProjecteDaw\\": "src/"
+        }
+    },
+    "require": {
+        "spipu/html2pdf": "^5.2"
+    }
+}
