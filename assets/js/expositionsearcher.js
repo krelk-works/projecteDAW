@@ -1,6 +1,25 @@
 if (document.querySelector("#expositionsearch")) {
     let isLoading = false;
     
+    if (document.getElementById('searchby')) {
+        const onlyCanceledCheckbox = document.getElementById('searchby');
+    
+        onlyCanceledCheckbox.addEventListener('change', () => {
+            if (onlyCanceledCheckbox.checked) {
+                canceledOnly = true;
+                setLoadingStatus();
+                debouncedgetExpositionsAPI(inputSearch.value);
+                
+            } else {
+                canceledOnly = false;
+                setLoadingStatus();
+                debouncedgetExpositionsAPI(inputSearch.value);
+                
+            }
+        });
+    }
+
+
     /* Funciones para el buscador de obras */
     function debounce(fn, delay) {
         let timer = null
@@ -24,20 +43,43 @@ if (document.querySelector("#expositionsearch")) {
 
     // De-bounce version of the clickHandler Function
     const debouncedgetExpositionsAPI = debounce(getExpositionsAPI, 500)
+    const date = new Date();
 
     function generateHTMLCode($expositions) {
         let HTMLCode = headerCode;
-        $expositions.forEach(exposition => {
-            HTMLCode += '<div class="list-item list-item-expositions">';
-            HTMLCode += '<h3>' + exposition.name + '</h3>';
-            HTMLCode += '<p>' + exposition.start_date + '</p>';
-            HTMLCode += '<p>' + exposition.end_date + '</p>';
-            HTMLCode += '<p>' + exposition.expositionlocation + '</p>';
-            HTMLCode += '<p>' + exposition.text + '</p>';
-            HTMLCode += '<a href="?page=exposition-administration&expoID='  + exposition.id +  '"><button class="action_button expo_button">Gestionar</button></a>';
-            HTMLCode += '</div>';
-        });
+        if (canceledOnly) {
 
+        $expositions.forEach(exposition => {
+
+            
+            if (new Date(exposition.end_date) <= date) {     
+                HTMLCode += '<div class="list-item list-item-expositions">';
+                HTMLCode += '<h3>' + exposition.name + '</h3>';
+                HTMLCode += '<p>' + exposition.start_date + '</p>';
+                HTMLCode += '<p>' + exposition.end_date + '</p>';
+                HTMLCode += '<p>' + exposition.expositionlocation + '</p>';
+                HTMLCode += '<p>' + exposition.text + '</p>';
+                HTMLCode += '<a href="?page=exposition-administration&expoID='  + exposition.id +  '"><button class="action_button expo_button">Gestionar</button></a>';
+                HTMLCode += '</div>';
+            }
+        });
+        } else {
+            
+            $expositions.forEach(exposition => {
+                // console.log(new Date(exposition.end_date) <= date);
+                // console.log("COMPARE DATE: " ,new Date(exposition.end_date), " Current DATE: " ,date);
+                if (new Date(exposition.end_date) > date) {
+                    HTMLCode += '<div class="list-item list-item-expositions">';
+                    HTMLCode += '<h3>' + exposition.name + '</h3>';
+                    HTMLCode += '<p>' + exposition.start_date + '</p>';
+                    HTMLCode += '<p>' + exposition.end_date + '</p>';
+                    HTMLCode += '<p>' + exposition.expositionlocation + '</p>';
+                    HTMLCode += '<p>' + exposition.text + '</p>';
+                    HTMLCode += '<a href="?page=exposition-administration&expoID='  + exposition.id +  '"><button class="action_button expo_button">Gestionar</button></a>';
+                    HTMLCode += '</div>';
+                }
+            });
+        }
         if ($expositions.length === 0) {
             HTMLCode += '<div><h2>No s\'han trobat resultats</h2><p>Intenti amb un altre filtre de cerca.</p></div>';
         }

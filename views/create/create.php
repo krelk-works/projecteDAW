@@ -118,17 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="panel">
         <form id="searchbarwrapper" action="<?= $_SERVER['PHP_SELF']; ?>?inici" method="GET">
             <label for="search">Cerca</label>
-            <input type="text" name="search" id="search" placeholder="Cerca" value="<?php if (isset($_GET['search']))
-                echo $_GET['search']; ?>">
-            <label for="role">Rol</label>
-            <select name="role" id="role">
-                <option value="">tots</option>
-                <option value="admin">admin</option>
-                <option value="tecnic">tecnic</option>
-                <option value="convidat">convidat</option>
-            </select>
-
-            <button id="searcherButton" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Cerca</button>
+            <input type="text" name="search" id="search" placeholder="Cerca">
         </form>
     </div>
 

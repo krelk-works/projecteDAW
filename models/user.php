@@ -246,5 +246,15 @@
             $stmt->execute();
             return $stmt->fetchColumn();
         }
+        public function searchUser($searchfilter){
+            $searchTerm="%{$searchfilter}%";
+
+            $conn = $this->connect();
+            $sql = "SELECT * FROM users WHERE username LIKE :searchfilter OR role LIKE :searchfilter OR email LIKE :searchfilter";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':searchfilter', $searchTerm);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
     }
 ?>

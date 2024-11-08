@@ -75,6 +75,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form id="searchbarwrapper" method="POST">
             <label for="search">Cercador</label>
             <input type="text" name="expositionsearch" id="expositionsearch" placeholder="Nom de la exposició...">
+            <hr style="width: 100%; margin-top: 10px; margin-bottom: 5px;">
+            <input type="checkbox" name="searchby" id="searchby" value="name"><label for="searchby" id="searchbylabel">Ver exposiciones de baja</label>
+
             <!--<div class="endedExpoFilter">
                 <label for="toggleSwitch">Exposicions finalitzades</label>
                 <?php 
