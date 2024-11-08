@@ -1,8 +1,48 @@
+@charset "UTF-8";
 #artwork-create-container {
+  box-sizing: border-box;
   height: 89vh;
   width: 100%;
-  background-color: aquamarine;
+  background-color: #fafafa;
   color: #464646;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+#artwork-create-container textarea {
+  width: 100%;
+  height: 100px;
+  border-radius: 0 !important;
+}
+#artwork-create-container label {
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+#artwork-create-container input[type=number], #artwork-create-container input[type=text], #artwork-create-container input[type=date], #artwork-create-container select {
+  box-sizing: border-box;
+  border-radius: 0;
+  /*padding-left: 10px;
+  padding-right: 10px;*/
+}
+#artwork-create-container button {
+  all: unset;
+  width: 10%;
+  padding: 10px;
+  border: 1px solid #464646;
+  color: #868686;
+  background-color: #fafafa;
+  text-align: center;
+  font-size: 14px;
+  transition: padding-left 0.33s, padding-right 0.33s, box-shadow 0.33s, font-size 0.33s;
+}
+#artwork-create-container button:hover {
+  color: #007bff;
+  border: 1px solid #007bff;
+  padding-left: 12px;
+  padding-right: 12px;
+  font-size: 15px;
+  box-shadow: 0px 0px 8px 0px rgb(0, 123, 255);
+  cursor: pointer;
 }
 #artwork-create-container .artwork-create-header {
   display: flex;
@@ -13,7 +53,6 @@
   text-align: center;
   padding-top: 20px;
   padding-bottom: 20px;
-  background-color: blueviolet;
 }
 #artwork-create-container .artwork-create-header h1, #artwork-create-container .artwork-create-header hr {
   width: 100%;
@@ -23,8 +62,7 @@
 }
 #artwork-create-container .artwork-create-box {
   width: 100%;
-  height: 400px;
-  background-color: burlywood;
+  /*height: 400px;*/
   padding: 20px;
 }
 #artwork-create-container .artwork-create-box .artwork-create-box-header {
@@ -39,26 +77,96 @@
 #artwork-create-container .artwork-create-box .artwork-create-box-header h3 {
   padding-left: 10px;
 }
-#artwork-create-container .artwork-create-box .artwork-create-box-elements {
+#artwork-create-container .artwork-create-box .default-image-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100% !important;
   padding: 10px;
+}
+#artwork-create-container .artwork-create-box .default-image-box img {
+  width: 30%;
+  /*height: 10%;*/
+}
+#artwork-create-container .artwork-create-box .default-image-box img:hover {
+  cursor: pointer;
+}
+#artwork-create-container .artwork-create-box .default-image-box button {
+  width: 10% !important;
+  margin: 10px !important;
+}
+#artwork-create-container .artwork-create-box .default-image-box button:hover {
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 14px;
+}
+#artwork-create-container .artwork-create-box .artwork-create-box-elements {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 10px;
+}
+#artwork-create-container .artwork-create-box .artwork-create-box-elements .acb-element-1-1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100% !important;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
 }
 #artwork-create-container .artwork-create-box .artwork-create-box-elements .acb-element-1-2 {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 50% !important;
-  background-color: cadetblue !important;
+  padding-left: 10px;
+  padding-right: 10px;
 }
-#artwork-create-container .artwork-create-box .artwork-create-box-elements .acb-element-1-2 label {
+#artwork-create-container .artwork-create-box .artwork-create-box-multimedia {
+  display: flex;
+  flex-wrap: wrap;
   width: 100%;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  height: 400px;
+  padding: 10px;
 }
-#artwork-create-container .artwork-create-box .artwork-create-box-elements .acb-element-1-2 input[type=number], #artwork-create-container .artwork-create-box .artwork-create-box-elements .acb-element-1-2 select {
-  /*padding-left: 10px;
-  padding-right: 10px;*/
+#artwork-create-container .artwork-create-box .artwork-create-box-multimedia .multimedia-add-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 5%;
+  height: 120px;
+}
+#artwork-create-container .artwork-create-box .artwork-create-box-multimedia .multimedia-add-content button {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+#artwork-create-container .artwork-create-box .artwork-create-box-multimedia .multimedia-add-content button i {
+  transform: translateX(2px);
+}
+#artwork-create-container .artwork-create-box .artwork-create-box-multimedia .multimedia-add-content button:hover {
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 14px;
+}
+#artwork-create-container .artwork-create-box .artwork-create-box-multimedia .multimedia-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 8%;
+  height: 120px;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+#artwork-create-container .artwork-create-box .artwork-create-box-multimedia .multimedia-content img {
+  width: 100%;
+  height: 100%;
 }
 
+/* Estilos custom para el formulario de creación de obra */
 .custom-select-1 {
   width: 10% !important;
   text-align: center;
@@ -73,5 +181,33 @@
 }
 
 .custom-number-imput-3 {
-  width: 42% !important;
+  width: 50% !important;
+}
+
+.element-1-3 {
+  width: 33.33% !important;
+}
+
+.element-1-2 {
+  width: 50% !important;
+}
+
+.element-1-2-margin {
+  box-sizing: border-box;
+  width: calc(50% - 10px) !important;
+  margin-right: 5px !important;
+}
+
+.element-1-1 {
+  width: 100% !important;
+}
+
+/* Button for classic form */
+.create-artwork-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100% !important;
+  margin-top: 20px !important;
+  margin-bottom: 20px !important;
 }/*# sourceMappingURL=artwork-create2.css.map */

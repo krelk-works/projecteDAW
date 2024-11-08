@@ -26,7 +26,7 @@ function populateArtWorkLocationSelect() {
             artworks.message.forEach(artwork => {
                 // console.log("Se ha recibido la obra: "+element.artwork_name);
                 HTMLCode += '<div class="list-item">';
-                HTMLCode += '<img src="' + artwork.URL + '" alt="' + artwork.artwork_name + ' ' + artwork.author_name + '">';
+                HTMLCode += '<img src="' + artwork.artwork_image + '" alt="' + artwork.artwork_name + ' ' + artwork.author_name + '">';
                 HTMLCode += '<a href="?page=artwork-administration&artworkID=' + artwork.id + '"><h3>' + artwork.artwork_name + '</h3></a>';
                 HTMLCode += '<p><i class="fa-solid fa-user"></i>' + artwork.author_name + '</p>';
                 HTMLCode += '<p><i class="fa-solid fa-location-dot"></i>' + artwork.location_name + '</p>';

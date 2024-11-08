@@ -15,6 +15,8 @@ function redirectToSearchUser() {
         <form id="searchbarwrapper">
             <label for="search">Cercador</label>
             <input type="text" name="artworksearch" id="artworksearch" placeholder="Nom d'obra, autor, ubicació, estat...">
+            <hr style="width: 100%; margin-top: 10px; margin-bottom: 5px;">
+            <input type="checkbox" name="searchby" id="searchby" value="name"><label for="searchby" id="searchbylabel">Ver obras de baja</label>
         </form>
     </div>
 

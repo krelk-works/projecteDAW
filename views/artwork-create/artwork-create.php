@@ -99,6 +99,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     }
 
+
+
 ?>
 
 <div class="container-create">
@@ -110,10 +112,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h3>Identificacio de l'obra</h3><br>
 
                 <label for="id-letter">ID Letter</label>
-                <input type="text" id="id_letter" name="id_letter" maxlength="1" pattern="[A-Z]" placeholder="No seleccionat">
+                <input type="text" id="id_letter" name="id_letter" maxlength="1" pattern="[A-Z]" placeholder="No seleccionat" oninput="checkIdLetter()">
 
                 <label for="id-num1">ID Num1</label>
                 <input type="number" id="id_num1" name="id_num1" min="10001" max="99999" value="<?php
+                    //if (isset($_GET['id_letter'])) {
+                    //    $artworkController = new ArtworkController();
+                    //    $data = $artworkController->getLastIdByLetter($_GET['id_letter']);
+                    //    echo $data;
+                    //}
+                    //else {
+
                     $artworkController = new ArtworkController();
                     $data = $artworkController->getNextIdNum1();
                     echo $data;
@@ -420,3 +429,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
     </div>
 </div>
+
+
+<script>
+    function checkIdLetter() {
+        const idLetterValue = document.getElementById("id_letter").value;
+        console.log("Valor de id_letter:", idLetterValue);
+    }
+</script>
