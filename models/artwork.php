@@ -43,8 +43,41 @@
             }
         }
         
-        
+        public function isIdentifiersValid($letter, $number, $subnumber): bool {
 
+            // Conectar a la base de datos
+            $conn = $this->connect();
+        
+            // Construir la consulta SQL de forma dinámica
+            $sql = "SELECT COUNT(*) AS total FROM artworks WHERE id_num1 = :number";
+            $params = [':number' => $number];
+        
+            // Añadir condiciones solo si los parámetros no están vacíos
+            if (!empty($letter)) {
+                $sql .= " AND id_letter = :letter";
+                $params[':letter'] = $letter;
+            }
+            if (!empty($subnumber)) {
+                $sql .= " AND id_num2 = :subnumber";
+                $params[':subnumber'] = $subnumber;
+            }
+        
+            // Preparar la consulta
+            $stmt = $conn->prepare($sql);
+        
+            // Asignar los valores de los parámetros que están definidos
+            foreach ($params as $key => $value) {
+                $stmt->bindValue($key, $value, is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR);
+            }
+        
+            // Ejecuta la consulta y verifica el resultado
+            if ($stmt->execute()) {
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                return $row['total'] == 0;
+            } else {
+                return false; // Manejo de error en caso de fallo en la consulta
+            }
+        }
 
         public function getInfo($limit, $offset, $filter = null) {
             $conn = $this->connect();
@@ -384,11 +417,18 @@
             }
         }
 
-        public function getLastIdByLetter($letter) {
+        public function getLastIdByLetter($letter = null) {
             $conn = $this->connect();
-            $sql = "SELECT id_num1 FROM artworks WHERE id_letter = :letter ORDER BY id_num1 DESC LIMIT 1";
+            $sql = "";
+            if ($letter) {
+                $sql = "SELECT id_num1 FROM artworks WHERE id_letter = :letter ORDER BY id_num1 DESC LIMIT 1";
+            } else {
+                $sql = "SELECT id_num1 FROM artworks WHERE NOT id_letter ORDER BY id_num1 DESC LIMIT 1";
+            }
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':letter', $letter, PDO::PARAM_STR);
+            if ($letter) {
+                $stmt->bindParam(':letter', $letter, PDO::PARAM_STR);
+            }
             $stmt->execute();
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             return $row['id_num1'];

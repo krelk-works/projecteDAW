@@ -22,7 +22,7 @@
             <div class="artwork-create-box-elements">
                 <div class="acb-element-1-2">
                     <label>Número de registre</label>
-                    <select name="" id="" class="custom-select-1">
+                    <select name="" id="id_letter" class="custom-select-1">
                         <option value="">-</option>
                         <option value="a">A</option>
                         <option value="b">B</option>
@@ -51,9 +51,10 @@
                         <option value="y">Y</option>
                         <option value="z">Z</option>
                     </select>
-                    <input class="custom-number-imput-1" type="number" name="" id="" placeholder="Identificador">
-                    <input class="custom-number-imput-2" type="number" name="" id="" placeholder="Sub">
-                    <input class="custom-number-imput-3" type="number" name="" id=""
+                    <input class="custom-number-imput-1" type="number" name="" id="id_number"
+                        placeholder="Identificador" max="99999" min="10000">
+                    <input class="custom-number-imput-2" type="number" name="" id="id_sub_number" placeholder="Sub">
+                    <input class="custom-number-imput-3" type="text" name="" id="id_other"
                         placeholder="Altres idenfiticadors">
                 </div>
                 <div class="acb-element-1-2">

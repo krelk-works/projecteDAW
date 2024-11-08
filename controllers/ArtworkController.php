@@ -44,52 +44,103 @@ if (isset($_GET['getArtworksAtLocations'])) {
     // Limpiar el búfer de salida para evitar datos adicionales
     ob_clean();
     echo json_encode($response);
+}
 
-    // if (!empty($locationsOfArtworks)) {
-    //     var_dump($locationsOfArtworks);
-    //     include_once("../models/artwork.php");
-    //     $model = new Artwork();
-    //     // $artworksCallback = $model->getArtowrksByLocations($locationsOfArtworks);
-    //     if (count($artworksCallback > 0)) {
-    //         $response = [
-    //             "status" => "success",
-    //             "message" => "Artworks Callback done",
-    //             "data" => $artworksCallback,
-    //         ];
-    //     } else {
-    //         $response = [
-    //             "status" => "success",
-    //             "message" => "Artworks Callback done",
-    //             "data" => [],
-    //         ];
-    //     }
-    // } else {
-    //     $response = [
-    //         "status" => "error",
-    //         "message" => "Ha ocurrido un error en la solicitud de obras por localización."
-    //     ];
-    // }
+if (isset($_GET['getNextId'])) {
+    // Declaramos que la API ha sido llamada para evitar usar resto del Controlador.
+    $isApiCalled = true;
 
-    // $stringLocations = var_dump($locationsOfArtworks);
+    // Establecer el tipo de respuesta como JSON
+    header("Content-Type: application/json");
 
-    // foreach ($locationsOfArtworks["body"] as $key => $value) {
-    //     $stringLocations .= $value;
-    //     if ($key < count($locationsOfArtworks) - 1) {
-    //         $stringLocations .= ","; // Agregar la coma solo entre elementos
-    //     }
-    // }
+    // Leer el cuerpo de la solicitud JSON
+    $input = file_get_contents("php://input");
 
+    // Recogemos los datos en bruto ya transformados a PHP
+    $rawData = json_decode($input, true); // Decodificar a un array asociativo
 
-    // ob_clean();
-    // echo json_encode([
-    //     "status" => "success",
-    //     "message" => "Ha llegado la solicitud de datos",
-    //     "locationsCount" => count($locationsOfArtworks),
-    // ]);
+    // Importamos el modelo de obra de arte para obtener obras según localización
+    include_once("../models/artwork.php");
 
-    // echo json_encode(var_dump($locationsOfArtworks));
+    // Variable de respuesta
+    $response = [];
 
-    
+    // Si hay datos en el rawData los procesamos
+    if (!empty($rawData)) {
+        // Recogemos la lista de Localizaciones de la cual queremos obtener obras
+        $letter = $rawData["letter"];
+
+        // Importamos el modelo de obra para buscar la siguiente ID según la letra
+        $model = new Artwork();
+
+        // Obtenemos la siguiente ID según la letra
+        $nextIdCallback = $model->getLastIdByLetter($letter);
+
+        if ($nextIdCallback === false) {
+            $response = [
+                "status" => "error",
+                "message" => "Ha ocurrido un error al obtener la siguiente ID."
+            ];
+        } else {
+            $response = [
+                "status" => "success",
+                "message" => $nextIdCallback,
+            ];
+        }
+    }
+
+    // Limpiar el búfer de salida para evitar datos adicionales
+    ob_clean();
+    echo json_encode($response);
+}
+
+if (isset($_GET['isIdentifiersValid'])) {
+    // Declaramos que la API ha sido llamada para evitar usar resto del Controlador.
+    $isApiCalled = true;
+
+    // Establecer el tipo de respuesta como JSON
+    header("Content-Type: application/json");
+
+    // Leer el cuerpo de la solicitud JSON
+    $input = file_get_contents("php://input");
+
+    // Recogemos los datos en bruto ya transformados a PHP
+    $rawData = json_decode($input, true); // Decodificar a un array asociativo
+
+    // Variable de respuesta
+    $response = [];
+
+    // Si hay datos en el rawData los procesamos
+    if (!empty($rawData)) {
+        // Recogemos la lista de Localizaciones de la cual queremos obtener obras
+        $letter = $rawData["letter"];
+        $number = $rawData["number"];
+        $subnumber = $rawData["subnumber"];
+
+        // Importamos el modelo de obra para buscar la siguiente ID según la letra
+        include_once("../models/artwork.php");
+
+        $model = new Artwork();
+
+        // Verificamos si el conjunto de identificadores es válido
+        $isValid = $model->isIdentifiersValid($letter, $number, $subnumber);
+
+        if ($isValid === false) {
+            $response = [
+                "status" => "error",
+                "message" => "El conjunto de identificadores no es válido."
+            ];
+        } else {
+            $response = [
+                "status" => "success",
+                "message" => "El conjunto de identificadores es válido."
+            ];
+        }
+    }
+
+    // Limpiar el búfer de salida para evitar datos adicionales
+    ob_clean();
+    echo json_encode($response);
 }
 
 // En caso de no ser una solicitud de api cargamos el modelo para el controlador

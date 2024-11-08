@@ -210,4 +210,12 @@
   width: 100% !important;
   margin-top: 20px !important;
   margin-bottom: 20px !important;
+}
+
+.is-valid {
+  border-bottom: 1px solid #28a745 !important;
+}
+
+.is-invalid {
+  border-bottom: 1px solid #dc3545 !important;
 }/*# sourceMappingURL=artwork-create2.css.map */
