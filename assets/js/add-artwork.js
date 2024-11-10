@@ -15,6 +15,28 @@ function debounce(fn, delay) {
     }
 }
 
+/** Deshabilitamos la funcionalidad de enviar formulario para los botones, solo la dejamos habilitada para el tipo SUBMIT */
+document.querySelectorAll('button').forEach(button => {
+    // console.log('Boton encontrado:', button);
+    button.addEventListener('click', function (event) {
+        // alert('Botón pulsado: ' + button.textContent);
+        if (button.type !== 'submit') {
+            event.preventDefault();
+        }
+    });
+});
+
+/** Deshabilitamos que al hacer ENTER en cualquier INPUT se envie formulario */
+document.querySelectorAll('input').forEach(input => {
+    // console.log('Input encontrado:', input);
+    input.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+        }
+    });
+});
+
+
 /** Funcionalidad de la imagen por defecto de la obra */
 if (document.getElementById('add-default-image')) {
     // Obtenemos el elemento HTML del botón de añadir imagen por defecto en caso de existir
@@ -267,3 +289,145 @@ if (document.getElementById('artwork_title')) {
     });
 }
 /* FIN DE LA FUNCIONALIDAD */
+
+/** Funcionalidades de la autocompletar campos de [select] según el nombre que se haya asignado */
+
+// Variables para los elementos de los campos de selección
+const authorSelect = document.getElementById('author_names');
+const datationsList = document.getElementById('datations_list');
+const materialsList = document.getElementById('materials_list');
+const genericClassificationList = document.getElementById('generic_classification');
+const tecniquesList = document.getElementById('tecniques_list');
+const conservationsStatusList = document.getElementById('conservations_list');
+const gettyMaterialCodeList = document.getElementById('getty_material_codes_list');
+const gettyMaterialList = document.getElementById('getty_material_list');
+const entryTypeList = document.getElementById('entry_type_list');
+const locationsList = document.getElementById('locations_list');
+const cancelCausesList = document.getElementById('cancel_causes_list');
+
+// Construir la estructura jerárquica de ubicaciones
+function buildLocationTree(data, parentId = null, depth = 0) {
+    let result = [];
+    data.filter(location => location.parent === parentId).forEach(location => {
+        result.push({ ...location, depth });
+        result = result.concat(buildLocationTree(data, location.id, depth + 1));
+    });
+    return result;
+}
+
+// Insertar opciones en el select
+function populateLocationsSelect(data) {
+    buildLocationTree(data).forEach(location => {
+        const option = document.createElement('option');
+        option.value = location.id;
+        option.textContent = `${'\u00A0\u00A0\u00A0'.repeat(location.depth) + '► '} ${location.name}`;
+        locationsList.appendChild(option);
+    });
+}
+
+// Llamada a la API para obtener los datos de los campos de selección de formulario base
+fetch("http://localhost:8080/projecteDAW/controllers/ArtworkController.php?getFormData", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+})
+.then(response => response.text()) // Leer la respuesta completa como texto
+.then(response => {
+    try {
+        const data = JSON.parse(response); // Convertir la respuesta a JSON
+        
+        console.log('Datos de formulario:', data);
+
+        let authorsHTML = '';
+        authorsHTML += `<option value="">Sense especificar</option>`;
+        data.message.authors.forEach(author => {
+            // console.log('Autor:', author.name);
+            authorsHTML += `<option value="${author.id}">${author.name}</option>`;
+        });
+        authorSelect.innerHTML = authorsHTML; // Insertamos las opciones en el select
+
+        let datationsHTML = '';
+        datationsHTML += `<option value="">Sense especificar</option>`;
+        data.message.datations.forEach(datation => {
+            // console.log('Datació:', datation.name);
+            datationsHTML += `<option value="${datation.id}">${datation.text} (${datation.start_date} fins ${datation.end_date == null ? 'actualitat' : datation.end_date})</option>`;
+        });
+        datationsList.innerHTML = datationsHTML; // Insertamos las opciones en el select
+
+        let materialsHTML = '';
+        materialsHTML += `<option value="">Sense especificar</option>`;
+        data.message.materials.forEach(material => {
+            // console.log('Material:', material.text);
+            materialsHTML += `<option value="${material.id}">${material.text}</option>`;
+        });
+        materialsList.innerHTML = materialsHTML; // Insertamos las opciones en el select
+
+        let genericClassificationHTML = '';
+        genericClassificationHTML += `<option value="">Sense especificar</option>`;
+        data.message.classifications.forEach(classification => {
+            // console.log('Clasificación:', classification.text);
+            genericClassificationHTML += `<option value="${classification.id}">${classification.text}</option>`;
+        });
+        genericClassificationList.innerHTML = genericClassificationHTML; // Insertamos las opciones en el select
+
+        let tecniquesHTML = '';
+        tecniquesHTML += `<option value="">Sense especificar</option>`;
+        data.message.tecniques.forEach(tecnique => {
+            // console.log('Tècnica:', tecnique.text);
+            tecniquesHTML += `<option value="${tecnique.id}">${tecnique.text}</option>`;
+        });
+        tecniquesList.innerHTML = tecniquesHTML; // Insertamos las opciones en el select
+
+        let conservationsStatusHTML = '';
+        conservationsStatusHTML += `<option value="">Sense especificar</option>`;
+        data.message.conservationstatus.forEach(status => {
+            // console.log('Estat de conservació:', status.text);
+            conservationsStatusHTML += `<option value="${status.id}">${status.text}</option>`;
+        });
+        conservationsStatusList.innerHTML = conservationsStatusHTML; // Insertamos las opciones en el select
+
+        let gettyMaterialCodeHTML = '';
+        gettyMaterialCodeHTML += `<option value="">Sense especificar</option>`;
+        data.message.materialgettycodes.forEach(code => {
+            // console.log('Codi de material Getty:', code.text);
+            gettyMaterialCodeHTML += `<option value="${code.id}">${code.text}</option>`;
+        });
+        gettyMaterialCodeList.innerHTML = gettyMaterialCodeHTML; // Insertamos las opciones en el select
+
+        let gettyMaterialHTML = '';
+        gettyMaterialHTML += `<option value="">Sense especificar</option>`;
+        data.message.materialgetty.forEach(material => {
+            // console.log('Material Getty:', material.text);
+            gettyMaterialHTML += `<option value="${material.id}">${material.text}</option>`;
+        });
+        gettyMaterialList.innerHTML = gettyMaterialHTML; // Insertamos las opciones en el select
+
+        let entryTypeHTML = '';
+        entryTypeHTML += `<option value="">Sense especificar</option>`;
+        data.message.entry.forEach(type => {
+            // console.log('Tipus d'entrada:', type.text);
+            entryTypeHTML += `<option value="${type.id}">${type.text}</option>`;
+        });
+        entryTypeList.innerHTML = entryTypeHTML; // Insertamos las opciones en el select
+
+        // Las ubicaciones se cargaran pero con algo más de código para crear un árbol de ubicaciones y que sea accesible para el usuario
+        let locationsHTML = '';
+        locationsHTML += `<option value="">Sense especificar</option>`;
+        locationsList.innerHTML = locationsHTML; // Insertamos la opción por defecto en el select
+        populateLocationsSelect(data.message.locations); // Insertamos todas las opciones en el select
+
+        let cancelCausesHTML = '';
+        cancelCausesHTML += `<option value="">Sense especificar</option>`;
+        data.message.cancelcauses.forEach(cause => {
+            // console.log('Causa de cancel·lació:', cause.text);
+            cancelCausesHTML += `<option value="${cause.id}">${cause.text}</option>`;
+        });
+        cancelCausesList.innerHTML = cancelCausesHTML; // Insertamos las opciones en el select
+    } catch (error) {
+        console.error("Error parsing response:", error);
+    }
+})
+.catch(error => {
+    console.error('Error: ', error);
+});

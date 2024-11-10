@@ -79,6 +79,85 @@
             }
         }
 
+        public function getFormData() {
+            $conn = $this->connect();
+            
+            $sql = "SELECT * FROM authors";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $authors = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+            $sql = "SELECT * FROM locations";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $locations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+            $sql = "SELECT * FROM materials";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $materials = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+            $sql = "SELECT * FROM conservationstatus";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $conservationstatus = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // Datations
+            $sql = "SELECT * FROM datations";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $datations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // Generic classifications
+            $sql = "SELECT * FROM genericclassifications";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $classifications = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // Tecniques
+            $sql = "SELECT * FROM tecniques";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $tecniques = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // Material Getty Codes
+            $sql = "SELECT * FROM materialgettycodes";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $materialgettycodes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // Material Getty
+            $sql = "SELECT * FROM materialgetty";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $materialgetty = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // Entry types
+            $sql = "SELECT * FROM entry";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $entry = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // Cancel causes
+            $sql = "SELECT * FROM cancelcauses";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $cancelcauses = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+            return [
+                'authors' => $authors,
+                'locations' => $locations,
+                'materials' => $materials,
+                'conservationstatus' => $conservationstatus,
+                'datations' => $datations,
+                'classifications' => $classifications,
+                'tecniques' => $tecniques,
+                'materialgettycodes' => $materialgettycodes,
+                'materialgetty' => $materialgetty,
+                'entry' => $entry,
+                'cancelcauses' => $cancelcauses
+            ];
+        }
         public function getInfo($limit, $offset, $filter = null) {
             $conn = $this->connect();
             
