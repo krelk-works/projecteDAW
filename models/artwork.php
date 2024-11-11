@@ -517,50 +517,155 @@
             require_once 'vendor/autoload.php';
         
             $conn = $this->connect();
-            $sql = "SELECT *
-                    FROM artworks";
+            $sql = "SELECT artworks.id, artworks.name, artworks.creation_date, artworks.image,
+                    artworks.description, authors.name AS author, artworks.id_letter, artworks.id_num1,
+                    artworks.id_num2, genericclassifications.text AS genericclassification, artworks.provenancecollection,
+                    artworks.height, artworks.title, materials.text AS material, tecniques.text AS tecnique, datations.start_date,
+                    datations.end_date, datations.text AS datation
+                    FROM artworks
+                    INNER JOIN authors ON artworks.author = authors.id
+                    INNER JOIN genericclassifications ON artworks.genericclassification = genericclassifications.id
+                    INNER JOIN materials ON artworks.material = materials.id
+                    INNER JOIN tecniques ON artworks.tecnique = tecniques.id
+                    INNER JOIN datations ON artworks.datation = datations.id";
             
             $stmt = $conn->prepare($sql);
             $stmt->execute();
-            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);  // Obtener todos los resultados
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
-            $html2pdf = new \Spipu\Html2Pdf\Html2Pdf('P', 'A4', 'es');
-            
+            $html2pdf = new \Spipu\Html2Pdf\Html2Pdf('P', 'A3', 'es');
+        
             $htmlContent = '
-            <html>
-                <head>
-                </head>
-                <body>
-                    <h1>Informe d\'obres</h1>
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nom</th>
-                                <th>Data de creació</th>
-                            </tr>
-                        </thead>
-                        <tbody>';
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Document</title>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        text-align: center;
+                    }
+                    .header {tecnique
+                        padding-top: 20px;
+                        padding-bottom: 20px;
+                        width: 100%;
+                        max-width: 630px;
+                        margin: 0 auto;
+                        text-align: center;
+                    }
+                    h2 {
+                        margin: 0;
+                        padding: 0;
+                        font-size: 18px;
+                        text-align: center;
+                    }
+                    img {
+                        max-width: 150px;
+                        max-height: 150px;
+                    }
+                    .main {
+                        width: 100%;
+                        max-width: 630px;
+                        margin: 0 auto;
+                        text-align: left;
+                    }
+                    table {
+                        width: 100%;
+                        margin: 10px 0;
+                        border-collapse: collapse;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    tr {
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    .label, .value {
+                        font-size: 14px;
+                        padding: 5px;
+                        vertical-align: top;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    .label {
+                        width: 50%;
+                        font-weight: bold;
+                        text-align: left;
+                    }
+                    .value {
+                        width: 50%;
+                        text-align: left;
+                    }
+                </style>
+            </head>
+            <body>';
             
             foreach ($data as $artwork) {
-                $htmlContent .= '
-                <tr>
-                    <td>' . $artwork["id_letter"] . $artwork["id_num1"] . $artwork["id_num2"] . '</td>
-                    <td>' . $artwork["name"] . '</td>
-                    <td>' . $artwork["creation_date"] . '</td>
-                </tr>';
+                $htmlContent .= '<div class="header">';
+                $htmlContent .= '<img src="' . $artwork['image'] . '" alt=""><br>';
+                $htmlContent .= '<h2><i>identificador: ' . $artwork['id_letter'] . $artwork['id_num1'] . '.' . $artwork['id_num2'] . '</i><br>';
+                $htmlContent .= '<strong>nom d\'obra: ' . $artwork['name'] . '</strong><br>';
+                $htmlContent .= '<b>autor: ' . $artwork['author'] . '</b><br>';
+                $htmlContent .= '<b>data de creacio: ' . $artwork['creation_date'] . '</b></h2>';
+                $htmlContent .= '</div>';
+                $htmlContent .= '<div class="main">';
+                $htmlContent .= '<table border="1">';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td class="label">descripció</td>';
+                $htmlContent .= '<td class="value">' . $artwork['description'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td class="label">classificació genérica</td>';
+                $htmlContent .= '<td class="value">' . $artwork['genericclassification'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td class="label">colecció de procedencia</td>';
+                $htmlContent .= '<td class="value">' . $artwork['provenancecollection'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td class="label">mides maximes (cm)</td>';
+                $htmlContent .= '<td class="value">' . $artwork['height'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td class="label">material</td>';
+                $htmlContent .= '<td class="value">' . $artwork['material'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td class="label">técnica</td>';
+                $htmlContent .= '<td class="value">' . $artwork['tecnique'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td class="label">title</td>';
+                $htmlContent .= '<td class="value">' . $artwork['title'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td class="label">data d\'inici</td>';
+                $htmlContent .= '<td class="value">' . $artwork['start_date'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td class="label">data fi</td>';
+                $htmlContent .= '<td class="value">' . $artwork['end_date'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td class="label">datacio</td>';
+                $htmlContent .= '<td class="value">' . $artwork['datation'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '</table>';
+                $htmlContent .= '</div>';
             }
-        
+            
             $htmlContent .= '
-                        </tbody>
-                    </table>
-                </body>
+            </body>
             </html>';
+            
         
             $html2pdf->writeHTML($htmlContent);
         
             return $html2pdf;
-        }        
+        }
+        
 
         public function searchArtwork($search){
             $conn = $this->connect();
