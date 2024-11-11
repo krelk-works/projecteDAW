@@ -250,7 +250,7 @@
             $searchTerm="%{$searchfilter}%";
 
             $conn = $this->connect();
-            $sql = "SELECT * FROM users WHERE username LIKE :searchfilter OR role LIKE :searchfilter OR email LIKE :searchfilter";
+            $sql = "SELECT id, username,email, first_name, last_name, role, profile_img FROM users WHERE username LIKE :searchfilter OR role LIKE :searchfilter OR email LIKE :searchfilter";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':searchfilter', $searchTerm);
             $stmt->execute();
