@@ -29,6 +29,20 @@
         $vocabularyController->deleteGenericClassification($_GET['delete_genericclassification']);
     }
 
+    if (isset($_GET['delete_material'])) {
+        $vocabularyController->deleteMaterial($_GET['delete_material']);
+    }
+
+    if (isset($_GET['delete_tecnique'])) {
+        $vocabularyController->deleteTecnique($_GET['delete_tecnique']);
+    }
+
+    if (isset($_GET['delete_getty'])) {
+        $vocabularyController->deleteGetty($_GET['delete_getty']);
+    }
+
+    
+
     if (isset($_GET['add_entry'])) {
         $vocabularyController->addEntry($_GET['add_entry']);
     }
@@ -48,6 +62,28 @@
     if (isset($_GET['add_expositiontype'])) {
         $vocabularyController->addExpositionType($_GET['add_expositiontype']);
     }
+
+    if (isset($_GET['add_author'])) {
+        $vocabularyController->addAuthor($_GET['add_author']);
+    }
+
+    if (isset($_GET['add_genericclassification'])) {
+        $vocabularyController->addGenericClassification($_GET['add_genericclassification']);
+    }
+
+    if (isset($_GET['add_material'])) {
+        $vocabularyController->addMaterial($_GET['add_material']);
+    }
+
+    if (isset($_GET['add_tecnique'])) {
+        $vocabularyController->addTecnique($_GET['add_tecnique']);
+    }
+
+    if (isset($_GET['add_getty'])) {
+        $vocabularyController->addGetty($_GET['add_getty']);
+    }
+
+
 ?>
 
 <div id="vocabulary-wrapper">

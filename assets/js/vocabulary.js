@@ -125,6 +125,69 @@ if (document.querySelector(".genericclassifications_delete_button")) {
     })
 }
 
+if (document.querySelector(".material_delete_button")) {
+    let listItems = document.querySelectorAll(".material_delete_button");
+    listItems.forEach((listItem) => {
+        listItem.addEventListener("click", () => {
+            let valueAttribute = listItem.getAttribute("value");
+            Swal.fire({
+                icon: 'warning',
+                title: 'Estàs segur en esborrar aquest element del vocabulari?',
+                showConfirmButton: true,
+                confirmButtonText: 'Si, esborrar',
+                showCancelButton: true,
+                cancelButtonText: 'Cancel·lar',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                   window.location.href = 'index.php?page=vocabulari' + '&delete_material=' + valueAttribute;
+                }
+            });
+        })
+    })
+}
+
+if (document.querySelector(".tecnique_delete_button")) {
+    let listItems = document.querySelectorAll(".tecnique_delete_button");
+    listItems.forEach((listItem) => {
+        listItem.addEventListener("click", () => {
+            let valueAttribute = listItem.getAttribute("value");
+            Swal.fire({
+                icon: 'warning',
+                title: 'Estàs segur en esborrar aquest element del vocabulari?',
+                showConfirmButton: true,
+                confirmButtonText: 'Si, esborrar',
+                showCancelButton: true,
+                cancelButtonText: 'Cancel·lar',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                   window.location.href = 'index.php?page=vocabulari' + '&delete_tecnique=' + valueAttribute;
+                }
+            });
+        })
+    })
+}
+
+if (document.querySelector(".getty_delete_button")) {
+    let listItems = document.querySelectorAll(".getty_delete_button");
+    listItems.forEach((listItem) => {
+        listItem.addEventListener("click", () => {
+            let valueAttribute = listItem.getAttribute("value");
+            Swal.fire({
+                icon: 'warning',
+                title: 'Estàs segur en esborrar aquest element del vocabulari?',
+                showConfirmButton: true,
+                confirmButtonText: 'Si, esborrar',
+                showCancelButton: true,
+                cancelButtonText: 'Cancel·lar',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                   window.location.href = 'index.php?page=vocabulari' + '&delete_getty=' + valueAttribute;
+                }
+            });
+        })
+    })
+}
+
 
 if (document.querySelector("#new_entry_type")) {
     let newEntryType = document.querySelector("#new_entry_type");
@@ -155,5 +218,45 @@ if (document.querySelector("#new_expositiontype")) {
     newEntryType.addEventListener("click", () => {
         let newText = document.querySelector("#new_expositiontype_value").value;
         window.location.href = 'index.php?page=vocabulari' + '&add_expositiontype=' + newText;
+    })
+}
+
+if (document.querySelector("#new_author")) {
+    let newEntryType = document.querySelector("#new_author");
+    newEntryType.addEventListener("click", () => {
+        let newText = document.querySelector("#new_author_value").value;
+        window.location.href = 'index.php?page=vocabulari' + '&add_author=' + newText;
+    })
+}
+
+if (document.querySelector("#new_genericclassifications")) {
+    let newEntryType = document.querySelector("#new_genericclassifications");
+    newEntryType.addEventListener("click", () => {
+        let newText = document.querySelector("#new_genericclassifications_value").value;
+        window.location.href = 'index.php?page=vocabulari' + '&add_genericclassification=' + newText;
+    })
+}
+
+if (document.querySelector("#new_material")) {
+    let newEntryType = document.querySelector("#new_material");
+    newEntryType.addEventListener("click", () => {
+        let newText = document.querySelector("#new_material_value").value;
+        window.location.href = 'index.php?page=vocabulari' + '&add_material=' + newText;
+    })
+}
+
+if (document.querySelector("#new_tecnique")) {
+    let newEntryType = document.querySelector("#new_tecnique");
+    newEntryType.addEventListener("click", () => {
+        let newText = document.querySelector("#new_tecnique_value").value;
+        window.location.href = 'index.php?page=vocabulari' + '&add_tecnique=' + newText;
+    })
+}
+
+if (document.querySelector("#new_getty")) {
+    let newEntryType = document.querySelector("#new_getty");
+    newEntryType.addEventListener("click", () => {
+        let newText = document.querySelector("#new_getty_value").value;
+        window.location.href = 'index.php?page=vocabulari' + '&add_getty=' + newText;
     })
 }

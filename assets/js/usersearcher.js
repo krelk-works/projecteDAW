@@ -16,7 +16,6 @@ if(document.querySelector('#search')){
         fetch('http://localhost:8080/projecteDAW/apis/usersAPI.php?search='+value)
         .then(response=>response.json())//Pasa la respuesta a formato JSON
         .then(data=>{
-            console.log(data);
             let HTMLCode=generateHTMLCode(data)
             document.querySelector(".list-container").innerHTML=HTMLCode
             isLoading = false
