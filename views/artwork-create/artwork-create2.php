@@ -1,4 +1,4 @@
-<form action="" method="POST" enctype="multipart/form-data" id="add-artwork-form">
+<form action="add-artwork.php" method="POST" enctype="multipart/form-data" id="add-artwork-form">
     <div id="artwork-create-container">
         <div class="artwork-create-header">
             <h1><i class="fa-regular fa-bookmark"></i> <span id="artwork-page-title">Nova obra</span></h1>
@@ -51,17 +51,17 @@
                         <option value="y">Y</option>
                         <option value="z">Z</option>
                     </select>
-                    <input class="custom-number-imput-1" type="number" name="" id="id_number"
-                        placeholder="Identificador" max="99999" min="10000">
-                    <input class="custom-number-imput-2" type="number" name="" id="id_sub_number" placeholder="Sub">
-                    <input class="custom-number-imput-3" type="text" name="" id="id_other"
+                    <input class="custom-number-imput-1" type="number" name="id_number" id="id_number"
+                        placeholder="Identificador" max="99999" min="1" required>
+                    <input class="custom-number-imput-2" type="number" name="id_sub_number" id="id_sub_number" placeholder="Sub">
+                    <input class="custom-number-imput-3" type="text" name="" id="id_other" name="id_other"
                         placeholder="Altres idenfiticadors">
                 </div>
                 <div class="acb-element-1-2">
                     <label class="element-1-2" for="object_name">Nom objecte</label>
                     <label class="element-1-2" for="artwork_title">Títol</label>
-                    <input type="text" class="element-1-2" id="object_name" placeholder="Nom objecte">
-                    <input type="text" class="element-1-2" placeholder="Títol" id="artwork_title">
+                    <input type="text" class="element-1-2" id="object_name" name="object_name" placeholder="Nom objecte">
+                    <input type="text" class="element-1-2" placeholder="Títol" id="artwork_title" name="artwork_title">
                 </div>
                 <div class="acb-element-1-1">
                     <label for="artwork_description">Descripció</label>

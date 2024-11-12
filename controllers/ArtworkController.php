@@ -332,5 +332,26 @@ class ArtworkController
         $data = $artwork->getArtworkList($ID);
         return $data;
     }
+
+    public function addNewArtwork($sqlfields, $documents, $additionalImages, $references)
+    {
+        $artwork = new Artwork();
+        $confirmation = $artwork->addNewArtwork($sqlfields);
+        if ($confirmation) {
+            $artworkId = $confirmation;
+
+            $documentsSaved = $artwork->addDocumentsForArtwork($artworkId, $documents);
+            $imagesSaved = $artwork->addAdditionalImagesForArtwork($artworkId, $additionalImages);
+            $referencesSaved = $artwork->addReferencesForArtwork($artworkId, $references);
+
+            if ($documentsSaved && $imagesSaved && $referencesSaved) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }
 ?>

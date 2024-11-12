@@ -500,17 +500,21 @@
             $conn = $this->connect();
             $sql = "";
             if ($letter) {
-                $sql = "SELECT id_num1 FROM artworks WHERE id_letter = :letter ORDER BY id_num1 DESC LIMIT 1";
+                $sql = "SELECT MAX(id_num1) AS max_id_num1 FROM artworks WHERE id_letter = :letter;";
             } else {
-                $sql = "SELECT id_num1 FROM artworks WHERE NOT id_letter ORDER BY id_num1 DESC LIMIT 1";
+                $sql = "SELECT MAX(id_num1) AS max_id_num1 FROM artworks WHERE id_letter IS NULL OR id_letter = '';";
             }
             $stmt = $conn->prepare($sql);
             if ($letter) {
                 $stmt->bindParam(':letter', $letter, PDO::PARAM_STR);
             }
-            $stmt->execute();
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $row['id_num1'];
+            try {
+                $stmt->execute();
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                return $row['max_id_num1'];
+            } catch (PDOException $e) {
+                return false;
+            }
         }
 
         public function generatePDF() {
@@ -669,7 +673,7 @@
 
         public function searchArtwork($search){
             $conn = $this->connect();
-            $sql = "SELECT artworks.id, artworks.name AS artwork_name, artworks.creation_date, artworks.cancelcause AS artwork_cancelcause, authors.name AS author_name, conservationstatus.text, locations.name AS location_name, artworks.image AS artwork_image
+            $sql = "SELECT artworks.id, artworks.title AS artwork_name, artworks.creation_date, authors.name AS author_name, conservationstatus.text, locations.name AS location_name, artworks.image AS artwork_image
                     FROM artworks
                     INNER JOIN authors ON artworks.author = authors.id
                     INNER JOIN locations ON artworks.location = locations.id
@@ -678,8 +682,108 @@
             $stmt = $conn->prepare($sql);
             $searchTerm = "%" . $search . "%";
             $stmt->bindParam(':search', $searchTerm, PDO::PARAM_STR);
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            try {
+                $stmt->execute();
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                // echo $e->getMessage();
+                return false;
+            }
+        }
+
+        public function addNewArtwork($sqlfields) {
+            $conn = $this->connect();
+
+            // Extrae las columnas y los placeholders de los datos
+            $columns = implode(", ", array_keys($sqlfields));
+            $placeholders = ":" . implode(", :", array_keys($sqlfields));
+
+            // Prepara la sentencia SQL de inserción
+            $sql = "INSERT INTO artworks ($columns) VALUES ($placeholders)";
+            $stmt = $conn->prepare($sql);
+
+            // echo $sql;
+
+            // Asigna los valores del array $data a los placeholders en la consulta
+            foreach ($sqlfields as $key => $value) {
+                $stmt->bindValue(":$key", $value);
+            }
+
+            try {
+                // Ejecuta la consulta y verifica si se realizó correctamente
+                if ($stmt->execute()) {
+                    return $conn->lastInsertId();
+                } else {
+                    return false;
+                }
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+                return false;
+            }
+        }
+
+        public function addDocumentsForArtwork($id, $documents) {
+            $conn = $this->connect();
+
+            // Prepara la sentencia SQL de inserción
+            $sql = "INSERT INTO documents (artwork, URL) VALUES (:artwork, :document)";
+            $stmt = $conn->prepare($sql);
+
+            try {
+                // Asigna los valores del array $data a los placeholders en la consulta
+                foreach ($documents as $document) {
+                    $stmt->bindValue(':artwork', $id);
+                    $stmt->bindValue(':document', $document);
+                    $stmt->execute();
+                }
+                return true;
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+                return false;
+            }
+        }
+
+        public function addAdditionalImagesForArtwork($id, $images) {
+            $conn = $this->connect();
+
+            // Prepara la sentencia SQL de inserción
+            $sql = "INSERT INTO images (artwork, URL) VALUES (:artwork, :image)";
+            $stmt = $conn->prepare($sql);
+
+            try {
+                // Asigna los valores del array $data a los placeholders en la consulta
+                foreach ($images as $image) {
+                    $stmt->bindValue(':artwork', $id);
+                    $stmt->bindValue(':image', 'uploads/'.$image);
+                    $stmt->execute();
+                }
+                return true;
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+                return false;
+            }
+        }
+
+        public function addReferencesForArtwork($id, $references) {
+            $conn = $this->connect();
+
+            // Prepara la sentencia SQL de inserción
+            $sql = "INSERT INTO refs (label, URL, artwork) VALUES (:label, :URL, :artwork)";
+            $stmt = $conn->prepare($sql);
+
+            try {
+                // Asigna los valores del array $data a los placeholders en la consulta
+                foreach ($references as $reference) {
+                    $stmt->bindValue(':artwork', $id);
+                    $stmt->bindValue(':label', $reference['name']);
+                    $stmt->bindValue(':URL', $reference['url']);
+                    $stmt->execute();
+                }
+                return true;
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+                return false;
+            }
         }
     }
 ?>

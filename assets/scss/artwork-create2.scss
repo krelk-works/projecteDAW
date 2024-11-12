@@ -167,18 +167,18 @@
                 flex-wrap: wrap;
                 justify-content: center;
                 align-items: center;
-                width: 120px;
-                height: 120px;
+                width: 42px !important;
+                height: 43px !important;
                 // background-color: #007bff;
 
                 button {
                     border-radius: 50%;
-                    width: 50px;
-                    height: 50px;
+                    width: 42px !important;
+                    height: 21px !important;
                     // align-self: center;
 
                     i {
-                        transform: translateX(2px);
+                        transform: translateX(2.4px);
                     }
                 }
 
@@ -216,7 +216,7 @@
                 margin-right: 1%;
                 margin-bottom: 1%;
                 margin-top: 1%;
-                background-color: chocolate;
+                // background-color: chocolate;
                 overflow-x: hidden;
                 cursor: pointer;
 

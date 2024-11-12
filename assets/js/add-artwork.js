@@ -1,7 +1,7 @@
 console.log('add-artwork.js loaded');
 
 let formdata = {
-    'id_number_min': 10000, // Valor mínimo de la letra del identificador
+    'id_number_min': 1, // Valor mínimo de la letra del identificador
     'id_number_max': 99999, // Valor máximo de la letra del identificador
 };
 
@@ -115,8 +115,62 @@ if (document.getElementById('add-default-image')) {
 }
 /* FIN DE LA FUNCIONALIDAD */
 
+/** Funcionalidad para rellenar el numero de identificador (registro) con ceros */
+function padIdentifierWithZeros(number) {
+    // Comprobar si el valor es un número
+    if (isNaN(number)) {
+        console.error("Error: El valor no es un número.");
+        return null; // Devuelve null en caso de error
+    }
+
+    // Comprobar si el número está dentro del rango permitido
+    if (number < 1 || number > 99999) {
+        console.error("Error: El número está fuera del rango permitido (1 - 99999).");
+        return null; // Devuelve null en caso de error
+    }
+
+    if (number.toString().length > 5) {
+        console.log('Número mayor a 5 dígitos:', number);
+        const digitnumber = Number(number);
+        return digitnumber.toString().padStart(5, '0');
+    }
+
+    // Si las comprobaciones son correctas, agrega ceros a la izquierda hasta 5 dígitos
+    return number.toString().padStart(5, '0');
+}
+
+function padSubWithZeros(number) {
+    if (!number) {
+        return;
+    }
+    // Comprobar si el valor es un número
+    if (isNaN(number)) {
+        console.error("Error: El valor no es un número.");
+        return null; // Devuelve null en caso de error
+    }
+
+    // Comprobar si el número está dentro del rango permitido
+    if ((number < 1 || number > 99) && number != '' && number != 0) {
+        console.error("Error: El número está fuera del rango permitido (1 - 99).");
+        return null; // Devuelve null en caso de error
+    }
+
+    if (number.toString().length > 2) {
+        const digitnumber = Number(number);
+        return digitnumber.toString().padStart(2, '0');
+    }
+
+    // if (number.toString().length === 1 && number == 0) {
+    //     return '01';
+    // }
+
+    // Si las comprobaciones son correctas, agrega ceros a la izquierda hasta 5 dígitos
+    return number.toString().padStart(2, '0');
+}
+
 /** Funcionalidad de la autocompletar el identificar según la letra que se haya asignado */
 function autocompleteId(letter = null) {
+    if (letter) letter = letter.toUpperCase();
     fetch("http://localhost:8080/projecteDAW/controllers/ArtworkController.php?getNextId", {
         method: "POST",
         headers: {
@@ -128,10 +182,12 @@ function autocompleteId(letter = null) {
     .then(response => {
         try {
             const data = JSON.parse(response);
+            console.log('Respuesta de la API:', data);
             const nexId = Number(data.message) + 1;
+            console.log('Siguiente ID:', nexId);
             const idNumber = document.getElementById('id_number');
             const idNumberSub = document.getElementById('id_sub_number');
-            idNumber.value = nexId;
+            idNumber.value = padIdentifierWithZeros(nexId);
 
             // Establecemos el valor mínimo del campo como el siguiente ID para evitar errores de validación
             idNumber.setAttribute('min', nexId);
@@ -179,7 +235,7 @@ function validateIdentifiers(letter, number, subnumber) {
         return;
     }
 
-    if ((subnumber < 10 || subnumber > 99) && subnumber != '') {
+    if ((subnumber < 0 || subnumber > 99) && subnumber != '') {
         console.log('El subnúmero no está en el rango permitido:', subnumber);
         identifierElements.forEach(element => {
             element.classList.remove('is-valid');
@@ -237,12 +293,8 @@ if (document.getElementById('id_letter') && document.getElementById('id_number')
     const idNumber = document.getElementById('id_number');
     const idNumberSub = document.getElementById('id_sub_number');
 
-    // Autocargamos el identificador según la letra seleccionada
+    // Autocargamos el identificador según la letra seleccionada al cargar la página
     debounce(autocompleteId(idLetter.value), 500);
-
-    // idNumber.classList.forEach(clase => {
-    //     console.log('Clase:', clase);
-    // });
 
     idLetter.addEventListener('change', function (element) {
         debounce(autocompleteId(element.target.value), 500);
@@ -258,17 +310,20 @@ if (document.getElementById('id_letter') && document.getElementById('id_number')
         debounce(validateIdentifiers(idLetter.value, idNumber.value, element.target.value), 2000);
     });
 
-    // idNumberSub.addEventListener('input', function (element) {
-    //     if (!isValidId(idLetter.value, idNumber.value, element.target.value)) {
-    //         // Añadimos la clase de campo invalido
-    //         element.target.classList.remove('is-valid');
-    //         element.target.classList.add('is-invalid');
-    //     } else {
-    //         // Añadimos la clase de campo valido
-    //         element.target.classList.remove('is-invalid');
-    //         element.target.classList.add('is-valid');
-    //     }
-    // });
+    idNumberSub.addEventListener('change', function (element) {
+        if (element.target.value === '' || !element.target.value) {
+            return;
+        }
+        if ((Number(element.target.value) > -1 && Number(element.target.value) < 100) || element.target.value.toString().length < 2) {
+            idNumberSub.value = padSubWithZeros(element.target.value);
+        }
+    });
+
+    idNumber.addEventListener('change', function (element) {
+        if ((element.target.value && Number(element.target.value) > 0 && Number(element.target.value) < 100000) || element.target.value.toString().length < 5) {
+            idNumber.value = padIdentifierWithZeros(element.target.value);
+        }
+    });
 }
 
 /** Funcionalidad de titulo de la obra sincronizado con el titulo general de la página de creación de obra */
@@ -754,7 +809,7 @@ if (document.getElementById('add-artwork-form')) {
     let form = document.getElementById('add-artwork-form');
 
     form.addEventListener('submit', function (event) {
-        let warningsHTML = '<ul>';
+        let warningsHTML = '<ul style="text-align:left">';
         let countWarnings = 0;
         let errorsHTML = '<ul style="text-align:left">';
         let countErrors = 0;
@@ -765,7 +820,7 @@ if (document.getElementById('add-artwork-form')) {
 
         // Validamos que se haya seleccionado una imagen por defecto
         if (defaultImage.files.length === 0) {
-            errorsHTML += '<li>Has de seleccionar una imatge principal per la teva obra.</li>';
+            errorsHTML += '<li>No has especificat cap imatge principal.</li>';
             countErrors++;
         }
 
@@ -788,19 +843,211 @@ if (document.getElementById('add-artwork-form')) {
 
 
         if (objectName.value === '') {
-            errorsHTML += '<li>Has d\'especificar un nom per l\'objecte.</li>';
+            errorsHTML += '<li>No has especificat cap nom d\'objecte.</li>';
             countErrors++;
         }
 
         if (artworkTitle.value === '') {
-            errorsHTML += '<li>Has d\'especificar un títol per la teva obra.</li>';
+            errorsHTML += '<li>No has especificat cap títol.</li>';
             countErrors++;
         }
 
         if (artworkDescription.value === '') {
-            errorsHTML += '<li>Has d\'especificar una descripció per la teva obra.</li>';
+            errorsHTML += '<li>No has especificat cap descripció.</li>';
             countErrors++;
         }
+
+        // Validamos los detalles de la obra
+        const authorNames = document.getElementById('author_names');
+        const datationsList = document.getElementById('datations_list');
+        const registerdate = document.getElementById('register_date');
+        const createddate = document.getElementById('created_date');
+        const artworkbibliography = document.getElementById('artwork_bibliography');
+
+        if (authorNames.value === '') {
+            errorsHTML += '<li>No has especificat cap autor.</li>';
+            countErrors++;
+        }
+
+        if (datationsList.value === '') {
+            errorsHTML += '<li>No has especificat cap datació.</li>';
+            countErrors++;
+        }
+
+        if (registerdate.value === '') {
+            errorsHTML += '<li>No has especificat cap data de registre.</li>';
+            countErrors++;
+        }
+
+        if (createddate.value === '') {
+            errorsHTML += '<li>No has especificat cap data de creació.</li>';
+            countErrors++;
+        }
+
+        if (artworkbibliography.value === '') {
+            errorsHTML += '<li>No has especificat cap bibliografia.</li>';
+            countErrors++;
+        }
+
+        // Validamos las características de la obra
+        const artwork_hight = document.getElementById('artwork_height');
+        const artwork_width = document.getElementById('artwork_width');
+        const artwork_depth = document.getElementById('artwork_depth');
+
+        if ((artwork_hight.value === '' || artwork_width.value === '' || artwork_depth.value === '') || (artwork_hight.value <= '0' || artwork_width.value <= '0' || artwork_depth.value <= '0')) {
+            errorsHTML += '<li>No has especificat una mida valida.</li>';
+            countErrors++;
+        }
+
+        const artwork_price = document.getElementById('artwork_price');
+        const artwork_quantity = document.getElementById('artwork_quantity');
+        const artwork_material = document.getElementById('materials_list');
+
+        if (artwork_price.value === '' || artwork_price.value <= '0') {
+            errorsHTML += '<li>No has especificat un preu valid.</li>';
+            countErrors++;
+        }
+
+        if (artwork_quantity.value === '' || artwork_quantity.value <= '0') {
+            errorsHTML += '<li>No has especificat una quantitat valida.</li>';
+            countErrors++;
+        }
+
+        if (artwork_material.value === '') {
+            errorsHTML += '<li>No has especificat cap material.</li>';
+            countErrors++;
+        }
+
+        const artwork_classification = document.getElementById('generic_classification');
+        const artwork_tecnique = document.getElementById('tecniques_list');
+        const artwork_conservation = document.getElementById('conservations_list');
+
+        if (artwork_classification.value === '') {
+            errorsHTML += '<li>No has especificat cap classificació.</li>';
+            countErrors++;
+        }
+
+        if (artwork_tecnique.value === '') {
+            errorsHTML += '<li>No has especificat cap tècnica.</li>';
+            countErrors++;
+        }
+
+        if (artwork_conservation.value === '') {
+            errorsHTML += '<li>No has especificat cap estat de conservació.</li>';
+            countErrors++;
+        }
+
+        const artwork_getty_material_code = document.getElementById('getty_material_codes_list');
+        const artwork_getty_material = document.getElementById('getty_material_list');
+
+        if (artwork_getty_material_code.value === '') {
+            errorsHTML += '<li>No has especificat cap codi de material Getty.</li>';
+            countErrors++;
+        }
+
+        if (artwork_getty_material.value === '') {
+            errorsHTML += '<li>No has especificat cap material Getty.</li>';
+            countErrors++;
+        }
+
+        // Validamos la procedencia de la obra
+        const origin_museum = document.getElementById('origin_museum');
+        const origin_collection = document.getElementById('origin_collection');
+        const origin_place = document.getElementById('origin_place');
+        const entry_type = document.getElementById('entry_type_list');
+
+        if (origin_museum.value === '') {
+            errorsHTML += '<li>No has especificat cap museu d\'origen.</li>';
+            countErrors++;
+        }
+
+        if (origin_collection.value === '') {
+            errorsHTML += '<li>No has especificat cap col·lecció d\'origen.</li>';
+            countErrors++;
+        }
+
+        if (origin_place.value === '') {
+            errorsHTML += '<li>No has especificat cap lloc d\'origen.</li>';
+            countErrors++;
+        }
+
+        if (entry_type.value === '') {
+            errorsHTML += '<li>No has especificat cap tipus d\'entrada.</li>';
+            countErrors++;
+        }
+
+        // Validamos la ubicación de la obra
+        const artwork_location = document.getElementById('locations_list');
+        const execution_place = document.getElementById('execution_place');
+
+        if (artwork_location.value === '') {
+            errorsHTML += '<li>No has especificat cap ubicació.</li>';
+            countErrors++;
+        }
+
+        if (execution_place.value === '') {
+            errorsHTML += '<li>No has especificat cap lloc d\'execució.</li>';
+            countErrors++;
+        }
+
+        // Validamos otros datos de la obra
+        const tirage = document.getElementById('tirage');
+        const artwork_cancel_cause = document.getElementById('cancel_causes_list');
+
+        if (tirage.value === '') {
+            errorsHTML += '<li>No has especificat cap tiratge.</li>';
+            countErrors++;
+        }
+
+        // Validamos la historia de la obra
+        const artwork_history = document.getElementById('artwork_history');
+
+        if (artwork_history.value === '') {
+            errorsHTML += '<li>No has especificat cap història.</li>';
+            countErrors++;
+        }
+
+        // Revisamos si se han añadido documentos asociados a la obra, imagenes adicionales y referencias
+        const hiddenInputs = document.getElementById('hidden_inputs');
+
+        let documentCount = 0;
+        let additionalImageCount = 0;
+        // console.log('Inputs ocultos:', hiddenInputs.children.length);
+
+        // hiddenInputs.forEach(input => {
+        //     console.log('Input:', input);
+        // });
+
+        // Expresiones regulares para los patrones "document_x" y "additional_image_x"
+        const documentPattern = /^document_\d+$/;
+        const additionalImagePattern = /^additional_image_\d+$/;
+
+        hiddenInputs.querySelectorAll("input").forEach(input => {
+            // Comprueba si el id del input coincide con el patrón "document_x"
+            if (documentPattern.test(input.id)) {
+                documentCount++;
+            }
+            // Comprueba si el id del input coincide con el patrón "additional_image_x"
+            if (additionalImagePattern.test(input.id)) {
+                additionalImageCount++;
+            }
+        });
+
+        if (documentCount === 0) {
+            warningsHTML += '<li>No has pujat cap document associat.</li>';
+            countWarnings++;
+        }
+
+        if (additionalImageCount === 0) {
+            warningsHTML += '<li>No has pujat cap imatge addicional.</li>';
+            countWarnings++;
+        }
+
+
+        // if (artwork_cancel_cause.value === '') {
+        //     waHTML += '<li>No has especificat cap causa de cancel·lació.</li>';
+        //     countErrors++;
+        // }
 
         // Cerramos la lista de advertencias
         warningsHTML += '</ul>';
@@ -813,7 +1060,19 @@ if (document.getElementById('add-artwork-form')) {
             Swal.fire({
                 title: 'Advertències',
                 icon: 'warning',
-                html: warningsHTML
+                html: warningsHTML,
+                showCancelButton: true,
+                confirmButtonText: 'Continuar',
+                cancelButtonText: 'Cancel·lar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const idNumber = document.getElementById('id_number');
+                    const idSubNumber = document.getElementById('id_sub_number');
+
+                    idNumber.value = Number(idNumber.value);
+                    idSubNumber.value = idSubNumber.value ? Number(idSubNumber.value) : '';
+                    form.submit();
+                }
             });
         } else {
             // Mostramos la alerta de errores si los hay
@@ -824,6 +1083,11 @@ if (document.getElementById('add-artwork-form')) {
                     html: errorsHTML
                 });
             } else {
+                const idNumber = document.getElementById('id_number');
+                const idSubNumber = document.getElementById('id_sub_number');
+
+                idNumber.value = Number(idNumber.value);
+                idSubNumber.value = idSubNumber.value ? Number(idSubNumber.value) : '';
                 // Enviamos el formulario si no hay errores
                 form.submit();
             }
