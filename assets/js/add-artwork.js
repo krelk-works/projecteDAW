@@ -337,7 +337,7 @@ fetch("http://localhost:8080/projecteDAW/controllers/ArtworkController.php?getFo
     try {
         const data = JSON.parse(response); // Convertir la respuesta a JSON
         
-        console.log('Datos de formulario:', data);
+        // console.log('Datos de formulario:', data);
 
         let authorsHTML = '';
         authorsHTML += `<option value="">Sense especificar</option>`;
@@ -431,3 +431,402 @@ fetch("http://localhost:8080/projecteDAW/controllers/ArtworkController.php?getFo
 .catch(error => {
     console.error('Error: ', error);
 });
+/* FIN DE LA FUNCIONALIDAD */
+
+// Variables usadas para la funcionalidad de añadir documentos asociados a la obra
+
+let currentDocumentIndex = 0;
+
+/** Funcionalidad de agregar o eliminar documentos asociados a la obra */
+if (document.getElementById('add_documents_button')) {
+    const addDocumentsButton = document.getElementById('add_documents_button');
+
+    //addDocumentsButton.addEventListener('click', function (event) {
+        // event.preventDefault();
+        // const documentsList = document.getElementById('documents_list');
+        // const documentTemplate = document.getElementById('document_template');
+        // const newDocument = documentTemplate.cloneNode(true);
+        // newDocument.removeAttribute('id');
+        // newDocument.style.display = 'block';
+        // documentsList.appendChild(newDocument);
+    //});
+}
+
+// Inicializamos el índice de documentos
+let documentsIndex = 0;
+
+// Función para agregar un nuevo input de tipo file y mostrar la vista previa del archivo
+function addDocumentInput() {
+    // Obtenemos el contenedor donde se almacenarán los inputs ocultos
+    const hiddenInputsContainer = document.getElementById("hidden_inputs");
+
+    // Seleccionamos el contenedor principal donde se agregarán las vistas previas
+    const mainPreviewContainer = document.querySelector(".artwork-create-box-multimedia");
+
+    // Creamos el nuevo input oculto con restricción de tipos de documentos
+    const newInput = document.createElement("input");
+    newInput.type = "file";
+    newInput.id = `document_${documentsIndex}`;
+    newInput.name = `document_${documentsIndex}`;
+    newInput.hidden = true;
+    newInput.accept = ".txt, .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx"; // Restricción de tipos de archivo
+
+    // Añadimos el nuevo input al contenedor oculto
+    hiddenInputsContainer.appendChild(newInput);
+
+    // Escuchamos el cambio de archivo del input para mostrar la vista previa
+    newInput.addEventListener("change", function () {
+        if (newInput.files && newInput.files[0]) {
+            const file = newInput.files[0];
+
+            // Crear el div con clase multimedia-content que contendrá la vista previa
+            const outerContainer = document.createElement("div");
+            outerContainer.classList.add("multimedia-content");
+
+            // Crear el contenedor interno para la imagen y el nombre del archivo
+            const filePreviewContainer = document.createElement("div");
+            filePreviewContainer.style.width = "120px";
+            filePreviewContainer.style.height = "auto";
+            filePreviewContainer.style.display = "flex";
+            filePreviewContainer.style.flexDirection = "column";
+            filePreviewContainer.style.alignItems = "center";
+            filePreviewContainer.setAttribute("data-input-id", newInput.id); // Asociar el contenedor al id del input
+
+            // Crear un icono o imagen genérica para documentos
+            const docIcon = document.createElement("img");
+            docIcon.src = "assets/img/icono-documento.png"; // Cambia a la ruta de tu ícono de documento
+            docIcon.alt = "Vista previa del documento";
+            docIcon.style.width = "100px";
+            docIcon.style.height = "100px";
+
+            // Crear el nombre del archivo
+            const fileName = document.createElement("p");
+            fileName.textContent = `${file.name}`;
+            fileName.style.fontSize = "12px";
+            fileName.style.textAlign = "center";
+
+            // Añadir el icono y el nombre al contenedor de vista previa
+            filePreviewContainer.appendChild(docIcon);
+            filePreviewContainer.appendChild(fileName);
+
+            // Añadir el contenedor de vista previa al div con clase multimedia-content
+            outerContainer.appendChild(filePreviewContainer);
+
+            // Insertar la nueva vista previa al principio del contenedor principal
+            mainPreviewContainer.insertBefore(outerContainer, mainPreviewContainer.firstChild);
+
+            // Añadir evento para eliminar el archivo y la vista previa al hacer clic en la imagen
+            docIcon.addEventListener("click", function () {
+                // SweetAlert para confirmar la eliminación del archivo
+                Swal.fire({
+                    title: "Estas segur que vols eliminar aquest document?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Si, eliminar",
+                    cancelButtonText: "Cancel·lar",
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        // Eliminamos el input y el contenedor de vista previa asociados
+                        const inputToRemove = document.getElementById(filePreviewContainer.getAttribute("data-input-id"));
+                        inputToRemove?.remove();
+                        outerContainer.remove();
+                    }
+                });                
+            });
+        }
+    });
+
+    // Simulamos el clic para abrir el selector de archivos
+    newInput.click();
+
+    // Aumentamos el índice para el próximo archivo
+    documentsIndex++;
+}
+
+// Asignamos el evento al botón de agregar documentos
+document.getElementById("add_documents_button").addEventListener("click", addDocumentInput);
+
+// Inicializamos el índice de imágenes adicionales
+let additionalImagesIndex = 0;
+
+// Función para agregar un nuevo input de tipo file y mostrar la vista previa de la imagen asociada
+function addAdditionalImageInput() {
+    // Obtenemos el contenedor donde se almacenarán los inputs ocultos
+    const hiddenInputsContainer = document.getElementById("hidden_inputs");
+
+    // Seleccionamos el segundo contenedor principal para las imágenes adicionales
+    const additionalPreviewContainer = document.querySelectorAll(".artwork-create-box-multimedia")[1];
+
+    // Creamos el nuevo input oculto con restricción de tipos de imágenes
+    const newInput = document.createElement("input");
+    newInput.type = "file";
+    newInput.id = `additional_image_${additionalImagesIndex}`;
+    newInput.name = `additional_image_${additionalImagesIndex}`;
+    newInput.hidden = true;
+    newInput.accept = "image/png, image/jpeg, image/jpg"; // Restricción a tipos de imagen
+
+    // Añadimos el nuevo input al contenedor oculto
+    hiddenInputsContainer.appendChild(newInput);
+
+    // Escuchamos el cambio de archivo del input para mostrar la vista previa
+    newInput.addEventListener("change", function () {
+        if (newInput.files && newInput.files[0]) {
+            const file = newInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                // Crear el div con clase multimedia-content que contendrá la vista previa
+                const outerContainer = document.createElement("div");
+                outerContainer.classList.add("multimedia-content");
+
+                // Crear el contenedor interno para la imagen y el nombre del archivo
+                const imagePreviewContainer = document.createElement("div");
+                imagePreviewContainer.style.width = "120px";
+                imagePreviewContainer.style.height = "auto";
+                imagePreviewContainer.style.display = "flex";
+                imagePreviewContainer.style.flexDirection = "column";
+                imagePreviewContainer.style.alignItems = "center";
+                imagePreviewContainer.setAttribute("data-input-id", newInput.id); // Asociar el contenedor al id del input
+
+                // Crear la vista previa de la imagen real seleccionada
+                const imgPreview = document.createElement("img");
+                imgPreview.src = e.target.result; // Vista previa real de la imagen
+                imgPreview.alt = "Vista previa de la imagen";
+                imgPreview.style.width = "100px";
+                imgPreview.style.height = "100px";
+
+                // Crear el nombre del archivo
+                const fileName = document.createElement("p");
+                fileName.textContent = `${file.name}`;
+                fileName.style.fontSize = "12px";
+                fileName.style.textAlign = "center";
+
+                // Añadir la imagen de vista previa y el nombre al contenedor de vista previa
+                imagePreviewContainer.appendChild(imgPreview);
+                imagePreviewContainer.appendChild(fileName);
+
+                // Añadir el contenedor de vista previa al div con clase multimedia-content
+                outerContainer.appendChild(imagePreviewContainer);
+
+                // Insertar la nueva vista previa al principio del contenedor principal
+                additionalPreviewContainer.insertBefore(outerContainer, additionalPreviewContainer.firstChild);
+
+                // Añadir evento para eliminar el archivo y la vista previa al hacer clic en la imagen
+                imgPreview.addEventListener("click", function () {
+                    // SweetAlert para confirmar la eliminación del archivo
+                    Swal.fire({
+                        title: "Estas segur que vols eliminar aquesta imatge?",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Si, eliminar",
+                        cancelButtonText: "Cancel·lar",
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Eliminamos el input y el contenedor de vista previa asociados
+                            const inputToRemove = document.getElementById(imagePreviewContainer.getAttribute("data-input-id"));
+                            inputToRemove?.remove();
+                            outerContainer.remove();
+                        }
+                    });
+                });
+            };
+
+            reader.readAsDataURL(file); // Lee la imagen para mostrar la vista previa
+        }
+    });
+
+    // Simulamos el clic para abrir el selector de archivos
+    newInput.click();
+
+    // Aumentamos el índice para la próxima imagen adicional
+    additionalImagesIndex++;
+}
+
+// Asignamos el evento al botón de agregar imágenes adicionales en el segundo contenedor multimedia
+document.querySelectorAll(".artwork-create-box-multimedia .multimedia-add-content button")[1]
+    .addEventListener("click", addAdditionalImageInput);
+
+// Inicializamos el índice de referencias
+let referenceIndex = 0;
+
+// Función para agregar una nueva referencia tras la confirmación del usuario en SweetAlert
+function addReference() {
+    // SweetAlert para ingresar los datos de la nueva referencia
+    Swal.fire({
+        title: "Agregar Referencia",
+        html:
+            '<input id="reference-name" class="swal2-input" placeholder="Nom referència">' +
+            '<input id="reference-url" class="swal2-input" style="width: 80%;" placeholder="URL">',
+        showCancelButton: true,
+        confirmButtonText: "Agregar",
+        cancelButtonText: "Cancelar",
+        preConfirm: () => {
+            const name = Swal.getPopup().querySelector("#reference-name").value;
+            const url = Swal.getPopup().querySelector("#reference-url").value;
+            if (!name || !url) {
+                Swal.showValidationMessage("Por favor, completa ambos campos");
+                return false;
+            }
+            return { name, url };
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            createReferenceElement(result.value.name, result.value.url);
+        }
+    });
+}
+
+// Función para crear y agregar un nuevo elemento de referencia en el contenedor de referencias
+function createReferenceElement(name, url) {
+    // Seleccionamos el contenedor principal para las referencias
+    const referenceContainer = document.querySelectorAll(".artwork-create-box-multimedia")[2];
+
+    // Crear el contenedor para la referencia
+    const referenceElement = document.createElement("div");
+    referenceElement.classList.add("reference-element");
+    referenceElement.style.display = "flex";
+    referenceElement.style.alignItems = "center";
+    referenceElement.style.marginBottom = "10px";
+    referenceElement.setAttribute("data-index", referenceIndex);
+
+    // Crear el primer input para el nombre de la referencia
+    const nameInput = document.createElement("input");
+    nameInput.type = "text";
+    nameInput.value = name;
+    nameInput.style.width = "20%";
+    nameInput.style.marginRight = "5px";
+    nameInput.readOnly = true;
+    nameInput.setAttribute("id", "reference_name_"+referenceIndex);
+    nameInput.setAttribute("name", "reference_name_"+referenceIndex);
+
+    // Crear el segundo input para el URL de la referencia
+    const urlInput = document.createElement("input");
+    urlInput.type = "text";
+    urlInput.value = url;
+    urlInput.style.width = "70%";
+    urlInput.style.marginRight = "5px";
+    urlInput.readOnly = true;
+    urlInput.setAttribute("id", "reference_url_"+referenceIndex);
+    urlInput.setAttribute("name", "reference_url_"+referenceIndex);
+
+    // Crear el botón de eliminación
+    const deleteButton = document.createElement("button");
+    deleteButton.style.width = "10%";
+    deleteButton.innerHTML = '<i class="fa fa-minus"></i>';
+    deleteButton.classList.add("delete-button");
+
+    // Agregar el evento de eliminación con SweetAlert
+    deleteButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        Swal.fire({
+            title: "¿Estás seguro que deseas eliminar esta referencia?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Si, eliminar",
+            cancelButtonText: "Cancelar",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                referenceElement.remove();
+            }
+        });
+    });
+
+    // Añadir los elementos al contenedor de la referencia
+    referenceElement.appendChild(nameInput);
+    referenceElement.appendChild(urlInput);
+    referenceElement.appendChild(deleteButton);
+
+    // Insertar la nueva referencia al inicio del contenedor de referencias
+    referenceContainer.insertBefore(referenceElement, referenceContainer.firstChild);
+
+    // Incrementamos el índice para la próxima referencia
+    referenceIndex++;
+}
+
+// Asignamos el evento al botón de agregar referencia en el contenedor de referencias
+document.querySelectorAll(".artwork-create-box-multimedia .multimedia-add-content button")[2]
+    .addEventListener("click", addReference);
+
+
+// Validaciones del formulario
+if (document.getElementById('add-artwork-form')) {
+    let form = document.getElementById('add-artwork-form');
+
+    form.addEventListener('submit', function (event) {
+        let warningsHTML = '<ul>';
+        let countWarnings = 0;
+        let errorsHTML = '<ul style="text-align:left">';
+        let countErrors = 0;
+
+        event.preventDefault();
+
+        const defaultImage = document.getElementById('defaultimage');
+
+        // Validamos que se haya seleccionado una imagen por defecto
+        if (defaultImage.files.length === 0) {
+            errorsHTML += '<li>Has de seleccionar una imatge principal per la teva obra.</li>';
+            countErrors++;
+        }
+
+        // Validamos que el número de registro sea válido
+        const idLetter = document.getElementById('id_letter');
+        const idNumber = document.getElementById('id_number');
+        const idSubNumber = document.getElementById('id_sub_number');
+
+        const isValidIdentifier = validateIdentifiers(idLetter, idNumber, idSubNumber);
+
+        if (isValidIdentifier === false) {
+            errorsHTML += '<li>El número de registre no és vàlid.</li>';
+            countErrors++;
+        }
+
+        // Validamos que el título de la obra no esté vacío, el nombre del objeto y la descripción
+        const objectName = document.getElementById('object_name');
+        const artworkTitle = document.getElementById('artwork_title');
+        const artworkDescription = document.getElementById('artwork_description');
+
+
+        if (objectName.value === '') {
+            errorsHTML += '<li>Has d\'especificar un nom per l\'objecte.</li>';
+            countErrors++;
+        }
+
+        if (artworkTitle.value === '') {
+            errorsHTML += '<li>Has d\'especificar un títol per la teva obra.</li>';
+            countErrors++;
+        }
+
+        if (artworkDescription.value === '') {
+            errorsHTML += '<li>Has d\'especificar una descripció per la teva obra.</li>';
+            countErrors++;
+        }
+
+        // Cerramos la lista de advertencias
+        warningsHTML += '</ul>';
+
+        // Cerramos la lista de errores
+        errorsHTML += '</ul>';
+
+        // Mostramos la alerta de advertencias si no hay errores
+        if (countErrors === 0 && countWarnings > 0) {
+            Swal.fire({
+                title: 'Advertències',
+                icon: 'warning',
+                html: warningsHTML
+            });
+        } else {
+            // Mostramos la alerta de errores si los hay
+            if (countErrors > 0) {
+                Swal.fire({
+                    title: 'Hi han errors al formulari',
+                    icon: 'error',
+                    html: errorsHTML
+                });
+            } else {
+                // Enviamos el formulario si no hay errores
+                form.submit();
+            }
+        }
+    });
+}

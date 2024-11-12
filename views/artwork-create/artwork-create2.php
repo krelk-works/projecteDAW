@@ -1,4 +1,4 @@
-<form action="">
+<form action="" method="POST" enctype="multipart/form-data" id="add-artwork-form">
     <div id="artwork-create-container">
         <div class="artwork-create-header">
             <h1><i class="fa-regular fa-bookmark"></i> <span id="artwork-page-title">Nova obra</span></h1>
@@ -12,7 +12,7 @@
             <div class="default-image-box">
                 <img src="" alt="Imatge per defecte" style="display: none" id="defaultimagepreview">
                 <button id="add-default-image">Afegir imatge</button>
-                <input type="file" id="defaultimage" hidden="true" accept="image/png, image/jpeg, image/jpg">
+                <input type="file" id="defaultimage" name="defaultimage" hidden="true" accept="image/png, image/jpeg, image/jpg, image/jfif">
                 <!-- <button>Cambiar fotografia</button> -->
             </div>
             <div class="artwork-create-box-header">
@@ -201,45 +201,9 @@
             <div class="artwork-create-box-multimedia">
                 <!-- <div class="multimedia-content">
                     <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
                 </div> -->
                 <div class="multimedia-add-content">
-                    <button type="button"><i class="fa-solid fa-plus"></i></button>
+                    <button type="button" id="add_documents_button"><i class="fa-solid fa-plus"></i></button>
                 </div>
             </div>
             <div class="artwork-create-box-header">
@@ -249,43 +213,7 @@
             <div class="artwork-create-box-multimedia">
                 <!-- <div class="multimedia-content">
                     <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div> -->
+                </div>-->
                 <div class="multimedia-add-content">
                     <button type="button"><i class="fa-solid fa-plus"></i></button>
                 </div>
@@ -297,43 +225,7 @@
             <div class="artwork-create-box-multimedia">
                 <!-- <div class="multimedia-content">
                     <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>
-                <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div> -->
+                </div>-->
                 <div class="multimedia-add-content">
                     <button type="button"><i class="fa-solid fa-plus"></i></button>
                 </div>
@@ -347,6 +239,9 @@
                     <label for="artwork_history">Historia</label>
                     <textarea name="artwork_history" id="artwork_history" placeholder="Historia"></textarea>
                 </div>
+            </div>
+            <div id="hidden_inputs">
+                <!-- <input type="file" name="document_0" id="document_0" hidden> -->
             </div>
             <div class="create-artwork-button">
                 <button type="submit">Crear obra</button>

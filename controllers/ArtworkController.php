@@ -40,7 +40,7 @@ if (isset($_GET['getArtworksAtLocations'])) {
             "message" => "Ha ocurrido un error en la solicitud de obras por localización."
         ];
     }
-    
+
     // Limpiar el búfer de salida para evitar datos adicionales
     ob_clean();
     echo json_encode($response);
@@ -185,17 +185,18 @@ if (isset($_GET['getFormData'])) {
 class ArtworkController
 {
 
-    public function getNextIdNum1() {
+    public function getNextIdNum1()
+    {
         // Crear una nueva instancia de Artwork (suponiendo que tu modelo se llama Artwork)
         $artwork = new Artwork();
-        
+
         // Llamar al método en el modelo para obtener el siguiente ID
         $data = $artwork->getNextIdNum1();
-        
+
         return $data;
     }
-    
-    
+
+
 
     public function getData($limit, $offset, $filter = null)
     {
@@ -223,7 +224,7 @@ class ArtworkController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_letter'])) {
             $idLetter = $_POST['id_letter'];
-            
+
             // Simplemente devolvemos el id_letter recibido en la respuesta
             echo json_encode(['success' => true, 'id_letter' => $idLetter]);
         } else {
@@ -265,7 +266,7 @@ class ArtworkController
         $materialgettycode,
         $tecniquegetty,
         $image
-) {
+    ) {
         $artwork = new Artwork();
         $data = $artwork->createArtwork(
             $nom_del_museu,

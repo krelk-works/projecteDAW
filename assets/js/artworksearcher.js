@@ -117,7 +117,7 @@ if (document.querySelector("#artworksearch")) {
     let createNewArtworkButton = document.querySelector("#new-artwork");
 
     createNewArtworkButton.addEventListener("click", () => {
-        window.location.href = "?page=artwork-create";
+        window.location.href = "?page=artwork-create2";
     });
 
 }
