@@ -249,11 +249,10 @@
             $conn = $this->connect();
 
             // Base SQL query
-            $sql = "SELECT artworks.id, artworks.name AS artwork_name, artworks.creation_date, artworks.image as artwork_image, authors.name AS author_name, conservationstatus.text, locations.name AS location_name, images.URL
+            $sql = "SELECT artworks.id, artworks.title AS artwork_name, artworks.creation_date, artworks.image as artwork_image, authors.name AS author_name, conservationstatus.text, locations.name AS location_name
                     FROM artworks
                     INNER JOIN authors ON artworks.author = authors.id
                     INNER JOIN locations ON artworks.location = locations.id
-                    INNER JOIN images ON artworks.id = images.artwork
                     INNER JOIN conservationstatus ON artworks.conservationstatus = conservationstatus.id
                     WHERE artworks.location IN (" . $locations . ") ORDER BY locations.name ASC";
             $stmt = $conn->prepare($sql);
@@ -265,7 +264,7 @@
         public function getArtworkList($ID) {
             $conn = $this->connect();
             
-            $sql = "SELECT artworks.name, artworks.id
+            $sql = "SELECT artworks.name, artworks.title, artworks.id
                     FROM artworks
                     LEFT JOIN expositionsartworks ON artworks.id = expositionsartworks.artwork 
                     AND expositionsartworks.exposition =". $ID ."
@@ -678,7 +677,7 @@
                     INNER JOIN authors ON artworks.author = authors.id
                     INNER JOIN locations ON artworks.location = locations.id
                     INNER JOIN conservationstatus ON artworks.conservationstatus = conservationstatus.id
-                    WHERE artworks.name LIKE :search OR authors.name LIKE :search OR locations.name LIKE :search OR conservationstatus.text LIKE :search";
+                    WHERE artworks.name LIKE :search OR authors.name LIKE :search OR locations.name LIKE :search OR conservationstatus.text LIKE :search OR artworks.title LIKE :search";
             $stmt = $conn->prepare($sql);
             $searchTerm = "%" . $search . "%";
             $stmt->bindParam(':search', $searchTerm, PDO::PARAM_STR);

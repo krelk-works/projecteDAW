@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             foreach ($data as $d) {
                 echo "<div class='artworkCheckbox'>";
                     echo "<input class='checkboxStyles' type='checkbox' name='addArtwork[]' value='".$d['id']."' id='artwork_".$d['id']."'>";
-                    echo "<label for='artwork_".$d['id']."'>".$d['name']."</label>";
+                    echo "<label for='artwork_".$d['id']."'>".$d['title']."</label>";
                 echo "</div>";
             }
             echo "</div>";
