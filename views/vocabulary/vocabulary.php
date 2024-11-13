@@ -220,7 +220,7 @@
                 </div>
             </div>
             
-            <div class="vocabulary-item-composed ">
+            <!--<div class="vocabulary-item-composed ">
                 <h4>Datació</h4>
                 <div class="mixed_inputs">
                     <input type="text">
@@ -233,7 +233,7 @@
                     <p>Data inici</p>
                     <p>Data fi</p>
                 </div>
-            </div>
+            </div>-->
             <div class="vocabulary-item-simple ">
                 <h4>Tipus d'exposició</h4>
                 <input type="text" placeholder="Nou tipus d'exposició..." id="new_expositiontype_value" maxlength="30">

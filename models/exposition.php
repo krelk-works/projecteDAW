@@ -40,9 +40,8 @@
             $conn = $this->connect();
             
             // Base SQL query
-            $sql = "SELECT artworks.*, images.URL
+            $sql = "SELECT artworks.*
                 FROM artworks
-                INNER JOIN images ON artworks.id = images.artwork
                 INNER JOIN expositionsartworks ON artworks.id = expositionsartworks.artwork
                 WHERE expositionsartworks.exposition = :id;
                 ";
