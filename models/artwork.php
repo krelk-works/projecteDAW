@@ -523,14 +523,21 @@
             $sql = "SELECT artworks.id, artworks.name, artworks.creation_date, artworks.image,
                     artworks.description, authors.name AS author, artworks.id_letter, artworks.id_num1,
                     artworks.id_num2, genericclassifications.text AS genericclassification, artworks.provenancecollection,
-                    artworks.height, artworks.title, materials.text AS material, tecniques.text AS tecnique, datations.start_date,
-                    datations.end_date, datations.text AS datation
+                    artworks.height, artworks.width, artworks.title, materials.text AS material, tecniques.text AS tecnique, datations.start_date,
+                    datations.end_date, datations.text AS datation, artworks.register_date, artworks.cost, artworks.amount, artworks.depth,
+                    materialgettycodes.text AS materialgettycode, conservationstatus.text AS conservationstatus, artworks.museumname,
+                    artworks.provenancecollection, artworks.originplace, entry.text AS entry, artworks.history, artworks.triage,
+                    artworks.executionplace, locations.name AS location
                     FROM artworks
                     INNER JOIN authors ON artworks.author = authors.id
                     INNER JOIN genericclassifications ON artworks.genericclassification = genericclassifications.id
                     INNER JOIN materials ON artworks.material = materials.id
                     INNER JOIN tecniques ON artworks.tecnique = tecniques.id
-                    INNER JOIN datations ON artworks.datation = datations.id";
+                    INNER JOIN datations ON artworks.datation = datations.id
+                    INNER JOIN materialgettycodes ON artworks.materialgettycode = materialgettycodes.id
+                    INNER JOIN conservationstatus ON artworks.conservationstatus = conservationstatus.id
+                    INNER JOIN entry ON artworks.entry = entry.id
+                    INNER JOIN locations ON artworks.location = locations.id";
             
             $stmt = $conn->prepare($sql);
             $stmt->execute();
@@ -546,11 +553,15 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>Document</title>
                 <style>
+                    * {
+                        color: rgb(50, 50, 50);
+                        font-size: 18px;
+                    }
                     body {
                         font-family: Arial, sans-serif;
                         text-align: center;
                     }
-                    .header {tecnique
+                    .header {
                         padding-top: 20px;
                         padding-bottom: 20px;
                         width: 100%;
@@ -558,15 +569,17 @@
                         margin: 0 auto;
                         text-align: center;
                     }
+                    h1 {
+                        font-size: 40px;
+                    }
                     h2 {
                         margin: 0;
                         padding: 0;
-                        font-size: 18px;
-                        text-align: center;
+                        font-size: 24px;
                     }
                     img {
-                        max-width: 150px;
-                        max-height: 150px;
+                        max-width: 250px;
+                        max-height: 250px;
                     }
                     .main {
                         width: 100%;
@@ -585,6 +598,9 @@
                         align-items: center;
                         justify-content: center;
                     }
+                    td {
+                        font-size: 18px;
+                    }
                     .label, .value {
                         font-size: 14px;
                         padding: 5px;
@@ -601,62 +617,88 @@
                         width: 50%;
                         text-align: left;
                     }
+                    .page-break { page-break-before: always; }
                 </style>
             </head>
             <body>';
             
             foreach ($data as $artwork) {
-                $htmlContent .= '<div class="header">';
-                $htmlContent .= '<img src="' . $artwork['image'] . '" alt=""><br>';
-                $htmlContent .= '<h2><i>identificador: ' . $artwork['id_letter'] . $artwork['id_num1'] . '.' . $artwork['id_num2'] . '</i><br>';
-                $htmlContent .= '<strong>nom d\'obra: ' . $artwork['name'] . '</strong><br>';
-                $htmlContent .= '<b>autor: ' . $artwork['author'] . '</b><br>';
-                $htmlContent .= '<b>data de creacio: ' . $artwork['creation_date'] . '</b></h2>';
-                $htmlContent .= '</div>';
-                $htmlContent .= '<div class="main">';
-                $htmlContent .= '<table border="1">';
+                $htmlContent .= '<h1>' . $artwork['title'] . '</h1>';
+                $htmlContent .= '<table class="head" style="width: 100%;">';
                 $htmlContent .= '<tr>';
-                $htmlContent .= '<td class="label">descripció</td>';
-                $htmlContent .= '<td class="value">' . $artwork['description'] . '</td>';
-                $htmlContent .= '</tr>';
-                $htmlContent .= '<tr>';
-                $htmlContent .= '<td class="label">classificació genérica</td>';
-                $htmlContent .= '<td class="value">' . $artwork['genericclassification'] . '</td>';
-                $htmlContent .= '</tr>';
-                $htmlContent .= '<tr>';
-                $htmlContent .= '<td class="label">colecció de procedencia</td>';
-                $htmlContent .= '<td class="value">' . $artwork['provenancecollection'] . '</td>';
-                $htmlContent .= '</tr>';
-                $htmlContent .= '<tr>';
-                $htmlContent .= '<td class="label">mides maximes (cm)</td>';
-                $htmlContent .= '<td class="value">' . $artwork['height'] . '</td>';
-                $htmlContent .= '</tr>';
-                $htmlContent .= '<tr>';
-                $htmlContent .= '<td class="label">material</td>';
-                $htmlContent .= '<td class="value">' . $artwork['material'] . '</td>';
-                $htmlContent .= '</tr>';
-                $htmlContent .= '<tr>';
-                $htmlContent .= '<td class="label">técnica</td>';
-                $htmlContent .= '<td class="value">' . $artwork['tecnique'] . '</td>';
-                $htmlContent .= '</tr>';
-                $htmlContent .= '<tr>';
-                $htmlContent .= '<td class="label">title</td>';
-                $htmlContent .= '<td class="value">' . $artwork['title'] . '</td>';
-                $htmlContent .= '</tr>';
-                $htmlContent .= '<tr>';
-                $htmlContent .= '<td class="label">data d\'inici</td>';
-                $htmlContent .= '<td class="value">' . $artwork['start_date'] . '</td>';
-                $htmlContent .= '</tr>';
-                $htmlContent .= '<tr>';
-                $htmlContent .= '<td class="label">data fi</td>';
-                $htmlContent .= '<td class="value">' . $artwork['end_date'] . '</td>';
-                $htmlContent .= '</tr>';
-                $htmlContent .= '<tr>';
-                $htmlContent .= '<td class="label">datacio</td>';
-                $htmlContent .= '<td class="value">' . $artwork['datation'] . '</td>';
+                $htmlContent .= '<td><img src="uploads/1731447368_1688.jpg" alt="text" style="width: 100%;"></td>';
+                $htmlContent .= '<td style="width: 825px;"><h2>Identificacio<hr>' . $artwork['id_letter'] . $artwork['id_num1'] . '.' . $artwork['id_num2'] . '<br>' . $artwork['name'] . '<br>' . $artwork['title'] . '<br>' . $artwork['description'] . '</h2></td>';
                 $htmlContent .= '</tr>';
                 $htmlContent .= '</table>';
-                $htmlContent .= '</div>';
+
+                $htmlContent .= '<h2 style="margin-top: 20px;">Detalls de l\'obra</h2><hr>';
+                $htmlContent .= '<table class="body" style="width: 100%;">';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td style="width: 500px;">' . $artwork['author'] . '</td>';
+                $htmlContent .= '<td>' . $artwork['creation_date'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td style="width: 500px;">' . $artwork['datation'] . '</td>';
+                $htmlContent .= '<td>' . $artwork['author'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td style="width: 500px;">' . $artwork['register_date'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '</table>';
+
+                $htmlContent .= '<h2 style="margin-top: 20px;">Caracteristiques d\'obra</h2><hr>';
+                $htmlContent .= '<table class="body" style="width: 100%;">';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td style="width: 500px;">' . $artwork['height'] . '</td>';
+                $htmlContent .= '<td>' . $artwork['cost'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td style="width: 500px;">' . $artwork['width'] . '</td>';
+                $htmlContent .= '<td>' . $artwork['amount'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td style="width: 500px;">' . $artwork['depth'] . '</td>';
+                $htmlContent .= '<td>' . $artwork['material'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td style="width: 500px;">' . $artwork['genericclassification'] . '</td>';
+                $htmlContent .= '<td>' . $artwork['tecnique'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td style="width: 500px;">' . $artwork['materialgettycode'] . '</td>';
+                $htmlContent .= '<td>' . $artwork['conservationstatus'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '</table>';
+
+                $htmlContent .= '<h2 style="margin-top: 20px;">Procedencia</h2><hr>';
+                $htmlContent .= '<table class="body" style="width: 100%;">';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td style="width: 500px;">' . $artwork['museumname'] . '</td>';
+                $htmlContent .= '<td>' . $artwork['provenancecollection'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td style="width: 500px;">' . $artwork['originplace'] . '</td>';
+                $htmlContent .= '<td>' . $artwork['entry'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '</table>';
+
+                $htmlContent .= '<h2 style="margin-top: 20px;">Ubicacio</h2><hr>';
+                $htmlContent .= '<table class="body" style="width: 100%;">';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td style="width: 500px;">' . $artwork['location'] . '</td>';
+                $htmlContent .= '<td>' . $artwork['executionplace'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '</table>';
+
+                $htmlContent .= '<h2 style="margin-top: 20px;">Altres dades</h2><hr>';
+                $htmlContent .= '<table class="body" style="width: 100%;">';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td style="width: 500px;">' . $artwork['triage'] . '</td>';
+                $htmlContent .= '<td>' . $artwork['history'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '</table>';
+
+                $htmlContent .= '<div class="page-break"></div>';
             }
             
             $htmlContent .= '
