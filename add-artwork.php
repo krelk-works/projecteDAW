@@ -2,7 +2,7 @@
 // Needed to include all classes created.
 require_once "autoload.php";
 
-echo "<h1>Artwork Create Required</h1><br><br>";
+//echo "<h1>Artwork Create Required</h1><br><br>";
 // echo "<br><h1>INPUTS: </h1><br>";
 //var_dump($_POST);
 
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Reindexa el array de referencias para que sea numérico consecutivo
         $references = array_values($references);
 
-        var_dump($references);
+        //var_dump($references);
 
         // Ahora viene lo shido.. U.U'
 
@@ -125,11 +125,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $saved = $controller->addNewArtwork($sqlfields, $documents, $additionalImages, $references);
 
         if ($saved) {
-            echo "<h1>Artwork saved successfully!</h1>";
-            echo $saved;
+            // echo "<h1>Artwork saved successfully!</h1>";
+            // echo $saved;
         } else {
-            echo "<h1>There was an error saving the artwork</h1>";
+            // echo "<h1>There was an error saving the artwork</h1>";
         }
+        echo "<meta http-equiv='refresh' content='1;url=index.php'>";
     }
 }
 
