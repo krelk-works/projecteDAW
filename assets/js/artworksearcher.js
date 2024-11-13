@@ -49,7 +49,7 @@ if (document.querySelector("#artworksearch")) {
         let HTMLCode = headerCode;
         if (canceledOnly) {
             $artworks.forEach(artwork => {
-                if (artwork.artwork_cancelcause) {
+                if (artwork.artwork_museumname) {
                     HTMLCode += '<div class="list-item">';
                     HTMLCode += '<img src="' + artwork.artwork_image + '" alt="' + artwork.artwork_name + ' ' + artwork.author_name + '">';
                     HTMLCode += '<a href="?page=artwork-administration&artworkID=' + artwork.id + '"><h3>' + artwork.artwork_name + '</h3></a>';
@@ -62,7 +62,7 @@ if (document.querySelector("#artworksearch")) {
             });
         } else {
             $artworks.forEach(artwork => {
-                if (!artwork.artwork_cancelcause) {
+                if (!artwork.artwork_museumname) {
                     HTMLCode += '<div class="list-item">';
                     HTMLCode += '<img src="' + artwork.artwork_image + '" alt="' + artwork.artwork_name + ' ' + artwork.author_name + '">';
                     HTMLCode += '<a href="?page=artwork-administration&artworkID=' + artwork.id + '"><h3>' + artwork.artwork_name + '</h3></a>';
