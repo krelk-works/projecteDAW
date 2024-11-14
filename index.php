@@ -86,6 +86,7 @@
     <link rel="stylesheet" href="assets/css/create-exposition.css">
     <link rel="stylesheet" href="assets/css/exposition-administration.css">
     <link rel="stylesheet" href="assets/css/add-artwork-to-exposition.css">
+    <link rel="stylesheet" href="assets/css/artwork-administration.css">
 
     <!--<script src="assets/js/main.js" defer></script>-->
     <title>Intranet - Apel·les Fenosa</title>
