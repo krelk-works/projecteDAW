@@ -2,20 +2,20 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 89vh !important;
+    height: auto;
     margin-top: 5px;
     align-items: center;
     flex-wrap: wrap;
     font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif; 
 }
-#user-modify-wrapper header{
-    grid-area: 'header';   
+.header{
     border-bottom: 1px solid rgb(146, 146, 146);
     color: rgb(146, 146, 146);
     font-weight: bold;
     font-size: 1.5em;
-    width: 80%;
-    height: 20vh;
+    width: 100%;
+    max-height: 20vh !important;
+    min-height: 10vh !important;
     display: flex;
     align-items: flex-end;
 }
@@ -23,7 +23,7 @@
     display: grid !important;
     margin-top: 5%;
     margin-bottom: 5%;
-    width: 80vw;
+    max-width: 100% !important ;
     grid-template-columns: 1fr 1fr;
     grid-template-areas: 'profile-img' 'user-data';
 }
@@ -55,4 +55,8 @@ footer button{
     margin: 3vh 3vh;
     width: 6vw;
     height: 5vh;
+}
+
+#user-modify-wrapper form{
+    max-width: 100%;
 }
