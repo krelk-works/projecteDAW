@@ -5,17 +5,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: blue;
   width: 100%;
   height: 89vh;
 }
 
-.container-artwork-view h1 {
-  color: white;
-}
-
 .image-view-container {
-  background-color: yellow;
   display: flex;
   justify-content: center;
   gap: 10px;
@@ -36,7 +30,6 @@
 
 .artwork-view-info {
   margin-bottom: 20px;
-  background-color: red;
   display: flex;
   flex-direction: column;
   width: 90%;
@@ -54,7 +47,7 @@
 }
 
 .container-artwork-view h1 {
-  color: white;
+  color: #464646;
   padding-bottom: 0px !important;
   margin-bottom: 0px !important; /* Ajusta el valor según el espacio deseado */
   margin-top: 20px; /* Espacio adicional en la parte superior */
