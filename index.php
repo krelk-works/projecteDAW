@@ -43,6 +43,13 @@
     // Check if the user wants to generate a PDF
     if (isset($_GET['generatePDF'])) {
         require_once "controllers/PDFController.php";
+        $PDFController = new PDFController();
+        return $PDFController->generatePDF();
+    }
+    else if (isset($_GET['generateInvididualPDF'])) {
+        require_once "controllers/PDFController.php";
+        $PDFController = new PDFController();
+        return $PDFController->generateInvididualPDF($_GET['generateInvididualPDF']);
     }
 ?>
 <!DOCTYPE html>

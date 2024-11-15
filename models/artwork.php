@@ -707,7 +707,197 @@
         
             return $html2pdf;
         }
+
+        public function generateInvididualPDF($id) {
+            require_once 'vendor/autoload.php';
         
+            $conn = $this->connect();
+            $sql = "SELECT artworks.id, artworks.name, artworks.creation_date, artworks.image,
+                    artworks.description, authors.name AS author, artworks.id_letter, artworks.id_num1,
+                    artworks.id_num2, genericclassifications.text AS genericclassification, artworks.provenancecollection,
+                    artworks.height, artworks.width, artworks.title, materials.text AS material, tecniques.text AS tecnique, datations.start_date,
+                    datations.end_date, datations.text AS datation, artworks.register_date, artworks.cost, artworks.amount, artworks.depth,
+                    materialgettycodes.text AS materialgettycode, conservationstatus.text AS conservationstatus, artworks.museumname,
+                    artworks.provenancecollection, artworks.originplace, entry.text AS entry, artworks.history, artworks.triage,
+                    artworks.executionplace, locations.name AS location
+                    FROM artworks
+                    INNER JOIN authors ON artworks.author = authors.id
+                    INNER JOIN genericclassifications ON artworks.genericclassification = genericclassifications.id
+                    INNER JOIN materials ON artworks.material = materials.id
+                    INNER JOIN tecniques ON artworks.tecnique = tecniques.id
+                    INNER JOIN datations ON artworks.datation = datations.id
+                    INNER JOIN materialgettycodes ON artworks.materialgettycode = materialgettycodes.id
+                    INNER JOIN conservationstatus ON artworks.conservationstatus = conservationstatus.id
+                    INNER JOIN entry ON artworks.entry = entry.id
+                    INNER JOIN locations ON artworks.location = locations.id
+                    WHERE artworks.id = " . $id;
+            
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+            $html2pdf = new \Spipu\Html2Pdf\Html2Pdf('P', 'A3', 'es');
+        
+            $htmlContent = '
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Document</title>
+                <style>
+                    * {
+                        color: rgb(50, 50, 50);
+                        font-size: 18px;
+                    }
+                    body {
+                        font-family: Arial, sans-serif;
+                        text-align: center;
+                    }
+                    .header {
+                        padding-top: 20px;
+                        padding-bottom: 20px;
+                        width: 100%;
+                        max-width: 630px;
+                        margin: 0 auto;
+                        text-align: center;
+                    }
+                    h1 {
+                        font-size: 40px;
+                    }
+                    h2 {
+                        margin: 0;
+                        padding: 0;
+                        font-size: 24px;
+                    }
+                    img {
+                        max-width: 250px;
+                        max-height: 250px;
+                    }
+                    .main {
+                        width: 100%;
+                        max-width: 630px;
+                        margin: 0 auto;
+                        text-align: left;
+                    }
+                    table {
+                        width: 100%;
+                        margin: 10px 0;
+                        border-collapse: collapse;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    tr {
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    td {
+                        font-size: 18px;
+                    }
+                    .label, .value {
+                        font-size: 14px;
+                        padding: 5px;
+                        vertical-align: top;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    .label {
+                        width: 50%;
+                        font-weight: bold;
+                        text-align: left;
+                    }
+                    .value {
+                        width: 50%;
+                        text-align: left;
+                    }
+                    .page-break { page-break-before: always; }
+                </style>
+            </head>
+            <body>';
+            
+            foreach ($data as $artwork) {
+                $htmlContent .= '<h1>' . $artwork['title'] . '</h1>';
+                $htmlContent .= '<table class="head" style="width: 100%;">';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td><img src="uploads/1731447368_1688.jpg" alt="text" style="width: 100%;"></td>';
+                $htmlContent .= '<td style="width: 825px;"><h2>Identificacio<hr>ID: ' . $artwork['id_letter'] . $artwork['id_num1'] . '.' . $artwork['id_num2'] . '<br>Nom d\'obra: ' . $artwork['name'] . '<br>Titol: ' . $artwork['title'] . '<br>Descripció: ' . $artwork['description'] . '</h2></td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '</table>';
+
+                $htmlContent .= '<h2 style="margin-top: 20px;">Detalls de l\'obra</h2><hr>';
+                $htmlContent .= '<table class="body" style="width: 100%;">';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td style="width: 500px;">Autor: ' . $artwork['author'] . '</td>';
+                $htmlContent .= '<td>Data de creació: ' . $artwork['creation_date'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td style="width: 500px;"> Datació: ' . $artwork['datation'] . '</td>';
+                $htmlContent .= '<td>Data de registre: ' . $artwork['register_date'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '</table>';
+
+                $htmlContent .= '<h2 style="margin-top: 20px;">Caracteristiques d\'obra</h2><hr>';
+                $htmlContent .= '<table class="body" style="width: 100%;">';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td style="width: 500px;">Altura: ' . $artwork['height'] . 'cm</td>';
+                $htmlContent .= '<td>Preu: ' . $artwork['cost'] . '€</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td style="width: 500px;">Amplada: ' . $artwork['width'] . 'cm</td>';
+                $htmlContent .= '<td>Quantitat: 1' . $artwork['amount'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td style="width: 500px;">Profunditat: ' . $artwork['depth'] . 'cm</td>';
+                $htmlContent .= '<td>Material principal: ' . $artwork['material'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td style="width: 500px;">Classificació genèrica: ' . $artwork['genericclassification'] . '</td>';
+                $htmlContent .= '<td>Tècnica: ' . $artwork['tecnique'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td style="width: 500px;">Codi getty material: ' . $artwork['materialgettycode'] . '</td>';
+                $htmlContent .= '<td>Estat de conservació: ' . $artwork['conservationstatus'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '</table>';
+
+                $htmlContent .= '<h2 style="margin-top: 20px;">Provenença</h2><hr>';
+                $htmlContent .= '<table class="body" style="width: 100%;">';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td style="width: 500px;">Nom del museu: ' . $artwork['museumname'] . '</td>';
+                $htmlContent .= '<td>Col·leció de provenença: ' . $artwork['provenancecollection'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td style="width: 500px;">Lloc d\'origen: ' . $artwork['originplace'] . '</td>';
+                $htmlContent .= '<td>Metode d\'entrada: ' . $artwork['entry'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '</table>';
+
+                $htmlContent .= '<h2 style="margin-top: 20px;">Ubicació</h2><hr>';
+                $htmlContent .= '<table class="body" style="width: 100%;">';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td style="width: 500px;">Ubicació: ' . $artwork['location'] . '</td>';
+                $htmlContent .= '<td>Lloc d\'execució: ' . $artwork['executionplace'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '</table>';
+
+                $htmlContent .= '<h2 style="margin-top: 20px;">Altres dades</h2><hr>';
+                $htmlContent .= '<table class="body" style="width: 100%;">';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td style="width: 500px;">Triatge: ' . $artwork['triage'] . '</td>';
+                $htmlContent .= '<td>Historia: ' . $artwork['history'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '</table>';
+            }
+            
+            $htmlContent .= '
+            </body>
+            </html>';
+            
+        
+            $html2pdf->writeHTML($htmlContent);
+        
+            return $html2pdf;
+        }
 
         public function searchArtwork($search){
             $conn = $this->connect();
