@@ -27,8 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <main id="user-modify-wrapper">
-    <header>Modificar usuari</header>
     <form action="<?=$_SERVER['PHP_SELF'];?>?page=user-administration&userID=<?php echo $_GET["userID"]; ?>" method="POST">
+        <div class="header">Modificar usuari</div>
         <section>
             <?php
                 //Auto completa los datos del formulario con
