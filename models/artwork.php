@@ -708,6 +708,36 @@
             return $html2pdf;
         }
         
+        public function getArtworkData($id) {
+            $conn = $this->connect();
+            $sql = "SELECT artworks.id, artworks.name, artworks.creation_date, artworks.image,
+                    artworks.description, authors.name AS author, artworks.id_letter, artworks.id_num1,
+                    artworks.id_num2, genericclassifications.text AS genericclassification, artworks.provenancecollection,
+                    artworks.height, artworks.width, artworks.title, materials.text AS material, tecniques.text AS tecnique, datations.start_date,
+                    datations.end_date, datations.text AS datation, artworks.register_date, artworks.cost, artworks.amount, artworks.depth,
+                    materialgettycodes.text AS materialgettycode, conservationstatus.text AS conservationstatus, artworks.museumname,
+                    artworks.provenancecollection, artworks.originplace, entry.text AS entry, artworks.history, artworks.triage,
+                    artworks.executionplace, locations.name AS location
+                    FROM artworks
+                    INNER JOIN authors ON artworks.author = authors.id
+                    INNER JOIN genericclassifications ON artworks.genericclassification = genericclassifications.id
+                    INNER JOIN materials ON artworks.material = materials.id
+                    INNER JOIN tecniques ON artworks.tecnique = tecniques.id
+                    INNER JOIN datations ON artworks.datation = datations.id
+                    INNER JOIN materialgettycodes ON artworks.materialgettycode = materialgettycodes.id
+                    INNER JOIN conservationstatus ON artworks.conservationstatus = conservationstatus.id
+                    INNER JOIN entry ON artworks.entry = entry.id
+                    INNER JOIN locations ON artworks.location = locations.id WHERE artworks.id = :id";
+            
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            try {
+                $stmt->execute();
+                return $stmt->fetch(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                return false;
+            }
+        }
 
         public function searchArtwork($search){
             $conn = $this->connect();
