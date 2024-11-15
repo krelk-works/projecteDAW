@@ -104,6 +104,27 @@ if (document.querySelector(".author_delete_button")) {
     })
 }
 
+if(document.querySelector(".datation_delete_button")) {
+    let listItems = document.querySelectorAll(".datation_delete_button");
+    listItems.forEach((listItem) => {
+        listItem.addEventListener("click", () => {
+            let valueAttribute = listItem.getAttribute("value");
+            Swal.fire({
+                icon: 'warning',
+                title: 'Estàs segur en esborrar aquesta datació del vocabulari?',
+                showConfirmButton: true,
+                confirmButtonText: 'Si, esborrar',
+                showCancelButton: true,
+                cancelButtonText: 'Cancel·lar',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = 'index.php?page=vocabulari' + '&delete_datation=' + valueAttribute;
+                }
+            });
+        })
+    })
+}
+
 if (document.querySelector(".genericclassifications_delete_button")) {
     let listItems = document.querySelectorAll(".genericclassifications_delete_button");
     listItems.forEach((listItem) => {
@@ -259,4 +280,14 @@ if (document.querySelector("#new_getty")) {
         let newText = document.querySelector("#new_getty_value").value;
         window.location.href = 'index.php?page=vocabulari' + '&add_getty=' + newText;
     })
+}
+
+if (document.querySelector("#new_datation")) {
+    let newDatationButton = document.querySelector("#new_datation");
+    newDatationButton.addEventListener("click", () => {
+        let newText = document.querySelector("#new_datation_value").value;
+        let newStartDate = document.querySelector("#new_datation_value1").value;
+        let newEndDate = document.querySelector("#new_datation_value2").value;
+        window.location.href = 'index.php?page=vocabulari' + '&add_datation=' + newText + '&start_date=' + newStartDate + '&end_date=' + newEndDate;
+    });
 }

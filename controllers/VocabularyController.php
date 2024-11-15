@@ -65,10 +65,10 @@ class VocabularyController
         return $data;
     }
 
-    public function addDatation($text)
+    public function addDatation($text, $start_date, $end_date)
     {
         $datations = new Vocabulary();
-        $data = $datations->addDatation($text);
+        $data = $datations->addDatation($text, $start_date, $end_date);
         return $data;
     }
 

@@ -136,16 +136,18 @@
             return $stmt->execute();
         }
 
-        public function addDatation($text)
+        public function addDatation($text, $start_date, $end_date)
         {
             $conn = $this->connect();
-            $sql = "INSERT INTO datations (text) VALUES (:text)";
+            $sql = "INSERT INTO datations (text, start_date, end_date) VALUES (:text, :start_date, :end_date)";
 
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
 
             // Bind the parameters
             $stmt->bindParam(':text', $text);
+            $stmt->bindParam(':start_date', $start_date);
+            $stmt->bindParam(':end_date', $end_date);
 
             // Execute the statement
             return $stmt->execute();

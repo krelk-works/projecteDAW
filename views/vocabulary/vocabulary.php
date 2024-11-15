@@ -55,8 +55,8 @@
         $vocabularyController->addConservationStatus($_GET['add_conservationstatus']);
     }
 
-    if (isset($_GET['add_datation'])) {
-        $vocabularyController->addDatation($_GET['add_datation']);
+    if (isset($_GET['add_datation']) && isset($_GET['start_date']) && isset($_GET['end_date'])) {
+        $vocabularyController->addDatation($_GET['add_datation'], $_GET['start_date'], $_GET['end_date']);
     }
 
     if (isset($_GET['add_expositiontype'])) {
@@ -220,20 +220,34 @@
                 </div>
             </div>
             
-            <!--<div class="vocabulary-item-composed ">
-                <h4>Datació</h4>
-                <div class="mixed_inputs">
-                    <input type="text">
-                    <input type="text">
-                    <input type="text">
-                    <button>+</button>
-                </div>
-                <div class="mixed_headers">
-                    <p>Detall</p>
-                    <p>Data inici</p>
-                    <p>Data fi</p>
-                </div>
-            </div>-->
+            <div class="vocabulary-item-composed ">
+    <h4>Datació</h4>
+    <div class="mixed_inputs">
+        <input type="text" id="new_datation_value">
+        <input type="text" id="new_datation_value1">
+        <input type="text" id="new_datation_value2">
+        <button id="new_datation">+</button>
+    </div>
+    <div class="mixed_headers">
+        <p>Detall</p>
+        <p>Data inici</p>
+        <p>Data fi</p>
+    </div>
+    <div class="list-vocabulary-item-composed">
+        <?php
+            $datations = $vocabularyController->getDatations();
+
+            foreach ($datations as $datation) {
+                echo '<div class="item-vocabulary">
+                    <p>' . $datation['text'] . '</p>
+                    <p>' . $datation['start_date'] . '</p>
+                    <p>' . $datation['end_date'] . '</p>
+                    <button class="delete_vocabulary_button datation_delete_button" value="'.$datation['id'].'"><i class="fa-solid fa-trash"></i></button>
+                </div>';
+            }
+        ?>
+    </div>
+</div>
             <div class="vocabulary-item-simple ">
                 <h4>Tipus d'exposició</h4>
                 <input type="text" placeholder="Nou tipus d'exposició..." id="new_expositiontype_value" maxlength="30">
