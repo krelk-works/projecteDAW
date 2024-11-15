@@ -25,5 +25,6 @@ function redirectToSearchUser() {
         <button id="new-artwork"><i class="fa-solid fa-plus"></i> Crear obra</button>
         <a href='?generatePDF=true'><button><i class="fa-regular fa-file-pdf"></i>Generar informe</button></a>
         <a href='?generateInvididualPDF=195'><button><i class="fa-regular fa-file-pdf"></i>Generar informe individual</button></a>
+        <a href='?generateSimplePDF=195'><button><i class="fa-regular fa-file-pdf"></i>Generar informe simple</button></a>
     </div>
 </aside>

@@ -51,6 +51,11 @@
         $PDFController = new PDFController();
         return $PDFController->generateInvididualPDF($_GET['generateInvididualPDF']);
     }
+    else if (isset($_GET['generateSimplePDF'])) {
+        require_once "controllers/PDFController.php";
+        $PDFController = new PDFController();
+        return $PDFController->generateSimplePDF($_GET['generateSimplePDF']);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="ca">
