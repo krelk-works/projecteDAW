@@ -4,7 +4,7 @@ require_once "autoload.php";
 
 
 // Ruta de destino donde se guardará la imagen
-$uploadDir = '/home/u411677469.museo.krelk.com/public_html/uploads';
+$uploadDir = DIRECTORY.'/uploads';
 
 // Arrays para almacenar solo los nombres de archivos de documentos e imágenes adicionales
 $documents = [];

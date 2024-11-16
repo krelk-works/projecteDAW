@@ -1,7 +1,7 @@
 <?php
     // CONSTANTS
 
-    echo __DIR__;
+    const DIRECTORY = __DIR__;
 
     const HOST = "";
 
