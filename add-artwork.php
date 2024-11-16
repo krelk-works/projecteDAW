@@ -3,7 +3,7 @@
 require_once "autoload.php";
 
 // Ruta de destino donde se guardará la imagen
-$uploadDir = 'uploads/';
+$uploadDir = '/public_html/uploads/';
 
 // Arrays para almacenar solo los nombres de archivos de documentos e imágenes adicionales
 $documents = [];
