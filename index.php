@@ -1,6 +1,8 @@
 <?php
     // CONSTANTS
 
+    echo __DIR__;
+
     const HOST = "";
 
     const BACKUP_DIRECTORY = '/var/www/html/backups/';

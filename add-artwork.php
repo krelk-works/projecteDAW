@@ -2,8 +2,9 @@
 // Needed to include all classes created.
 require_once "autoload.php";
 
+
 // Ruta de destino donde se guardará la imagen
-$uploadDir = '/public_html/uploads/';
+$uploadDir = '/home/u411677469.museo.krelk.com/public_html/uploads';
 
 // Arrays para almacenar solo los nombres de archivos de documentos e imágenes adicionales
 $documents = [];
@@ -67,6 +68,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Reindexa el array de referencias para que sea numérico consecutivo
         $references = array_values($references);
 
+        //var_dump($references);
+
         // Ahora viene lo shido.. U.U'
 
         $sqlfields = [];
@@ -116,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             // echo "<h1>There was an error saving the artwork</h1>";
         }
-        //echo "<meta http-equiv='refresh' content='1;url=index.php'>";
+        echo "<meta http-equiv='refresh' content='1;url=index.php'>";
     }
 }
 
