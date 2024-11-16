@@ -499,9 +499,9 @@
             $conn = $this->connect();
             $sql = "";
             if ($letter) {
-                $sql = "SELECT MAX(id_num1) AS max_id_num1 FROM artworks WHERE id_letter = :letter;";
+                $sql = "SELECT MAX(id_num1) AS max_id_num1 FROM artworks WHERE id_letter = :letter";
             } else {
-                $sql = "SELECT MAX(id_num1) AS max_id_num1 FROM artworks WHERE NOT id_letter;";
+                $sql = "SELECT MAX(id_num1) AS max_id_num1 FROM artworks WHERE id_letter IS NULL OR id_letter = ''";
             }
             $stmt = $conn->prepare($sql);
             if ($letter) {

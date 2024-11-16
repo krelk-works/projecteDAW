@@ -76,7 +76,7 @@ if (isset($_GET['getNextId'])) {
         // Obtenemos la siguiente ID según la letra
         $nextIdCallback = $model->getLastIdByLetter($letter);
 
-        if ($nextIdCallback === false) {
+        if ($nextIdCallback === false || $nextIdCallback === null) {
             $response = [
                 "status" => "error",
                 "message" => "Ha ocurrido un error al obtener la siguiente ID."
