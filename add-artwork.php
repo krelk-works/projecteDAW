@@ -3,7 +3,7 @@
 require_once "autoload.php";
 
 // Ruta de destino donde se guardará la imagen
-$uploadDir = '/var/www/html/uploads/';
+$uploadDir = 'uploads/';
 
 // Arrays para almacenar solo los nombres de archivos de documentos e imágenes adicionales
 $documents = [];
@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             // echo "<h1>There was an error saving the artwork</h1>";
         }
-        echo "<meta http-equiv='refresh' content='1;url=index.php'>";
+        //echo "<meta http-equiv='refresh' content='1;url=index.php'>";
     }
 }
 
