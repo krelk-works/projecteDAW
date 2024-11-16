@@ -1,10 +1,13 @@
 <?php
+// TEMPORAL TO WEB
+const HMTLDIR = __DIR__;
+
 // Needed to include all classes created.
 require_once "autoload.php";
 
 
 // Ruta de destino donde se guardará la imagen
-$uploadDir = DIRECTORY.'/uploads';
+$uploadDir = HMTLDIR.'/uploads/';
 
 // Arrays para almacenar solo los nombres de archivos de documentos e imágenes adicionales
 $documents = [];
@@ -23,6 +26,7 @@ function uploadFile($file, $uploadDir)
 
     // Mueve el archivo al destino final
     move_uploaded_file($file['tmp_name'], $destination);
+    // echo "File uploaded successfully".$file['tmp_name']." on ".$destination;
     return $fileName;
 }
 

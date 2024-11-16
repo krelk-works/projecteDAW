@@ -1,7 +1,7 @@
 <?php
     // CONSTANTS
 
-    const DIRECTORY = __DIR__;
+    const HMTLDIR = __DIR__;
 
     const HOST = "";
 
