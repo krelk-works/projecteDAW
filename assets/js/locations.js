@@ -11,7 +11,7 @@ const headerCode = `
 
 function populateArtWorkLocationSelect() {
     // console.log('Current Location:', currentLocation);
-    fetch("http://localhost:8080/projecteDAW/controllers/ArtworkController.php?getArtworksAtLocations", {
+    fetch("controllers/ArtworkController.php?getArtworksAtLocations", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -212,7 +212,7 @@ function updatePanelMaxHeight() {
 // Renderizar el árbol al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
     // Cargar datos de ubicación desde la API al cargar la pagina
-    fetch('http://localhost:8080/projecteDAW/controllers/LocationController.php?location=all')
+    fetch('controllers/LocationController.php?location=all')
         .then(response => response.json())
         .then(data => {
             renderLocationTree(data, 'location-tree-container');

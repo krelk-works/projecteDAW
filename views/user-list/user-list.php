@@ -17,9 +17,9 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         // Redirigir al controlador, pasando el id del usuario en el GET
-                        window.location.href = 'http://localhost:8080/projecteDAW/index.php?page=usuaris&confirmedUserID=" . urlencode($_GET['userID']) . "';
+                        window.location.href = 'index.php?page=usuaris&confirmedUserID=" . urlencode($_GET['userID']) . "';
                     } else if (result.dismiss === Swal.DismissReason.cancel) {
-                        window.location.href = 'http://localhost:8080/projecteDAW/index.php?page=usuaris'; // Redirige a la lista de usuarios
+                        window.location.href = 'index.php?page=usuaris'; // Redirige a la lista de usuarios
                     }
                 });
             </script>";
@@ -39,7 +39,7 @@
                         confirmButtonText: 'OK'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            window.location.href = 'http://localhost:8080/projecteDAW/index.php?page=usuaris'; // Redirige a la lista de usuarios
+                            window.location.href = 'index.php?page=usuaris'; // Redirige a la lista de usuarios
                         }
                     });
                 </script>";

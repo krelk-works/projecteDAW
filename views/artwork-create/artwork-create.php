@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     confirmButtonText: 'OK'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = 'http://localhost:8080/projecteDAW/index.php?'; 
+                        window.location.href = 'index.php?'; 
                     }
                 });
             </script>";

@@ -1,9 +1,9 @@
 <?php
     // CONSTANTS
 
-    const HOST = "http://localhost:8080/projecteDAW/";
+    const HOST = "";
 
-    const BACKUP_DIRECTORY = '/var/www/html/projecteDAW/backups/';
+    const BACKUP_DIRECTORY = '/var/www/html/backups/';
 
     // Check if the user wants to download a backup
     if (isset($_GET['download_backup'])) {

@@ -2,20 +2,8 @@
 // Needed to include all classes created.
 require_once "autoload.php";
 
-//echo "<h1>Artwork Create Required</h1><br><br>";
-// echo "<br><h1>INPUTS: </h1><br>";
-//var_dump($_POST);
-
-// foreach ($_POST as $key => $value) {
-//     echo "<span>[$key] => $value</span><br>";
-// }
-
-//echo "<br><h1>FILES: </h1><br><br>";
-//var_dump($_FILES);
-
-
 // Ruta de destino donde se guardará la imagen
-$uploadDir = '/var/www/html/projecteDAW/uploads/';
+$uploadDir = '/var/www/html/uploads/';
 
 // Arrays para almacenar solo los nombres de archivos de documentos e imágenes adicionales
 $documents = [];
@@ -78,8 +66,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         // Reindexa el array de referencias para que sea numérico consecutivo
         $references = array_values($references);
-
-        //var_dump($references);
 
         // Ahora viene lo shido.. U.U'
 

@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 confirmButtonText: 'OK'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = 'http://localhost:8080/projecteDAW/index.php?page=exposition-administration&expoID=" . $_POST['expoID'] . "';
+                    window.location.href = 'index.php?page=exposition-administration&expoID=" . $_POST['expoID'] . "';
                 }
             });
         </script>";
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 confirmButtonText: 'OK'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = 'http://localhost:8080/projecteDAW/index.php?page=exposition-administration&expoID=" . $_POST['expoID'] . "';
+                    window.location.href = 'index.php?page=exposition-administration&expoID=" . $_POST['expoID'] . "';
                 }
             });
         </script>";

@@ -16,7 +16,7 @@ if (document.querySelector("#formGeneratePDFButton")) {
 
   pdfButton.addEventListener("click", () => {
     //location.href = "?generatePDF";
-    window.open('http://localhost:8080/projecteDAW/index.php?generatePDF', '_blank');
+    window.open('index.php?generatePDF', '_blank');
 
   })
 }

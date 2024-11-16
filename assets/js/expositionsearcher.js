@@ -32,7 +32,7 @@ if (document.querySelector("#expositionsearch")) {
 
     // Función para obtener las obras a través de la API
     const getExpositionsAPI = (value) => {
-        fetch('http://localhost:8080/projecteDAW/apis/expositionsAPI.php?search=' + value)
+        fetch('apis/expositionsAPI.php?search=' + value)
         .then(response => response.json()) // Convertir la respuesta a JSON
         .then(data => { // Mostrar los datos en la consola
             let HTMLCode = generateHTMLCode(data);

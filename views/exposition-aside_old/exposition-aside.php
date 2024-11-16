@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     confirmButtonText: 'OK'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = 'http://localhost:8080/projecteDAW/index.php?page=expositions';
+                        window.location.href = 'index.php?page=expositions';
                     }
                 });
             </script>";

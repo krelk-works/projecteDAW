@@ -1,5 +1,3 @@
-console.log('add-artwork.js loaded');
-
 let formdata = {
     'id_number_min': 1, // Valor mínimo de la letra del identificador
     'id_number_max': 99999, // Valor máximo de la letra del identificador
@@ -171,7 +169,7 @@ function padSubWithZeros(number) {
 /** Funcionalidad de la autocompletar el identificar según la letra que se haya asignado */
 function autocompleteId(letter = null) {
     if (letter) letter = letter.toUpperCase();
-    fetch("http://localhost:8080/projecteDAW/controllers/ArtworkController.php?getNextId", {
+    fetch("controllers/ArtworkController.php?getNextId", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -244,7 +242,7 @@ function validateIdentifiers(letter, number, subnumber) {
         return;
     }
 
-    fetch("http://localhost:8080/projecteDAW/controllers/ArtworkController.php?isIdentifiersValid", {
+    fetch("controllers/ArtworkController.php?isIdentifiersValid", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -381,7 +379,7 @@ function populateLocationsSelect(data) {
 }
 
 // Llamada a la API para obtener los datos de los campos de selección de formulario base
-fetch("http://localhost:8080/projecteDAW/controllers/ArtworkController.php?getFormData", {
+fetch("controllers/ArtworkController.php?getFormData", {
     method: "POST",
     headers: {
         "Content-Type": "application/json"

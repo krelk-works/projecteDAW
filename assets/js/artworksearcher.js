@@ -33,7 +33,7 @@ if (document.querySelector("#artworksearch")) {
 
     // Función para obtener las obras a través de la API
     const getArtworksAPI = (value) => {
-        fetch('http://localhost:8080/projecteDAW/apis/artworksAPI.php?search=' + value)
+        fetch('apis/artworksAPI.php?search=' + value)
         .then(response => response.json()) // Convertir la respuesta a JSON
         .then(data => { // Mostrar los datos en la consola
             let HTMLCode = generateHTMLCode(data);
@@ -47,9 +47,10 @@ if (document.querySelector("#artworksearch")) {
 
     function generateHTMLCode($artworks) {
         let HTMLCode = headerCode;
+        let artworksCount = 0;
         if (canceledOnly) {
             $artworks.forEach(artwork => {
-                if (artwork.artwork_museumname) {
+                if (artwork.canceled) {
                     HTMLCode += '<div class="list-item">';
                     HTMLCode += '<img src="' + artwork.artwork_image + '" alt="' + artwork.artwork_name + ' ' + artwork.author_name + '">';
                     HTMLCode += '<a href="?page=artwork-administration&artworkID=' + artwork.id + '"><h3>' + artwork.artwork_name + '</h3></a>';
@@ -58,11 +59,12 @@ if (document.querySelector("#artworksearch")) {
                     HTMLCode += '<p><i class="fa-solid fa-bookmark"></i>' + artwork.creation_date + '</p>';
                     HTMLCode += '<p><i class="fa-regular fa-clipboard"></i>' + artwork.text + '</p>';
                     HTMLCode += '</div>';
+                    artworksCount++;
                 }
             });
         } else {
             $artworks.forEach(artwork => {
-                if (!artwork.artwork_museumname) {
+                if (!artwork.canceled) {
                     HTMLCode += '<div class="list-item">';
                     HTMLCode += '<img src="' + artwork.artwork_image + '" alt="' + artwork.artwork_name + ' ' + artwork.author_name + '">';
                     HTMLCode += '<a href="?page=artwork-administration&artworkID=' + artwork.id + '"><h3>' + artwork.artwork_name + '</h3></a>';
@@ -71,10 +73,11 @@ if (document.querySelector("#artworksearch")) {
                     HTMLCode += '<p><i class="fa-solid fa-bookmark"></i>' + artwork.creation_date + '</p>';
                     HTMLCode += '<p><i class="fa-regular fa-clipboard"></i>' + artwork.text + '</p>';
                     HTMLCode += '</div>';
+                    artworksCount++;
                 }
             });
         }
-        if ($artworks.length === 0) {
+        if (artworksCount === 0) {
             HTMLCode += '<div><h2>No s\'han trobat resultats</h2><p>Intenti amb un altre filtre de cerca.</p></div>';
         }
         return HTMLCode;

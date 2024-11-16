@@ -158,92 +158,92 @@
                 'cancelcauses' => $cancelcauses
             ];
         }
-        public function getInfo($limit, $offset, $filter = null) {
-            $conn = $this->connect();
+        // public function getInfo($limit, $offset, $filter = null) {
+        //     $conn = $this->connect();
             
-            // Base SQL query
-            $sql = "SELECT artworks.id, artworks.name AS artwork_name, artworks.creation_date, authors.name AS author_name, conservationstatus.text, locations.name AS location_name, artworks.image AS artwork_image
-                    FROM artworks
-                    INNER JOIN authors ON artworks.author = authors.id
-                    INNER JOIN locations ON artworks.location = locations.id
-                    INNER JOIN conservationstatus ON artworks.conservationstatus = conservationstatus.id
-                    ";
+        //     // Base SQL query
+        //     $sql = "SELECT artworks.id, artworks.name AS artwork_name, artworks.creation_date, authors.name AS author_name, conservationstatus.text, locations.name AS location_name, artworks.image AS artwork_image
+        //             FROM artworks
+        //             INNER JOIN authors ON artworks.author = authors.id
+        //             INNER JOIN locations ON artworks.location = locations.id
+        //             INNER JOIN conservationstatus ON artworks.conservationstatus = conservationstatus.id
+        //             ";
         
-            // If there are filters, start building the WHERE clause
-            $conditions = [];
+        //     // If there are filters, start building the WHERE clause
+        //     $conditions = [];
             
-            if (!empty($filter) && is_array($filter)) {
-                // Search filter
-                if (!empty($filter['search'])) {
-                    $conditions[] = "artworks.name LIKE :search";
-                }
+        //     if (!empty($filter) && is_array($filter)) {
+        //         // Search filter
+        //         if (!empty($filter['search'])) {
+        //             $conditions[] = "artworks.name LIKE :search";
+        //         }
         
-                // Author filter
-                if (!empty($filter['author'])) {
-                    $conditions[] = "authors.id = :author";
-                }
+        //         // Author filter
+        //         if (!empty($filter['author'])) {
+        //             $conditions[] = "authors.id = :author";
+        //         }
         
-                // Location filter
-                if (!empty($filter['location'])) {
-                    $conditions[] = "locations.id = :location";
-                }
+        //         // Location filter
+        //         if (!empty($filter['location'])) {
+        //             $conditions[] = "locations.id = :location";
+        //         }
         
-                // Year filter (exact year)
-                if (!empty($filter['year'])) {
-                    $conditions[] = "artworks.creation_date = :year";
-                }
+        //         // Year filter (exact year)
+        //         if (!empty($filter['year'])) {
+        //             $conditions[] = "artworks.creation_date = :year";
+        //         }
         
-                // Status filter
-                if (!empty($filter['status'])) {
-                    $conditions[] = "conservationstatus.id= :status";
-                }
-            }
+        //         // Status filter
+        //         if (!empty($filter['status'])) {
+        //             $conditions[] = "conservationstatus.id= :status";
+        //         }
+        //     }
         
-            // If there are any conditions, append them to the SQL query
-            if (count($conditions) > 0) {
-                $sql .= " WHERE " . implode(" AND ", $conditions);
-            }
+        //     // If there are any conditions, append them to the SQL query
+        //     if (count($conditions) > 0) {
+        //         $sql .= " WHERE " . implode(" AND ", $conditions);
+        //     }
         
-            // Add LIMIT and OFFSET for pagination
-            $sql .= " LIMIT :limit OFFSET :offset";
+        //     // Add LIMIT and OFFSET for pagination
+        //     $sql .= " LIMIT :limit OFFSET :offset";
             
-            // Prepare the SQL statement
-            $stmt = $conn->prepare($sql);
+        //     // Prepare the SQL statement
+        //     $stmt = $conn->prepare($sql);
             
-            // Bind the filters
-            if (!empty($filter['search'])) {
-                $searchTerm = "%" . $filter['search'] . "%";
-                $stmt->bindParam(':search', $searchTerm, PDO::PARAM_STR);
-            }
-            if (!empty($filter['author'])) {
-                $stmt->bindParam(':author', $filter['author'], PDO::PARAM_INT);
-            }
-            if (!empty($filter['location'])) {
-                $stmt->bindParam(':location', $filter['location'], PDO::PARAM_INT);
-            }
-            if (!empty($filter['year'])) {
-                $stmt->bindParam(':year', $filter['year'], PDO::PARAM_INT);
-            }
-            if (!empty($filter['status'])) {
-                $stmt->bindParam(':status', $filter['status'], PDO::PARAM_INT);
-            }
+        //     // Bind the filters
+        //     if (!empty($filter['search'])) {
+        //         $searchTerm = "%" . $filter['search'] . "%";
+        //         $stmt->bindParam(':search', $searchTerm, PDO::PARAM_STR);
+        //     }
+        //     if (!empty($filter['author'])) {
+        //         $stmt->bindParam(':author', $filter['author'], PDO::PARAM_INT);
+        //     }
+        //     if (!empty($filter['location'])) {
+        //         $stmt->bindParam(':location', $filter['location'], PDO::PARAM_INT);
+        //     }
+        //     if (!empty($filter['year'])) {
+        //         $stmt->bindParam(':year', $filter['year'], PDO::PARAM_INT);
+        //     }
+        //     if (!empty($filter['status'])) {
+        //         $stmt->bindParam(':status', $filter['status'], PDO::PARAM_INT);
+        //     }
         
-            // Bind limit and offset
-            $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
-            $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+        //     // Bind limit and offset
+        //     $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        //     $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
         
-            // Execute the query
-            //$stmt->execute();
+        //     // Execute the query
+        //     //$stmt->execute();
         
-            // Fetch the results
-            //return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        //     // Fetch the results
+        //     //return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            if ($stmt->execute()) {
-                return $stmt->fetchAll(PDO::FETCH_ASSOC);
-            } else {
-                return false;
-            }
-        }
+        //     if ($stmt->execute()) {
+        //         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        //     } else {
+        //         return false;
+        //     }
+        // }
 
         public function getArtowrksByLocations($locations) {
             $conn = $this->connect();
@@ -1048,7 +1048,7 @@
 
         public function searchArtwork($search){
             $conn = $this->connect();
-            $sql = "SELECT artworks.museumname AS artwork_museumname, artworks.id, artworks.title AS artwork_name, artworks.creation_date, authors.name AS author_name, conservationstatus.text, locations.name AS location_name, artworks.image AS artwork_image
+            $sql = "SELECT artworks.museumname AS artwork_museumname, artworks.id, artworks.title AS artwork_name, artworks.creation_date, artworks.canceled, authors.name AS author_name, conservationstatus.text, locations.name AS location_name, artworks.image AS artwork_image
                     FROM artworks
                     INNER JOIN authors ON artworks.author = authors.id
                     INNER JOIN locations ON artworks.location = locations.id

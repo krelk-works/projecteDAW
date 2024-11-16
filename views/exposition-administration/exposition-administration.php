@@ -12,9 +12,9 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         // Redirigir al controlador, pasando el id de la obra en el GET
-                        window.location.href = 'http://localhost:8080/projecteDAW/index.php?page=exposition-administration&expoID=" . urlencode($_GET['expoID']) . "&confirmedArtworkID=" . urlencode($_GET['artworkID']) . "';
+                        window.location.href = 'index.php?page=exposition-administration&expoID=" . urlencode($_GET['expoID']) . "&confirmedArtworkID=" . urlencode($_GET['artworkID']) . "';
                     } else if (result.dismiss === Swal.DismissReason.cancel) {
-                        window.location.href = 'http://localhost:8080/projecteDAW/index.php?page=exposition-administration&expoID=" . urlencode($_GET['expoID']) . "'; // Redirige a la lista de obras-exposiciones
+                        window.location.href = 'index.php?page=exposition-administration&expoID=" . urlencode($_GET['expoID']) . "'; // Redirige a la lista de obras-exposiciones
                     }
                 });
             </script>";
@@ -34,7 +34,7 @@
                         confirmButtonText: 'OK'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            window.location.href = 'http://localhost:8080/projecteDAW/index.php?page=exposition-administration&expoID=" . urlencode($_GET['expoID']) . "';'; // Redirige a la lista de obras-exposiciones
+                            window.location.href = 'index.php?page=exposition-administration&expoID=" . urlencode($_GET['expoID']) . "';'; // Redirige a la lista de obras-exposiciones
                         }
                     });
                 </script>";

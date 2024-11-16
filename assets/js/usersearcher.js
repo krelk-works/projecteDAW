@@ -13,7 +13,7 @@ if(document.querySelector('#search')){
     
     //Funcion para obtener los usuarios a través de la API
     const getUsersAPI= (value)=>{
-        fetch('http://localhost:8080/projecteDAW/apis/usersAPI.php?search='+value)
+        fetch('apis/usersAPI.php?search='+value)
         .then(response=>response.json())//Pasa la respuesta a formato JSON
         .then(data=>{
             let HTMLCode=generateHTMLCode(data)
