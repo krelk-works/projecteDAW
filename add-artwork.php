@@ -26,7 +26,7 @@ function uploadFile($file, $uploadDir)
 
     // Mueve el archivo al destino final
     move_uploaded_file($file['tmp_name'], $destination);
-    // echo "File uploaded successfully".$file['tmp_name']." on ".$destination;
+    echo "File uploaded successfully".$file['tmp_name']." on ".$destination;
     return $fileName;
 }
 
@@ -123,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             // echo "<h1>There was an error saving the artwork</h1>";
         }
-        echo "<meta http-equiv='refresh' content='1;url=index.php'>";
+        // echo "<meta http-equiv='refresh' content='1;url=index.php'>";
     }
 }
 
