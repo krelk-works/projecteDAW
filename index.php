@@ -3,32 +3,7 @@
 
     const HMTLDIR = __DIR__;
 
-    const HOST = "";
-
-    const BACKUP_DIRECTORY = '/var/www/html/backups/';
-
-    // Check if the user wants to download a backup
-    if (isset($_GET['download_backup'])) {
-        $urlunformat = str_replace('%', ' ', $_GET['download_backup']);
-        $filePath = BACKUP_DIRECTORY . $urlunformat;
-    
-        // Verifica si el archivo existe
-        if (file_exists($filePath)) {
-            // Establece las cabeceras para la descarga
-            header('Content-Description: File Transfer');
-            header('Content-Type: application/octet-stream');
-            header('Content-Disposition: attachment; filename="' . basename($filePath) . '"');
-            header('Expires: 0');
-            header('Cache-Control: must-revalidate');
-            header('Pragma: public');
-            header('Content-Length: ' . filesize($filePath));
-    
-            // Envía el archivo al navegador
-            readfile($filePath);
-    
-            //exit; // Termina el script después de la descarga
-        }
-    }
+    const BACKUP_DIRECTORY = HMTLDIR.'/backups/';
 
     // Set the session cookie to 1 hour.
     ini_set('session.gc_maxlifetime', 3600);
@@ -41,66 +16,69 @@
 
     // Start the session.
     session_start();
+
+    // Comprobamos si el usuario tiene permiso para descargar backups o generar PDFs
+    if (isset($_SESSION['username']) && isset($_SESSION['role'])) {
+        // Check if the user wants to download a backup file and if the user is an admin
+        if (isset($_GET['download_backup']) && $_SESSION['role'] == "admin") {
+            $urlunformat = str_replace('%', ' ', $_GET['download_backup']);
+            $filePath = BACKUP_DIRECTORY . $urlunformat;
         
-    // Check if the user wants to generate a PDF
-    if (isset($_GET['generatePDF'])) {
-        require_once "controllers/PDFController.php";
-        $PDFController = new PDFController();
-        return $PDFController->generatePDF();
-    }
-    else if (isset($_GET['generateInvididualPDF'])) {
-        require_once "controllers/PDFController.php";
-        $PDFController = new PDFController();
-        return $PDFController->generateInvididualPDF($_GET['generateInvididualPDF']);
-    }
-    else if (isset($_GET['generateSimplePDF'])) {
-        require_once "controllers/PDFController.php";
-        $PDFController = new PDFController();
-        return $PDFController->generateSimplePDF($_GET['generateSimplePDF']);
+            // Verifica si el archivo existe
+            if (file_exists($filePath)) {
+                // Establece las cabeceras para la descarga
+                header('Content-Description: File Transfer');
+                header('Content-Type: application/octet-stream');
+                header('Content-Disposition: attachment; filename="' . basename($filePath) . '"');
+                header('Expires: 0');
+                header('Cache-Control: must-revalidate');
+                header('Pragma: public');
+                header('Content-Length: ' . filesize($filePath));
+        
+                // Envía el archivo al navegador
+                readfile($filePath);
+        
+                ob_clean();
+                exit; // Termina el script después de la descarga
+            }
+        }
+            
+        // Check if the user wants to generate a PDF
+        if (isset($_GET['generatePDF'])) {
+            require_once "controllers/PDFController.php";
+            $PDFController = new PDFController();
+            return $PDFController->generatePDF();
+        }
+        else if (isset($_GET['generateInvididualPDF'])) {
+            require_once "controllers/PDFController.php";
+            $PDFController = new PDFController();
+            return $PDFController->generateInvididualPDF($_GET['generateInvididualPDF']);
+        }
+        else if (isset($_GET['generateSimplePDF'])) {
+            require_once "controllers/PDFController.php";
+            $PDFController = new PDFController();
+            return $PDFController->generateSimplePDF($_GET['generateSimplePDF']);
+        }
     }
 ?>
 <!DOCTYPE html>
 <html lang="ca">
 <head>
     <?php
+        // Check if the user wants to logout
         if (isset($_GET['logout'])){
             session_unset();
             session_destroy();
             echo "<meta http-equiv='refresh' content='0;url=index.php'>";
         }
-
-        // RELOAD WEB PAGE FOR DEVELOPEMENT PURPOSES
-        //echo "<meta http-equiv='refresh' content='2;url=index.php'>";
     ?>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="assets/js/backup.js" defer></script>
-    <script src="assets/js/vocabulary.js" defer></script>
-    <script src="assets/js/artworksearcher.js" defer></script>
-    <script src="assets/js/expositionsearcher.js" defer></script>
-    <script src="assets/js/usersearcher.js" defer></script>
     <script src="assets/js/accordion-element.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/fa.all.min.css">
-   <!--<link rel="stylesheet" href="assets/css/main.css">-->    
-    <link rel="stylesheet" href="assets/css/general.css">
-    <link rel="stylesheet" href="assets/css/login.css">
-    <link rel="stylesheet" href="assets/css/navbar.css">
-    <link rel="stylesheet" href="assets/css/search.css">
-    <link rel="stylesheet" href="assets/css/lists.css">
-    <link rel="stylesheet" href="assets/css/create.css">
-    <link rel="stylesheet" href="assets/css/backup.css">
-    <link rel="stylesheet" href="assets/css/user-administration.css">
-    <link rel="stylesheet" href="assets/css/locations.css">
-    <link rel="stylesheet" href="assets/css/artwork-create.css">
-    <link rel="stylesheet" href="assets/css/artwork-create2.css">
-    <link rel="stylesheet" href="assets/css/vocabulary.css">
-    <link rel="stylesheet" href="assets/css/exposition-list.css">
-    <link rel="stylesheet" href="assets/css/create-exposition.css">
-    <link rel="stylesheet" href="assets/css/exposition-administration.css">
-    <link rel="stylesheet" href="assets/css/add-artwork-to-exposition.css">
-    <link rel="stylesheet" href="assets/css/artwork-administration.css">
+    <link rel="stylesheet" href="assets/css/main.css">  
 
     <!--<script src="assets/js/main.js" defer></script>-->
     <title>Intranet - Apel·les Fenosa</title>

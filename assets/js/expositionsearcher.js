@@ -1,3 +1,5 @@
+let canceledOnly = false;
+
 if (document.querySelector("#expositionsearch")) {
     let isLoading = false;
     

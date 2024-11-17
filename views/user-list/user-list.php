@@ -59,3 +59,4 @@
         ?>
     </div>
 </main>
+<script src="assets/js/usersearcher.js" defer></script>

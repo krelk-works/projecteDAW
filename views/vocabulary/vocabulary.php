@@ -409,3 +409,4 @@
         </div>
     </div>
 </div>
+<script src="assets/js/vocabulary.js" defer></script>

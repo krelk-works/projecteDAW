@@ -16,3 +16,4 @@
         
     </div>
 </main>
+<script src="assets/js/expositionsearcher.js" defer></script>

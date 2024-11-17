@@ -2,7 +2,7 @@
     <button class="accordion default_active">Cerca d'obres</button>
     <div class="panel">
         <form id="searchbarwrapper">
-            <label for="search">Cercador</label>
+            <label for="artworksearch">Cercador</label>
             <input type="text" name="artworksearch" id="artworksearch" placeholder="Nom d'obra, autor, ubicació, estat...">
             <hr style="width: 100%; margin-top: 10px; margin-bottom: 5px;">
             <input type="checkbox" name="searchby" id="searchby" value="name"><label for="searchby" id="searchbylabel">Veure obras de baixa</label>

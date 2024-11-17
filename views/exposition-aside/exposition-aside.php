@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <button class="accordion default_active">Cercador d'exposicions</button>
     <div class="panel">
         <form id="searchbarwrapper" method="POST">
-            <label for="search">Cercador</label>
+            <label for="expositionsearch">Cercador</label>
             <input type="text" name="expositionsearch" id="expositionsearch" placeholder="Nom de la exposició...">
             <hr style="width: 100%; margin-top: 10px; margin-bottom: 5px;">
             <input type="checkbox" name="searchby" id="searchby" value="name"><label for="searchby" id="searchbylabel">Veure exposicions de baixa</label>

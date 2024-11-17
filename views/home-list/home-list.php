@@ -3,3 +3,4 @@
         
     </div>
 </main>
+<script src="assets/js/artworksearcher.js" defer></script>
