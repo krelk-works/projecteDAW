@@ -111,10 +111,6 @@
                 else if($actualPage=="user-administration"){
                     require_once "views/user-adiministration/user-administration-view.php";
                 }
-                else if ($actualPage == "usuarisfilter") {
-                    require_once "views/search-user/search-user.php";
-                    require_once "views/user-list/user-list.php";
-                }
                 else if ($actualPage == "backups") {
                     require_once "views/backup-create/backup-create.php";
                     require_once "views/backup-list/backup-list.php";

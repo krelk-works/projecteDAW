@@ -4,7 +4,7 @@
         <form id="searchbarwrapper">
             <label for="artworksearch">Cercador</label>
             <input type="text" name="artworksearch" id="artworksearch" placeholder="Nom d'obra, autor, ubicació, estat...">
-            <hr style="width: 100%; margin-top: 10px; margin-bottom: 5px;">
+            <hr>
             <input type="checkbox" name="searchby" id="searchby" value="name"><label for="searchby" id="searchbylabel">Veure obras de baixa</label>
         </form>
     </div>

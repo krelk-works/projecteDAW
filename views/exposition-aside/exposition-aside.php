@@ -56,17 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['expositionFilter'] = 0;
         }
     }
-    // esto es como el coco del team fortress 2, no hace nada pero no lo quites o el universo y el espacio-tiempo tal y como lo conocemos desaparecerá
-    while(true) {
-        if (null == null && true == true && false == false) {
-            break;
-        }
-        else {
-            echo "Se ha roto el tejido del espacio-tiempo, el apocalipsis esta llegando,
-            mantente cerca de tus seres queridos mientras esperas el inevitable final,
-            esto no es un simulacro.";
-        }
-    }
 }
 ?>
 <aside id="createbar">
@@ -76,26 +65,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="expositionsearch">Cercador</label>
             <input type="text" name="expositionsearch" id="expositionsearch" placeholder="Nom de la exposició...">
             <hr style="width: 100%; margin-top: 10px; margin-bottom: 5px;">
-            <input type="checkbox" name="searchby" id="searchby" value="name"><label for="searchby" id="searchbylabel">Veure exposicions de baixa</label>
-
-            <!--<div class="endedExpoFilter">
-                <label for="toggleSwitch">Exposicions finalitzades</label>
-                <?php 
-                /* if ($_SESSION['expositionFilter'] == 1) {
-                    echo "<input type='checkbox' id='toggleSwitch' name='toggleSwitch' class='endedExpoCheckbox' checked onchange='this.form.submit()''>";
-                } else if ($_SESSION['expositionFilter'] == 0 || !isset($_SESSION['expositionFilter'])) {
-                    echo "<input type='checkbox' id='toggleSwitch' name='toggleSwitch' class='endedExpoCheckbox' onchange='this.form.submit()''>";
-                } */
-                ?>
-            </div>-->
-            <!--<button type="submit" id="submitButton">Envia</button>-->
+            <input type="checkbox" name="searchby" id="searchby" value="name"><label for="searchby" id="searchbylabel">Veure exposicions finalitzades</label>
         </form>
     </div>
     
     <button class="accordion">Creació d'exposicions</button>
     <div class="panel">
         <form id="createbarwrapper" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=expositions" enctype="multipart/form-data">
-            <!-- <h3>Crear noves exposicions</h3> -->
             <label for="name">Nom de l'exposició</label>
             <input type="text" name="name" id="name" placeholder="Introdueix el nom de l'exposició" required>
             <label for="expoloc">Lloc de l'exposició</label>
