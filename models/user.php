@@ -121,9 +121,11 @@
                     // Send data to UserController to start the web session
                     $controller = new UserController();
                     $controller->startSession(new User($this->username, $this->password, $this->first_name, $this->last_name, $this->email, $this->profile_img, $this->role));
+                    return true;
                     //$username, $password, $first_name, $last_name, $email, $profile_img, $role
                 } else {
                     // TODO: Show error message user or password incorrect
+                    return false;
                 }
             }
         }/*

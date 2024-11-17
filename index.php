@@ -109,22 +109,13 @@
     <?php
         // Needed to include all classes created.
         require_once "autoload.php";
-        /*Username
-        if (!is_writable(session_save_path())) {
-            echo 'Session path "'.session_save_path().'" is not writable for PHP!'; 
-            die();
-        }
-        */
 
-
-        // Check if the user wants to logout.
         // Check if the session is active and the user is logged in.
         if (session_status() != PHP_SESSION_NONE && isset($_SESSION['username'])) {
             if (!isset($_GET['generatePDF'])) {
                 // Always include the navbar.
                 require_once "views/navbar/navbar.php";
             }
-            //echo "<h1>Benvingut ".$_SESSION['username']."</h1>";
             // Check what to load in the main content.
             if (isset($actualPage)) {
                 if ($actualPage == "inici") {
@@ -150,9 +141,6 @@
                     require_once "views/backup-create/backup-create.php";
                     require_once "views/backup-list/backup-list.php";
                 }
-                else if ($actualPage == "artwork-create") {
-                    require_once "views/artwork-create/artwork-create.php";
-                }
                 else if ($actualPage == "artwork-create2") {
                     require_once "views/artwork-create/artwork-create2.php";
                 }
@@ -171,26 +159,10 @@
                     require_once "views/exposition-administration/exposition-administration.php";
                 }
             }
-
-            
-            if (isset($_GET['controller'])){
-                // TODO
-            }
-            else{
-                // TODO
-            }
-
-            // Check if the controller exists and we have an action to execute.
-            //if (class_exists($nameController) && isset($_GET['action'])){
-                // TODO
-            //}else{
-                // TODO
-            //}
         }
         // If the session is not active, then show the login view.
         else{
             if (!isset($_POST['username']) && !isset($_POST['password'])){
-                //new UserController().showLoginView();
                 $controller = new UserController();
                 $controller->showLoginView();
             } else {
@@ -198,7 +170,7 @@
                     $controller = new UserController();
                     $isLoggedIn = $controller->login($_POST['username'], $_POST['password']);
                     
-                    if (!($isLoggedIn)) {
+                    if (!$isLoggedIn) {
                         echo "<head><meta http-equiv='refresh' content='0;url=index.php?error-login'><head>";
                     }
                 }

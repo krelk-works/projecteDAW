@@ -11,7 +11,8 @@ class UserController
     public function login($username, $password)
     {
         $user = new User(); // Create a new user object.
-        $user->login($username, $password); // Call the login method from the user object.
+        $result = $user->login($username, $password); // Call the login method from the user object.
+        return $result;
     }
 
     public function startSession($user)
