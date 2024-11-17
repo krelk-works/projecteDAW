@@ -1,29 +1,6 @@
 <?php
     require_once("database.php");
     class Artwork extends Database {
-        protected $id;
-        protected $name;
-        protected $author;
-
-        public function __construct($id = null, $name = null, $author = null){
-            $this->id = $id;
-            $this->name = $name;
-            $this->author = $author;
-        }
-
-        public function getname(){
-            return $this->name;
-        }
-
-        public function getid(){
-            return $this->id;
-        }
-
-        public function setname($name){
-            $this->name = $name;
-        }
-
-
         public function getNextIdNum1() {
             // Conectar a la base de datos
             $conn = $this->connect();
@@ -1157,6 +1134,36 @@
                 return true;
             } catch (PDOException $e) {
                 echo $e->getMessage();
+                return false;
+            }
+        }
+
+        public function getArtworkAllData($id) {
+            $conn = $this->connect();
+            $sql = "SELECT artworks.id, artworks.name, artworks.creation_date, artworks.image,
+                    artworks.description, artworks.bibliography, authors.name AS author, artworks.id_letter, artworks.id_num1,
+                    artworks.id_num2, genericclassifications.text AS genericclassification, artworks.provenancecollection,
+                    artworks.height, artworks.width, artworks.title, materials.text AS material, tecniques.text AS tecnique, datations.start_date,
+                    datations.end_date, datations.text AS datation, artworks.register_date, artworks.cost, artworks.amount, artworks.depth,
+                    materialgettycodes.text AS materialgettycode, conservationstatus.text AS conservationstatus, artworks.museumname,
+                    artworks.provenancecollection, artworks.originplace, entry.text AS entry, artworks.history, artworks.triage,
+                    artworks.executionplace, locations.name AS location
+                    FROM artworks
+                    INNER JOIN authors ON artworks.author = authors.id
+                    INNER JOIN genericclassifications ON artworks.genericclassification = genericclassifications.id
+                    INNER JOIN materials ON artworks.material = materials.id
+                    INNER JOIN tecniques ON artworks.tecnique = tecniques.id
+                    INNER JOIN datations ON artworks.datation = datations.id
+                    INNER JOIN materialgettycodes ON artworks.materialgettycode = materialgettycodes.id
+                    INNER JOIN conservationstatus ON artworks.conservationstatus = conservationstatus.id
+                    INNER JOIN entry ON artworks.entry = entry.id
+                    INNER JOIN locations ON artworks.location = locations.id
+                    WHERE artworks.id = " . $id . " LIMIT 1";
+            try {
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
                 return false;
             }
         }

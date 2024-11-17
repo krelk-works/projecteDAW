@@ -46,6 +46,55 @@ if (isset($_GET['getArtworksAtLocations'])) {
     echo json_encode($response);
 }
 
+if (isset($_GET['getArtworkAllData'])) {
+    // Declaramos que la API ha sido llamada para evitar usar resto del Controlador.
+    $isApiCalled = true;
+
+    // Establecer el tipo de respuesta como JSON
+    header("Content-Type: application/json");
+
+    // Leer el cuerpo de la solicitud JSON
+    $input = file_get_contents("php://input");
+
+    // Recogemos los datos en bruto ya transformados a PHP
+    $rawData = json_decode($input, true); // Decodificar a un array asociativo
+
+    // Variable de respuesta
+    $response = [];
+
+    // Si hay datos en el rawData los procesamos
+    if (!empty($rawData)) {
+        // Recogemos el ID de la obra de arte que queremos obtener
+        $artworkId = $rawData["artworkId"];
+
+        // Importamos el modelo de obra de arte para obtener obras según localización
+        include_once("../models/artwork.php");
+
+        // Declaramos el modelo que usaremos.
+        $model = new Artwork();
+
+        // Obtenemos los datos de la obra de arte correspondiente.
+        $artworkDataCallback = $model->getArtworkAllData($artworkId);
+
+        if ($artworkDataCallback === false && $artworkDataCallback === null || empty($artworkDataCallback)) {
+            $response = [
+                "status" => "error",
+                "message" => "Ha ocurrido un error al obtener los datos de la obra de arte."
+            ];
+        } else {
+            $response = [
+                "status" => "success",
+                "message" => $artworkDataCallback,
+                "artworkId" => $artworkId
+            ];
+        }
+    }
+
+    // Limpiar el búfer de salida para evitar datos adicionales
+    ob_clean();
+    echo json_encode($response);
+}
+
 if (isset($_GET['getNextId'])) {
     // Declaramos que la API ha sido llamada para evitar usar resto del Controlador.
     $isApiCalled = true;

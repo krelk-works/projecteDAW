@@ -165,69 +165,6 @@ textarea {
     padding: 0px;
 }
 
-/* Custom Scroll Bar for Vocabulary Items */
-.list-vocabulary-item-simple::-webkit-scrollbar {
-    width: var(--sb-size);
-}
-
-.list-vocabulary-item-simple::-webkit-scrollbar-track {
-    background: var(--sb-track-color);
-    border-radius: 10px;
-}
-
-.list-vocabulary-item-simple::-webkit-scrollbar-thumb {
-    background: var(--sb-thumb-color);
-    border-radius: 10px;
-}
-
-@supports not selector(::-webkit-scrollbar) {
-    .list-vocabulary-item-simple {
-        scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
-    }
-}
-
-/* Custom Scroll Bar for Vocabulary Wrapper */
-#vocabulary-items::-webkit-scrollbar {
-    width: var(--sb-size);
-}
-
-#vocabulary-items::-webkit-scrollbar-track {
-    background: var(--sb-track-color);
-    border-radius: 10px;
-}
-
-#vocabulary-items::-webkit-scrollbar-thumb {
-    background: var(--sb-thumb-color);
-    border-radius: 10px;
-}
-
-@supports not selector(::-webkit-scrollbar) {
-    #vocabulary-items {
-        scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
-    }
-}
-
-/* Custom Scroll Bar for Artwork List */
-.list-container-javascript::-webkit-scrollbar {
-    width: var(--sb-size);
-}
-
-.list-container-javascript::-webkit-scrollbar-track {
-    background: var(--sb-track-color);
-    border-radius: 10px;
-}
-
-.list-container-javascript::-webkit-scrollbar-thumb {
-    background: var(--sb-thumb-color);
-    border-radius: 10px;
-}
-
-@supports not selector(::-webkit-scrollbar) {
-    .list-container-javascript {
-        scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
-    }
-}
-
 /* Global Scroll Bar */
 /* Custom Scroll Bar for Artwork List */
 ::-webkit-scrollbar {

@@ -53,7 +53,7 @@ if (document.querySelector("#artworksearch")) {
                 if (artwork.canceled) {
                     HTMLCode += '<div class="list-item">';
                     HTMLCode += '<img src="' + artwork.artwork_image + '" alt="' + artwork.artwork_name + ' ' + artwork.author_name + '">';
-                    HTMLCode += '<a href="?page=artwork-administration&artworkID=' + artwork.id + '"><h3>' + artwork.artwork_name + '</h3></a>';
+                    HTMLCode += '<a href="?page=artwork-view&id=' + artwork.id + '"><h3>' + artwork.artwork_name + '</h3></a>';
                     HTMLCode += '<p><i class="fa-solid fa-user"></i>' + artwork.author_name + '</p>';
                     HTMLCode += '<p><i class="fa-solid fa-location-dot"></i>' + artwork.location_name + '</p>';
                     HTMLCode += '<p><i class="fa-solid fa-bookmark"></i>' + artwork.creation_date + '</p>';
@@ -67,7 +67,7 @@ if (document.querySelector("#artworksearch")) {
                 if (!artwork.canceled) {
                     HTMLCode += '<div class="list-item">';
                     HTMLCode += '<img src="' + artwork.artwork_image + '" alt="' + artwork.artwork_name + ' ' + artwork.author_name + '">';
-                    HTMLCode += '<a href="?page=artwork-administration&artworkID=' + artwork.id + '"><h3>' + artwork.artwork_name + '</h3></a>';
+                    HTMLCode += '<a href="?page=artwork-view&id=' + artwork.id + '"><h3>' + artwork.artwork_name + '</h3></a>';
                     HTMLCode += '<p><i class="fa-solid fa-user"></i>' + artwork.author_name + '</p>';
                     HTMLCode += '<p><i class="fa-solid fa-location-dot"></i>' + artwork.location_name + '</p>';
                     HTMLCode += '<p><i class="fa-solid fa-bookmark"></i>' + artwork.creation_date + '</p>';

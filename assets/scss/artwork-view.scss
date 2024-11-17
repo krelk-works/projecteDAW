@@ -1,0 +1,155 @@
+#artwork-view-container {
+    // Temporales diseño
+    background-color: #fafafa;
+    // Usamos flexbox por defecto
+    //display: flex;
+    flex-wrap: wrap;
+    // Tamaño fijo para que ocupe todo el restante de la página
+    height: 89vh;
+    width: 100%;
+    // Padding para que no esté pegado a los bordes el contenido
+    padding: 20px;
+
+    #artwork-view-header {
+        // Temporales diseño
+        // background-color: red;
+        // Usamos flexbox por defecto
+        display: flex;
+        flex-wrap: wrap;
+        // Centramos el contenido del h3 al centro
+        align-items: center;
+        justify-content: center;
+        // Centramos el texto del contenido del h3
+        text-align: center;
+        // Tamaño fijo para que no se redimensione
+        height: 3.5vh;
+        width: 100%;
+        // Creamos un border-bottom para separar el header del contenido y darle un efecto de encabezado
+        border-bottom: 1px solid #464646;
+    }
+
+    #artwork-view-body {
+        // Temporales diseño
+        // background-color: green;
+        // Usamos flexbox por defecto
+        display: flex;
+        display: none;
+        flex-wrap: wrap;
+        // Configuramos el estilo de columnas para que el contenido se muestre de arriba a abajo
+        flex-direction: row;
+        // Alineamos el contenido de arriba a abajo
+        align-items: flex-start;
+        // Tamaño fijo para que no se redimensione
+        height: calc(100% - 3.5vh);
+        width: 100%;
+        // Manejamos el exceso de contenido mediante scroll vertical
+        overflow-y: auto;
+        // Evitamos el overflow horizontal
+        overflow-x: hidden;
+        // Padding para que no esté pegado a los bordes el contenido
+        padding: 20px;
+
+        .artwork-view-subheader {
+            // Temporales diseño
+            // background-color: yellow;
+            // Usamos flexbox por defecto
+            display: flex;
+            flex-wrap: wrap;
+            // Centramos verticalemnte el contenido del h3
+            align-items: center;
+            // Tamaño fijo
+            height: 3.5vh;
+            width: 100%;
+
+            // Creamos un border-bottom para separar el header del contenido y darle un efecto de encabezado
+            border-bottom: 1px solid #464646;
+        }
+
+        .artwork-view-details {
+            // Temporales diseño
+            // background-color: pink;
+            // Usamos flexbox por defecto
+            display: flex;
+            flex-wrap: wrap;
+            // Alineamos el contenido de arriba a abajo
+            align-items: flex-start;
+            // Tamaño fijo
+            width: 100%;
+            // Padding para que no esté pegado a los bordes el contenido
+            padding: 5px;
+
+            p {
+                // Temporales diseño
+                // background-color: orange;
+                // Tamaño fijo
+                width: 100%;
+            }
+
+            p.half {
+                // Temporales diseño
+                // background-color: purple;
+                // Tamaño fijo
+                width: 50%;
+            }
+
+            .bold {
+                font-weight: bold;
+            }
+            
+        }
+
+        .artwork-view-images {
+            // Temporales diseño
+            // background-color: pink;
+            // Usamos flexbox por defecto
+            display: flex;
+            flex-wrap: wrap;
+            // Alineamos el contenido de arriba a abajo
+            align-items: flex-start;
+            // Tamaño fijo
+            width: 100%;
+            // Padding para que no esté pegado a los bordes el contenido
+            padding: 5px;
+
+
+            .artwork-view-image {
+
+                // Temporales diseño
+                // background-color: yellow;
+                // Usamos flexbox por defecto
+                display: flex;
+                flex-wrap: wrap;
+                // Alineamos el contenido de arriba a abajo
+                align-items: center;
+                justify-content: center;
+
+                // Tamaño fijo
+                width: 82px;
+                height: 82px;
+
+                // Padding para que no esté pegado a los bordes el contenido
+                padding: 5px;
+
+                // Separamos las imágenes con un margen
+                margin-right: 5px;
+                margin-bottom: 5px;
+
+                // Configuramos el cursor para que sea clickable
+                cursor: pointer;
+
+                img {
+                    // Temporales diseño
+                    // background-color: orange;
+                    // Tamaño fijo
+                    width: 100%;
+                    height: 100%;
+                }
+
+            }
+
+            
+        }
+    }
+}
+
+

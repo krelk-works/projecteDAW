@@ -78,7 +78,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/fa.all.min.css">
-    <link rel="stylesheet" href="assets/css/main.css">  
+    <link rel="stylesheet" href="assets/css/main.css">
 
     <!--<script src="assets/js/main.js" defer></script>-->
     <title>Intranet - Apel·les Fenosa</title>
@@ -117,6 +117,9 @@
                 }
                 else if ($actualPage == "artwork-create2") {
                     require_once "views/artwork-create/artwork-create2.php";
+                }
+                else if ($actualPage == "artwork-view") {
+                    require_once "views/artwork-view/artwork-view.php";
                 }
                 else if ($actualPage == "vocabulari") {
                     require_once "views/vocabulary/vocabulary.php";

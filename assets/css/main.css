@@ -164,66 +164,6 @@ textarea {
   padding: 0px;
 }
 
-/* Custom Scroll Bar for Vocabulary Items */
-.list-vocabulary-item-simple::-webkit-scrollbar {
-  width: var(--sb-size);
-}
-
-.list-vocabulary-item-simple::-webkit-scrollbar-track {
-  background: var(--sb-track-color);
-  border-radius: 10px;
-}
-
-.list-vocabulary-item-simple::-webkit-scrollbar-thumb {
-  background: var(--sb-thumb-color);
-  border-radius: 10px;
-}
-
-@supports not selector(::-webkit-scrollbar) {
-  .list-vocabulary-item-simple {
-    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
-  }
-}
-/* Custom Scroll Bar for Vocabulary Wrapper */
-#vocabulary-items::-webkit-scrollbar {
-  width: var(--sb-size);
-}
-
-#vocabulary-items::-webkit-scrollbar-track {
-  background: var(--sb-track-color);
-  border-radius: 10px;
-}
-
-#vocabulary-items::-webkit-scrollbar-thumb {
-  background: var(--sb-thumb-color);
-  border-radius: 10px;
-}
-
-@supports not selector(::-webkit-scrollbar) {
-  #vocabulary-items {
-    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
-  }
-}
-/* Custom Scroll Bar for Artwork List */
-.list-container-javascript::-webkit-scrollbar {
-  width: var(--sb-size);
-}
-
-.list-container-javascript::-webkit-scrollbar-track {
-  background: var(--sb-track-color);
-  border-radius: 10px;
-}
-
-.list-container-javascript::-webkit-scrollbar-thumb {
-  background: var(--sb-thumb-color);
-  border-radius: 10px;
-}
-
-@supports not selector(::-webkit-scrollbar) {
-  .list-container-javascript {
-    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
-  }
-}
 /* Global Scroll Bar */
 /* Custom Scroll Bar for Artwork List */
 ::-webkit-scrollbar {
@@ -2053,4 +1993,81 @@ svg {
   padding-bottom: 0px !important;
   margin-bottom: 0px !important; /* Ajusta el valor según el espacio deseado */
   margin-top: 20px; /* Espacio adicional en la parte superior */
+}
+
+#artwork-view-container {
+  background-color: #fafafa;
+  flex-wrap: wrap;
+  height: 89vh;
+  width: 100%;
+  padding: 20px;
+}
+#artwork-view-container #artwork-view-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 3.5vh;
+  width: 100%;
+  border-bottom: 1px solid #464646;
+}
+#artwork-view-container #artwork-view-body {
+  display: flex;
+  display: none;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: flex-start;
+  height: calc(100% - 3.5vh);
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px;
+}
+#artwork-view-container #artwork-view-body .artwork-view-subheader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  height: 3.5vh;
+  width: 100%;
+  border-bottom: 1px solid #464646;
+}
+#artwork-view-container #artwork-view-body .artwork-view-details {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  width: 100%;
+  padding: 5px;
+}
+#artwork-view-container #artwork-view-body .artwork-view-details p {
+  width: 100%;
+}
+#artwork-view-container #artwork-view-body .artwork-view-details p.half {
+  width: 50%;
+}
+#artwork-view-container #artwork-view-body .artwork-view-details .bold {
+  font-weight: bold;
+}
+#artwork-view-container #artwork-view-body .artwork-view-images {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  width: 100%;
+  padding: 5px;
+}
+#artwork-view-container #artwork-view-body .artwork-view-images .artwork-view-image {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 82px;
+  height: 82px;
+  padding: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+#artwork-view-container #artwork-view-body .artwork-view-images .artwork-view-image img {
+  width: 100%;
+  height: 100%;
 }/*# sourceMappingURL=main.css.map */
