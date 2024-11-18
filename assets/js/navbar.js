@@ -33,8 +33,8 @@ if (document.getElementById("resetFilters")) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  const dropdown = document.querySelector(".dropdown");
-  const dropdownMenu = document.querySelector(".dropdown-menu");
+  const dropdown = document.querySelector(".dropdown1");
+  const dropdownMenu = document.querySelector(".dropdown-menu1");
   dropdownMenu.style.display = "none";
 
   let hideTimeout; // Variable para almacenar el temporizador

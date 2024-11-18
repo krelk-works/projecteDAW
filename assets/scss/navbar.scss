@@ -1,4 +1,4 @@
-.dropdown-menu {
+.dropdown-menu1 {
     display: none; /* Ocultar el menú inicialmente */
     position: absolute;
     top: calc(100% + 5px); /* Justo debajo del texto del encabezado */
@@ -6,7 +6,6 @@
     background-color: #fff;
     list-style: none;
     padding: 0; /* Sin espacio interno general */
-    margin-top: -64px !important;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombras ligeras */
     z-index: 1000;
     width: auto; /* Ajustar el ancho al contenido */
@@ -16,11 +15,11 @@
     font-size: 14px; /* Tamaño de fuente compacto */
 }
 
-.dropdown-menu li {
+.dropdown-menu1 li {
     padding: 8px 12px; /* Espaciado interno más generoso */
 }
 
-.dropdown-menu li a {
+.dropdown-menu1 li a {
     display: block;
     text-decoration: none;
     color: #333;
@@ -29,18 +28,18 @@
     white-space: nowrap; /* Evitar que el texto se divida en varias líneas */
 }
 
-.dropdown-menu li a:hover {
+.dropdown-menu1 li a:hover {
     background-color: #f0f0f0; /* Fondo al pasar el ratón */
 }
 
-.dropdown-toggle {
+.dropdown-toggle1 {
     font-size: 14px;
     cursor: pointer;
     padding: 5px;
 }
 
 /* Asegura que el contenedor del menú esté alineado correctamente */
-.dropdown {
+.dropdown1 {
     position: relative;
     display: inline-block;
 }

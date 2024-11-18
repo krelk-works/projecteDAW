@@ -62,9 +62,9 @@ if (isset($_GET['page'])) {
                     echo "<a href='?page=localitzacions' style='$locationManagementStyle'>Localitzacions</a>";
                     echo "</li>";
                 
-                    echo "<li class='dropdown'>";
-                    echo "<a href='#' class='dropdown-toggle'>Gestio</a>";
-                    echo "<ul class='dropdown-menu'>";
+                    echo "<li class='dropdown1'>";
+                    echo "<a href='#' class='dropdown-toggle1'>Gestio</a>";
+                    echo "<ul class='dropdown-menu1'>";
                     echo "<li><a href='?page=vocabulari' style='$vocabularyManagementStyle'>Vocabularis</a></li>";
                     echo "<li><a href='?page=moviments'>Moviments</a></li>";
                     echo "<li><a href='?page=cancelacions'>Cancelacions</a></li>";
