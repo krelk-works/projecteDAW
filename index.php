@@ -135,6 +135,10 @@
                     require_once "views/add-artwork-to-exposition/add-artwork-to-exposition.php"; 
                     require_once "views/exposition-administration/exposition-administration.php";
                 }
+                else if ($actualPage == "moviments") {
+                    require_once "views/movement-list/movement-list.php";
+                    require_once "views/movement-create/movement-create.php";
+                }
             }
         }
         // If the session is not active, then show the login view.
