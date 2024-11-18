@@ -136,8 +136,8 @@
                     require_once "views/exposition-administration/exposition-administration.php";
                 }
                 else if ($actualPage == "moviments") {
-                    require_once "views/movement-list/movement-list.php";
                     require_once "views/movement-create/movement-create.php";
+                    require_once "views/movement-list/movement-list.php";
                 }
             }
         }
