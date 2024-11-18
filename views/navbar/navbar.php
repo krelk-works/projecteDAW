@@ -63,8 +63,14 @@ if (isset($_GET['page'])) {
                     echo "</li>";
                 
                     // Vocabulary management
-                    echo "<li>";
-                    echo "<a href='?page=vocabulari' style='$vocabularyManagementStyle'>Vocabularis</a>";
+                    echo "<li class='dropdown'>";
+                    echo "<a href='#' class='dropdown-toggle'>Gestio</a>";
+                    echo "<ul class='dropdown-menu'>";
+                    echo "<li><a href='?page=vocabulari' style='$vocabularyManagementStyle'>Vocabularis</a></li>";
+                    echo "<li><a href='?page=moviments'>Moviments</a></li>";
+                    echo "<li><a href='?page=cancelacions'>Cancelacions</a></li>";
+                    echo "<li><a href='?page=restauracions'>Restauracions</a></li>";
+                    echo "</ul>";
                     echo "</li>";
 
                     // Backup management

@@ -1,4 +1,45 @@
 @charset "UTF-8";
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 5px); /* Justo debajo del texto del encabezado */
+  left: 0;
+  background-color: #fff;
+  margin-top: -64px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombras ligeras */
+  min-width: 190px; /* Aumentar el tamaño mínimo para textos largos */
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 14px; /* Tamaño de fuente compacto */
+}
+
+.dropdown-menu li {
+  padding: 8px 12px; /* Espaciado interno más generoso */
+}
+
+.dropdown-menu li a {
+  display: block;
+  color: #333;
+  padding: 5px; /* Asegurar que el texto quede centrado */
+  font-size: 14px;
+  white-space: nowrap; /* Evitar que el texto se divida en varias líneas */
+}
+
+.dropdown-menu li a:hover {
+  background-color: #f0f0f0; /* Fondo al pasar el ratón */
+}
+
+.dropdown-toggle {
+  font-size: 14px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+/* Asegura que el contenedor del menú esté alineado correctamente */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
 #navbar {
   width: 100vw !important;
   height: 11vh !important;

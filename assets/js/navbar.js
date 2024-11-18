@@ -31,3 +31,22 @@ if (document.getElementById("resetFilters")) {
     //alert("Filtros reseteados");
   })
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  const dropdown = document.querySelector(".dropdown");
+  const dropdownMenu = document.querySelector(".dropdown-menu");
+  dropdownMenu.style.display = "none";
+
+  let hideTimeout; // Variable para almacenar el temporizador
+
+dropdown.addEventListener("mouseenter", function () {
+clearTimeout(hideTimeout); // Cancela cualquier temporizador previo
+dropdownMenu.style.display = "block";
+});
+
+dropdown.addEventListener("mouseleave", function () {
+hideTimeout = setTimeout(function () {
+  dropdownMenu.style.display = "none";
+}, 300); // 1.5 segundos
+});
+});
