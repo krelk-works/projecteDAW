@@ -6,9 +6,6 @@
   box-sizing: border-box;
   /*font-family: 'Courier New', Courier, monospace;*/
   font-family: "Roboto", Sans-serif;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
 }
 
 body {
@@ -823,6 +820,20 @@ textarea {
 
 #searchbylabel {
   width: auto !important;
+}
+
+#advanced-filters {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  align-items: center;
+}
+#advanced-filters p {
+  width: 80%;
+}
+#advanced-filters button {
+  width: 20% !important;
+  padding: 2px !important;
 }
 
 /*

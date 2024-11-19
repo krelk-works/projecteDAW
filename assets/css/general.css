@@ -6,9 +6,6 @@
   box-sizing: border-box;
   /*font-family: 'Courier New', Courier, monospace;*/
   font-family: "Roboto", Sans-serif;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
 }
 
 body {

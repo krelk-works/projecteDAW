@@ -66,4 +66,18 @@
 
 #searchbylabel {
   width: auto !important;
+}
+
+#advanced-filters {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  align-items: center;
+}
+#advanced-filters p {
+  width: 80%;
+}
+#advanced-filters button {
+  width: 20% !important;
+  padding: 2px !important;
 }/*# sourceMappingURL=search.css.map */

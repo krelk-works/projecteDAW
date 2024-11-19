@@ -70,3 +70,16 @@
 #searchbylabel {
     width: auto !important;
 }
+
+#advanced-filters {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    align-items: center;
+    
+    p { width: 80%; }
+    button { 
+        width: 20% !important;
+        padding: 2px !important;
+    }
+}

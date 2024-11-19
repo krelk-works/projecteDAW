@@ -64,6 +64,12 @@
         <div class="artwork-view-details">
             <p class="half"><span class="bold">Tiratge:&nbsp;</span><span id="artwork-tirage">Carregant...</span></p>
         </div>
+        <div class="artwork-view-subheader">
+            <h4>Gestió</h4>
+        </div>
+        <div class="artwork-view-details">
+            <button>Crear moviment</button>
+        </div>
     </div>
 </div>
 

@@ -6,6 +6,11 @@
             <input type="text" name="artworksearch" id="artworksearch" placeholder="Nom d'obra, autor, ubicació, estat...">
             <hr>
             <input type="checkbox" name="searchby" id="searchby" value="name"><label for="searchby" id="searchbylabel">Veure obras de baixa</label>
+            <hr>
+            <div id="advanced-filters">
+                <p>Filtres adicionals <span id="additional-filters-count">0</span></p>
+                <button>+</button>
+            </div>
         </form>
     </div>
 
