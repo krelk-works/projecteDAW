@@ -138,30 +138,30 @@ if (document.querySelector("#artworksearch")) {
     addAdditionalFilters.addEventListener('click', function (event) {
         event.preventDefault();
         
+        let currentFilterType = undefined;
 
 
         Swal.fire({
             title: 'Filtres',
             html: `
                 <select id="filterSelect" class="swal2-select" style="box-sizing: border-box; width:50%;padding:8px;">
-                    <option value="filter1">Autor</option>
-                    <option value="filter2">Nom d'obra</option>
-                    <option value="filter21">Nom del objecte</option>
-                    <option value="filter3">Tecnica</option>
-                    <option value="filter4">Datació</option>
-                    <option value="filter5">Ubicació</option>
-                    <option value="filter6">Estat</option>
-                    <option value="filter7">Estil</option>
-                    <option value="filter8">Classificació generica</option>
-                    <option value="filter9">Tiratge</option>
-                    <option value="filter10">Data de registre</option>
-                    <option value="filter11">Data de creació</option>
-                    <option value="filter12">Altura</option>
-                    <option value="filter13">Amplada</option>
-                    <option value="filter14">Gruesa</option>
-                    <option value="filter15">Lloc d'origen</option>
-                    <option value="filter16">Material</option>
-                    <option value="filter17">Lloc d'execució</option>
+                    <option value="author_filter">Autor</option>
+                    <option value="artwork_name_filter">Nom d'obra</option>
+                    <option value="object_name_filter">Nom del objecte</option>
+                    <option value="artwork_tecnique_filter">Tecnica</option>
+                    <option value="artwork_datation_filter">Datació</option>
+                    <option value="artwork_location_filter">Ubicació</option>
+                    <option value="artwork_conservationstatus_filter">Estat</option>
+                    <option value="artwork_generic_classification_filter">Classificació generica</option>
+                    <option value="artwork_triage_filter">Tiratge</option>
+                    <option value="artwork_register_date_filter">Data de registre</option>
+                    <option value="artwork_creation_date_filter">Data de creació</option>
+                    <option value="artwork_height_filter">Altura</option>
+                    <option value="artwork_width_filter">Amplada</option>
+                    <option value="artwork_depth_filter">Gruesa</option>
+                    <option value="artwork_origin_place_filter">Lloc d'origen</option>
+                    <option value="artwork_material_filter">Material</option>
+                    <option value="artwork_execution_place_filter">Lloc d'execució</option>
                 </select>
             `,
             showCancelButton: true,
