@@ -600,7 +600,7 @@
             </head>
             <body>';
             
-            foreach ($data as $artwork) {
+            foreach ($data as $index => $artwork) {
                 $htmlContent .= '<table class="head" style="width: 100%;">';
                 $htmlContent .= '<tr>';
                 $htmlContent .= '<td style="width: 950px;"><h1>' . $artwork['title'] . '</h1></td>';
@@ -609,7 +609,7 @@
                 $htmlContent .= '</table>';
                 $htmlContent .= '<table class="head" style="width: 100%;">';
                 $htmlContent .= '<tr>';
-                $htmlContent .= '<td style="width: 915px; vertical-align: top;"><h2><strong>Identificacio</strong><hr>ID: ' . $artwork['id_letter'] . str_pad($artwork['id_num1'], 5, "0", STR_PAD_LEFT) . '.' . str_pad($artwork['id_num2'], 2, "0", STR_PAD_LEFT) . '<br>Nom d\'obra: ' . $artwork['name'] . '<br>Titol: ' . $artwork['title'] . '</h2></td>';
+                $htmlContent .= '<td style="width: 915px; vertical-align: top;"><h2><strong>Registre: </strong><hr>ID: ' . $artwork['id_letter'] . str_pad($artwork['id_num1'], 5, "0", STR_PAD_LEFT) . '.' . str_pad($artwork['id_num2'], 2, "0", STR_PAD_LEFT) . '<br>Nom d\'obra: ' . $artwork['name'] . '<br>Titol: ' . $artwork['title'] . '</h2></td>';
                 $htmlContent .= '<td><img src="' . $artwork['image'] . '" alt="text" style="width: 100%;"></td>';
                 $htmlContent .= '</tr>';
                 $htmlContent .= '</table>';
@@ -686,7 +686,9 @@
                 $htmlContent .= '</tr>';
                 $htmlContent .= '</table>';
 
-                $htmlContent .= '<div class="page-break"></div>';
+                if ((count($data) - 1) != $index) {
+                    $htmlContent .= '<div class="page-break"></div>';
+                }
             }
             
             $htmlContent .= '
@@ -816,7 +818,7 @@
                 $htmlContent .= '</table>';
                 $htmlContent .= '<table class="head" style="width: 100%;">';
                 $htmlContent .= '<tr>';
-                $htmlContent .= '<td style="width: 915px; vertical-align: top;"><h2><strong>Identificacio</strong><hr>ID: ' . $artwork['id_letter'] . str_pad($artwork['id_num1'], 5, "0", STR_PAD_LEFT) . '.' . str_pad($artwork['id_num2'], 2, "0", STR_PAD_LEFT) . '<br>Nom d\'obra: ' . $artwork['name'] . '<br>Titol: ' . $artwork['title'] . '</h2></td>';
+                $htmlContent .= '<td style="width: 915px; vertical-align: top;"><h2><strong>Registre: </strong><hr>ID: ' . $artwork['id_letter'] . str_pad($artwork['id_num1'], 5, "0", STR_PAD_LEFT) . '.' . str_pad($artwork['id_num2'], 2, "0", STR_PAD_LEFT) . '<br>Nom d\'obra: ' . $artwork['name'] . '<br>Titol: ' . $artwork['title'] . '</h2></td>';
                 $htmlContent .= '<td><img src="' . $artwork['image'] . '" alt="text" style="width: 100%;"></td>';
                 $htmlContent .= '</tr>';
                 $htmlContent .= '</table>';
@@ -892,8 +894,6 @@
                 $htmlContent .= '<td>Historia: ' . $artwork['history'] . '</td>';
                 $htmlContent .= '</tr>';
                 $htmlContent .= '</table>';
-
-                $htmlContent .= '<div class="page-break"></div>';
             }
             
             $htmlContent .= '

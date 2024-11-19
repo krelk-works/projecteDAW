@@ -68,7 +68,7 @@
             <h4>Gestió</h4>
         </div>
         <div class="artwork-view-details">
-            <button>Crear moviment</button>
+            <button id="movement_create">Crear moviment</button>
         </div>
     </div>
 </div>

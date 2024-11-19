@@ -226,3 +226,39 @@ if (urlParams.has('id')) {
         })
         .catch(error => console.log(error));
 }
+
+movement_create.addEventListener('click', function () {
+    Swal.fire({
+        title: "Crear moviment",
+        icon: "info",
+        html: `
+            <form id="movement-form">
+                <label for="movement-datainici">Data inici:</label>
+                <input type="date" id="movement-datainici" name="movement-datainici" class="swal2-input">
+                <label for="movement-datafi">Data fi:</label>
+                <input type="date" id="movement-datafi" name="movement-datafi" class="swal2-input">
+                <label for="movement-destinacio">Destinació:</label>
+                <input type="text" id="movement-destinacio" name="movement-destinacio" class="swal2-input">
+                <input type="hidden" id="artwork-id" name="artwork-id" value="${urlParams.get('id')}">
+            </form>
+        `,
+        showCancelButton: true,
+        confirmButtonText: "Si, crear",
+        cancelButtonText: "Cancel·lar",
+        preConfirm: () => {
+            const name = Swal.getPopup().querySelector('#movement-name').value;
+            const description = Swal.getPopup().querySelector('#movement-description').value;
+            const artworkId = Swal.getPopup().querySelector('#artwork-id').value;
+            if (!name || !description) {
+                Swal.showValidationMessage(`Please enter both name and description`);
+            }
+            return { name: name, description: description, artworkId: artworkId };
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const formData = result.value;
+            console.log('Form Data:', formData);
+            // Handle form submission here
+        }
+    });
+});
