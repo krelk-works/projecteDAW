@@ -9,7 +9,7 @@
             <hr>
             <div id="advanced-filters">
                 <p>Filtres adicionals <span id="additional-filters-count">0</span></p>
-                <button>+</button>
+                <button id="add-additional-filter">+</button>
             </div>
         </form>
     </div>
