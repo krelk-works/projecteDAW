@@ -547,16 +547,17 @@
                         text-align: center;
                     }
                     h1 {
-                        font-size: 40px;
+                        font-size: 30px;
                     }
                     h2 {
                         margin: 0;
                         padding: 0;
-                        font-size: 24px;
+                        font-size: 18px;
+                        font-weight: normal;
                     }
                     img {
-                        max-width: 250px;
-                        max-height: 250px;
+                        max-width: 160px;
+                        max-height: 160px;
                     }
                     .main {
                         width: 100%;
@@ -600,15 +601,20 @@
             <body>';
             
             foreach ($data as $artwork) {
-                $htmlContent .= '<h1>' . $artwork['title'] . '</h1>';
                 $htmlContent .= '<table class="head" style="width: 100%;">';
                 $htmlContent .= '<tr>';
+                $htmlContent .= '<td style="width: 950px;"><h1>' . $artwork['title'] . '</h1></td>';
+                $htmlContent .= '<td><img src="assets/img/logo.jpg" width="100" height="70" alt="Logo"></td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '</table>';
+                $htmlContent .= '<table class="head" style="width: 100%;">';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td style="width: 915px; vertical-align: top;"><h2><strong>Identificacio</strong><hr>ID: ' . $artwork['id_letter'] . str_pad($artwork['id_num1'], 5, "0", STR_PAD_LEFT) . '.' . str_pad($artwork['id_num2'], 2, "0", STR_PAD_LEFT) . '<br>Nom d\'obra: ' . $artwork['name'] . '<br>Titol: ' . $artwork['title'] . '</h2></td>';
                 $htmlContent .= '<td><img src="' . $artwork['image'] . '" alt="text" style="width: 100%;"></td>';
-                $htmlContent .= '<td style="width: 825px;"><h2>Identificacio<hr>ID: ' . $artwork['id_letter'] . $artwork['id_num1'] . '.' . $artwork['id_num2'] . '<br>Nom d\'obra: ' . $artwork['name'] . '<br>Titol: ' . $artwork['title'] . '<br>Descripció: ' . $artwork['description'] . '</h2></td>';
                 $htmlContent .= '</tr>';
                 $htmlContent .= '</table>';
 
-                $htmlContent .= '<h2 style="margin-top: 20px;">Detalls de l\'obra</h2><hr>';
+                $htmlContent .= '<h2 style="margin-top: 20px;"><strong>Detalls de l\'obra</strong></h2><hr>';
                 $htmlContent .= '<table class="body" style="width: 100%;">';
                 $htmlContent .= '<tr>';
                 $htmlContent .= '<td style="width: 500px;">Autor: ' . $artwork['author'] . '</td>';
@@ -620,7 +626,13 @@
                 $htmlContent .= '</tr>';
                 $htmlContent .= '</table>';
 
-                $htmlContent .= '<h2 style="margin-top: 20px;">Caracteristiques d\'obra</h2><hr>';
+                $htmlContent .= '<table class="body" style="width: 100%;">';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td>Descripció: ' . $artwork['description'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '</table>';
+
+                $htmlContent .= '<h2 style="margin-top: 20px;"><strong>Caracteristiques d\'obra</strong></h2><hr>';
                 $htmlContent .= '<table class="body" style="width: 100%;">';
                 $htmlContent .= '<tr>';
                 $htmlContent .= '<td style="width: 500px;">Altura: ' . $artwork['height'] . 'cm</td>';
@@ -644,7 +656,7 @@
                 $htmlContent .= '</tr>';
                 $htmlContent .= '</table>';
 
-                $htmlContent .= '<h2 style="margin-top: 20px;">Provenença</h2><hr>';
+                $htmlContent .= '<h2 style="margin-top: 20px;"><strong>Provenença</strong></h2><hr>';
                 $htmlContent .= '<table class="body" style="width: 100%;">';
                 $htmlContent .= '<tr>';
                 $htmlContent .= '<td style="width: 500px;">Nom del museu: ' . $artwork['museumname'] . '</td>';
@@ -656,18 +668,20 @@
                 $htmlContent .= '</tr>';
                 $htmlContent .= '</table>';
 
-                $htmlContent .= '<h2 style="margin-top: 20px;">Ubicació</h2><hr>';
+                $htmlContent .= '<h2 style="margin-top: 20px;"><strong>Ubicació</strong></h2><hr>';
                 $htmlContent .= '<table class="body" style="width: 100%;">';
                 $htmlContent .= '<tr>';
                 $htmlContent .= '<td style="width: 500px;">Ubicació: ' . $artwork['location'] . '</td>';
                 $htmlContent .= '<td>Lloc d\'execució: ' . $artwork['executionplace'] . '</td>';
                 $htmlContent .= '</tr>';
-                $htmlContent .= '</table>';
-
-                $htmlContent .= '<h2 style="margin-top: 20px;">Altres dades</h2><hr>';
-                $htmlContent .= '<table class="body" style="width: 100%;">';
                 $htmlContent .= '<tr>';
                 $htmlContent .= '<td style="width: 500px;">Triatge: ' . $artwork['triage'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '</table>';
+
+                $htmlContent .= '<h2 style="margin-top: 20px;"><strong>Altres dades</strong></h2><hr>';
+                $htmlContent .= '<table class="body" style="width: 100%;">';
+                $htmlContent .= '<tr>';
                 $htmlContent .= '<td>Historia: ' . $artwork['history'] . '</td>';
                 $htmlContent .= '</tr>';
                 $htmlContent .= '</table>';
@@ -740,16 +754,17 @@
                         text-align: center;
                     }
                     h1 {
-                        font-size: 40px;
+                        font-size: 30px;
                     }
                     h2 {
                         margin: 0;
                         padding: 0;
-                        font-size: 24px;
+                        font-size: 18px;
+                        font-weight: normal;
                     }
                     img {
-                        max-width: 250px;
-                        max-height: 250px;
+                        max-width: 160px;
+                        max-height: 160px;
                     }
                     .main {
                         width: 100%;
@@ -793,15 +808,20 @@
             <body>';
             
             foreach ($data as $artwork) {
-                $htmlContent .= '<h1>' . $artwork['title'] . '</h1>';
                 $htmlContent .= '<table class="head" style="width: 100%;">';
                 $htmlContent .= '<tr>';
+                $htmlContent .= '<td style="width: 950px;"><h1>' . $artwork['title'] . '</h1></td>';
+                $htmlContent .= '<td><img src="assets/img/logo.jpg" width="100" height="70" alt="Logo"></td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '</table>';
+                $htmlContent .= '<table class="head" style="width: 100%;">';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td style="width: 915px; vertical-align: top;"><h2><strong>Identificacio</strong><hr>ID: ' . $artwork['id_letter'] . str_pad($artwork['id_num1'], 5, "0", STR_PAD_LEFT) . '.' . str_pad($artwork['id_num2'], 2, "0", STR_PAD_LEFT) . '<br>Nom d\'obra: ' . $artwork['name'] . '<br>Titol: ' . $artwork['title'] . '</h2></td>';
                 $htmlContent .= '<td><img src="' . $artwork['image'] . '" alt="text" style="width: 100%;"></td>';
-                $htmlContent .= '<td style="width: 825px;"><h2>Identificacio<hr>ID: ' . $artwork['id_letter'] . $artwork['id_num1'] . '.' . $artwork['id_num2'] . '<br>Nom d\'obra: ' . $artwork['name'] . '<br>Titol: ' . $artwork['title'] . '<br>Descripció: ' . $artwork['description'] . '</h2></td>';
                 $htmlContent .= '</tr>';
                 $htmlContent .= '</table>';
 
-                $htmlContent .= '<h2 style="margin-top: 20px;">Detalls de l\'obra</h2><hr>';
+                $htmlContent .= '<h2 style="margin-top: 20px;"><strong>Detalls de l\'obra</strong></h2><hr>';
                 $htmlContent .= '<table class="body" style="width: 100%;">';
                 $htmlContent .= '<tr>';
                 $htmlContent .= '<td style="width: 500px;">Autor: ' . $artwork['author'] . '</td>';
@@ -813,7 +833,13 @@
                 $htmlContent .= '</tr>';
                 $htmlContent .= '</table>';
 
-                $htmlContent .= '<h2 style="margin-top: 20px;">Caracteristiques d\'obra</h2><hr>';
+                $htmlContent .= '<table class="body" style="width: 100%;">';
+                $htmlContent .= '<tr>';
+                $htmlContent .= '<td>Descripció: ' . $artwork['description'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '</table>';
+
+                $htmlContent .= '<h2 style="margin-top: 20px;"><strong>Caracteristiques d\'obra</strong></h2><hr>';
                 $htmlContent .= '<table class="body" style="width: 100%;">';
                 $htmlContent .= '<tr>';
                 $htmlContent .= '<td style="width: 500px;">Altura: ' . $artwork['height'] . 'cm</td>';
@@ -837,7 +863,7 @@
                 $htmlContent .= '</tr>';
                 $htmlContent .= '</table>';
 
-                $htmlContent .= '<h2 style="margin-top: 20px;">Provenença</h2><hr>';
+                $htmlContent .= '<h2 style="margin-top: 20px;"><strong>Provenença</strong></h2><hr>';
                 $htmlContent .= '<table class="body" style="width: 100%;">';
                 $htmlContent .= '<tr>';
                 $htmlContent .= '<td style="width: 500px;">Nom del museu: ' . $artwork['museumname'] . '</td>';
@@ -849,21 +875,25 @@
                 $htmlContent .= '</tr>';
                 $htmlContent .= '</table>';
 
-                $htmlContent .= '<h2 style="margin-top: 20px;">Ubicació</h2><hr>';
+                $htmlContent .= '<h2 style="margin-top: 20px;"><strong>Ubicació</strong></h2><hr>';
                 $htmlContent .= '<table class="body" style="width: 100%;">';
                 $htmlContent .= '<tr>';
                 $htmlContent .= '<td style="width: 500px;">Ubicació: ' . $artwork['location'] . '</td>';
                 $htmlContent .= '<td>Lloc d\'execució: ' . $artwork['executionplace'] . '</td>';
                 $htmlContent .= '</tr>';
-                $htmlContent .= '</table>';
-
-                $htmlContent .= '<h2 style="margin-top: 20px;">Altres dades</h2><hr>';
-                $htmlContent .= '<table class="body" style="width: 100%;">';
                 $htmlContent .= '<tr>';
                 $htmlContent .= '<td style="width: 500px;">Triatge: ' . $artwork['triage'] . '</td>';
+                $htmlContent .= '</tr>';
+                $htmlContent .= '</table>';
+
+                $htmlContent .= '<h2 style="margin-top: 20px;"><strong>Altres dades</strong></h2><hr>';
+                $htmlContent .= '<table class="body" style="width: 100%;">';
+                $htmlContent .= '<tr>';
                 $htmlContent .= '<td>Historia: ' . $artwork['history'] . '</td>';
                 $htmlContent .= '</tr>';
                 $htmlContent .= '</table>';
+
+                $htmlContent .= '<div class="page-break"></div>';
             }
             
             $htmlContent .= '
@@ -931,12 +961,13 @@
                         text-align: center;
                     }
                     h1 {
-                        font-size: 40px;
+                        font-size: 30px;
                     }
                     h2 {
                         margin: 0;
                         padding: 0;
-                        font-size: 24px;
+                        font-size: 18px;
+                        font-weight: normal;
                     }
                     img {
                         max-width: 250px;
