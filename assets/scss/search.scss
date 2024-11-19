@@ -79,7 +79,29 @@
     
     p { width: 80%; }
     button { 
-        width: 20% !important;
+        width: 10% !important;
         padding: 2px !important;
+        margin-left: 5px;
     }
+
+    #reset-additional-filters:hover {
+        background-color: red !important;
+    }
+}
+
+.sweelalert_custom {
+    width: 10% !important;
+    margin: 2px !important;
+    padding: 3px !important;
+    font-size: 14px !important;
+}
+
+.sweelalert_custom:hover {
+    background-color: #ff4d4d !important;
+    color: white;
+}
+
+.filter_item:hover {
+    background-color: #6589C4 !important;
+    color: white;
 }

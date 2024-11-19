@@ -80,36 +80,25 @@ input::placeholder {
 /* CUSTOM SELECT FIELDS FOR WEBSIT */
 select {
   all: unset;
-  -webkit-appearance: auto;
-     -moz-appearance: auto;
-          appearance: auto;
-  background: white;
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
+  background: transparent;
   padding: 5px;
   font-size: 16px;
   border: none;
-  border: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   transition: all 0.66s;
   margin-bottom: 2px;
   color: #444444;
+  outline: none;
 }
 
 select:focus {
   outline: none;
   border-bottom: 1px solid #007bff;
-}
-
-select:hover {
-  border-bottom: 1px solid #007bff;
-}
-
-option {
-  color: #444444;
-}
-
-option:hover {
-  background-color: #007bff;
 }
 
 /* Elimina las flechas del scroll en navegadores basados en WebKit */
@@ -832,8 +821,29 @@ textarea {
   width: 80%;
 }
 #advanced-filters button {
-  width: 20% !important;
+  width: 10% !important;
   padding: 2px !important;
+  margin-left: 5px;
+}
+#advanced-filters #reset-additional-filters:hover {
+  background-color: red !important;
+}
+
+.sweelalert_custom {
+  width: 10% !important;
+  margin: 2px !important;
+  padding: 3px !important;
+  font-size: 14px !important;
+}
+
+.sweelalert_custom:hover {
+  background-color: #ff4d4d !important;
+  color: white;
+}
+
+.filter_item:hover {
+  background-color: #6589C4 !important;
+  color: white;
 }
 
 /*

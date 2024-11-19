@@ -84,17 +84,18 @@ input::placeholder {
 
 select {
     all: unset;
-    appearance: auto;
-    background: white;
+    appearance: textfield;
+    background: transparent;
     padding: 5px;
     font-size: 16px;
     border: none;
-    border: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     transition: all 0.66s;
     margin-bottom: 2px;
     color: #444444;
+    outline: none;
 }
 
 select:focus {
@@ -102,17 +103,17 @@ select:focus {
     border-bottom: 1px solid #007bff;
 }
 
-select:hover {
-    border-bottom: 1px solid #007bff;
-}
+// select:hover {
+//     border-bottom: 1px solid #007bff;
+// }
 
-option {
-    color: #444444;
-}
+// option {
+//     color: #444444;
+// }
 
-option:hover {
-    background-color: #007bff;
-}
+// option:hover {
+//     background-color: #007bff;
+// }
 
 /* Elimina las flechas del scroll en navegadores basados en WebKit */
 /*
