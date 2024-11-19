@@ -13,7 +13,7 @@
     <div class="panel">
         <button id="new-artwork"><i class="fa-solid fa-plus"></i> Crear obra</button>
         <a href='?generatePDF=true' target="_blank"><button><i class="fa-regular fa-file-pdf"></i>Generar informe</button></a>
-        <a href='?generateInvididualPDF=195' target="_blank"><button><i class="fa-regular fa-file-pdf"></i>Generar informe individual</button></a>
-        <a href='?generateSimplePDF=195' target="_blank"><button><i class="fa-regular fa-file-pdf"></i>Generar informe simple</button></a>
+        <a href='?generateInvididualPDF=342' target="_blank"><button><i class="fa-regular fa-file-pdf"></i>Generar informe individual</button></a>
+        <a href='?generateSimplePDF=342' target="_blank"><button><i class="fa-regular fa-file-pdf"></i>Generar informe simple</button></a>
     </div>
 </aside>

@@ -603,7 +603,7 @@
                 $htmlContent .= '<h1>' . $artwork['title'] . '</h1>';
                 $htmlContent .= '<table class="head" style="width: 100%;">';
                 $htmlContent .= '<tr>';
-                $htmlContent .= '<td><img src="uploads/1731447368_1688.jpg" alt="text" style="width: 100%;"></td>';
+                $htmlContent .= '<td><img src="' . $artwork['image'] . '" alt="text" style="width: 100%;"></td>';
                 $htmlContent .= '<td style="width: 825px;"><h2>Identificacio<hr>ID: ' . $artwork['id_letter'] . $artwork['id_num1'] . '.' . $artwork['id_num2'] . '<br>Nom d\'obra: ' . $artwork['name'] . '<br>Titol: ' . $artwork['title'] . '<br>Descripció: ' . $artwork['description'] . '</h2></td>';
                 $htmlContent .= '</tr>';
                 $htmlContent .= '</table>';
@@ -796,7 +796,7 @@
                 $htmlContent .= '<h1>' . $artwork['title'] . '</h1>';
                 $htmlContent .= '<table class="head" style="width: 100%;">';
                 $htmlContent .= '<tr>';
-                $htmlContent .= '<td><img src="uploads/1731447368_1688.jpg" alt="text" style="width: 100%;"></td>';
+                $htmlContent .= '<td><img src="' . $artwork['image'] . '" alt="text" style="width: 100%;"></td>';
                 $htmlContent .= '<td style="width: 825px;"><h2>Identificacio<hr>ID: ' . $artwork['id_letter'] . $artwork['id_num1'] . '.' . $artwork['id_num2'] . '<br>Nom d\'obra: ' . $artwork['name'] . '<br>Titol: ' . $artwork['title'] . '<br>Descripció: ' . $artwork['description'] . '</h2></td>';
                 $htmlContent .= '</tr>';
                 $htmlContent .= '</table>';
@@ -987,7 +987,7 @@
                 $htmlContent .= '<h1>' . $artwork['title'] . '</h1>';
                 $htmlContent .= '<table class="head" style="width: 100%;">';
                 $htmlContent .= '<tr>';
-                $htmlContent .= '<td><img src="uploads/1731447368_1688.jpg" alt="text" style="width: 100%;"></td>';
+                $htmlContent .= '<td><img src="' . $artwork['image'] . '" alt="text" style="width: 100%;"></td>';
                 $htmlContent .= '<td style="width: 825px;"><h2>Identificacio<hr>ID: ' . $artwork['id_letter'] . $artwork['id_num1'] . '.' . $artwork['id_num2'] . '<br>Nom d\'obra: ' . $artwork['name'] . '<br>Titol: ' . $artwork['title'] . '<br>Autor: ' . $artwork['author'] . '</h2></td>';
                 $htmlContent .= '</tr>';
                 $htmlContent .= '</table>';
