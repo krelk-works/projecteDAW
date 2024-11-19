@@ -123,10 +123,60 @@ if (document.querySelector("#artworksearch")) {
         window.location.href = "?page=artwork-create2";
     });
 
-    const addAdditionalFilters = getElementById('add-additional-filter');
+    /** Deshabilitamos que al hacer ENTER en cualquier INPUT se envie formulario */
+    document.querySelectorAll('input').forEach(input => {
+        // console.log('Input encontrado:', input);
+        input.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+            }
+        });
+    });
 
-    addAdditionalFilters.addEventListener('click', () => {
+    const addAdditionalFilters = document.querySelector('#add-additional-filter');
+
+    addAdditionalFilters.addEventListener('click', function (event) {
+        event.preventDefault();
         
+
+
+        Swal.fire({
+            title: 'Filtres',
+            html: `
+                <select id="filterSelect" class="swal2-select" style="box-sizing: border-box; width:50%;padding:8px;">
+                    <option value="filter1">Autor</option>
+                    <option value="filter2">Nom d'obra</option>
+                    <option value="filter21">Nom del objecte</option>
+                    <option value="filter3">Tecnica</option>
+                    <option value="filter4">Datació</option>
+                    <option value="filter5">Ubicació</option>
+                    <option value="filter6">Estat</option>
+                    <option value="filter7">Estil</option>
+                    <option value="filter8">Classificació generica</option>
+                    <option value="filter9">Tiratge</option>
+                    <option value="filter10">Data de registre</option>
+                    <option value="filter11">Data de creació</option>
+                    <option value="filter12">Altura</option>
+                    <option value="filter13">Amplada</option>
+                    <option value="filter14">Gruesa</option>
+                    <option value="filter15">Lloc d'origen</option>
+                    <option value="filter16">Material</option>
+                    <option value="filter17">Lloc d'execució</option>
+                </select>
+            `,
+            showCancelButton: true,
+            confirmButtonText: 'Siguiente',
+            cancelButtonText: 'Cancelar',
+            preConfirm: () => {
+                const selectedFilter = document.getElementById('filterSelect').value;
+                return selectedFilter; // Retorna el valor seleccionado
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Mostrar el segundo Sweet Alert con el input
+                // alert("Valor del select: "+result.value);
+            }
+        });
     });
 
 }
