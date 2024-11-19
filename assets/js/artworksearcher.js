@@ -123,4 +123,10 @@ if (document.querySelector("#artworksearch")) {
         window.location.href = "?page=artwork-create2";
     });
 
+    const addAdditionalFilters = getElementById('add-additional-filter');
+
+    addAdditionalFilters.addEventListener('click', () => {
+        
+    });
+
 }
