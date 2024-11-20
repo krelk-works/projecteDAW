@@ -4,11 +4,13 @@
         <form id="searchbarwrapper">
             <label for="artworksearch">Cercador</label>
             <input type="text" name="artworksearch" id="artworksearch" placeholder="Nom d'obra, autor, ubicació, estat...">
-            <div id="advanced-filters">
-                <p>Filtres adicionals <span id="additional-filters-count">0</span></p>
-                <button id="reset-additional-filters"><i class="fa-solid fa-rotate-right"></i></button>
-                <button id="add-additional-filter"><i class="fa-solid fa-eye"></i></button>
-            </div>
+            <select data-placeholder="Choose a country..." multiple class="chosen-select">
+                <option>United States</option>
+                <option>United Kingdom</option>
+                <option>United Arab Emirates</option>
+                <option>Uruguay</option>
+                <option>Uzbekistan</option>
+            </select>
             <hr>
             <input type="checkbox" name="searchby" id="searchby" value="name"><label for="searchby" id="searchbylabel">Veure obras cancel·lades</label>
         </form>
