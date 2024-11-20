@@ -20,8 +20,6 @@
 
         public function createMovements($sd, $ed, $place, $artwork) {
             $conn = $this->connect();
-            $sql = "INSERT INTO expositions (name, expositionlocation, expositiontype, start_date, end_date) 
-                    VALUES (:name, :expoloc, :expotype, :sd, :ed)";
             $sql = "INSERT INTO movements (start_date, end_date, place, artwork) 
                     VALUES (:sd, :ed, :place, :artwork)";
             
@@ -41,6 +39,7 @@
                 return false;
             }
         }
+
 
     }
 ?>
