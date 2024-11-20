@@ -44,7 +44,7 @@
         }
             
         // Check if the user wants to generate a PDF
-        if (isset($_GET['generatePDF'])) {
+        /*if (isset($_GET['generatePDF'])) {
             require_once "controllers/PDFController.php";
             $PDFController = new PDFController();
             return $PDFController->generatePDF();
@@ -58,6 +58,15 @@
             require_once "controllers/PDFController.php";
             $PDFController = new PDFController();
             return $PDFController->generateSimplePDF($_GET['generateSimplePDF']);
+        }*/
+        if (isset($_GET['generatePDF'])) {
+            require_once "views/generatePDF/generatePDF.php";
+        }
+        else if (isset($_GET['generateInvididualPDF'])) {
+            require_once "views/generatePDF/generateIndividualPDF.php";
+        }
+        else if (isset($_GET['generateSimplePDF'])) {
+            require_once "views/generatePDF/generateSimplePDF.php";
         }
     }
 ?>
