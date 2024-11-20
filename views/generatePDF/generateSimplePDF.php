@@ -2,6 +2,7 @@
     require_once "controllers/PDFController.php";
     $PDFController = new PDFController();
     $data = $PDFController->generateSimplePDF($_GET['generateSimplePDF']);
+    $placeholderImage = 'assets/img/images.jpg';
 
     $html2pdf = new \Spipu\Html2Pdf\Html2Pdf('P', 'A3', 'es');
         
@@ -84,10 +85,11 @@
     <body>';
     
     foreach ($data as $artwork) {
+        $image = (!empty($artwork['image']) && file_exists($artwork['image'])) ? $artwork['image'] : $placeholderImage;
         $htmlContent .= '<h1>' . $artwork['title'] . '</h1>';
         $htmlContent .= '<table class="head" style="width: 100%;">';
         $htmlContent .= '<tr>';
-        $htmlContent .= '<td><img src="' . $artwork['image'] . '" alt="text" style="width: 100%;"></td>';
+        $htmlContent .= '<td><img src="' . $image . '" alt="text" style="width: 100%;"></td>';
         $htmlContent .= '<td style="width: 825px;"><h2>Identificacio<hr>ID: ' . $artwork['id_letter'] . $artwork['id_num1'] . '.' . $artwork['id_num2'] . '<br>Nom d\'obra: ' . $artwork['name'] . '<br>Titol: ' . $artwork['title'] . '<br>Autor: ' . $artwork['author'] . '</h2></td>';
         $htmlContent .= '</tr>';
         $htmlContent .= '</table>';
