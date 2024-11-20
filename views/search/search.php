@@ -4,13 +4,13 @@
         <form id="searchbarwrapper">
             <label for="artworksearch">Cercador</label>
             <input type="text" name="artworksearch" id="artworksearch" placeholder="Nom d'obra, autor, ubicació, estat...">
-            <select data-placeholder="Choose a country..." multiple class="chosen-select">
+            <!-- <select data-placeholder="Choose a country..." multiple class="chosen-select">
                 <option>United States</option>
                 <option>United Kingdom</option>
                 <option>United Arab Emirates</option>
                 <option>Uruguay</option>
                 <option>Uzbekistan</option>
-            </select>
+            </select> -->
             <hr>
             <input type="checkbox" name="searchby" id="searchby" value="name"><label for="searchby" id="searchbylabel">Veure obras cancel·lades</label>
         </form>
