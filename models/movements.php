@@ -20,27 +20,45 @@
 
         public function createMovements($sd, $ed, $place, $artwork) {
             $conn = $this->connect();
-            $sql = "INSERT INTO expositions (name, expositionlocation, expositiontype, start_date, end_date) 
-                    VALUES (:name, :expoloc, :expotype, :sd, :ed)";
-            $sql = "INSERT INTO movements (start_date, end_date, place, artwork) 
-                    VALUES (:sd, :ed, :place, :artwork)";
-            
-            // Preparar la consulta
-            $stmt = $conn->prepare($sql);
-            //echo ($sql);
-            // Asignar los valores a los parámetros
-            $stmt->bindParam(':sd', $sd);
-            $stmt->bindParam(':ed', $ed);
-            $stmt->bindParam(':place', $place);
+            $sql = "SELECT *
+            FROM movements
+            INNER JOIN artworks ON movements.artwork = artworks.id
+            WHERE artworks.id = :artwork
+            AND movements.end_date IS NOT NULL
+            AND (
+                movements.start_date <= :ed 
+                AND movements.end_date >= :sd
+            );";
+
             $stmt->bindParam(':artwork', $artwork);
             
-            // Ejecutar la consulta
-            if ($stmt->execute()) {
-                return true;
-            } else {
-                return false;
+            $stmt = $conn->prepare($sql);
+
+            $stmt->execute();
+
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if (!empty($data)) {
+                $sql = "INSERT INTO movements (start_date, end_date, place, artwork) 
+                        VALUES (:sd, :ed, :place, :artwork)";
+                
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam(':sd', $sd);
+                $stmt->bindParam(':ed', $ed);
+                $stmt->bindParam(':place', $place);
+                $stmt->bindParam(':artwork', $artwork);
+                
+                if ($stmt->execute()) {
+                    return "s'ha registrat el moviment correctament";
+                } else {
+                    return "hi ha hagut un error desconegut";
+                }
+            }
+            else {
+                return "error: ya hi ha algun moviment registrat d'aquesta obra en el rang de dates que has introduit";
             }
         }
+
 
     }
 ?>

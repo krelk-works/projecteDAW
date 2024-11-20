@@ -246,19 +246,40 @@ movement_create.addEventListener('click', function () {
         confirmButtonText: "Si, crear",
         cancelButtonText: "Cancel·lar",
         preConfirm: () => {
-            const name = Swal.getPopup().querySelector('#movement-name').value;
-            const description = Swal.getPopup().querySelector('#movement-description').value;
+            const datainici = Swal.getPopup().querySelector('#movement-datainici').value;
+            const datafi = Swal.getPopup().querySelector('#movement-datafi').value;
+            const destinacio = Swal.getPopup().querySelector('#movement-destinacio').value;
             const artworkId = Swal.getPopup().querySelector('#artwork-id').value;
-            if (!name || !description) {
-                Swal.showValidationMessage(`Please enter both name and description`);
+            if (!datainici || !datafi || !destinacio) {
+                Swal.showValidationMessage(`Rellena todos los campos`);
             }
-            return { name: name, description: description, artworkId: artworkId };
+            return { datainici, datafi, destinacio, artworkId };
         }
     }).then((result) => {
         if (result.isConfirmed) {
             const formData = result.value;
-            console.log('Form Data:', formData);
-            // Handle form submission here
+            fetch('controllers/MovementsController.php?movement', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    start_date: formData.datainici,
+                    end_date: formData.datafi,
+                    place: formData.destinacio,
+                    artwork: formData.artworkId
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status) {
+                    Swal.fire('Éxito', "S'ha desat correctament.", 'success');
+                } else {
+                    Swal.fire('Error', "Hi ha hagut un error", 'error');
+                }
+            })
+            .catch(error => {
+                Swal.fire('Error', 'Hubo un problema al crear el movimiento.', 'error');
+                console.error(error);
+            });
         }
     });
 });
