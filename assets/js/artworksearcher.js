@@ -135,9 +135,12 @@ if (document.querySelector("#artworksearch")) {
 }
 
 $(document).ready(function () {
-    console.log('ArtworkSearcher.js cargado correctamente');
     $('.chosen-select').chosen({
-        no_results_text: "No se encontraron resultados", // Texto al no encontrar coincidencias
-        width: "100%" // Ajusta el ancho del select
+        no_results_text: "No se encontraron resultados",
+        width: "100%",
+        inherit_select_classes: true
     });
+
+    // Añadir el evento click al botón de búsqueda
+    
 });

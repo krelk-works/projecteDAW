@@ -222,4 +222,8 @@ textarea {
   overflow: hidden;
   transition: max-height 0.2s ease-out;
   /*background-color: #444444;*/
+}
+
+.panel_with_overflow {
+  overflow: visible !important;
 }/*# sourceMappingURL=general.css.map */
