@@ -134,7 +134,6 @@ if (document.querySelector("#artworksearch")) {
     });
 }
 
-
 let isPanelOverflowVisible = false;
 
 $(document).ready(function () {
@@ -146,22 +145,37 @@ $(document).ready(function () {
 
     const filtersContainer = document.getElementById('filters');
 
-    // Añadir el evento click al botón de búsqueda
-
     $('.chosen-select').on('chosen:showing_dropdown', function () {
         if (!isPanelOverflowVisible) {
-            filtersContainer.style.overflow = 'visible'; // Cambia el overflow a visible
-            isPanelOverflowVisible = true;
-            console.log('Dropdown abierto');
+            setTimeout(() => {
+                filtersContainer.style.overflow = 'visible'; // Cambia el overflow a visible
+                console.log('Overflow toggled to visible');
+                isPanelOverflowVisible = true;
+            }, 20);
+            
+            
+            
         }
     });
 
     $('.chosen-select').on('chosen:hiding_dropdown', function () {
-        if (isPanelOverflowVisible) {
+        if (isPanelOverflowVisible && $('.chosen-results').is(':visible')) {
             filtersContainer.style.overflow = 'hidden'; // Cambia el overflow a hidden
             isPanelOverflowVisible = false;
-            console.log('Dropdown cerrado');
+            console.log('Overflow toggled to hidden');
         }
     });
-    
+
+    duDatepicker('#daterange',{
+        format:'dd/mm/yyyy',
+        rangeDelim:' fins ',
+        range:true,
+        // Eventos para recuperar las fechas insertadas
+        events: {
+            dateChanged:function (data) {
+                console.log('From: ' + data.dateFrom +'\nTo: ' + data.dateTo)
+            },
+        }
+            
+    });
 });
