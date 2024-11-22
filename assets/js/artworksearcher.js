@@ -134,6 +134,9 @@ if (document.querySelector("#artworksearch")) {
     });
 }
 
+
+let isPanelOverflowVisible = false;
+
 $(document).ready(function () {
     $('.chosen-select').chosen({
         no_results_text: "No se encontraron resultados",
@@ -141,6 +144,24 @@ $(document).ready(function () {
         inherit_select_classes: true
     });
 
+    const filtersContainer = document.getElementById('filters');
+
     // Añadir el evento click al botón de búsqueda
+
+    $('.chosen-select').on('chosen:showing_dropdown', function () {
+        if (!isPanelOverflowVisible) {
+            filtersContainer.style.overflow = 'visible'; // Cambia el overflow a visible
+            isPanelOverflowVisible = true;
+            console.log('Dropdown abierto');
+        }
+    });
+
+    $('.chosen-select').on('chosen:hiding_dropdown', function () {
+        if (isPanelOverflowVisible) {
+            filtersContainer.style.overflow = 'hidden'; // Cambia el overflow a hidden
+            isPanelOverflowVisible = false;
+            console.log('Dropdown cerrado');
+        }
+    });
     
 });

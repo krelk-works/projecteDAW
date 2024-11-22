@@ -1,6 +1,6 @@
 <aside id="searchbar">
     <button class="accordion default_active">Cerca d'obres</button>
-    <div class="panel">
+    <div class="panel" id="filters">
         <form id="searchbarwrapper">
             <label for="artworksearch">Cercador</label>
             <input type="text" name="artworksearch" id="artworksearch"
@@ -25,7 +25,24 @@
                 <option value="caravaggio">Caravaggio</option>
             </select>
             <select data-placeholder="Seleccionar material/s" multiple class="chosen-select">
-
+            <option value="oleo">Óleo</option>
+                <option value="acrilico">Acrílico</option>
+                <option value="carbon">Carbón</option>
+                <option value="lapiz">Lápiz</option>
+                <option value="acquerela">Acuarela</option>
+                <option value="tinta">Tinta</option>
+                <option value="madera">Madera</option>
+                <option value="marmol">Mármol</option>
+                <option value="bronce">Bronce</option>
+                <option value="ceramica">Cerámica</option>
+                <option value="papel">Papel</option>
+                <option value="vidrio">Vidrio</option>
+                <option value="textil">Textil</option>
+                <option value="metal">Metal</option>
+                <option value="fotografia">Fotografía</option>
+                <option value="plastica">Plástica</option>
+                <option value="digital">Digital</option>
+                <option value="mixta">Técnica mixta</option>
             </select>
             <hr>
             <input type="checkbox" name="searchby" id="searchby" value="name"><label for="searchby"
