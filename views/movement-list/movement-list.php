@@ -4,9 +4,9 @@
 
 ?>
 
-<main class="list-wrapper">
-    <div class="list-container list-container-javascript">
-        <div class="list-header list-header-exposition-admin">
+<main class="list-wrapper-moviment">
+    <div class="list-container-moviment list-container-javascript">
+        <div class="list-header-moviment list-header-moviment-admin">
             <a href="">
                 <h4>Nom de la obra</h4>
             </a>
@@ -24,7 +24,7 @@
             $MovementsController = new MovementsController();
             $datamov = $MovementsController->getAllMovements();
             foreach ($datamov as $data) {
-                echo '<div class="list-item list-item-exposition-admin">
+                echo '<div class="list-item-moviment list-item-moviment-admin">
                     <h3>' . $data['name'] . '</h3>
                     <p>' . $data['start_date'] . '</p>
                     <p>' . $data['end_date'] . '</p>
