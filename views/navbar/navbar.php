@@ -42,6 +42,7 @@ if (isset($_GET['page'])) {
                 $userManagementStyle = $actualPage == "usuaris" ? "border-bottom: 2px solid #007bff;" : "";
                 $locationManagementStyle = $actualPage == "localitzacions" ? "border-bottom: 2px solid #007bff;" : "";
                 $vocabularyManagementStyle = $actualPage == "vocabulari" ? "border-bottom: 2px solid #007bff;" : "";
+                $movimentManagementStyle = $actualPage == "moviments" ? "border-bottom: 2px solid #007bff;" : "";
                 $backupManagementStyle = $actualPage == "backups" ? "border-bottom: 2px solid #007bff;" : "";
 
                 // Exposition management
@@ -66,7 +67,7 @@ if (isset($_GET['page'])) {
                     echo "<a href='#' class='dropdown-toggle1'>Gestio</a>";
                     echo "<ul class='dropdown-menu1'>";
                     echo "<li><a href='?page=vocabulari' style='$vocabularyManagementStyle'>Vocabularis</a></li>";
-                    echo "<li><a href='?page=moviments'>Moviments</a></li>";
+                    echo "<li><a href='?page=moviments' style='$movimentManagementStyle'>Moviments</a></li>";
                     echo "<li><a href='?page=cancelacions'>Cancelacions</a></li>";
                     echo "<li><a href='?page=restauracions'>Restauracions</a></li>";
                     echo "</ul>";
