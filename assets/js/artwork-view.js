@@ -232,16 +232,27 @@ movement_create.addEventListener('click', function () {
         title: "Crear moviment",
         icon: "info",
         html: `
-            <form id="movement-form">
-                <label for="movement-datainici">Data inici:</label>
-                <input type="date" id="movement-datainici" name="movement-datainici" class="swal2-input">
-                <label for="movement-datafi">Data fi:</label>
-                <input type="date" id="movement-datafi" name="movement-datafi" class="swal2-input">
-                <label for="movement-destinacio">Destinació:</label>
-                <input type="text" id="movement-destinacio" name="movement-destinacio" class="swal2-input">
+        <div class="swal2-content">
+            <form id="movement-form" style="display: flex; flex-direction: column; gap: 15px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <label for="movement-datainici" style="width: 100px; text-align: right;">Data inici:</label>
+                    <input type="date" id="movement-datainici" name="movement-datainici" class="swal2-input" style="flex: 1;">
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <label for="movement-datafi" style="width: 100px; text-align: right;">Data fi:</label>
+                    <input type="date" id="movement-datafi" name="movement-datafi" class="swal2-input" style="flex: 1;">
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <label for="movement-destinacio" style="width: 100px; text-align: right;">Destinació:</label>
+                    <input type="text" id="movement-destinacio" name="movement-destinacio" class="swal2-input" style="flex: 1;">
+                </div>
                 <input type="hidden" id="artwork-id" name="artwork-id" value="${urlParams.get('id')}">
             </form>
+        </div>
         `,
+        customClass: {
+            popup: 'larger-swal'
+        },
         showCancelButton: true,
         confirmButtonText: "Si, crear",
         cancelButtonText: "Cancel·lar",
@@ -283,3 +294,12 @@ movement_create.addEventListener('click', function () {
         }
     });
 });
+
+const style = document.createElement('style');
+style.textContent = `
+    .larger-swal {
+        width: 600px !important; /* Cambia este valor para ajustar el ancho */
+        max-width: 90%; /* Asegura que no exceda el ancho de la pantalla */
+    }
+`;
+document.head.appendChild(style);
