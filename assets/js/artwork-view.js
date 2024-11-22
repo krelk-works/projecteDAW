@@ -283,6 +283,8 @@ movement_create.addEventListener('click', function () {
             .then(data => {
                 if (data.status == 'success') {
                     Swal.fire('Éxito', data.message, 'success');
+                } else {
+                    Swal.fire('Error', data.message, 'error');
                 }
             })
             .catch(error => {
