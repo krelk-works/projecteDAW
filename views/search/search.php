@@ -6,7 +6,7 @@
             <input type="text" name="artworksearch" id="artworksearch"
                 placeholder="Nom d'obra, autor, ubicació, estat...">
             <p>Registre</p>
-                <input type="text">
+                <input type="text" placeholder="Nº de registre" id="register_identifier" name="register_identifier">
             <p>Autor</p>
             <select data-placeholder="Seleccionar autor/s" multiple class="chosen-select no-transition">
                 <option>Apel·les Fenosa</option>

@@ -140,30 +140,35 @@ $(document).ready(function () {
     $('.chosen-select').chosen({
         no_results_text: "No se encontraron resultados",
         width: "100%",
-        inherit_select_classes: true
+        inherit_select_classes: true,
+        clearBtn: true,
+        cancelBtn: true,
+
     });
 
     const filtersContainer = document.getElementById('filters');
 
     $('.chosen-select').on('chosen:showing_dropdown', function () {
+        console.log('Dropdown is trying to showing');
         if (!isPanelOverflowVisible) {
-            setTimeout(() => {
-                filtersContainer.style.overflow = 'visible'; // Cambia el overflow a visible
-                console.log('Overflow toggled to visible');
-                isPanelOverflowVisible = true;
-            }, 20);
-            
-            
-            
+            filtersContainer.style.overflow = 'visible'; // Cambia el overflow a visible
+            console.log('Overflow toggled to visible');
+            isPanelOverflowVisible = true;
         }
     });
 
     $('.chosen-select').on('chosen:hiding_dropdown', function () {
-        if (isPanelOverflowVisible && $('.chosen-results').is(':visible')) {
-            filtersContainer.style.overflow = 'hidden'; // Cambia el overflow a hidden
-            isPanelOverflowVisible = false;
-            console.log('Overflow toggled to hidden');
-        }
+        console.log('Dropdown is trying to hidding');
+        setInterval(() => {
+            const chosenDrop = document.querySelector('.chosen-container-active');
+            if (isPanelOverflowVisible && !chosenDrop) {
+                filtersContainer.style.overflow = 'hidden'; // Cambia el overflow a hidden
+                isPanelOverflowVisible = false;
+                console.log('Overflow toggled to hidden');
+                console.log('--------------------------------------------');
+            }
+        }, 20);
+        
     });
 
     duDatepicker('#daterange',{
