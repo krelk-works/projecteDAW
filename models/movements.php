@@ -20,7 +20,7 @@
 
         public function createMovements($sd, $ed, $place, $artwork) {
             $conn = $this->connect();
-            $sql = "SELECT *
+            /*$sql = "SELECT *
             FROM movements
             INNER JOIN artworks ON movements.artwork = artworks.id
             WHERE artworks.id = :artwork
@@ -38,7 +38,7 @@
 
             $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            if (!empty($data)) {
+            if (!empty($data)) {*/
                 $sql = "INSERT INTO movements (start_date, end_date, place, artwork) 
                         VALUES (:sd, :ed, :place, :artwork)";
                 
@@ -49,14 +49,14 @@
                 $stmt->bindParam(':artwork', $artwork);
                 
                 if ($stmt->execute()) {
-                    return "s'ha registrat el moviment correctament";
+                    return 0;
                 } else {
-                    return "hi ha hagut un error desconegut";
+                    return 1;
                 }
-            }
+            /*}
             else {
-                return "error: ya hi ha algun moviment registrat d'aquesta obra en el rang de dates que has introduit";
-            }
+                return 2;
+            }*/
         }
 
 
