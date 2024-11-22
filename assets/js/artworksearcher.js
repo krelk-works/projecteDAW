@@ -134,34 +134,53 @@ if (document.querySelector("#artworksearch")) {
     });
 }
 
-
 let isPanelOverflowVisible = false;
 
 $(document).ready(function () {
     $('.chosen-select').chosen({
         no_results_text: "No se encontraron resultados",
         width: "100%",
-        inherit_select_classes: true
+        inherit_select_classes: true,
+        clearBtn: true,
+        cancelBtn: true,
+
     });
 
     const filtersContainer = document.getElementById('filters');
 
-    // Añadir el evento click al botón de búsqueda
-
     $('.chosen-select').on('chosen:showing_dropdown', function () {
+        console.log('Dropdown is trying to showing');
         if (!isPanelOverflowVisible) {
             filtersContainer.style.overflow = 'visible'; // Cambia el overflow a visible
+            console.log('Overflow toggled to visible');
             isPanelOverflowVisible = true;
-            console.log('Dropdown abierto');
         }
     });
 
     $('.chosen-select').on('chosen:hiding_dropdown', function () {
-        if (isPanelOverflowVisible) {
-            filtersContainer.style.overflow = 'hidden'; // Cambia el overflow a hidden
-            isPanelOverflowVisible = false;
-            console.log('Dropdown cerrado');
-        }
+        console.log('Dropdown is trying to hidding');
+        setInterval(() => {
+            const chosenDrop = document.querySelector('.chosen-container-active');
+            if (isPanelOverflowVisible && !chosenDrop) {
+                filtersContainer.style.overflow = 'hidden'; // Cambia el overflow a hidden
+                isPanelOverflowVisible = false;
+                console.log('Overflow toggled to hidden');
+                console.log('--------------------------------------------');
+            }
+        }, 20);
+        
     });
-    
+
+    duDatepicker('#daterange',{
+        format:'dd/mm/yyyy',
+        rangeDelim:' fins ',
+        range:true,
+        // Eventos para recuperar las fechas insertadas
+        events: {
+            dateChanged:function (data) {
+                console.log('From: ' + data.dateFrom +'\nTo: ' + data.dateTo)
+            },
+        }
+            
+    });
 });

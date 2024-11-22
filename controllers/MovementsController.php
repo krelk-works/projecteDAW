@@ -47,7 +47,7 @@ if (isset($_GET['movement'])) {
             ];
         } else if ($movementCallback == 2) {
             $response = [
-                "status" => "success",
+                "status" => "error",
                 "message" => "Ya existe un movimiento en las fechas indicadas."
             ];
         }
