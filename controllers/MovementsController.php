@@ -34,10 +34,23 @@ if (isset($_GET['movement'])) {
         // Obtenemos los datos de las obras en las localizaciones correspondientes.
         $movementCallback = $model->createMovements($startDate, $endDate, $place, $artwork);
         // Configuramos los datos de la respuesta
-        $response = [
-            "status" => "success",
-            "message" => $movementCallback,
-        ];
+
+        if ($movementCallback == 0) {
+            $response = [
+                "status" => "success",
+                "message" => "Movimiento creado correctamente."
+            ];
+        } else if ($movementCallback == 1) {
+            $response = [
+                "status" => "success",
+                "message" => "Error al crear el movimiento."
+            ];
+        } else if ($movementCallback == 2) {
+            $response = [
+                "status" => "success",
+                "message" => "Ya existe un movimiento en las fechas indicadas."
+            ];
+        }
     } else {
         $response = [
             "status" => "error",

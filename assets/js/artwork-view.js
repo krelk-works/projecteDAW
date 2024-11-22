@@ -270,10 +270,10 @@ movement_create.addEventListener('click', function () {
             })
             .then(response => response.json())
             .then(data => {
-                if (data.status) {
-                    Swal.fire('Éxito', "S'ha desat correctament.", 'success');
+                if (data.status == 'success') {
+                    Swal.fire('Éxito', data.message, 'success');
                 } else {
-                    Swal.fire('Error', "Hi ha hagut un error", 'error');
+                    Swal.fire('Error', data.message, 'error');
                 }
             })
             .catch(error => {
