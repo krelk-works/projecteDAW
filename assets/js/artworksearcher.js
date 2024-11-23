@@ -1,5 +1,16 @@
 let canceledOnly = false;
 
+// Array de filtros avanzados
+let advancedFilter = {
+    registerNumber: '',
+    authors: [],
+    tecniques: [],
+    materials: [],
+    startCDate: '',
+    endCDate: '',
+};
+// ------------------------------
+
 if (document.querySelector("#artworksearch")) {
     let isLoading = false;
 
@@ -136,51 +147,92 @@ if (document.querySelector("#artworksearch")) {
 
 let isPanelOverflowVisible = false;
 
-$(document).ready(function () {
-    $('.chosen-select').chosen({
-        no_results_text: "No se encontraron resultados",
-        width: "100%",
-        inherit_select_classes: true,
-        clearBtn: true,
-        cancelBtn: true,
 
+// Get form data from database
+fetch("controllers/ArtworkController.php?getFormData", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+})
+.then(response => response.text()) // Leer la respuesta completa como texto
+.then(response => {
+    const data = JSON.parse(response);
+    console.log('Data:', data);
+    // Rellenar los campos de los filtros avanzados
+    const authors = data.message.authors;
+    const tecniques = data.message.tecniques;
+    const materials = data.message.materials;
+    const conservationstatus = data.message.conservationstatus;
+    authors.forEach(author => {
+        $('#authors').append('<option value="' + author.id + '">' + author.name + '</option>');
     });
+    $('#authors').trigger('chosen:updated');
+    tecniques.forEach(tecnique => {
+        $('#tecniques').append('<option value="' + tecnique.id + '">' + tecnique.text + '</option>');
+    });
+    $('#tecniques').trigger('chosen:updated');
+    materials.forEach(material => {
+        $('#materials').append('<option value="' + material.id + '">' + material.text + '</option>');
+    });
+    $('#materials').trigger('chosen:updated');
+    conservationstatus.forEach(status => {
+        $('#conservationstatus').append('<option value="' + status.id + '">' + status.text + '</option>');
+    });
+    $('#conservationstatus').trigger('chosen:updated');
+}).catch(error => console.error('Error:', error));
 
-    const filtersContainer = document.getElementById('filters');
+$('.chosen-select').chosen({
+    no_results_text: "No s'han trobat coincidències",
+    width: "100%",
+    inherit_select_classes: true,
+    clearBtn: true,
+    cancelBtn: true,
 
-    $('.chosen-select').on('chosen:showing_dropdown', function () {
-        console.log('Dropdown is trying to showing');
-        if (!isPanelOverflowVisible) {
-            filtersContainer.style.overflow = 'visible'; // Cambia el overflow a visible
-            console.log('Overflow toggled to visible');
-            isPanelOverflowVisible = true;
+});
+
+const filtersContainer = document.getElementById('filters');
+
+$('.chosen-select').on('chosen:showing_dropdown', function () {
+    console.log('Dropdown is trying to showing');
+    if (!isPanelOverflowVisible) {
+        filtersContainer.style.overflow = 'visible'; // Cambia el overflow a visible
+        console.log('Overflow toggled to visible');
+        isPanelOverflowVisible = true;
+    }
+});
+
+$('.chosen-select').on('chosen:hiding_dropdown', function () {
+    console.log('Dropdown is trying to hidding');
+    setInterval(() => {
+        const chosenDrop = document.querySelector('.chosen-container-active');
+        if (isPanelOverflowVisible && !chosenDrop) {
+            filtersContainer.style.overflow = 'hidden'; // Cambia el overflow a hidden
+            isPanelOverflowVisible = false;
+            console.log('Overflow toggled to hidden');
+            console.log('--------------------------------------------');
         }
-    });
+    }, 20);
 
-    $('.chosen-select').on('chosen:hiding_dropdown', function () {
-        console.log('Dropdown is trying to hidding');
-        setInterval(() => {
-            const chosenDrop = document.querySelector('.chosen-container-active');
-            if (isPanelOverflowVisible && !chosenDrop) {
-                filtersContainer.style.overflow = 'hidden'; // Cambia el overflow a hidden
-                isPanelOverflowVisible = false;
-                console.log('Overflow toggled to hidden');
-                console.log('--------------------------------------------');
-            }
-        }, 20);
-        
-    });
+});
 
-    duDatepicker('#daterange',{
-        format:'dd/mm/yyyy',
-        rangeDelim:' fins ',
-        range:true,
-        // Eventos para recuperar las fechas insertadas
-        events: {
-            dateChanged:function (data) {
-                console.log('From: ' + data.dateFrom +'\nTo: ' + data.dateTo)
-            },
-        }
-            
-    });
+duDatepicker('#daterange', {
+    format: 'dd/mm/yyyy',
+    rangeDelim: ' fins ',
+    range: true,
+    // Eventos para recuperar las fechas insertadas
+    events: {
+        dateChanged: function (data) {
+            console.log('From: ' + data.dateFrom + '\nTo: ' + data.dateTo)
+        },
+    }
+
+});
+
+
+
+// Event listener for changes on authors filter
+$('#authors').on('change', function () {
+    const selectedValues = $(this).val(); // Array de valores seleccionados
+    console.log('Valores seleccionados:', selectedValues);
 });
