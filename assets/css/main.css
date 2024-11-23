@@ -820,6 +820,10 @@ textarea {
   transform: translateX(-50%) translateY(-50%) scale(1) !important;
 }
 
+.delete_filters:hover {
+  background-color: #ff0000;
+}
+
 /*
 #home-list-wrapper {
     padding: 0px 15px 0px 20px;

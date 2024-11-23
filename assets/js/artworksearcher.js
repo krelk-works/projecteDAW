@@ -8,8 +8,62 @@ let advancedFilter = {
     materials: [],
     startCDate: '',
     endCDate: '',
+    conservationStatus: []
 };
 // ------------------------------
+
+/** Funcionalidad para rellenar el numero de identificador (registro) con ceros */
+function padIdentifierWithZeros(number) {
+    // Comprobar si el valor es un número
+    if (isNaN(number)) {
+        // console.error("Error: El valor no es un número.");
+        return null; // Devuelve null en caso de error
+    }
+
+    // Comprobar si el número está dentro del rango permitido
+    if (number < 1 || number > 99999) {
+        // console.error("Error: El número está fuera del rango permitido (1 - 99999).");
+        return null; // Devuelve null en caso de error
+    }
+
+    if (number.toString().length > 5) {
+        // console.log('Número mayor a 5 dígitos:', number);
+        const digitnumber = Number(number);
+        return digitnumber.toString().padStart(5, '0');
+    }
+
+    // Si las comprobaciones son correctas, agrega ceros a la izquierda hasta 5 dígitos
+    return number.toString().padStart(5, '0');
+}
+
+function padSubWithZeros(number) {
+    if (!number) {
+        return;
+    }
+    // Comprobar si el valor es un número
+    if (isNaN(number)) {
+        // console.error("Error: El valor no es un número.");
+        return null; // Devuelve null en caso de error
+    }
+
+    // Comprobar si el número está dentro del rango permitido
+    if ((number < 1 || number > 99) && number != '' && number != 0) {
+        // console.error("Error: El número está fuera del rango permitido (1 - 99).");
+        return null; // Devuelve null en caso de error
+    }
+
+    if (number.toString().length > 2) {
+        const digitnumber = Number(number);
+        return digitnumber.toString().padStart(2, '0');
+    }
+
+    // if (number.toString().length === 1 && number == 0) {
+    //     return '01';
+    // }
+
+    // Si las comprobaciones son correctas, agrega ceros a la izquierda hasta 5 dígitos
+    return number.toString().padStart(2, '0');
+}
 
 if (document.querySelector("#artworksearch")) {
     let isLoading = false;
@@ -42,11 +96,80 @@ if (document.querySelector("#artworksearch")) {
         }
     }
 
+    function filterArtworks(artworks) {
+        let filteredArtworks = [];
+
+        // console.log('Datos de obras => ', artworks);
+
+        artworks.forEach(artwork => {
+
+            // Si cumple con los filtros avanzados agregamos la obra al array de obras filtradas
+
+            if (advancedFilter.authors.length > 0) {
+                if (!advancedFilter.authors.includes(artwork.author_id)) {
+                    return;
+                }
+            }
+
+            if (advancedFilter.tecniques.length > 0) {
+                if (!advancedFilter.tecniques.includes(artwork.tecnique_id)) {
+                    return;
+                }
+            }
+
+            if (advancedFilter.materials.length > 0) {
+                if (!advancedFilter.materials.includes(artwork.material_id)) {
+                    return;
+                }
+            }
+
+            if (advancedFilter.startCDate !== '' && advancedFilter.endCDate !== '') {
+                const artworkCreationDate = new Date(artwork.creation_date);
+
+                // console.log('Fecha de creación buscada:', advancedFilter.startCDate, advancedFilter.endCDate);
+                // console.log('Fecha de creación actual:', artwork.creation_date);
+                // console.log(artworkCreationDate <= advancedFilter.startCDate || artworkCreationDate >= advancedFilter.endCDate)
+
+                if (artworkCreationDate <= advancedFilter.startCDate || artworkCreationDate >= advancedFilter.endCDate) {
+                    return;
+                }
+            }
+
+            // Transformamos el número de registro a string y le añadimos los ceros necesarios
+
+            let registerNumber = '';
+
+            registerNumber += artwork.id_letter === null ? '' : artwork.id_letter;
+            registerNumber += artwork.id_num1 === null ? '' : padIdentifierWithZeros(Number(artwork.id_num1));
+            registerNumber += artwork.id_num2 === null ? '' : '.' + padSubWithZeros(Number(artwork.id_num2));
+
+            if (advancedFilter.registerNumber !== '') {
+                // console.log('Número de registro buscado:', advancedFilter.registerNumber);
+                // console.log('Número de registro actual:', registerNumber);
+                if (registerNumber !== advancedFilter.registerNumber) {
+                    return;
+                }
+            }
+
+            if (advancedFilter.conservationStatus.length > 0) {
+                if (!advancedFilter.conservationStatus.includes(artwork.conservationstatus_id)) {
+                    return;
+                }
+            }
+
+            filteredArtworks.push(artwork);
+
+        });
+
+        return filteredArtworks;
+    };
+
     // Función para obtener las obras a través de la API
     const getArtworksAPI = (value) => {
         fetch('apis/artworksAPI.php?search=' + value)
             .then(response => response.json()) // Convertir la respuesta a JSON
             .then(data => { // Mostrar los datos en la consola
+                data = filterArtworks(data);
                 let HTMLCode = generateHTMLCode(data);
                 document.querySelector(".list-container").innerHTML = HTMLCode;
                 isLoading = false;
@@ -143,96 +266,171 @@ if (document.querySelector("#artworksearch")) {
             }
         });
     });
-}
-
-let isPanelOverflowVisible = false;
 
 
-// Get form data from database
-fetch("controllers/ArtworkController.php?getFormData", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-})
-.then(response => response.text()) // Leer la respuesta completa como texto
-.then(response => {
-    const data = JSON.parse(response);
-    console.log('Data:', data);
-    // Rellenar los campos de los filtros avanzados
-    const authors = data.message.authors;
-    const tecniques = data.message.tecniques;
-    const materials = data.message.materials;
-    const conservationstatus = data.message.conservationstatus;
-    authors.forEach(author => {
-        $('#authors').append('<option value="' + author.id + '">' + author.name + '</option>');
-    });
-    $('#authors').trigger('chosen:updated');
-    tecniques.forEach(tecnique => {
-        $('#tecniques').append('<option value="' + tecnique.id + '">' + tecnique.text + '</option>');
-    });
-    $('#tecniques').trigger('chosen:updated');
-    materials.forEach(material => {
-        $('#materials').append('<option value="' + material.id + '">' + material.text + '</option>');
-    });
-    $('#materials').trigger('chosen:updated');
-    conservationstatus.forEach(status => {
-        $('#conservationstatus').append('<option value="' + status.id + '">' + status.text + '</option>');
-    });
-    $('#conservationstatus').trigger('chosen:updated');
-}).catch(error => console.error('Error:', error));
+    // Parte de la búsqueda avanzada
+    // -------------------------------------------------------------------------------------------------------------------------------
 
-$('.chosen-select').chosen({
-    no_results_text: "No s'han trobat coincidències",
-    width: "100%",
-    inherit_select_classes: true,
-    clearBtn: true,
-    cancelBtn: true,
+    let isPanelOverflowVisible = false;
 
-});
-
-const filtersContainer = document.getElementById('filters');
-
-$('.chosen-select').on('chosen:showing_dropdown', function () {
-    console.log('Dropdown is trying to showing');
-    if (!isPanelOverflowVisible) {
-        filtersContainer.style.overflow = 'visible'; // Cambia el overflow a visible
-        console.log('Overflow toggled to visible');
-        isPanelOverflowVisible = true;
-    }
-});
-
-$('.chosen-select').on('chosen:hiding_dropdown', function () {
-    console.log('Dropdown is trying to hidding');
-    setInterval(() => {
-        const chosenDrop = document.querySelector('.chosen-container-active');
-        if (isPanelOverflowVisible && !chosenDrop) {
-            filtersContainer.style.overflow = 'hidden'; // Cambia el overflow a hidden
-            isPanelOverflowVisible = false;
-            console.log('Overflow toggled to hidden');
-            console.log('--------------------------------------------');
-        }
-    }, 20);
-
-});
-
-duDatepicker('#daterange', {
-    format: 'dd/mm/yyyy',
-    rangeDelim: ' fins ',
-    range: true,
-    // Eventos para recuperar las fechas insertadas
-    events: {
-        dateChanged: function (data) {
-            console.log('From: ' + data.dateFrom + '\nTo: ' + data.dateTo)
+    // Get form data from database
+    fetch("controllers/ArtworkController.php?getFormData", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
         },
-    }
+    })
+        .then(response => response.text()) // Leer la respuesta completa como texto
+        .then(response => {
+            const data = JSON.parse(response);
+            // console.log('Data:', data);
+            // Rellenar los campos de los filtros avanzados
+            const authors = data.message.authors;
+            const tecniques = data.message.tecniques;
+            const materials = data.message.materials;
+            const conservationstatus = data.message.conservationstatus;
+            authors.forEach(author => {
+                $('#authors').append('<option value="' + author.id + '">' + author.name + '</option>');
+            });
+            $('#authors').trigger('chosen:updated');
+            tecniques.forEach(tecnique => {
+                $('#tecniques').append('<option value="' + tecnique.id + '">' + tecnique.text + '</option>');
+            });
+            $('#tecniques').trigger('chosen:updated');
+            materials.forEach(material => {
+                $('#materials').append('<option value="' + material.id + '">' + material.text + '</option>');
+            });
+            $('#materials').trigger('chosen:updated');
+            conservationstatus.forEach(status => {
+                $('#conservationstatus').append('<option value="' + status.id + '">' + status.text + '</option>');
+            });
+            $('#conservationstatus').trigger('chosen:updated');
+        }).catch(error => console.error('Error:', error));
 
-});
+    $('.chosen-select').chosen({
+        no_results_text: "No s'han trobat coincidències",
+        width: "100%",
+        inherit_select_classes: true,
+        clearBtn: true,
+        cancelBtn: true,
+
+    });
+
+    const filtersContainer = document.getElementById('filters');
+
+    $('.chosen-select').on('chosen:showing_dropdown', function () {
+        // console.log('Dropdown is trying to showing');
+        if (!isPanelOverflowVisible) {
+            filtersContainer.style.overflow = 'visible'; // Cambia el overflow a visible
+            // console.log('Overflow toggled to visible');
+            isPanelOverflowVisible = true;
+        }
+    });
+
+    $('.chosen-select').on('chosen:hiding_dropdown', function () {
+        // console.log('Dropdown is trying to hidding');
+        setInterval(() => {
+            const chosenDrop = document.querySelector('.chosen-container-active');
+            if (isPanelOverflowVisible && !chosenDrop) {
+                filtersContainer.style.overflow = 'hidden'; // Cambia el overflow a hidden
+                isPanelOverflowVisible = false;
+                // console.log('Overflow toggled to hidden');
+                // console.log('--------------------------------------------');
+            }
+        }, 20);
+
+    });
+
+    duDatepicker('#daterange', {
+        format: 'dd/mm/yyyy',
+        rangeDelim: ' fins ',
+        range: true,
+        clearBtn: true,
+        // Eventos para recuperar las fechas insertadas
+        events: {
+            dateChanged: function (data) {
+                // console.log('From: ' + data.dateFrom + '\nTo: ' + data.dateTo)
 
 
+                if (data.dateFrom === null || data.dateTo === null) {
+                    advancedFilter.startCDate = '';
+                    advancedFilter.endCDate = '';
+                    setLoadingStatus();
+                    getArtworksAPI(inputSearch.value);
+                    return;
+                }
 
-// Event listener for changes on authors filter
-$('#authors').on('change', function () {
-    const selectedValues = $(this).val(); // Array de valores seleccionados
-    console.log('Valores seleccionados:', selectedValues);
-});
+                advancedFilter.startCDate = new Date(data.dateFrom);
+                advancedFilter.endCDate = new Date(data.dateTo);
+
+                setLoadingStatus();
+                getArtworksAPI(inputSearch.value);
+            },
+        }
+
+    });
+
+    // Event listener for changes on register number filter
+    $('#register_identifier').on('input', function () {
+        const value = $(this).val();
+        // console.log('Número de registro buscado:', value);
+        advancedFilter.registerNumber = value;
+        setLoadingStatus();
+        debouncedgetArtworksAPI(inputSearch.value);
+    });
+
+    // Event listener for changes on authors filter
+    $('#authors').on('change', function () {
+        const selectedValues = $(this).val(); // Array de valores seleccionados
+        // console.log('Autores seleccionados:', selectedValues);
+        advancedFilter.authors = selectedValues;
+        setLoadingStatus();
+        getArtworksAPI(inputSearch.value);
+    });
+
+    $('#tecniques').on('change', function () {
+        const selectedValues = $(this).val(); // Array de valores seleccionados
+        // console.log('Técnicas seleccionadas:', selectedValues);
+        advancedFilter.tecniques = selectedValues;
+        setLoadingStatus();
+        getArtworksAPI(inputSearch.value);
+    });
+
+    $('#materials').on('change', function () {
+        const selectedValues = $(this).val(); // Array de valores seleccionados
+        // console.log('Materiales seleccionados:', selectedValues);
+        advancedFilter.materials = selectedValues;
+        setLoadingStatus();
+        getArtworksAPI(inputSearch.value);
+    });
+
+    $('#conservationstatus').on('change', function () {
+        const selectedValues = $(this).val(); // Array de valores seleccionados
+        // console.log('Estados de conservación seleccionados:', selectedValues);
+        advancedFilter.conservationStatus = selectedValues;
+        setLoadingStatus();
+        getArtworksAPI(inputSearch.value);
+    });
+
+    $('.delete_filters').on('click', function (event) {
+        event.preventDefault();
+        // console.log('Borrando filtros...');
+        advancedFilter = {
+            registerNumber: '',
+            authors: [],
+            tecniques: [],
+            materials: [],
+            startCDate: '',
+            endCDate: '',
+            conservationStatus: []
+        };
+        $('#register_identifier').val('');
+        $('#authors').val('').trigger('chosen:updated');
+        $('#tecniques').val('').trigger('chosen:updated');
+        $('#materials').val('').trigger('chosen:updated');
+        $('#conservationstatus').val('').trigger('chosen:updated');
+        $('#daterange').val('');
+        setLoadingStatus();
+        getArtworksAPI(inputSearch.value);
+    });
+}

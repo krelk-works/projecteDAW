@@ -581,7 +581,7 @@
 
         public function searchArtwork($search){
             $conn = $this->connect();
-            $sql = "SELECT artworks.museumname AS artwork_museumname, artworks.id, artworks.title AS artwork_name, artworks.creation_date, artworks.canceled, authors.name AS author_name, conservationstatus.text, locations.name AS location_name, artworks.image AS artwork_image
+            $sql = "SELECT artworks.id_letter, artworks.id_num1, artworks.id_num2, artworks.museumname AS artwork_museumname, artworks.id, artworks.title AS artwork_name, artworks.creation_date, artworks.canceled, artworks.tecnique AS tecnique_id, artworks.material AS material_id, artworks.conservationstatus AS conservationstatus_id, authors.name AS author_name, authors.id as author_id, conservationstatus.text, locations.name AS location_name, artworks.image AS artwork_image
                     FROM artworks
                     INNER JOIN authors ON artworks.author = authors.id
                     INNER JOIN locations ON artworks.location = locations.id
