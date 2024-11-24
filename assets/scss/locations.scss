@@ -62,3 +62,29 @@
 .location-node.open > .location-node-children {
     display: block;
 }
+
+.mini_button {
+    all: unset !important;
+
+}
+
+/* Estilos del menú contextual */
+.context-menu {
+    position: absolute;
+    display: none;
+    background: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.context-menu li {
+    list-style: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.context-menu li:hover {
+    background-color: #f0f0f0;
+}

@@ -10,3 +10,5 @@
         <div class="loader-container"><div class="loader"></div></div>
     </div>
 </main>
+<script src="assets/js/locations.js" defer></script>
+<script src="assets/js/locations2.js" defer></script>

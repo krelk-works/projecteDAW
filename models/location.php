@@ -49,11 +49,14 @@
             // Asignar los valores a los parámetros
             $stmt->bindParam(':location_name', $location_name);
             $stmt->bindParam(':parent', $parent);
-            
-            // Ejecutar la consulta
-            if ($stmt->execute()) {
-                return true;
-            } else {
+            try {
+                // Ejecutar la consulta
+                if ($stmt->execute()) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (Exception $e) {
                 return false;
             }
         }

@@ -85,6 +85,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="assets/img/favicon.png">
     <link rel="stylesheet" href="assets/css/fa.all.min.css">
+    <link rel="stylesheet" href="assets/css/jstree.min.css">
     <link rel="stylesheet" href="assets/css/main.css">
     <!-- <link rel="stylesheet" href="assets/css/chosen.min.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
@@ -95,6 +96,7 @@
     <script src="assets/js/duDatepicker.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js" integrity="sha512-rMGGF4wg1R73ehtnxXBt5mbUfN9JUJwbk21KMlnLZDJh7BkPmeovBuddZCENJddHYYMkCh9hPFnPmS9sspki8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="assets/js/accordion-element.js" defer></script>
+    <script src="assets/js/jstree.min.js" defer></script>
     
 
     <!--<script src="assets/js/main.js" defer></script>-->
