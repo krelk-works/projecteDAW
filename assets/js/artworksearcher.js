@@ -184,13 +184,23 @@ if (document.querySelector("#artworksearch")) {
         let artworksCount = 0;
         if (canceledOnly) {
             $artworks.forEach(artwork => {
+                
                 if (artwork.canceled) {
-                    HTMLCode += '<div class="list-item">';
+                    let registerNumber = '';
+
+                    registerNumber += artwork.id_letter === null ? '' : artwork.id_letter;
+                    registerNumber += artwork.id_num1 === null ? '' : padIdentifierWithZeros(Number(artwork.id_num1));
+                    registerNumber += artwork.id_num2 === null ? '' : '.' + padSubWithZeros(Number(artwork.id_num2));
+
+                    // Transformamos la fecha de artwork.creation_date a un objeto Date y luego solo recogemos el año
+                    let creationYear = new Date(artwork.creation_date).getFullYear();
+
+                    HTMLCode += '<div class="list-item" key="'+ artwork.id +'">';
                     HTMLCode += '<img src="' + artwork.artwork_image + '" alt="' + artwork.artwork_name + ' ' + artwork.author_name + '">';
-                    HTMLCode += '<a href="?page=artwork-view&id=' + artwork.id + '"><h3>' + artwork.artwork_name + '</h3></a>';
+                    HTMLCode += '<a href="?page=artwork-view&id=' + artwork.id + '"><h3>' + artwork.artwork_name + '</h3><span class="register_number">' + registerNumber + '</span></a>';
                     HTMLCode += '<p><i class="fa-solid fa-user"></i>' + artwork.author_name + '</p>';
                     HTMLCode += '<p><i class="fa-solid fa-location-dot"></i>' + artwork.location_name + '</p>';
-                    HTMLCode += '<p><i class="fa-solid fa-bookmark"></i>' + artwork.creation_date + '</p>';
+                    HTMLCode += '<p><i class="fa-solid fa-bookmark"></i>' + creationYear + '</p>';
                     HTMLCode += '<p><i class="fa-regular fa-clipboard"></i>' + artwork.text + '</p>';
                     HTMLCode += '</div>';
                     artworksCount++;
@@ -199,12 +209,22 @@ if (document.querySelector("#artworksearch")) {
         } else {
             $artworks.forEach(artwork => {
                 if (!artwork.canceled) {
-                    HTMLCode += '<div class="list-item">';
+
+                    let registerNumber = '';
+
+                    registerNumber += artwork.id_letter === null ? '' : artwork.id_letter;
+                    registerNumber += artwork.id_num1 === null ? '' : padIdentifierWithZeros(Number(artwork.id_num1));
+                    registerNumber += artwork.id_num2 === null ? '' : '.' + padSubWithZeros(Number(artwork.id_num2));
+
+                    // Transformamos la fecha de artwork.creation_date a un objeto Date y luego solo recogemos el año
+                    let creationYear = new Date(artwork.creation_date).getFullYear();
+
+                    HTMLCode += '<div class="list-item" key="'+ artwork.id +'">';
                     HTMLCode += '<img src="' + artwork.artwork_image + '" alt="' + artwork.artwork_name + ' ' + artwork.author_name + '">';
-                    HTMLCode += '<a href="?page=artwork-view&id=' + artwork.id + '"><h3>' + artwork.artwork_name + '</h3></a>';
+                    HTMLCode += '<a href="?page=artwork-view&id=' + artwork.id + '"><h3>' + artwork.artwork_name + '</h3><span class="register_number">'+ registerNumber +'</span></a>';
                     HTMLCode += '<p><i class="fa-solid fa-user"></i>' + artwork.author_name + '</p>';
                     HTMLCode += '<p><i class="fa-solid fa-location-dot"></i>' + artwork.location_name + '</p>';
-                    HTMLCode += '<p><i class="fa-solid fa-bookmark"></i>' + artwork.creation_date + '</p>';
+                    HTMLCode += '<p><i class="fa-solid fa-bookmark"></i>' + creationYear + '</p>';
                     HTMLCode += '<p><i class="fa-regular fa-clipboard"></i>' + artwork.text + '</p>';
                     HTMLCode += '</div>';
                     artworksCount++;
@@ -232,7 +252,7 @@ if (document.querySelector("#artworksearch")) {
             <a href=""><h4>Nom</h4></a>
             <a href=""><h4>Autor</h4></a>
             <a href=""><h4>Ubicació</h4></a>
-            <a href=""><h4>Datació</h4></a>
+            <a href=""><h4>Any</h4></a>
             <a href=""><h4>Estat</h4></a>
         </div>
     `;

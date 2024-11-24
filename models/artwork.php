@@ -226,7 +226,7 @@
             $conn = $this->connect();
 
             // Base SQL query
-            $sql = "SELECT artworks.id, artworks.title AS artwork_name, artworks.creation_date, artworks.image as artwork_image, authors.name AS author_name, conservationstatus.text, locations.name AS location_name
+            $sql = "SELECT artworks.id, artworks.id_letter, artworks.id_num1, artworks.id_num2, artworks.title AS artwork_name, artworks.creation_date, artworks.image as artwork_image, authors.name AS author_name, conservationstatus.text, locations.name AS location_name
                     FROM artworks
                     INNER JOIN authors ON artworks.author = authors.id
                     INNER JOIN locations ON artworks.location = locations.id

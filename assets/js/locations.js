@@ -4,10 +4,63 @@ const headerCode = `
         <a href=""><h4>Nom</h4></a>
         <a href=""><h4>Autor</h4></a>
         <a href=""><h4>Ubicació</h4></a>
-        <a href=""><h4>Datació</h4></a>
+        <a href=""><h4>Any</h4></a>
         <a href=""><h4>Estat</h4></a>
     </div>
 `;
+
+/** Funcionalidad para rellenar el numero de identificador (registro) con ceros */
+function padIdentifierWithZeros(number) {
+    // Comprobar si el valor es un número
+    if (isNaN(number)) {
+        // console.error("Error: El valor no es un número.");
+        return null; // Devuelve null en caso de error
+    }
+
+    // Comprobar si el número está dentro del rango permitido
+    if (number < 1 || number > 99999) {
+        // console.error("Error: El número está fuera del rango permitido (1 - 99999).");
+        return null; // Devuelve null en caso de error
+    }
+
+    if (number.toString().length > 5) {
+        // console.log('Número mayor a 5 dígitos:', number);
+        const digitnumber = Number(number);
+        return digitnumber.toString().padStart(5, '0');
+    }
+
+    // Si las comprobaciones son correctas, agrega ceros a la izquierda hasta 5 dígitos
+    return number.toString().padStart(5, '0');
+}
+
+function padSubWithZeros(number) {
+    if (!number) {
+        return;
+    }
+    // Comprobar si el valor es un número
+    if (isNaN(number)) {
+        // console.error("Error: El valor no es un número.");
+        return null; // Devuelve null en caso de error
+    }
+
+    // Comprobar si el número está dentro del rango permitido
+    if ((number < 1 || number > 99) && number != '' && number != 0) {
+        // console.error("Error: El número está fuera del rango permitido (1 - 99).");
+        return null; // Devuelve null en caso de error
+    }
+
+    if (number.toString().length > 2) {
+        const digitnumber = Number(number);
+        return digitnumber.toString().padStart(2, '0');
+    }
+
+    // if (number.toString().length === 1 && number == 0) {
+    //     return '01';
+    // }
+
+    // Si las comprobaciones son correctas, agrega ceros a la izquierda hasta 5 dígitos
+    return number.toString().padStart(2, '0');
+}
 
 function populateArtWorkLocationSelect() {
     // console.log('Current Location:', currentLocation);
@@ -18,35 +71,54 @@ function populateArtWorkLocationSelect() {
         },
         body: JSON.stringify({ currentLocation: currentLocation }) // Convertir el array a JSON
     })
-    .then(response => response.text()) // Leer la respuesta completa como texto
-    .then(response => {
-        try {
-            const artworks = JSON.parse(response); // Convertir a JSON si es posible
-            let HTMLCode = headerCode;
-            artworks.message.forEach(artwork => {
-                // console.log("Se ha recibido la obra: "+element.artwork_name);
-                HTMLCode += '<div class="list-item">';
-                HTMLCode += '<img src="' + artwork.artwork_image + '" alt="' + artwork.artwork_name + ' ' + artwork.author_name + '">';
-                HTMLCode += '<a href="?page=artwork-view&id=' + artwork.id + '"><h3>' + artwork.artwork_name + '</h3></a>';
-                HTMLCode += '<p><i class="fa-solid fa-user"></i>' + artwork.author_name + '</p>';
-                HTMLCode += '<p><i class="fa-solid fa-location-dot"></i>' + artwork.location_name + '</p>';
-                HTMLCode += '<p><i class="fa-solid fa-bookmark"></i>' + artwork.creation_date + '</p>';
-                HTMLCode += '<p><i class="fa-regular fa-clipboard"></i>' + artwork.text + '</p>';
-                HTMLCode += '</div>';
-            });
-            if (artworks.message.length === 0) {
-                HTMLCode += '<div><h2>No s\'han trobat resultats</h2><p>Intenti amb un altre localització.</p></div>';
+        .then(response => response.text()) // Leer la respuesta completa como texto
+        .then(response => {
+            try {
+                const artworks = JSON.parse(response); // Convertir a JSON si es posible
+                let HTMLCode = headerCode;
+                artworks.message.forEach(artwork => {
+                    // console.log("Se ha recibido la obra: "+element.artwork_name);
+                    // HTMLCode += '<div class="list-item">';
+                    // HTMLCode += '<img src="' + artwork.artwork_image + '" alt="' + artwork.artwork_name + ' ' + artwork.author_name + '">';
+                    // HTMLCode += '<a href="?page=artwork-view&id=' + artwork.id + '"><h3>' + artwork.artwork_name + '</h3></a>';
+                    // HTMLCode += '<p><i class="fa-solid fa-user"></i>' + artwork.author_name + '</p>';
+                    // HTMLCode += '<p><i class="fa-solid fa-location-dot"></i>' + artwork.location_name + '</p>';
+                    // HTMLCode += '<p><i class="fa-solid fa-bookmark"></i>' + artwork.creation_date + '</p>';
+                    // HTMLCode += '<p><i class="fa-regular fa-clipboard"></i>' + artwork.text + '</p>';
+                    // HTMLCode += '</div>';
+
+
+                    let registerNumber = '';
+
+                    registerNumber += artwork.id_letter === null ? '' : artwork.id_letter;
+                    registerNumber += artwork.id_num1 === null ? '' : padIdentifierWithZeros(Number(artwork.id_num1));
+                    registerNumber += artwork.id_num2 === null ? '' : '.' + padSubWithZeros(Number(artwork.id_num2));
+
+                    // Transformamos la fecha de artwork.creation_date a un objeto Date y luego solo recogemos el año
+                    let creationYear = new Date(artwork.creation_date).getFullYear();
+
+                    HTMLCode += '<div class="list-item" key="' + artwork.id + '">';
+                    HTMLCode += '<img src="' + artwork.artwork_image + '" alt="' + artwork.artwork_name + ' ' + artwork.author_name + '">';
+                    HTMLCode += '<a href="?page=artwork-view&id=' + artwork.id + '"><h3>' + artwork.artwork_name + '</h3><span class="register_number">' + registerNumber + '</span></a>';
+                    HTMLCode += '<p><i class="fa-solid fa-user"></i>' + artwork.author_name + '</p>';
+                    HTMLCode += '<p><i class="fa-solid fa-location-dot"></i>' + artwork.location_name + '</p>';
+                    HTMLCode += '<p><i class="fa-solid fa-bookmark"></i>' + creationYear + '</p>';
+                    HTMLCode += '<p><i class="fa-regular fa-clipboard"></i>' + artwork.text + '</p>';
+                    HTMLCode += '</div>';
+                });
+                if (artworks.message.length === 0) {
+                    HTMLCode += '<div><h2>No s\'han trobat resultats</h2><p>Intenti amb un altre localització.</p></div>';
+                }
+                document.querySelector(".list-container").innerHTML = HTMLCode;
+            } catch (error) {
+                console.error("Error parsing response:", error);
             }
-            document.querySelector(".list-container").innerHTML = HTMLCode;
-        } catch (error) {
-            console.error("Error parsing response:", error);
-        }
-        
-    })
-    .catch(error => {
-        console.log(error);
-    });
-    
+
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
 }
 
 // Función para renderizar el árbol de ubicaciones
@@ -113,7 +185,7 @@ function renderLocationTree(data, containerId) {
     if (firstRootNode) {
         const firstRootElement = nodeMap[firstRootNode].element;
         toggleNode(firstRootElement, firstRootNode, nodeMap);
-        
+
         // Actualizar currentLocation con la jerarquía del primer nodo raíz
         currentLocation = getHierarchyIds(firstRootNode, nodeMap);
         // console.log("Initial Current Location:", currentLocation);

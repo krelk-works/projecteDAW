@@ -210,6 +210,13 @@
   padding-left: 10px;
   height: 100%;
 }
+.list-wrapper .list-container .list-item .register_number {
+  display: flex;
+  padding-left: 10px;
+  font-size: 12px;
+  width: 100% !important;
+  color: #585858;
+}
 .list-wrapper .list-container .list-item p {
   display: flex;
   align-items: center;
@@ -244,6 +251,9 @@
   cursor: pointer;
   padding: 8px;
   color: #292929;
+}
+.list-wrapper .list-container .list-item:hover p {
+  color: #585858;
 }
 .list-wrapper .list-container .list-item:last-child {
   margin-bottom: 0px !important;
