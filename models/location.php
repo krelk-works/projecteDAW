@@ -60,7 +60,82 @@
                 return false;
             }
         }
+        public function modifyLocation($id, $name) {
+            $conn = $this->connect();
+            // Query para modificar una ubicacion
+            $sql = "UPDATE locations SET name = :name WHERE id = :id";
+            
+            // Preparar la consulta
+            $stmt = $conn->prepare($sql);
+            // Asignar los valores a los parámetros
+            $stmt->bindParam(':name', $name);
+            $stmt->bindParam(':id', $id);
+            try {
+                // Ejecutar la consulta
+                if ($stmt->execute()) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (Exception $e) {
+                return false;
+            }
+        }
 
+        public function deleteLocation($id) {
+            $conn = $this->connect();
+        
+            try {
+                // Verificar si hay más de una ubicación en la tabla
+                $sqlCountLocations = "SELECT COUNT(*) AS total FROM locations";
+                $stmt = $conn->prepare($sqlCountLocations);
+                $stmt->execute();
+                $totalLocations = $stmt->fetchColumn();
+        
+                if ($totalLocations <= 1) {
+                    // Si solo hay una ubicación, no permitir eliminarla
+                    return false;
+                }
+        
+                // Iniciar una transacción para garantizar la consistencia
+                $conn->beginTransaction();
+        
+                // 1. Obtener la ID más baja de la tabla locations donde parent sea NULL
+                $sqlGetLowestParentId = "SELECT MIN(id) AS min_id FROM locations WHERE parent IS NULL OR parent = ''";
+                $stmt = $conn->prepare($sqlGetLowestParentId);
+                $stmt->execute();
+                $lowestParentId = $stmt->fetchColumn();
+        
+                if (!$lowestParentId) {
+                    return false;
+                    // throw new Exception("No se encontró ninguna ubicación raíz para asignar.");
+                }
+        
+                // 2. Actualizar los artworks que tienen la ubicación a eliminar
+                $sqlUpdateArtworks = "UPDATE artworks SET location = :newLocation WHERE location = :oldLocation";
+                $stmt = $conn->prepare($sqlUpdateArtworks);
+                $stmt->bindParam(':newLocation', $lowestParentId);
+                $stmt->bindParam(':oldLocation', $id);
+                $stmt->execute();
+        
+                // 3. Eliminar la ubicación de la tabla locations
+                $sqlDeleteLocation = "DELETE FROM locations WHERE id = :id";
+                $stmt = $conn->prepare($sqlDeleteLocation);
+                $stmt->bindParam(':id', $id);
+                $stmt->execute();
+        
+                // Confirmar la transacción
+                $conn->commit();
+                return true;
+            } catch (Exception $e) {
+                // Revertir los cambios en caso de error
+                $conn->rollBack();
+                // error_log("Error al eliminar la ubicación: " . $e->getMessage());
+                return false;
+            }
+        }
+        
+        
         public function getTotalCount() {
             $conn = $this->connect();
             

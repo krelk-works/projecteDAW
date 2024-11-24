@@ -184,7 +184,7 @@ if (document.querySelector("#artworksearch")) {
         let artworksCount = 0;
         if (canceledOnly) {
             $artworks.forEach(artwork => {
-                
+
                 if (artwork.canceled) {
                     let registerNumber = '';
 
@@ -195,7 +195,7 @@ if (document.querySelector("#artworksearch")) {
                     // Transformamos la fecha de artwork.creation_date a un objeto Date y luego solo recogemos el año
                     let creationYear = new Date(artwork.creation_date).getFullYear();
 
-                    HTMLCode += '<div class="list-item" key="'+ artwork.id +'">';
+                    HTMLCode += '<div class="list-item" key="' + artwork.id + '">';
                     HTMLCode += '<img src="' + artwork.artwork_image + '" alt="' + artwork.artwork_name + ' ' + artwork.author_name + '">';
                     HTMLCode += '<a href="?page=artwork-view&id=' + artwork.id + '"><h3>' + artwork.artwork_name + '</h3><span class="register_number">' + registerNumber + '</span></a>';
                     HTMLCode += '<p><i class="fa-solid fa-user"></i>' + artwork.author_name + '</p>';
@@ -219,9 +219,9 @@ if (document.querySelector("#artworksearch")) {
                     // Transformamos la fecha de artwork.creation_date a un objeto Date y luego solo recogemos el año
                     let creationYear = new Date(artwork.creation_date).getFullYear();
 
-                    HTMLCode += '<div class="list-item" key="'+ artwork.id +'">';
+                    HTMLCode += '<div class="list-item" key="' + artwork.id + '">';
                     HTMLCode += '<img src="' + artwork.artwork_image + '" alt="' + artwork.artwork_name + ' ' + artwork.author_name + '">';
-                    HTMLCode += '<a href="?page=artwork-view&id=' + artwork.id + '"><h3>' + artwork.artwork_name + '</h3><span class="register_number">'+ registerNumber +'</span></a>';
+                    HTMLCode += '<a href="?page=artwork-view&id=' + artwork.id + '"><h3>' + artwork.artwork_name + '</h3><span class="register_number">' + registerNumber + '</span></a>';
                     HTMLCode += '<p><i class="fa-solid fa-user"></i>' + artwork.author_name + '</p>';
                     HTMLCode += '<p><i class="fa-solid fa-location-dot"></i>' + artwork.location_name + '</p>';
                     HTMLCode += '<p><i class="fa-solid fa-bookmark"></i>' + creationYear + '</p>';
@@ -361,11 +361,27 @@ if (document.querySelector("#artworksearch")) {
 
     });
 
+    const catalanI18n = {
+        months: ['Gener', 'Febrer', 'Març', 'Abril', 'Maig', 'Juny', 'Juliol', 'Agost', 'Setembre', 'Octubre', 'Novembre', 'Desembre'],
+        shortMonths: ['Gen', 'Feb', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Oct', 'Nov', 'Des'],
+        days: ['Diumenge', 'Dilluns', 'Dimarts', 'Dimecres', 'Dijous', 'Divendres', 'Dissabte'],
+        shortDays: ['Dg', 'Dl', 'Dt', 'Dc', 'Dj', 'Dv', 'Ds'],
+        shorterDays: ['Dg', 'Dl', 'Dt', 'Dc', 'Dj', 'Dv', 'Ds'],
+        firstDay: 1, // El lunes como primer día de la semana
+        dict: {
+            btnOk: 'D\'acord',
+            btnCancel: 'Cancel·lar',
+            btnClear: 'Netejar'
+        }
+    };
+
     duDatepicker('#daterange', {
         format: 'dd/mm/yyyy',
         rangeDelim: ' fins ',
         range: true,
         clearBtn: true,
+        // i18n: new duDatepicker.i18n.Locale(datePickerTranslations.months, datePickerTranslations.shortMonths, datePickerTranslations.days, datePickerTranslations.shortDays, datePickerTranslations.shorterDays, 1, datePickerTranslations.dict),
+        i18n: catalanI18n,
         // Eventos para recuperar las fechas insertadas
         events: {
             dateChanged: function (data) {
@@ -386,8 +402,7 @@ if (document.querySelector("#artworksearch")) {
                 setLoadingStatus();
                 getArtworksAPI(inputSearch.value);
             },
-        }
-
+        },
     });
 
     // Event listener for changes on register number filter

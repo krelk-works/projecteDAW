@@ -19,10 +19,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="panel panel-tree">
         <div id="jstree"><div class="loader-container"><div class="loader"></div></div></div>
     </div>
-    <!-- Menú contextual personalizado -->
-    <ul id="context-menu" class="context-menu">
-        <li id="add-location">Agregar ubicación</li>
-        <li id="modify-location">Modificar ubicación</li>
-        <li id="delete-location">Eliminar ubicación</li>
-    </ul>
+    <!-- Menú contextual personalizado para tecnicos y administradores -->
+    <?php 
+        if ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'tecnic') {
+            echo '<ul id="context-menu" class="context-menu">
+            <li id="add-location">Agregar ubicación</li>
+            <li id="modify-location">Modificar ubicación</li>
+            <li id="delete-location">Eliminar ubicación</li>
+
+            </ul>';
+        }
+    ?>
 </aside>
