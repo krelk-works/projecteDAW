@@ -21,7 +21,7 @@
         public function createMovements($sd, $ed, $place, $artwork) {
             $conn = $this->connect();
         
-            $sql = "SELECT COUNT(*) as overlapping_movements
+            /*$sql = "SELECT COUNT(*) as overlapping_movements
                     FROM movements
                     WHERE artwork = :artwork
                       AND end_date IS NOT NULL
@@ -38,7 +38,7 @@
         
             if ($overlappingMovements > 0) {
                 return 2;
-            }
+            }*/
             
             $sql = "INSERT INTO movements (start_date, end_date, place, artwork) 
                     VALUES (:sd, :ed, :place, :artwork)";
