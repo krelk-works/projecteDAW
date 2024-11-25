@@ -245,7 +245,8 @@
                     FROM artworks
                     LEFT JOIN expositionsartworks ON artworks.id = expositionsartworks.artwork 
                     AND expositionsartworks.exposition =". $ID ."
-                    WHERE expositionsartworks.artwork IS NULL";
+                    WHERE expositionsartworks.artwork IS NULL
+                    ORDER BY artworks.title ASC";
 
             $stmt = $conn->prepare($sql);
 
@@ -387,7 +388,7 @@
         public function getArtworkData($id){
             $id = (int)$id;
             $conn=$this->connect();
-            $sql="SELECT * FROM artworks WHERE id = :id";
+            $sql="SELECT * FROM artworks WHERE id = :id ORDER BY artworks.title ASC";
             $stmt=$conn->prepare($sql);
             $stmt->bindParam(':id', $id);
             if ($stmt->execute()) {
@@ -586,7 +587,8 @@
                     INNER JOIN authors ON artworks.author = authors.id
                     INNER JOIN locations ON artworks.location = locations.id
                     INNER JOIN conservationstatus ON artworks.conservationstatus = conservationstatus.id
-                    WHERE artworks.name LIKE :search OR authors.name LIKE :search OR locations.name LIKE :search OR conservationstatus.text LIKE :search OR artworks.title LIKE :search";
+                    WHERE artworks.name LIKE :search OR authors.name LIKE :search OR locations.name LIKE :search OR conservationstatus.text LIKE :search OR artworks.title LIKE :search
+                    ORDER BY artworks.title ASC";
             $stmt = $conn->prepare($sql);
             $searchTerm = "%" . $search . "%";
             $stmt->bindParam(':search', $searchTerm, PDO::PARAM_STR);
@@ -714,7 +716,8 @@
                     INNER JOIN conservationstatus ON artworks.conservationstatus = conservationstatus.id
                     INNER JOIN entry ON artworks.entry = entry.id
                     INNER JOIN locations ON artworks.location = locations.id
-                    WHERE artworks.id = " . $id . " LIMIT 1";
+                    WHERE artworks.id = " . $id . " LIMIT 1
+                    ORDER BY artworks.title ASC";
             try {
                 $stmt = $conn->prepare($sql);
                 $stmt->execute();
