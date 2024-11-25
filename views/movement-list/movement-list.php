@@ -8,7 +8,7 @@
     <div class="list-container-moviment list-container-javascript">
         <div class="list-header-moviment list-header-moviment-admin">
             <a href="">
-                <h4>Nom de la obra</h4>
+                <h4>Títol</h4>
             </a>
             <a href="">
                 <h4>Data inici</h4>

@@ -24,7 +24,7 @@
             <button class="delete_filters">Esborrar filtres</button>
             <hr>
             <input type="checkbox" name="searchby" id="searchby" value="name"><label for="searchby"
-                id="searchbylabel">Veure obras cancel·lades</label>
+                id="searchbylabel">Veure obres eliminades</label>
         </form>
     </div>
 

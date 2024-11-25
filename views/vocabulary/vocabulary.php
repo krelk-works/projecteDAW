@@ -229,7 +229,7 @@
         <button id="new_datation">+</button>
     </div>
     <div class="mixed_headers">
-        <p>Detall</p>
+        <p>Datacio</p>
         <p>Data inici</p>
         <p>Data fi</p>
     </div>
@@ -294,7 +294,7 @@
                 </div>
             </div>
             <div class="vocabulary-item-simple ">
-                <h4>Autorias</h4>
+                <h4>Autories</h4>
                 <input type="text" placeholder="Nova autoría..." id="new_author_value" maxlength="30">
                 <button id="new_author">+</button>
                 <div class="list-vocabulary-item-simple">
