@@ -6,9 +6,10 @@
             $conn = $this->connect();
             
             // Base SQL query
-            $sql = "SELECT movements.*, artworks.name
+            $sql = "SELECT movements.*, artworks.title
             FROM movements
-            INNER JOIN artworks ON movements.artwork = artworks.id";
+            INNER JOIN artworks ON movements.artwork = artworks.id
+            ORDER BY artworks.title ASC";
             
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);

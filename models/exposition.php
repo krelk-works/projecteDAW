@@ -9,7 +9,8 @@
             $sql = "SELECT start_date, end_date, name, expositionlocation, text, expositions.id
             FROM expositions
             INNER JOIN expositiontypes ON expositions.expositiontype = expositiontypes.id
-            WHERE end_date > CURDATE()";
+            WHERE end_date > CURDATE()
+            ORDER BY expositions.name ASC";
             
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
@@ -25,7 +26,8 @@
             // Base SQL query
             $sql = "SELECT start_date, end_date, name, expositionlocation, text, expositions.id
             FROM expositions
-            INNER JOIN expositiontypes ON expositions.expositiontype = expositiontypes.id";
+            INNER JOIN expositiontypes ON expositions.expositiontype = expositiontypes.id
+            ORDER BY expositions.name ASC";
             
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
@@ -118,7 +120,8 @@
             $sql = "SELECT start_date, end_date, name, expositionlocation, text, expositions.id
             FROM expositions
             INNER JOIN expositiontypes ON expositions.expositiontype = expositiontypes.id
-            WHERE expositions.name LIKE :search";
+            WHERE expositions.name LIKE :search
+            ORDER BY expositions.name ASC";
 
             $stmt = $conn->prepare($sql);
             $searchTerm = "%" . $search . "%";

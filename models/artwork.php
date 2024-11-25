@@ -231,7 +231,7 @@
                     INNER JOIN authors ON artworks.author = authors.id
                     INNER JOIN locations ON artworks.location = locations.id
                     INNER JOIN conservationstatus ON artworks.conservationstatus = conservationstatus.id
-                    WHERE artworks.location IN (" . $locations . ") ORDER BY locations.name ASC";
+                    WHERE artworks.location IN (" . $locations . ") ORDER BY artworks.title ASC";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -264,7 +264,8 @@
             // Base SQL query to count the total number of artworkss
             $sql = "SELECT COUNT(*) FROM artworks
                     INNER JOIN authors ON artworks.author = authors.id
-                    INNER JOIN locations ON artworks.location = locations.id";
+                    INNER JOIN locations ON artworks.location = locations.id
+                    ORDER BY artworks.title ASC";
         
             // If there are filters, start building the WHERE clause
             $conditions = [];

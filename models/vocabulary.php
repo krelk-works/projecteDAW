@@ -19,7 +19,7 @@
         public function getEntry()
         {
             $conn = $this->connect();
-            $sql = "SELECT * FROM entry";
+            $sql = "SELECT * FROM entry ORDER BY entry.text";
 
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
@@ -64,7 +64,7 @@
         public function getCancelCauses()
         {
             $conn = $this->connect();
-            $sql = "SELECT * FROM cancelcauses";
+            $sql = "SELECT * FROM cancelcauses ORDER BY cancelcauses.text";
 
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
@@ -109,7 +109,7 @@
         public function getConservationStatuses()
         {
             $conn = $this->connect();
-            $sql = "SELECT * FROM conservationstatus";
+            $sql = "SELECT * FROM conservationstatus ORDER BY conservationstatus.text";
 
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
@@ -156,7 +156,7 @@
         public function getDatations()
         {
             $conn = $this->connect();
-            $sql = "SELECT * FROM datations";
+            $sql = "SELECT * FROM datations ORDER BY datations.text";
 
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
@@ -201,7 +201,7 @@
         public function getExpositionTypes()
         {
             $conn = $this->connect();
-            $sql = "SELECT * FROM expositiontypes";
+            $sql = "SELECT * FROM expositiontypes ORDER BY expositiontypes.text";
 
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
@@ -261,7 +261,7 @@
         public function getAuthors()
         {
             $conn = $this->connect();
-            $sql = "SELECT * FROM authors";
+            $sql = "SELECT * FROM authors ORDER BY authors.name";
 
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
@@ -305,7 +305,7 @@
         public function getGenericClassifications()
         {
             $conn = $this->connect();
-            $sql = "SELECT * FROM genericclassifications";
+            $sql = "SELECT * FROM genericclassifications ORDER BY genericclassifications.text";
 
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
@@ -350,7 +350,7 @@
         public function getMaterials()
         {
             $conn = $this->connect();
-            $sql = "SELECT * FROM materials";
+            $sql = "SELECT * FROM materials ORDER BY materials.text";
 
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
@@ -395,7 +395,7 @@
         public function getTecniques()
         {
             $conn = $this->connect();
-            $sql = "SELECT * FROM tecniques";
+            $sql = "SELECT * FROM tecniques ORDER BY tecniques.text";
 
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
@@ -440,7 +440,7 @@
         public function getGettys()
         {
             $conn = $this->connect();
-            $sql = "SELECT * FROM materialgettycodes";
+            $sql = "SELECT * FROM materialgettycodes ORDER BY materialgettycodes.text";
 
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);

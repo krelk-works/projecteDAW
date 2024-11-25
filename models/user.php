@@ -143,7 +143,7 @@
 
         public function getUsers($limit, $offset) {
             $conn = $this->connect();
-            $sql = "SELECT * FROM users ORDER BY id DESC LIMIT :limit OFFSET :offset";
+            $sql = "SELECT * FROM users ORDER BY username ASC DESC LIMIT :limit OFFSET :offset";
         
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
@@ -207,7 +207,7 @@
         }      
         public function getUserData($id){
             $conn=$this->connect();
-            $sql="SELECT * FROM users WHERE id = :id";
+            $sql="SELECT * FROM users WHERE id = :id ORDER BY username ASC";
             $stmt=$conn->prepare($sql);
             $stmt->bindParam(':id', $id);
             if ($stmt->execute()) {
@@ -242,7 +242,7 @@
         }
         public function getIdByUsername($username){
             $conn = $this->connect();
-            $sql = "SELECT id FROM users WHERE username = :username";
+            $sql = "SELECT id FROM users WHERE username = :username ORDER BY username ASC";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':username', $username);
             $stmt->execute();
@@ -252,7 +252,7 @@
             $searchTerm="%{$searchfilter}%";
 
             $conn = $this->connect();
-            $sql = "SELECT id, username,email, first_name, last_name, role, profile_img FROM users WHERE username LIKE :searchfilter OR role LIKE :searchfilter OR email LIKE :searchfilter";
+            $sql = "SELECT id, username,email, first_name, last_name, role, profile_img FROM users WHERE username LIKE :searchfilter OR role LIKE :searchfilter OR email LIKE :searchfilter ORDER BY username ASC";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':searchfilter', $searchTerm);
             $stmt->execute();
