@@ -60,7 +60,7 @@ if (isset($_GET['page'])) {
 
                     // Location management
                     echo "<li>";
-                    echo "<a href='?page=localitzacions' style='$locationManagementStyle'>Localitzacions</a>";
+                    echo "<a href='?page=localitzacions' style='$locationManagementStyle'>Ubicacions</a>";
                     echo "</li>";
                 
                     echo "<li class='dropdown1'>";

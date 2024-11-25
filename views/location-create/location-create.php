@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <aside id="createbar">
-    <button class="accordion default_active">Arbre de localitzacions</button>
+    <button class="accordion default_active">Arbre d'ubicacions</button>
     <div class="panel panel-tree">
         <div id="jstree"><div class="loader-container"><div class="loader"></div></div></div>
     </div>
