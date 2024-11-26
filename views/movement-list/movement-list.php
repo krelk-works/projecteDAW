@@ -25,7 +25,7 @@
             $datamov = $MovementsController->getAllMovements();
             foreach ($datamov as $data) {
                 echo '<div class="list-item-moviment list-item-moviment-admin">
-                    <h3>' . $data['name'] . '</h3>
+                    <h3>' . $data['title'] . '</h3>
                     <p>' . $data['start_date'] . '</p>
                     <p>' . $data['end_date'] . '</p>
                     <p>' . $data['place'] . '</p>
