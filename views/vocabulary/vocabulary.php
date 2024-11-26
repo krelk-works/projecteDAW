@@ -107,6 +107,7 @@
                     foreach ($entryTypes as $entry) {
                         echo '<div class="item-vocabulary">
                             <p>' . $entry['text'] . '</p>
+                            <button class="edit_vocabulary_button entry_edit_button" value="'.$entry['id'].'"><i class="fa-solid fa-edit"></i></button>
                             <button class="delete_vocabulary_button entry_delete_button" value="'.$entry['id'].'"><i class="fa-solid fa-trash"></i></button>
                         </div>';
                     }
@@ -242,6 +243,7 @@
                     <p>' . $datation['text'] . '</p>
                     <p>' . $datation['start_date'] . '</p>
                     <p>' . $datation['end_date'] . '</p>
+                    <button class="delete_vocabulary_button datation_delete_button" value="'.$datation['id'].'"><i class="fa-solid fa-edit"></i></button>
                     <button class="delete_vocabulary_button datation_delete_button" value="'.$datation['id'].'"><i class="fa-solid fa-trash"></i></button>
                 </div>';
             }

@@ -89,7 +89,7 @@
                         flex-wrap: wrap;
                         justify-content: space-around;
                         align-items: center;
-                        padding-left: 10px;
+                        padding-left: 0px;
                         margin: 5px;
                         box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
                         transition: all .22s;
@@ -97,13 +97,13 @@
                         border-radius: 5px;
 
                         p {
-                            width: 85%;
+                            width: 84%;
                         }
 
                         button {
-                            margin: 0;
+                            margin: 0px !important;
                             padding: 0;
-                            width: calc(15% - 20px);
+                            width: 7%;
                             height: 70%;
                         }
                     }
@@ -169,6 +169,10 @@
                         padding: 0 !important;
                     }
                 }
+
+                .delete_vocabulary_button:hover {
+                    background-color: red !important;
+                }   
 
                 .mixed_headers {
                     display: flex;
@@ -248,9 +252,9 @@
                         }
 
                         button {
-                            margin: 0;
+                            margin: 3px;
                             padding: 0;
-                            width: 8%;
+                            width: 3%;
                             height: 70%;
                         }
                     }

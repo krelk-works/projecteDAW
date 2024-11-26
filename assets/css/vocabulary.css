@@ -84,7 +84,7 @@
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  padding-left: 10px;
+  padding-left: 0px;
   margin: 5px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   transition: all 0.22s;
@@ -92,12 +92,12 @@
   border-radius: 5px;
 }
 #vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-simple .list-vocabulary-item-simple .item-vocabulary p {
-  width: 85%;
+  width: 84%;
 }
 #vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-simple .list-vocabulary-item-simple .item-vocabulary button {
-  margin: 0;
+  margin: 0px !important;
   padding: 0;
-  width: calc(15% - 20px);
+  width: 7%;
   height: 70%;
 }
 #vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-simple .list-vocabulary-item-simple .item-vocabulary:hover {
@@ -147,6 +147,9 @@
   height: 90%;
   margin: 0 !important;
   padding: 0 !important;
+}
+#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .delete_vocabulary_button:hover {
+  background-color: red !important;
 }
 #vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .mixed_headers {
   display: flex;
@@ -206,9 +209,9 @@
   width: 23% !important;
 }
 #vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .list-vocabulary-item-composed .item-vocabulary button {
-  margin: 0;
+  margin: 3px;
   padding: 0;
-  width: 8%;
+  width: 3%;
   height: 70%;
 }
 #vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .list-vocabulary-item-composed .item-vocabulary:hover {
