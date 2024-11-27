@@ -1,3 +1,189 @@
+if (document.querySelector(".entry_edit_button")) {
+    let listItems = document.querySelectorAll(".entry_edit_button");
+    listItems.forEach((listItem) => {
+        listItem.addEventListener("click", () => {
+            let valueAttribute = listItem.getAttribute("value");
+            let textElement = listItem.closest(".item-vocabulary").querySelector("p").textContent;
+
+            Swal.fire({
+                title: 'Introdueix el nou valor',
+                input: 'text',
+                inputValue: textElement.trim(),
+                showCancelButton: true,
+                cancelButtonText: 'Cancel·lar',
+                confirmButtonText: 'Guardar',
+                showLoaderOnConfirm: true,
+                preConfirm: (value) => {
+                    window.location.href = 'index.php?page=vocabulari' + '&edit_entry=' + valueAttribute + '&edit_entry_text=' + value;
+                }
+            });
+        });
+    });
+}
+
+
+if (document.querySelector(".cancelcause_edit_button")) {
+    let listItems = document.querySelectorAll(".cancelcause_edit_button");
+    listItems.forEach((listItem) => {
+        listItem.addEventListener("click", () => {
+            let valueAttribute = listItem.getAttribute("value");
+            // Obtenemos el texto del elemento <p> hermano más cercano
+            let textElement = listItem.closest(".item-vocabulary").querySelector("p").textContent;
+
+            Swal.fire({
+                title: 'Introdueix el nou valor',
+                input: 'text',
+                inputValue: textElement.trim(), // Rellenamos el campo con el texto seleccionado
+                showCancelButton: true,
+                cancelButtonText: 'Cancel·lar',
+                confirmButtonText: 'Guardar',
+                showLoaderOnConfirm: true,
+                preConfirm: (value) => {
+                    window.location.href = 'index.php?page=vocabulari' + '&edit_cancelcause=' + valueAttribute + '&edit_cancelcause_text=' + value;
+                }
+            });
+        })
+    }
+    );
+}
+
+if (document.querySelector(".conservationstatus_edit_button")) {
+    let listItems = document.querySelectorAll(".conservationstatus_edit_button");
+    listItems.forEach((listItem) => {
+        listItem.addEventListener("click", () => {
+            let valueAttribute = listItem.getAttribute("value");
+            // Obtenemos el texto del elemento <p> hermano más cercano
+            let textElement = listItem.closest(".item-vocabulary").querySelector("p").textContent;
+
+            Swal.fire({
+                title: 'Introdueix el nou valor',
+                input: 'text',
+                inputValue: textElement.trim(), // Rellenamos el campo con el texto seleccionado
+                showCancelButton: true,
+                cancelButtonText: 'Cancel·lar',
+                confirmButtonText: 'Guardar',
+                showLoaderOnConfirm: true,
+                preConfirm: (value) => {
+                    window.location.href = 'index.php?page=vocabulari' + '&edit_conservationstatus=' + valueAttribute + '&edit_conservationstatus_text=' + value;
+                }
+            });
+        })
+    });
+}
+
+if (document.querySelector(".datation_edit_button")) {
+    let listItems = document.querySelectorAll(".datation_edit_button");
+    listItems.forEach((listItem) => {
+        listItem.addEventListener("click", () => {
+            let valueAttribute = listItem.getAttribute("value");
+            let item = listItem.closest(".item-vocabulary");
+
+            let textElement = item.querySelector("p:nth-child(1)").textContent.trim();
+            let startDateElement = item.querySelector("p:nth-child(2)").textContent.trim();
+            let endDateElement = item.querySelector("p:nth-child(3)").textContent.trim();
+
+            Swal.fire({
+                title: 'Edita la datació',
+                html: `
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <label for="datation_text" style="width: 100px; text-align: right;">Text:</label>
+                            <input id="datation_text" class="swal2-input" value="${textElement}" style="flex: 1;">
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <label for="start_date" style="width: 100px; text-align: right;">Data d'inici:</label>
+                            <input id="start_date" type="text" class="swal2-input" value="${startDateElement}" style="flex: 1;">
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <label for="end_date" style="width: 100px; text-align: right;">Data de fi:</label>
+                            <input id="end_date" type="text" class="swal2-input" value="${endDateElement}" style="flex: 1;">
+                        </div>
+                    </div>
+                `,
+                focusConfirm: false,
+                showCancelButton: true,
+                cancelButtonText: 'Cancel·lar',
+                confirmButtonText: 'Guardar',
+                preConfirm: () => {
+                    const text = document.getElementById("datation_text").value.trim();
+                    const startDate = document.getElementById("start_date").value.trim();
+                    const endDate = document.getElementById("end_date").value.trim();
+
+                    if (!text || !startDate || !endDate) {
+                        Swal.showValidationMessage('Tots els camps són obligatoris');
+                        return false;
+                    }
+
+                    return { text, startDate, endDate };
+                },
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const { text, startDate, endDate } = result.value;
+
+                    window.location.href = `index.php?page=vocabulari&edit_datation=${valueAttribute}&edit_datation_text=${text}&edit_datation_start_date=${startDate}&edit_datation_end_date=${endDate}`;
+                }
+            });
+        });
+    });
+}
+
+
+if (document.querySelector(".tecnique_edit_button")) {
+    let listItems = document.querySelectorAll(".tecnique_edit_button");
+    listItems.forEach((listItem) => {
+        listItem.addEventListener("click", () => {
+            let valueAttribute = listItem.getAttribute("value");
+            // Obtenemos el texto del elemento <p> hermano más cercano
+            let textElement = listItem.closest(".item-vocabulary").querySelector("p").textContent;
+
+            Swal.fire({
+                title: 'Introdueix el nou valor',
+                input: 'text',
+                inputValue: textElement.trim(), // Rellenamos el campo con el texto seleccionado
+                showCancelButton: true,
+                cancelButtonText: 'Cancel·lar',
+                confirmButtonText: 'Guardar',
+                showLoaderOnConfirm: true,
+                preConfirm: (value) => {
+                    window.location.href = 'index.php?page=vocabulari' + '&edit_tecnique=' + valueAttribute + '&edit_tecnique_text=' + value;
+                }
+            });
+        }
+        );
+    }
+    );
+
+}
+
+if (document.querySelector(".getty_edit_button")) {
+    let listItems = document.querySelectorAll(".getty_edit_button");
+    listItems.forEach((listItem) => {
+        listItem.addEventListener("click", () => {
+            let valueAttribute = listItem.getAttribute("value");
+            // Obtenemos el texto del elemento <p> hermano más cercano
+            let textElement = listItem.closest(".item-vocabulary").querySelector("p").textContent;
+
+            Swal.fire({
+                title: 'Introdueix el nou valor',
+                input: 'text',
+                inputValue: textElement.trim(), // Rellenamos el campo con el texto seleccionado
+                showCancelButton: true,
+                cancelButtonText: 'Cancel·lar',
+                confirmButtonText: 'Guardar',
+                showLoaderOnConfirm: true,
+                preConfirm: (value) => {
+                    window.location.href = 'index.php?page=vocabulari' + '&edit_getty=' + valueAttribute + '&edit_getty_text=' + value;
+                }
+            });
+        }
+        );
+    }
+    );
+
+}
+
+
+
 
 if (document.querySelector(".entry_delete_button")) {
     let listItems = document.querySelectorAll(".entry_delete_button");

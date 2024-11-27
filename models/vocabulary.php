@@ -46,6 +46,17 @@
             return $stmt->execute();
         }
 
+        public function editEntry($id, $text)
+        {
+                $conn = $this->connect();
+                $sql = "UPDATE entry SET text = :text WHERE id = :id";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam(':text', $text, PDO::PARAM_STR);
+                $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+                return $stmt->execute();
+        }
+        
+
         public function addCancelCause($text)
         {
             $conn = $this->connect();
@@ -85,6 +96,22 @@
             $stmt = $conn->prepare($sql);
 
             // Bind the parameters
+            $stmt->bindParam(':id', $id);
+
+            // Execute the statement
+            return $stmt->execute();
+        }
+
+        public function editCancelCause($id, $text)
+        {
+            $conn = $this->connect();
+            $sql = "UPDATE cancelcauses SET text = :text WHERE id = :id";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Bind the parameters
+            $stmt->bindParam(':text', $text);
             $stmt->bindParam(':id', $id);
 
             // Execute the statement
@@ -136,6 +163,22 @@
             return $stmt->execute();
         }
 
+        public function editConservationStatus($id, $text)
+        {
+            $conn = $this->connect();
+            $sql = "UPDATE conservationstatus SET text = :text WHERE id = :id";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Bind the parameters
+            $stmt->bindParam(':text', $text);
+            $stmt->bindParam(':id', $id);
+
+            // Execute the statement
+            return $stmt->execute();
+        }
+
         public function addDatation($text, $start_date, $end_date)
         {
             $conn = $this->connect();
@@ -177,6 +220,24 @@
             $stmt = $conn->prepare($sql);
 
             // Bind the parameters
+            $stmt->bindParam(':id', $id);
+
+            // Execute the statement
+            return $stmt->execute();
+        }
+
+        public function editDatation($id, $text, $start_date, $end_date)
+        {
+            $conn = $this->connect();
+            $sql = "UPDATE datations SET text = :text, start_date = :start_date, end_date = :end_date WHERE id = :id";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Bind the parameters
+            $stmt->bindParam(':text', $text);
+            $stmt->bindParam(':start_date', $start_date);
+            $stmt->bindParam(':end_date', $end_date);
             $stmt->bindParam(':id', $id);
 
             // Execute the statement
@@ -243,6 +304,22 @@
             return $stmt->execute();
         }
 
+        public function editExpositionType($id, $text)
+        {
+            $conn = $this->connect();
+            $sql = "UPDATE expositiontypes SET text = :text WHERE id = :id";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Bind the parameters
+            $stmt->bindParam(':text', $text);
+            $stmt->bindParam(':id', $id);
+
+            // Execute the statement
+            return $stmt->execute();
+        }
+
         public function addAuthor($name)
         {
             $conn = $this->connect();
@@ -281,6 +358,22 @@
             $stmt = $conn->prepare($sql);
 
             // Bind the parameters
+            $stmt->bindParam(':id', $id);
+
+            // Execute the statement
+            return $stmt->execute();
+        }
+
+        public function editAuthor($id, $name)
+        {
+            $conn = $this->connect();
+            $sql = "UPDATE authors SET name = :name WHERE id = :id";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Bind the parameters
+            $stmt->bindParam(':name', $name);
             $stmt->bindParam(':id', $id);
 
             // Execute the statement
@@ -332,6 +425,22 @@
             return $stmt->execute();
         }
 
+        public function editGenericClassification($id, $text)
+        {
+            $conn = $this->connect();
+            $sql = "UPDATE genericclassifications SET text = :text WHERE id = :id";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Bind the parameters
+            $stmt->bindParam(':text', $text);
+            $stmt->bindParam(':id', $id);
+
+            // Execute the statement
+            return $stmt->execute();
+        }
+
         public function addMaterial($text)
         {
             $conn = $this->connect();
@@ -371,6 +480,22 @@
             $stmt = $conn->prepare($sql);
 
             // Bind the parameters
+            $stmt->bindParam(':id', $id);
+
+            // Execute the statement
+            return $stmt->execute();
+        }
+
+        public function editMaterial($id, $text)
+        {
+            $conn = $this->connect();
+            $sql = "UPDATE materials SET text = :text WHERE id = :id";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Bind the parameters
+            $stmt->bindParam(':text', $text);
             $stmt->bindParam(':id', $id);
 
             // Execute the statement
@@ -422,6 +547,22 @@
             return $stmt->execute();
         }
 
+        public function editTecnique($id, $text)
+        {
+            $conn = $this->connect();
+            $sql = "UPDATE tecniques SET text = :text WHERE id = :id";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Bind the parameters
+            $stmt->bindParam(':text', $text);
+            $stmt->bindParam(':id', $id);
+
+            // Execute the statement
+            return $stmt->execute();
+        }
+
         public function addGetty($text)
         {
             $conn = $this->connect();
@@ -467,6 +608,22 @@
             return $stmt->execute();
         }
 
+        public function editGetty($id, $text)
+        {
+            $conn = $this->connect();
+            $sql = "UPDATE materialgettycodes SET text = :text WHERE id = :id";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Bind the parameters
+            $stmt->bindParam(':text', $text);
+            $stmt->bindParam(':id', $id);
+
+            // Execute the statement
+            return $stmt->execute();
+        }
+
         public function addGettyTecnique($text)
         {
             $conn = $this->connect();
@@ -506,6 +663,22 @@
             $stmt = $conn->prepare($sql);
 
             // Bind the parameters
+            $stmt->bindParam(':id', $id);
+
+            // Execute the statement
+            return $stmt->execute();
+        }
+
+        public function editGettyTecnique($id, $text)
+        {
+            $conn = $this->connect();
+            $sql = "UPDATE tecniquegettycodes SET text = :text WHERE id = :id";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Bind the parameters
+            $stmt->bindParam(':text', $text);
             $stmt->bindParam(':id', $id);
 
             // Execute the statement
