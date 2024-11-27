@@ -602,6 +602,28 @@
             }
         }
 
+        public function searchCanceledArtwork($search){
+            $conn = $this->connect();
+            $sql = "SELECT artworks.id_letter, artworks.id_num1, artworks.id_num2, artworks.museumname AS artwork_museumname, artworks.id, artworks.title AS artwork_name, artworks.creation_date, artworks.canceled, artworks.tecnique AS tecnique_id, artworks.material AS material_id, artworks.conservationstatus AS conservationstatus_id, authors.name AS author_name, authors.id as author_id, conservationstatus.text, locations.name AS location_name, artworks.image AS artwork_image, cancels.description AS cancel_description, cancels.authorised_worker_name AS authorised_worker
+                    FROM artworks
+                    INNER JOIN authors ON artworks.author = authors.id
+                    INNER JOIN locations ON artworks.location = locations.id
+                    INNER JOIN conservationstatus ON artworks.conservationstatus = conservationstatus.id
+                    INNER JOIN cancels ON cancels.artwork = artworks.id
+                    WHERE (artworks.name LIKE :search OR authors.name LIKE :search OR locations.name LIKE :search OR conservationstatus.text LIKE :search OR artworks.title LIKE :search) AND artworks.canceled = 1
+                    ORDER BY artworks.title ASC";
+            $stmt = $conn->prepare($sql);
+            $searchTerm = "%" . $search . "%";
+            $stmt->bindParam(':search', $searchTerm, PDO::PARAM_STR);
+            try {
+                $stmt->execute();
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                // echo $e->getMessage();
+                return false;
+            }
+        }
+
         public function addNewArtwork($sqlfields) {
             $conn = $this->connect();
 

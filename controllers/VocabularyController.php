@@ -23,6 +23,13 @@ class VocabularyController
         return $data;
     }
 
+    public function editEntry($id, $text)
+    {
+        $entry = new Vocabulary();
+        $data = $entry->editEntry($id, $text);
+        return $data;
+    }
+
     public function addCancelCause($text)
     {
         $cancelcauses = new Vocabulary();
@@ -41,6 +48,13 @@ class VocabularyController
     {
         $cancelcauses = new Vocabulary();
         $data = $cancelcauses->deleteCancelCause($id);
+        return $data;
+    }
+
+    public function editCancelCause($id, $text)
+    {
+        $cancelcauses = new Vocabulary();
+        $data = $cancelcauses->editCancelCause($id, $text);
         return $data;
     }
 
@@ -65,6 +79,13 @@ class VocabularyController
         return $data;
     }
 
+    public function editConservationStatus($id, $text)
+    {
+        $conservationstatus = new Vocabulary();
+        $data = $conservationstatus->editConservationStatus($id, $text);
+        return $data;
+    }
+
     public function addDatation($text, $start_date, $end_date)
     {
         $datations = new Vocabulary();
@@ -83,6 +104,13 @@ class VocabularyController
     {
         $datations = new Vocabulary();
         $data = $datations->deleteDatation($id);
+        return $data;
+    }
+
+    public function editDatation($id, $text, $start_date, $end_date)
+    {
+        $datations = new Vocabulary();
+        $data = $datations->editDatation($id, $text, $start_date, $end_date);
         return $data;
     }
 
@@ -114,6 +142,13 @@ class VocabularyController
         return $data;
     }
 
+    public function editExpositionType($id, $text)
+    {
+        $expositiontypes = new Vocabulary();
+        $data = $expositiontypes->editExpositionType($id, $text);
+        return $data;
+    }
+
     public function addAuthor($name)
     {
         $authors = new Vocabulary();
@@ -131,6 +166,13 @@ class VocabularyController
     public function deleteAuthor($id) {
         $authors = new Vocabulary();
         $data = $authors->deleteAuthor($id);
+        return $data;
+    }
+
+    public function editAuthor($id, $name)
+    {
+        $authors = new Vocabulary();
+        $data = $authors->editAuthor($id, $name);
         return $data;
     }
 
@@ -155,6 +197,13 @@ class VocabularyController
         return $data;
     }
 
+    public function editGenericClassification($id, $text)
+    {
+        $genericclassifications = new Vocabulary();
+        $data = $genericclassifications->editGenericClassification($id, $text);
+        return $data;
+    }
+
     public function addMaterial($text)
     {
         $materials = new Vocabulary();
@@ -173,6 +222,13 @@ class VocabularyController
     {
         $materials = new Vocabulary();
         $data = $materials->deleteMaterial($id);
+        return $data;
+    }
+
+    public function editMaterial($id, $text)
+    {
+        $materials = new Vocabulary();
+        $data = $materials->editMaterial($id, $text);
         return $data;
     }
 
@@ -197,6 +253,13 @@ class VocabularyController
         return $data;
     }
 
+    public function editTecnique($id, $text)
+    {
+        $tecniques = new Vocabulary();
+        $data = $tecniques->editTecnique($id, $text);
+        return $data;
+    }
+
     public function addGetty($text)
     {
         $getty = new Vocabulary();
@@ -218,6 +281,13 @@ class VocabularyController
         return $data;
     }
 
+    public function editGetty($id, $text)
+    {
+        $getty = new Vocabulary();
+        $data = $getty->editGetty($id, $text);
+        return $data;
+    }
+
     public function addGettyTecnique($text)
     {
         $gettytecnique = new Vocabulary();
@@ -236,6 +306,13 @@ class VocabularyController
     {
         $gettytecnique = new Vocabulary();
         $data = $gettytecnique->deleteGettyTecnique($id);
+        return $data;
+    }
+
+    public function editGettyTecnique($id, $text)
+    {
+        $gettytecnique = new Vocabulary();
+        $data = $gettytecnique->editGettyTecnique($id, $text);
         return $data;
     }
 }
