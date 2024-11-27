@@ -83,6 +83,105 @@
         $vocabularyController->addGetty($_GET['add_getty']);
     }
 
+    if (isset($_GET['edit_entry']) && isset($_GET['edit_entry_text'])) {
+        $id = intval($_GET['edit_entry']);
+        $text = trim($_GET['edit_entry_text']);
+    
+        if (!empty($id) && !empty($text)) {
+            $result = $vocabularyController->editEntry($id, $text);
+        } 
+    }
+    
+    if (isset($_GET['edit_cancelcause']) && isset($_GET['edit_cancelcause_text'])) {
+        $id = intval($_GET['edit_cancelcause']);
+        $text = trim($_GET['edit_cancelcause_text']);
+    
+        if (!empty($id) && !empty($text)) {
+            $result = $vocabularyController->editCancelCause($id, $text);
+        } 
+    }
+
+    if (isset($_GET['edit_conservationstatus']) && isset($_GET['edit_conservationstatus_text'])) {
+        $id = intval($_GET['edit_conservationstatus']);
+        $text = trim($_GET['edit_conservationstatus_text']);
+    
+        if (!empty($id) && !empty($text)) {
+            $result = $vocabularyController->editConservationStatus($id, $text);
+        } 
+    }
+
+    if (isset($_GET['edit_datation']) && isset($_GET['edit_datation_text']) && isset($_GET['edit_datation_start_date']) && isset($_GET['edit_datation_end_date'])) {
+        $id = intval($_GET['edit_datation']);
+        $text = trim($_GET['edit_datation_text']);
+        $start_date = trim($_GET['edit_datation_start_date']);
+        $end_date = trim($_GET['edit_datation_end_date']);
+    
+        if (!empty($id) && !empty($text) && !empty($start_date) && !empty($end_date)) {
+            $result = $vocabularyController->editDatation($id, $text, $start_date, $end_date);
+        } 
+    }
+
+    if (isset($_GET['edit_expositiontype']) && isset($_GET['edit_expositiontype_text'])) {
+        $id = intval($_GET['edit_expositiontype']);
+        $text = trim($_GET['edit_expositiontype_text']);
+    
+        if (!empty($id) && !empty($text)) {
+            $result = $vocabularyController->editExpositionType($id, $text);
+        } 
+    }
+
+    if (isset($_GET['edit_author']) && isset($_GET['edit_author_text'])) {
+        $id = intval($_GET['edit_author']);
+        $text = trim($_GET['edit_author_text']);
+    
+        if (!empty($id) && !empty($text)) {
+            $result = $vocabularyController->editAuthor($id, $text);
+        } 
+    }
+
+    if (isset($_GET['edit_genericclassification']) && isset($_GET['edit_genericclassification_text'])) {
+        $id = intval($_GET['edit_genericclassification']);
+        $text = trim($_GET['edit_genericclassification_text']);
+    
+        if (!empty($id) && !empty($text)) {
+            $result = $vocabularyController->editGenericClassification($id, $text);
+        } 
+    }
+
+    if (isset($_GET['edit_material']) && isset($_GET['edit_material_text'])) {
+        $id = intval($_GET['edit_material']);
+        $text = trim($_GET['edit_material_text']);
+    
+        if (!empty($id) && !empty($text)) {
+            $result = $vocabularyController->editMaterial($id, $text);
+        } 
+    }
+
+    if (isset($_GET['edit_tecnique']) && isset($_GET['edit_tecnique_text'])) {
+        $id = intval($_GET['edit_tecnique']);
+        $text = trim($_GET['edit_tecnique_text']);
+    
+        if (!empty($id) && !empty($text)) {
+            $result = $vocabularyController->editTecnique($id, $text);
+        } 
+    }
+
+    if (isset($_GET['edit_getty']) && isset($_GET['edit_getty_text'])) {
+        $id = intval($_GET['edit_getty']);
+        $text = trim($_GET['edit_getty_text']);
+    
+        if (!empty($id) && !empty($text)) {
+            $result = $vocabularyController->editGetty($id, $text);
+        } 
+    }
+
+
+    
+
+
+
+
+
 
 ?>
 
@@ -113,26 +212,6 @@
                     }
 
                     ?>
-                    <!--<div class="item-vocabulary">
-                        <p>Opcio 1</p>
-                        <button class="delete_vocabulary_button"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                    <div class="item-vocabulary">
-                        <p>Opcio 2</p>
-                        <button class="delete_vocabulary_button"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                    <div class="item-vocabulary">
-                        <p>Opcio 3</p>
-                        <button class="delete_vocabulary_button"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                    <div class="item-vocabulary">
-                        <p>Opcio 4</p>
-                        <button class="delete_vocabulary_button"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                    <div class="item-vocabulary">
-                        <p>Opcio 5</p>
-                        <button class="delete_vocabulary_button"><i class="fa-solid fa-trash"></i></button>
-                    </div>-->
                 </div>
             </div>
 
@@ -148,6 +227,7 @@
                     foreach ($cancelCauses as $cancelcause) {
                         echo '<div class="item-vocabulary">
                             <p>' . $cancelcause['text'] . '</p>
+                            <button class="edit_vocabulary_button cancelcause_edit_button" value="'.$cancelcause['id'].'"><i class="fa-solid fa-edit"></i></button>
                             <button class="delete_vocabulary_button cancelcause_delete_button" value="'.$cancelcause['id'].'"><i class="fa-solid fa-trash"></i></button>
                         </div>';
                     }
@@ -194,6 +274,7 @@
                     foreach ($conversvationStatuses as $conservationStatus) {
                         echo '<div class="item-vocabulary">
                             <p>' . $conservationStatus['text'] . '</p>
+                            <button class="edit_vocabulary_button conservationstatus_edit_button" value="'.$conservationStatus['id'].'"><i class="fa-solid fa-edit"></i></button>
                             <button class="delete_vocabulary_button conservationstatus_delete_button" value="'.$conservationStatus['id'].'"><i class="fa-solid fa-trash"></i></button>
                         </div>';
                     }
@@ -221,35 +302,35 @@
                 </div>
             </div>
             
-            <div class="vocabulary-item-composed ">
-    <h4>Datació</h4>
-    <div class="mixed_inputs">
-        <input type="text" id="new_datation_value">
-        <input type="text" id="new_datation_value1">
-        <input type="text" id="new_datation_value2">
-        <button id="new_datation">+</button>
-    </div>
-    <div class="mixed_headers">
-        <p>Datacio</p>
-        <p>Data inici</p>
-        <p>Data fi</p>
-    </div>
-    <div class="list-vocabulary-item-composed">
-        <?php
-            $datations = $vocabularyController->getDatations();
+    <div class="vocabulary-item-composed ">
+        <h4>Datació</h4>
+        <div class="mixed_inputs">
+            <input type="text" id="new_datation_value">
+            <input type="text" id="new_datation_value1">
+            <input type="text" id="new_datation_value2">
+            <button id="new_datation">+</button>
+        </div>
+        <div class="mixed_headers">
+            <p>Datacio</p>
+            <p>Data inici</p>
+            <p>Data fi</p>
+        </div>
+        <div class="list-vocabulary-item-composed">
+            <?php
+                $datations = $vocabularyController->getDatations();
 
-            foreach ($datations as $datation) {
-                echo '<div class="item-vocabulary">
-                    <p>' . $datation['text'] . '</p>
-                    <p>' . $datation['start_date'] . '</p>
-                    <p>' . $datation['end_date'] . '</p>
-                    <button class="delete_vocabulary_button datation_delete_button" value="'.$datation['id'].'"><i class="fa-solid fa-edit"></i></button>
-                    <button class="delete_vocabulary_button datation_delete_button" value="'.$datation['id'].'"><i class="fa-solid fa-trash"></i></button>
-                </div>';
-            }
-        ?>
+                foreach ($datations as $datation) {
+                    echo '<div class="item-vocabulary">
+                        <p>' . $datation['text'] . '</p>
+                        <p>' . $datation['start_date'] . '</p>
+                        <p>' . $datation['end_date'] . '</p>
+                        <button class="edit_vocabulary_button datation_edit_button" value="'.$datation['id'].'"><i class="fa-solid fa-edit"></i></button>
+                        <button class="delete_vocabulary_button datation_delete_button" value="'.$datation['id'].'"><i class="fa-solid fa-trash"></i></button>
+                    </div>';
+                }
+            ?>
+        </div>
     </div>
-</div>
             <div class="vocabulary-item-simple ">
                 <h4>Tipus d'exposició</h4>
                 <input type="text" placeholder="Nou tipus d'exposició..." id="new_expositiontype_value" maxlength="30">
@@ -261,6 +342,7 @@
                         foreach ($expositionTypes as $expositionType) {
                             echo '<div class="item-vocabulary">
                                 <p>' . $expositionType['text'] . '</p>
+                                <button class="edit_vocabulary_button expositiontypes_edit_button" value="'.$expositionType['id'].'"><i class="fa-solid fa-edit"></i></button>
                                 <button class="delete_vocabulary_button expositiontypes_delete_button" value="'.$expositionType['id'].'"><i class="fa-solid fa-trash"></i></button>
                             </div>';
                         }
@@ -306,6 +388,7 @@
                         foreach ($authors as $author) {
                             echo '<div class="item-vocabulary">
                                 <p>' . $author['name'] . '</p>
+                                <button class="edit_vocabulary_button author_edit_button" value="'.$author['id'].'"><i class="fa-solid fa-edit"></i></button>
                                 <button class="delete_vocabulary_button author_delete_button" value="'.$author['id'].'"><i class="fa-solid fa-trash"></i></button>
                             </div>';
                         }
@@ -351,6 +434,7 @@
                         foreach ($genericClassifications as $genericClassification) {
                             echo '<div class="item-vocabulary">
                                 <p>' . $genericClassification['text'] . '</p>
+                                <button class="edit_vocabulary_button genericclassifications_edit_button" value="'.$genericClassification['id'].'"><i class="fa-solid fa-edit"></i></button>
                                 <button class="delete_vocabulary_button genericclassifications_delete_button" value="'.$genericClassification['id'].'"><i class="fa-solid fa-trash"></i></button>
                             </div>';
                         }
@@ -368,6 +452,7 @@
                         foreach ($materials as $material) {
                             echo '<div class="item-vocabulary">
                                 <p>' . $material['text'] . '</p>
+                                <button class="edit_vocabulary_button material_edit_button" value="'.$material['id'].'"><i class="fa-solid fa-edit"></i></button>
                                 <button class="delete_vocabulary_button material_delete_button" value="'.$material['id'].'"><i class="fa-solid fa-trash"></i></button>
                             </div>';
                         }
@@ -385,6 +470,7 @@
                         foreach ($tecniques as $tecnique) {
                             echo '<div class="item-vocabulary">
                                 <p>' . $tecnique['text'] . '</p>
+                                <button class="edit_vocabulary_button tecnique_edit_button" value="'.$tecnique['id'].'"><i class="fa-solid fa-edit"></i></button>
                                 <button class="delete_vocabulary_button tecnique_delete_button" value="'.$tecnique['id'].'"><i class="fa-solid fa-trash"></i></button>
                             </div>';
                         }
@@ -402,6 +488,7 @@
                         foreach ($gettycodes as $gettycode) {
                             echo '<div class="item-vocabulary">
                                 <p>' . $gettycode['text'] . '</p>
+                                <button class="edit_vocabulary_button getty_edit_button" value="'.$gettycode['id'].'"><i class="fa-solid fa-edit"></i></button>
                                 <button class="delete_vocabulary_button getty_delete_button" value="'.$gettycode['id'].'"><i class="fa-solid fa-trash"></i></button>
                             </div>';
                         }
