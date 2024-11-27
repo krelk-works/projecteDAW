@@ -158,6 +158,10 @@
                     require_once "views/movement-create/movement-create.php";
                     require_once "views/movement-list/movement-list.php";
                 }
+                else if ($actualPage == "cancelacions") {
+                    require_once "views/cancelations-aside/cancelations-aside.php";
+                    require_once "views/cancelations-list/cancelations-list.php";
+                }
             }
         }
         // If the session is not active, then show the login view.
