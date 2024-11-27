@@ -1,7 +1,50 @@
 <?php
+
+    $data = [];
+
+    if (isset($_GET['generatePDFfilter'])) {
+        // Declaramos que la API ha sido llamada para evitar usar resto del Controlador.
+        $isApiCalled = true;
+
+        // Establecer el tipo de respuesta como JSON
+        header("Content-Type: application/json");
+
+        // Variable de respuesta
+        $response = [];
+
+        // Leer el cuerpo de la solicitud JSON
+        $input = file_get_contents("php://input");
+        // Recogemos los datos en bruto ya transformados a PHP
+        $rawData = json_decode($input, true); // Decodificar a un array asociativo
+
+        // Si hay datos en el rawData los procesamos
+        if (!empty($rawData)) {
+            // Recogemos la lista de Localizaciones de la cual queremos obtener obras
+            $data = $rawData["data"];
+
+            
+            // Configuramos los datos de la respuesta
+            $response = [
+                "status" => "success",
+                "message" => $artworksCallback,
+            ];
+        } else {
+            $response = [
+                "status" => "error",
+                "message" => "Ha ocurrido un error en la solicitud de obras por localización."
+            ];
+        }
+
+        // Limpiar el búfer de salida para evitar datos adicionales
+        ob_clean();
+        echo json_encode($response);
+    }
+
+
+
     require_once "controllers/PDFController.php";
     $PDFController = new PDFController();
-    $data = $PDFController->generatePDF();
+    // $data = $PDFController->generatePDF();
     $placeholderImage = 'assets/img/images.jpg';
 
     $html2pdf = new \Spipu\Html2Pdf\Html2Pdf('P', 'A3', 'es');

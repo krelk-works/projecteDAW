@@ -376,7 +376,12 @@ if (document.querySelector("#artworksearch")) {
     };
 
     duDatepicker('#daterange', {
-        format: 'dd/mm/yyyy',
+        format: "yyyy",
+        weekStart: 1,
+        orientation: "bottom",
+        keyboardNavigation: false,
+        viewMode: "years",
+        minViewMode: "years",
         rangeDelim: ' fins ',
         range: true,
         clearBtn: true,
@@ -468,4 +473,45 @@ if (document.querySelector("#artworksearch")) {
         setLoadingStatus();
         getArtworksAPI(inputSearch.value);
     });
+
+
+    // $('#generatePDFfilter').on('click', function (event) {
+    //     event.preventDefault();
+    //     // alert('MiguelAngelo');
+
+    //     const search = $('#artworksearch').val();
+    //     console.log('Buscando obras para filtrar y enviar a generación de PDF...', search);
+
+    //     fetch('apis/artworksAPI.php?search=' + search)
+    //         .then(response => response.text()) // Convertir la respuesta a JSON
+    //         .then(data => { // Mostrar los datos en la consola
+    //             console.log(data);
+    //             data = JSON.parse(data);
+    //             data = filterArtworks(data);
+                
+    //             // const page = 'Hello World!';
+
+    //             const page = $('.list-container').html();
+                
+    //             console.log('Página:', page);
+    //             var opt = {
+    //                 margin:       1,
+    //                 filename:     'Llibre-registre amb filtres.pdf',
+    //                 image:        { type: 'jpg', quality: 0.98 },
+    //                 html2canvas:  { scale: 2 },
+    //                 jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    //             };
+    //             // Choose the element that our invoice is rendered in.
+    //             html2pdf().set(opt).from(page).save();
+                
+    //     });
+    // });
+
+
+    $('#generatePDFfilter').click(() => {
+        var pdf = new jsPDF('p','pt','a4');
+        pdf.addHTML(document.body,function() {
+            pdf.save('web.pdf');
+        });
+    })
 }

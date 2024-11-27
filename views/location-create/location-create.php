@@ -30,4 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </ul>';
         }
     ?>
+    <div class="animated-ratoli">
+        <img src="assets/img/ratoli.png" alt="Imagen animada" />
+        <p>Feu clic dret per veure opcions</p>
+    </div>
 </aside>

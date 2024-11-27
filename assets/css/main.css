@@ -1397,6 +1397,29 @@ footer button {
   background-color: #f0f0f0;
 }
 
+.animated-ratoli {
+  flex-wrap: nowrap;
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 2%;
+  transform: translate(0%, -50%) !important;
+  width: 200px !important;
+  transition: transform 0.5s ease;
+  justify-content: center;
+  align-items: center;
+}
+.animated-ratoli img {
+  display: block;
+  width: 10% !important;
+}
+.animated-ratoli p {
+  display: block;
+  width: 90% !important;
+  font-size: 11px;
+  color: #868686;
+}
+
 #artwork-create-container {
   box-sizing: border-box;
   height: 89vh;

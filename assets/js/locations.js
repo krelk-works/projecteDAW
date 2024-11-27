@@ -133,6 +133,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
+    function showHelpAnimation(position = undefined) {
+        
+        const $img = $(".animated-ratoli");
+
+        if (position) {
+            $img.css({
+                top: (position + 20) + 'px',
+            });
+        }
+
+        $img.fadeIn(500) // Mostrar la imagen
+        .css('display', 'flex')
+        .delay(2000) // Esperar un momento
+        .fadeOut(500); // Ocultar la imagen
+    }
+
     function loadLocationTree() {
         // Cargar datos de ubicación desde la API al cargar la pagina
         fetch('controllers/LocationController.php?location=all')
@@ -200,6 +216,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         // Desplegar el primer nodo
                         treeInstance.open_node(firstNode.id);
+
+                        setTimeout(() => {
+                            // Enviamos la posición más baja del div jstree para mostrar la animación de ayuda tras unos 200ms
+                            const div = document.getElementById('jstree');
+                            const rect = div.getBoundingClientRect();
+                            const posicionAbajo = rect.bottom + window.scrollY;
+                            // console.log('La posición más baja del div es:', posicionAbajo);
+                            // Mostrar la animación de ayuda
+                            showHelpAnimation(posicionAbajo);
+                        }, 200);
                     }
                 });
 
