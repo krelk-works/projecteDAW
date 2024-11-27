@@ -469,14 +469,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Verificar si el nodo tiene hijos
-                    // if (selectedNode.children.length > 0) {
-                    //     Swal.fire({
-                    //         icon: 'error',
-                    //         title: 'Ubicació amb fills',
-                    //         text: `La ubicació "${nodeName}" té fills. No pots eliminar-la fins que no eliminis tots els fills.`,
-                    //     });
-                    //     return;
-                    // }
+                    if (selectedNode.children.length > 0) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Ubicació amb fills',
+                            text: `La ubicació "${nodeName}" té fills. No pots eliminar-la fins que no eliminis tots els fills.`,
+                        });
+                        return;
+                    }
 
                     // Eliminar la ubicación a través del servidor
                     fetch('controllers/LocationController.php?deletelocation', {
