@@ -18,15 +18,17 @@ if (isset($_GET['location'])) {
         $data=$location->getLocations();
 
         if (!empty($data)) {
-            $data = json_encode($data);
+            $response = json_encode($data);
         } else {
-            $data = json_encode([]);
+            $response = [
+                'status' => 'error',
+                'message' => 'Error buscant ubicacions.'
+            ];
         }
-        
-        echo $data;
     }
 
     ob_clean();
+    echo $response;
 }
 
 // Add location to the database
