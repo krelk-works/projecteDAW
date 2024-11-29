@@ -253,7 +253,7 @@ if (document.querySelector("#artworksearch")) {
             <a href=""><h4>Autor</h4></a>
             <a href=""><h4>Ubicació</h4></a>
             <a href=""><h4>Any</h4></a>
-            <a href=""><h4>Estat</h4></a>
+            <a href=""><h4>Tecnica</h4></a>
         </div>
     `;
 
