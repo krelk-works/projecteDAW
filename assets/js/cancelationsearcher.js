@@ -246,12 +246,37 @@ if (document.querySelector("#artworksearch")) {
                         text: `${worker} diu que: ${description}`,
                         icon: 'info',
                         showCancelButton: true,
-                        confirmButtonText: 'Confirmar',
-                        cancelButtonText: 'Cancelar'
+                        confirmButtonText: 'Restaurar',
+                        cancelButtonText: 'Tornar'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            // Redirigir a la página
-                            window.location.href = `?page=cancelacions`;
+                            fetch(`controllers/ArtworkController.php?restoreArtwork=true&id=${artworkId}`, {
+                                method: 'GET',
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.status === 'success') {
+                                    Swal.fire(
+                                        'Restaurat!',
+                                        data.message,
+                                        'success'
+                                    );
+                                } else {
+                                    Swal.fire(
+                                        'Error!',
+                                        data.message,
+                                        'error'
+                                    );
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                Swal.fire(
+                                    'Error!',
+                                    'No s\'ha pogut completar l\'acció',
+                                    'error'
+                                );
+                            });
                         }
                     });
                 }

@@ -749,5 +749,22 @@
                 return false;
             }
         }
+
+        public function restoreArtwork($id) {
+            $conn = $this->connect();
+
+            // Prepara la sentencia SQL de inserción
+            $sql = "UPDATE artworks SET canceled = 0 WHERE id = :id";
+            $stmt = $conn->prepare($sql);
+
+            try {
+                $stmt->bindValue(':id', $id);
+                $stmt->execute();
+                return true;
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+                return false;
+            }
+        }
     }
 ?>

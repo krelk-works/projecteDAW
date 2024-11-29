@@ -228,6 +228,44 @@ if (isset($_GET['getFormData'])) {
     echo json_encode($response);
 }
 
+if (isset($_GET['restoreArtwork'])) {
+    // Declaramos que la API ha sido llamada para evitar usar resto del Controlador.
+    $isApiCalled = true;
+
+    // Establecer el tipo de respuesta como JSON
+    header("Content-Type: application/json");
+
+    // Importamos el modelo de obra de arte para obtener obras según localización
+    include_once("../models/artwork.php");
+
+    // Variable de respuesta
+    $response = [];
+
+    // Importamos el modelo de obra para buscar la siguiente ID según la letra
+    $model = new Artwork();
+
+    $id = intval($_GET['id']);
+
+    // Obtenemos la respuesta de la query
+    $check = $model->restoreArtwork($id);
+
+    if ($check === false) {
+        $response = [
+            "status" => "error",
+            "message" => "Ha hagut un error desconegut."
+        ];
+    } else {
+        $response = [
+            "status" => "success",
+            "message" => "La obra ha sigut restaurada.",
+        ];
+    }
+
+    // Limpiar el búfer de salida para evitar datos adicionales
+    ob_clean();
+    echo json_encode($response);
+}
+
 // En caso de no ser una solicitud de api cargamos el modelo para el controlador
 !$isApiCalled ? include_once("models/artwork.php") : exit();
 
