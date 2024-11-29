@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch('controllers/LocationController.php?location=all')
             .then(response => response.text())
             .then(data => {
-                // console.log('Data:', data);
+                console.log('Data:', data);
                 data = JSON.parse(data);
                 // Convertir datos al formato jsTree
                 const jstreeData = data.map(item => ({
