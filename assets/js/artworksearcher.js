@@ -361,55 +361,6 @@ if (document.querySelector("#artworksearch")) {
 
     });
 
-    const catalanI18n = {
-        months: ['Gener', 'Febrer', 'Març', 'Abril', 'Maig', 'Juny', 'Juliol', 'Agost', 'Setembre', 'Octubre', 'Novembre', 'Desembre'],
-        shortMonths: ['Gen', 'Feb', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Oct', 'Nov', 'Des'],
-        days: ['Diumenge', 'Dilluns', 'Dimarts', 'Dimecres', 'Dijous', 'Divendres', 'Dissabte'],
-        shortDays: ['Dg', 'Dl', 'Dt', 'Dc', 'Dj', 'Dv', 'Ds'],
-        shorterDays: ['Dg', 'Dl', 'Dt', 'Dc', 'Dj', 'Dv', 'Ds'],
-        firstDay: 1, // El lunes como primer día de la semana
-        dict: {
-            btnOk: 'D\'acord',
-            btnCancel: 'Cancel·lar',
-            btnClear: 'Netejar'
-        }
-    };
-
-    duDatepicker('#daterange', {
-        format: "yyyy",
-        weekStart: 1,
-        orientation: "bottom",
-        keyboardNavigation: false,
-        viewMode: "years",
-        minViewMode: "years",
-        rangeDelim: ' fins ',
-        range: true,
-        clearBtn: true,
-        // i18n: new duDatepicker.i18n.Locale(datePickerTranslations.months, datePickerTranslations.shortMonths, datePickerTranslations.days, datePickerTranslations.shortDays, datePickerTranslations.shorterDays, 1, datePickerTranslations.dict),
-        i18n: catalanI18n,
-        // Eventos para recuperar las fechas insertadas
-        events: {
-            dateChanged: function (data) {
-                // console.log('From: ' + data.dateFrom + '\nTo: ' + data.dateTo)
-
-
-                if (data.dateFrom === null || data.dateTo === null) {
-                    advancedFilter.startCDate = '';
-                    advancedFilter.endCDate = '';
-                    setLoadingStatus();
-                    getArtworksAPI(inputSearch.value);
-                    return;
-                }
-
-                advancedFilter.startCDate = new Date(data.dateFrom);
-                advancedFilter.endCDate = new Date(data.dateTo);
-
-                setLoadingStatus();
-                getArtworksAPI(inputSearch.value);
-            },
-        },
-    });
-
     // Event listener for changes on register number filter
     $('#register_identifier').on('input', function () {
         const value = $(this).val();
@@ -469,49 +420,10 @@ if (document.querySelector("#artworksearch")) {
         $('#tecniques').val('').trigger('chosen:updated');
         $('#materials').val('').trigger('chosen:updated');
         $('#conservationstatus').val('').trigger('chosen:updated');
-        $('#daterange').val('');
         setLoadingStatus();
         getArtworksAPI(inputSearch.value);
     });
 
+    const yearPicker = document.getElementById('yearpicker');
 
-    // $('#generatePDFfilter').on('click', function (event) {
-    //     event.preventDefault();
-    //     // alert('MiguelAngelo');
-
-    //     const search = $('#artworksearch').val();
-    //     console.log('Buscando obras para filtrar y enviar a generación de PDF...', search);
-
-    //     fetch('apis/artworksAPI.php?search=' + search)
-    //         .then(response => response.text()) // Convertir la respuesta a JSON
-    //         .then(data => { // Mostrar los datos en la consola
-    //             console.log(data);
-    //             data = JSON.parse(data);
-    //             data = filterArtworks(data);
-                
-    //             // const page = 'Hello World!';
-
-    //             const page = $('.list-container').html();
-                
-    //             console.log('Página:', page);
-    //             var opt = {
-    //                 margin:       1,
-    //                 filename:     'Llibre-registre amb filtres.pdf',
-    //                 image:        { type: 'jpg', quality: 0.98 },
-    //                 html2canvas:  { scale: 2 },
-    //                 jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-    //             };
-    //             // Choose the element that our invoice is rendered in.
-    //             html2pdf().set(opt).from(page).save();
-                
-    //     });
-    // });
-
-
-    $('#generatePDFfilter').click(() => {
-        var pdf = new jsPDF('p','pt','a4');
-        pdf.addHTML(document.body,function() {
-            pdf.save('web.pdf');
-        });
-    })
 }
