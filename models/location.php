@@ -173,7 +173,7 @@
             // Fetch the results
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
-        
+
         public function getLocationsJSON(){
             $conn = $this->connect();
 
@@ -188,6 +188,8 @@
 
             // Fetch the results
             return json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+
+            // Comentario para el pusheo
         }
     }
 ?>
