@@ -60,7 +60,7 @@ function padSubWithZeros(number) {
 
 // Comprobar si un parámetro existe
 if (urlParams.has('id')) {
-    console.log('id existe y su valor es:', urlParams.get('id'));
+    // console.log('id existe y su valor es:', urlParams.get('id'));
 
     // Start loader spinner
 
@@ -82,10 +82,12 @@ if (urlParams.has('id')) {
         .then(response => response.text()) // Leer la respuesta completa como texto
         .then(data => {
             try {
+                // console.log('Hola API...')
+                // console.log(data);
                 const rawData = JSON.parse(data);
                 const artworkData = rawData.message[0]; // Get data from message key
 
-                console.log(artworkData);
+                // console.log(artworkData);
 
                 // Title of artwork
                 $('#artwork-title').text(artworkData.title);
