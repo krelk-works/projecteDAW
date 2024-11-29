@@ -32,11 +32,15 @@
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
 
-            // Execute the statement
-            $stmt->execute();
-        
-            // Fetch the results
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            try {
+                // Execute the statement
+                $stmt->execute();
+                
+                // Fetch the results
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } catch (Exception $e) {
+                return false;
+            }
         }
 
         public function createLocation($location_name, $parent) {
@@ -174,22 +178,22 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        public function getLocationsJSON(){
-            $conn = $this->connect();
+        // public function getLocations(){
+        //     $conn = $this->connect();
 
-            // SQL Query
-            $sql = "SELECT * FROM locations";
+        //     // SQL Query
+        //     $sql = "SELECT * FROM locations";
 
-            // Prepare the SQL statement
-            $stmt = $conn->prepare($sql);
+        //     // Prepare the SQL statement
+        //     $stmt = $conn->prepare($sql);
 
-            // Execute the statement
-            $stmt->execute();
+        //     // Execute the statement
+        //     $stmt->execute();
 
-            // Fetch the results
-            return json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+        //     // Fetch the results
+        //     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            // Comentario para el pusheo
-        }
+        //     // Comentario para el pusheo
+        // }
     }
 ?>
