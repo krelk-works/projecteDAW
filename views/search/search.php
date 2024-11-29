@@ -16,11 +16,11 @@
             <p>Material</p>
             <select data-placeholder="Seleccionar material/s" multiple class="chosen-select" id="materials" name="materials">
             </select>
-            <p>Rang de dates de creació</p>
-            <input type="text" name="daterange" id="daterange" placeholder="Rang de dates de creació" spellcheck="false">
             <p>Estat de conservació</p>
             <select data-placeholder="Seleccionar estat/s" multiple class="chosen-select" id="conservationstatus" name="conservationstatus">
             </select>
+            <p>Filtre d'anys</p>
+            <input type="text" id="yearpicker" name="yearpicker" placeholder="yyyy fins yyyy">
             <button class="delete_filters">Esborrar filtres</button>
             <hr>
             <input type="checkbox" name="searchby" id="searchby" value="name"><label for="searchby"

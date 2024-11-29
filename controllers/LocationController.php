@@ -6,12 +6,23 @@ $response = [];
 // APIS
 if (isset($_GET['location'])) {
     $isApiCalled = true;
+
+    // Establecer el tipo de respuesta como JSON
+    header("Content-Type: application/json");
+
     if ($_GET['location'] == "all") {
         // Nos aseguramos de cargar el modelo de Location
         include_once("../models/location.php");
         // ----------------------------------------------
         $location = new Location();
-        $data=$location->getLocationsJSON();
+        $data=$location->getLocations();
+
+        if (!empty($data)) {
+            $data = json_encode($data);
+        } else {
+            $data = json_encode([]);
+        }
+        
         echo $data;
     }
 
