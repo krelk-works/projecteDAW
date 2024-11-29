@@ -173,14 +173,21 @@
             // Fetch the results
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
+        
         public function getLocationsJSON(){
-            $LocationController = new LocationController;
-            $data=$LocationController->getLocations();
-            //Returns $data in json format
-            /*No da error el header
-            header('Content-Type: application/json');*/
-            //echo json_encode($data);
-            return json_encode($data);
+            $conn = $this->connect();
+
+            // SQL Query
+            $sql = "SELECT * FROM locations";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Execute the statement
+            $stmt->execute();
+
+            // Fetch the results
+            return json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
         }
     }
 ?>

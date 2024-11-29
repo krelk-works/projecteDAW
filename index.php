@@ -89,8 +89,6 @@
     <link rel="stylesheet" href="assets/css/main.css">
     <!-- <link rel="stylesheet" href="assets/css/chosen.min.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
-    <link rel="stylesheet" href="assets/css/duDatepicker.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <!-- <script src="assets/js/chosen.jquery.min.js"></script> -->
@@ -98,7 +96,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js" integrity="sha512-rMGGF4wg1R73ehtnxXBt5mbUfN9JUJwbk21KMlnLZDJh7BkPmeovBuddZCENJddHYYMkCh9hPFnPmS9sspki8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="assets/js/accordion-element.js" defer></script>
     <script src="assets/js/jstree.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     
 

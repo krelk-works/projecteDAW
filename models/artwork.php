@@ -739,8 +739,7 @@
                     INNER JOIN conservationstatus ON artworks.conservationstatus = conservationstatus.id
                     INNER JOIN entry ON artworks.entry = entry.id
                     INNER JOIN locations ON artworks.location = locations.id
-                    WHERE artworks.id = " . $id . " LIMIT 1
-                    ORDER BY artworks.title ASC";
+                    WHERE artworks.id = " . $id . " LIMIT 1";
             try {
                 $stmt = $conn->prepare($sql);
                 $stmt->execute();
