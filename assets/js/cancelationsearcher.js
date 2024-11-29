@@ -231,7 +231,7 @@ if (document.querySelector("#artworksearch")) {
                 }
             });
             
-            // Agregamos el evento a los enlaces después de renderizar el HTML
+            // Agregamos el evento a los enlaces después de renderizar el HTML 
             document.addEventListener('click', function (event) {
                 if (event.target.closest('.view-artwork')) {
                     event.preventDefault(); // Prevenir la navegación predeterminada del enlace
