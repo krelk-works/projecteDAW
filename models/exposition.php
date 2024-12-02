@@ -131,5 +131,22 @@
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
+
+        public function getExpositionName($id) {
+            $conn = $this->connect();
+            
+            // Base SQL query
+            $sql = "SELECT name
+            FROM expositions
+            WHERE id = :id";
+            
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':id', $id);
+
+            $stmt->execute();
+
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
     }
 ?>

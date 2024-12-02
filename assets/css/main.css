@@ -824,30 +824,6 @@ textarea {
   background-color: #ff0000;
 }
 
-/* Ocultar la tabla de días del calendario */
-.dudp__calendar-body {
-  display: none;
-}
-
-/* Ocultar el encabezado de meses y flechas de navegación */
-.dudp__month,
-.dudp__month-nav {
-  display: none;
-}
-
-/* Ajustar el selector de años para que ocupe todo el espacio */
-.dudp__years {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.dudp__year {
-  width: auto;
-  margin: 5px;
-  cursor: pointer;
-}
-
 /*
 #home-list-wrapper {
     padding: 0px 15px 0px 20px;
@@ -2050,6 +2026,11 @@ svg {
 
 .expo_button {
   padding-right: 75px !important;
+}
+
+.list-wrapper h2 {
+  padding: 10px;
+  margin: 0 auto;
 }
 
 .artworkCheckboxList {

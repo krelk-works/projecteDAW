@@ -52,8 +52,17 @@
             }
         }
 ?>
-
 <main class="list-wrapper">
+<h2>
+    <?php
+        $id = $_GET['expoID'];
+        $ExpositionController = new ExpositionController();
+        $expositionName = $ExpositionController->getExpositionName($id);
+        echo $expositionName['name'];
+    ?>
+</h2>
+
+
     <div class="list-container list-container-javascript">
         <div class="list-header list-header-exposition-admin">
             <a href="">
