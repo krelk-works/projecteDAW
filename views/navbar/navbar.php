@@ -28,8 +28,7 @@ if (isset($_GET['page'])) {
         <!-- Navigation menú -->
         <ul>
             <li>
-                <a href="index.php"
-                    style="<?php echo (!isset($actualPage) || $actualPage == "inici") ? "border-bottom: 2px solid #007bff;" : ""; ?>">Inici</a>
+                <a href="index.php" style="<?php echo (!isset($actualPage) || $actualPage == "inici" || $actualPage == "artwork-view" || $actualPage == "artwork-create2") ? "border-bottom: 2px solid #007bff;" : ""; ?>">Inici</a>
             </li>
 
             <?php
@@ -38,12 +37,15 @@ if (isset($_GET['page'])) {
             if ($_SESSION['role'] != "convidat") {
 
                 // Variables to change the style of the selected option
-                $expositionManagementStyle = $actualPage == "expositions" ? "border-bottom: 2px solid #007bff;" : "";
+                $expositionManagementStyle = $actualPage == "expositions" || $actualPage == "exposition-administration" ? "border-bottom: 2px solid #007bff;" : "";
                 $userManagementStyle = $actualPage == "usuaris" ? "border-bottom: 2px solid #007bff;" : "";
                 $locationManagementStyle = $actualPage == "localitzacions" ? "border-bottom: 2px solid #007bff;" : "";
                 $vocabularyManagementStyle = $actualPage == "vocabulari" ? "border-bottom: 2px solid #007bff;" : "";
+                $dropdownManagementStyle = $actualPage == "vocabulari" || $actualPage == "moviments" || $actualPage == "cancelacions" || $actualPage == "restauracions" ? "border-bottom: 2px solid #007bff;" : "";
                 $movimentManagementStyle = $actualPage == "moviments" ? "border-bottom: 2px solid #007bff;" : "";
                 $backupManagementStyle = $actualPage == "backups" ? "border-bottom: 2px solid #007bff;" : "";
+                $cancelationManagementStyle = $actualPage == "cancelacions" ? "border-bottom: 2px solid #007bff;" : "";
+                $restaurationManagementStyle = $actualPage == "restauracions" ? "border-bottom: 2px solid #007bff;" : "";
 
                 // Exposition management
                 echo "<li>";
@@ -64,12 +66,12 @@ if (isset($_GET['page'])) {
                     echo "</li>";
                 
                     echo "<li class='dropdown1'>";
-                    echo "<a href='#' class='dropdown-toggle1'>Gestio</a>";
+                    echo "<a href='#' class='dropdown-toggle1' style='$dropdownManagementStyle'>Gestio</a>";
                     echo "<ul class='dropdown-menu1'>";
                     echo "<li><a href='?page=vocabulari' style='$vocabularyManagementStyle'>Vocabularis</a></li>";
                     echo "<li><a href='?page=moviments' style='$movimentManagementStyle'>Moviments</a></li>";
-                    echo "<li><a href='?page=cancelacions'>Cancelacions</a></li>";
-                    echo "<li><a href='?page=restauracions'>Restauracions</a></li>";
+                    echo "<li><a href='?page=cancelacions' style='$cancelationManagementStyle'>Cancelacions</a></li>";
+                    echo "<li><a href='?page=restauracions' style='$restaurationManagementStyle'>Restauracions</a></li>";
                     echo "</ul>";
                     echo "</li>";
                     
@@ -85,14 +87,6 @@ if (isset($_GET['page'])) {
         <!-- Profile icon & drop down menu -->
         <div id="profile">
             <div class="profile-section">
-            <div class="menu-button-container">
-                <button class="menu-button" onclick="window.history.back()">❮</button>
-                <div class="dropdown-menu" id="dropdownMenu">
-                    <?php
-                    ?>
-                </div>
-            </div>
-
                 <div class="profile-image-container">
                     <img src="<?php echo $_SESSION['profile_img']; ?>" alt="Foto de perfil" class="profile-image">
                 </div>
