@@ -85,6 +85,14 @@ if (isset($_GET['page'])) {
         <!-- Profile icon & drop down menu -->
         <div id="profile">
             <div class="profile-section">
+            <div class="menu-button-container">
+                <button class="menu-button" onclick="window.history.back()">❮</button>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <?php
+                    ?>
+                </div>
+            </div>
+
                 <div class="profile-image-container">
                     <img src="<?php echo $_SESSION['profile_img']; ?>" alt="Foto de perfil" class="profile-image">
                 </div>
