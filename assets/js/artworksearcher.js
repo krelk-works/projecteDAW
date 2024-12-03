@@ -201,7 +201,7 @@ if (document.querySelector("#artworksearch")) {
                     HTMLCode += '<p><i class="fa-solid fa-user"></i>' + artwork.author_name + '</p>';
                     HTMLCode += '<p><i class="fa-solid fa-location-dot"></i>' + artwork.location_name + '</p>';
                     HTMLCode += '<p><i class="fa-solid fa-bookmark"></i>' + creationYear + '</p>';
-                    HTMLCode += '<p><i class="fa-regular fa-clipboard"></i>' + artwork.text + '</p>';
+                    HTMLCode += '<p><i class="fa-regular fa-clipboard"></i>' + artwork.tecnique_name + '</p>';
                     HTMLCode += '</div>';
                     artworksCount++;
                 }
@@ -225,7 +225,7 @@ if (document.querySelector("#artworksearch")) {
                     HTMLCode += '<p><i class="fa-solid fa-user"></i>' + artwork.author_name + '</p>';
                     HTMLCode += '<p><i class="fa-solid fa-location-dot"></i>' + artwork.location_name + '</p>';
                     HTMLCode += '<p><i class="fa-solid fa-bookmark"></i>' + creationYear + '</p>';
-                    HTMLCode += '<p><i class="fa-regular fa-clipboard"></i>' + artwork.text + '</p>';
+                    HTMLCode += '<p><i class="fa-regular fa-clipboard"></i>' + artwork.tecnique_name + '</p>';
                     HTMLCode += '</div>';
                     artworksCount++;
                 }
@@ -253,7 +253,7 @@ if (document.querySelector("#artworksearch")) {
             <a href=""><h4>Autor</h4></a>
             <a href=""><h4>Ubicació</h4></a>
             <a href=""><h4>Any</h4></a>
-            <a href=""><h4>Tecnica</h4></a>
+            <a href=""><h4>Tècnica</h4></a>
         </div>
     `;
 

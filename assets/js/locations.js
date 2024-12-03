@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         HTMLCode += '<p><i class="fa-solid fa-user"></i>' + artwork.author_name + '</p>';
                         HTMLCode += '<p><i class="fa-solid fa-location-dot"></i>' + artwork.location_name + '</p>';
                         HTMLCode += '<p><i class="fa-solid fa-bookmark"></i>' + creationYear + '</p>';
-                        HTMLCode += '<p><i class="fa-regular fa-clipboard"></i>' + artwork.text + '</p>';
+                        HTMLCode += '<p><i class="fa-regular fa-clipboard"></i>' + artwork.tecnique_name + '</p>';
                         HTMLCode += '</div>';
                     });
                     if (artworks.message.length === 0) {

@@ -226,9 +226,10 @@
             $conn = $this->connect();
 
             // Base SQL query
-            $sql = "SELECT artworks.id, artworks.id_letter, artworks.id_num1, artworks.id_num2, artworks.title AS artwork_name, artworks.creation_date, artworks.image as artwork_image, authors.name AS author_name, conservationstatus.text, locations.name AS location_name
+            $sql = "SELECT artworks.id, artworks.id_letter, artworks.id_num1, artworks.id_num2, artworks.title AS artwork_name, artworks.creation_date, artworks.image as artwork_image, authors.name AS author_name, conservationstatus.text, locations.name AS location_name, tecniques.text AS tecnique_name
                     FROM artworks
                     INNER JOIN authors ON artworks.author = authors.id
+                    INNER JOIN tecniques ON artworks.tecnique = tecniques.id
                     INNER JOIN locations ON artworks.location = locations.id
                     INNER JOIN conservationstatus ON artworks.conservationstatus = conservationstatus.id
                     WHERE artworks.location IN (" . $locations . ") ORDER BY artworks.title ASC";
@@ -583,9 +584,10 @@
 
         public function searchArtwork($search){
             $conn = $this->connect();
-            $sql = "SELECT artworks.id_letter, artworks.id_num1, artworks.id_num2, artworks.museumname AS artwork_museumname, artworks.id, artworks.title AS artwork_name, artworks.creation_date, artworks.canceled, artworks.tecnique AS tecnique_id, artworks.material AS material_id, artworks.conservationstatus AS conservationstatus_id, authors.name AS author_name, authors.id as author_id, conservationstatus.text, locations.name AS location_name, artworks.image AS artwork_image
+            $sql = "SELECT artworks.id_letter, artworks.id_num1, artworks.id_num2, artworks.museumname AS artwork_museumname, artworks.id, artworks.title AS artwork_name, artworks.creation_date, artworks.canceled, artworks.tecnique AS tecnique_id, artworks.material AS material_id, artworks.conservationstatus AS conservationstatus_id, authors.name AS author_name, authors.id as author_id, conservationstatus.text, locations.name AS location_name, artworks.image AS artwork_image, tecniques.text AS tecnique_name
                     FROM artworks
                     INNER JOIN authors ON artworks.author = authors.id
+                    INNER JOIN tecniques ON artworks.tecnique = tecniques.id
                     INNER JOIN locations ON artworks.location = locations.id
                     INNER JOIN conservationstatus ON artworks.conservationstatus = conservationstatus.id
                     WHERE artworks.name LIKE :search OR authors.name LIKE :search OR locations.name LIKE :search OR conservationstatus.text LIKE :search OR artworks.title LIKE :search
