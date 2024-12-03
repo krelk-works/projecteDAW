@@ -18,7 +18,7 @@ const headerCode = `
         <a href=""><h4>Autor</h4></a>
         <a href=""><h4>Ubicació</h4></a>
         <a href=""><h4>Any</h4></a>
-        <a href=""><h4>Estat</h4></a>
+        <a href=""><h4>Tècnica</h4></a>
     </div>
 `;
 
@@ -275,7 +275,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error fetching location data:', error);
                 // const container = document.getElementById('location-tree-container');
                 // container.innerHTML = '<p style="padding-left: 15px;">Error al cargar los datos de ubicación.</p>';
-                updatePanelMaxHeight(); // Calcular la altura inicial del
+                updatePanelMaxHeight(); // Calcular la altura inicial del contenedor
+
             });
     }
 
