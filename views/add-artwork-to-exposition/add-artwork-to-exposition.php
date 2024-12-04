@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <aside id="createbar">
     <form id="createbarwrapper" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=exposition-administration&expoID=<?=$_GET['expoID'];?>" enctype="multipart/form-data">
-        <h3>Afegir obres a l'exposició</h3>
+        <h3 id="Add-Title">Afegir obres a l'exposició</h3>
         <input type="hidden" name="expoID" value="<?=$_GET['expoID'];?>">
         <select data-placeholder="Seleccionar obres" multiple class="chosen-select" id="artworks" name='addArtwork[]'>
             <?php

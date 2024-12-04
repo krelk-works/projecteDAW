@@ -14,7 +14,27 @@
     transition: border-bottom 0.66s, padding 0.2s;
 }
 
-.checkboxStyles {
-    margin-left: -50px;
+#Add-Title{
+    margin-bottom: 10px;
+}
+
+.chosen-select {
+    border: 0px solid #ccc !important;
+    border-radius: 5px !important;
+    margin-bottom: 5px;
+
+    input {
+        transition: none !important;
+    }
+}
+
+.chosen-choices {
+    border: 1px solid #ccc !important;
+    border-radius: 5px !important;
+    margin-bottom: 5px;
     box-shadow: none !important;
+    background-image: none !important;
+
+    padding: 3px !important;
+    font-size: 16px !important;
 }
