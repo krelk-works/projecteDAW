@@ -23,10 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php 
         if ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'tecnic') {
             echo '<ul id="context-menu" class="context-menu">
-            <li id="add-location">Agregar ubicación</li>
-            <li id="modify-location">Modificar ubicación</li>
-            <li id="delete-location">Eliminar ubicación</li>
-
+                <li id="add-location">Afegir ubicació</li>
+                <li id="modify-location">Modificar ubicació</li>
+                <li id="delete-location">Esborrar ubicació</li>
             </ul>';
         }
     ?>

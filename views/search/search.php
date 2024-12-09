@@ -1,3 +1,6 @@
+<?php
+    $isAllowedToCreate = $_SESSION['role'] == 'admin' || $_SESSION['role'] == 'tecnic';
+?>
 <aside id="searchbar">
     <button class="accordion default_active">Cerca d'obres</button>
     <div class="panel" id="filters">
@@ -27,14 +30,18 @@
                 id="searchbylabel">Veure obres eliminades</label>
         </form>
     </div>
-
-    <button class="accordion">Opcions</button>
-    <div class="panel">
-        <button id="new-artwork"><i class="fa-solid fa-plus"></i> Crear obra</button>
-        <a href='?generatePDF=true' target="_blank"><button><i class="fa-regular fa-file-pdf"></i>Generar llibre-registre</button></a>
-        <button id="generatePDFfilter"><i class="fa-regular fa-file-pdf"></i>Generar llibre-registre amb filtres</button>
-        <a href='?generateInvididualPDF=342' target="_blank"><button><i class="fa-regular fa-file-pdf"></i>Generar informe de fitxa basica</button></a>
-        <a href='?generateSimplePDF=342' target="_blank"><button><i class="fa-regular fa-file-pdf"></i>Generar informe de fitxa general</button></a>
-    </div>
+    <?php 
+        if ($isAllowedToCreate) {
+            echo `
+            <button class="accordion">Opcions</button>
+            <div class="panel">
+                <button id="new-artwork"><i class="fa-solid fa-plus"></i> Crear obra</button>
+                <a href='?generatePDF=true' target="_blank"><button><i class="fa-regular fa-file-pdf"></i>Generar llibre-registre</button></a>
+                <button id="generatePDFfilter"><i class="fa-regular fa-file-pdf"></i>Generar llibre-registre amb filtres</button>
+                <a href='?generateInvididualPDF=342' target="_blank"><button><i class="fa-regular fa-file-pdf"></i>Generar informe de fitxa basica</button></a>
+                <a href='?generateSimplePDF=342' target="_blank"><button><i class="fa-regular fa-file-pdf"></i>Generar informe de fitxa general</button></a>
+            </div>`;
+        }
+    ?>
 </aside>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>

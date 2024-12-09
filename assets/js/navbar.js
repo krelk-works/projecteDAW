@@ -33,20 +33,22 @@ if (document.getElementById("resetFilters")) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  const dropdown = document.querySelector(".dropdown1");
-  const dropdownMenu = document.querySelector(".dropdown-menu1");
-  dropdownMenu.style.display = "none";
+  if (document.querySelector(".dropdown1")) {
+    const dropdown = document.querySelector(".dropdown1");
+    const dropdownMenu = document.querySelector(".dropdown-menu1");
+    dropdownMenu.style.display = "none";
 
-  let hideTimeout; // Variable para almacenar el temporizador
+    let hideTimeout; // Variable para almacenar el temporizador
 
-dropdown.addEventListener("mouseenter", function () {
-clearTimeout(hideTimeout); // Cancela cualquier temporizador previo
-dropdownMenu.style.display = "block";
-});
+    dropdown.addEventListener("mouseenter", function () {
+      clearTimeout(hideTimeout); // Cancela cualquier temporizador previo
+      dropdownMenu.style.display = "block";
+    });
 
-dropdown.addEventListener("mouseleave", function () {
-hideTimeout = setTimeout(function () {
-  dropdownMenu.style.display = "none";
-}, 300); // 1.5 segundos
-});
+    dropdown.addEventListener("mouseleave", function () {
+      hideTimeout = setTimeout(function () {
+        dropdownMenu.style.display = "none";
+      }, 300); // 1.5 segundos
+    });
+  }
 });

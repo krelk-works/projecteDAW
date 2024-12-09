@@ -2,7 +2,7 @@
 .dropdown-menu1 {
   display: none; /* Ocultar el menú inicialmente */
   position: absolute;
-  top: calc(100% + 5px); /* Justo debajo del texto del encabezado */
+  top: calc(100% + 20px); /* Justo debajo del texto del encabezado */
   left: 0;
   background-color: #fff;
   list-style: none;

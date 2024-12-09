@@ -273,9 +273,11 @@ if (document.querySelector("#artworksearch")) {
 
     let createNewArtworkButton = document.querySelector("#new-artwork");
 
-    createNewArtworkButton.addEventListener("click", () => {
-        window.location.href = "?page=artwork-create2";
-    });
+    if (createNewArtworkButton) {
+        createNewArtworkButton.addEventListener("click", () => {
+            window.location.href = "?page=artwork-create2";
+        });
+    }
 
     /** Deshabilitamos que al hacer ENTER en cualquier INPUT se envie formulario */
     document.querySelectorAll('input').forEach(input => {
