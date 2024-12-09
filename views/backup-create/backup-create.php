@@ -97,4 +97,5 @@ if (isset($_GET['delete_file']) && isset($_GET['confirmed'])) {
         <input type="hidden" name="page" value="backups">
         <button type="submit" id="createBackupButton"><i class="fa-solid fa-user-plus"></i>Crear</button>
     </form>
+    <a href="?generateCSV=true" target="_blank"><button><i class="fa-regular fa-file-pdf"></i>Generar informe CSV</button></a>
 </aside>

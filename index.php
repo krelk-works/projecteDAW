@@ -68,6 +68,11 @@
         else if (isset($_GET['generateSimplePDF'])) {
             require_once "views/generatePDF/generateSimplePDF.php";
         }
+        else if (isset($_GET['generateCSV'])) {
+            include_once("models/csv.php");
+            $csvExport = new CSV();
+            $csvExport->exportCSV();
+        }
     }
 ?>
 <!DOCTYPE html>
