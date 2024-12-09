@@ -25,23 +25,27 @@
             <p>Filtre d'anys</p>
             <input type="text" id="yearpicker" name="yearpicker" placeholder="yyyy fins yyyy">
             <button class="delete_filters">Esborrar filtres</button>
-            <hr>
-            <input type="checkbox" name="searchby" id="searchby" value="name"><label for="searchby"
-                id="searchbylabel">Veure obres eliminades</label>
+            <?php
+                if ($isAllowedToCreate) {
+                    echo '<hr>
+                    <input type="checkbox" name="searchby" id="searchby" value="name"><label for="searchby"
+                        id="searchbylabel">Veure obres eliminades</label>';
+                }
+            ?>
         </form>
     </div>
-    <?php 
+    <?php
         if ($isAllowedToCreate) {
-            echo `
-            <button class="accordion">Opcions</button>
+            echo '<button class="accordion">Opcions</button>
             <div class="panel">
                 <button id="new-artwork"><i class="fa-solid fa-plus"></i> Crear obra</button>
-                <a href='?generatePDF=true' target="_blank"><button><i class="fa-regular fa-file-pdf"></i>Generar llibre-registre</button></a>
+                <a href="?generatePDF=true" target="_blank"><button><i class="fa-regular fa-file-pdf"></i>Generar llibre-registre</button></a>
                 <button id="generatePDFfilter"><i class="fa-regular fa-file-pdf"></i>Generar llibre-registre amb filtres</button>
-                <a href='?generateInvididualPDF=342' target="_blank"><button><i class="fa-regular fa-file-pdf"></i>Generar informe de fitxa basica</button></a>
-                <a href='?generateSimplePDF=342' target="_blank"><button><i class="fa-regular fa-file-pdf"></i>Generar informe de fitxa general</button></a>
-            </div>`;
+                <a href="?generateInvididualPDF=342" target="_blank"><button><i class="fa-regular fa-file-pdf"></i>Generar informe de fitxa basica</button></a>
+                <a href="?generateSimplePDF=342" target="_blank"><button><i class="fa-regular fa-file-pdf"></i>Generar informe de fitxa general</button></a>
+            </div>';
         }
+        
     ?>
 </aside>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
