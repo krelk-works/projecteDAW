@@ -63,21 +63,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <aside id="createbar">
     <form id="createbarwrapper" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=exposition-administration&expoID=<?=$_GET['expoID'];?>" enctype="multipart/form-data">
-        <h3>Afegir obres a l'exposició</h3>
+        <h3 id="Add-Title">Afegir obres a l'exposició</h3>
         <input type="hidden" name="expoID" value="<?=$_GET['expoID'];?>">
-        <?php
-            $artworkController = new ArtworkController();
-            $ID = $_GET['expoID'];
-            $data = $artworkController->getArtworkList($ID);
-            echo "<div class='artworkCheckboxList'>";
-            foreach ($data as $d) {
-                echo "<div class='artworkCheckbox'>";
-                    echo "<input class='checkboxStyles' type='checkbox' name='addArtwork[]' value='".$d['id']."' id='artwork_".$d['id']."'>";
-                    echo "<label for='artwork_".$d['id']."'>".$d['title']."</label>";
-                echo "</div>";
-            }
-            echo "</div>";
-        ?>
+        <select data-placeholder="Seleccionar obres" multiple class="chosen-select" id="artworks" name='addArtwork[]'>
+            <?php
+                $artworkController = new ArtworkController();
+                $ID = $_GET['expoID'];
+                $data = $artworkController->getArtworkList($ID);
+                foreach ($data as $d) {
+                    echo "<option value='".$d['id']."'>".$d['title']."</option>";
+                }
+            ?>
+        </select>
         <button type="submit" id="addArtworksToExposition">Desar</button>
     </form>
 </aside>
+<script src="assets/js/add-artwork-to-exposition.js" defer></script>
