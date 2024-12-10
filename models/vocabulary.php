@@ -566,7 +566,7 @@
         public function addGetty($text)
         {
             $conn = $this->connect();
-            $sql = "INSERT INTO materialgettycodes (text) VALUES (:text)";
+            $sql = "INSERT INTO gettycodes (code) VALUES (:text)";
 
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
@@ -581,7 +581,7 @@
         public function getGettys()
         {
             $conn = $this->connect();
-            $sql = "SELECT * FROM materialgettycodes ORDER BY materialgettycodes.text";
+            $sql = "SELECT * FROM gettycodes ORDER BY gettycodes.code";
 
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
@@ -596,7 +596,7 @@
         public function deleteGetty($id)
         {
             $conn = $this->connect();
-            $sql = "DELETE FROM materialgettycodes WHERE id = :id";
+            $sql = "DELETE FROM gettycodes WHERE id = :id";
 
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
@@ -611,7 +611,7 @@
         public function editGetty($id, $text)
         {
             $conn = $this->connect();
-            $sql = "UPDATE materialgettycodes SET text = :text WHERE id = :id";
+            $sql = "UPDATE gettycodes SET code = :text WHERE id = :id";
 
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
