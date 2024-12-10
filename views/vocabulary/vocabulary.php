@@ -499,3 +499,4 @@
     </div>
 </div>
 <script src="assets/js/vocabulary.js" defer></script>
+<script src="assets/js/upper-case.js"></script>

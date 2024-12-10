@@ -17,6 +17,14 @@
     // Start the session.
     session_start();
 
+        // Manejo de la acción 'save-movement'
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action']) && $_GET['action'] === 'save-movement') {
+            require_once 'controllers/MovementsController.php';
+            $controller = new MovementsController();
+            $controller->editMovement();
+            exit; // Asegúrate de detener el script después de procesar la solicitud
+        }
+
     // Comprobamos si el usuario tiene permiso para descargar backups o generar PDFs
     if (isset($_SESSION['username']) && isset($_SESSION['role'])) {
         // Check if the user wants to download a backup file and if the user is an admin

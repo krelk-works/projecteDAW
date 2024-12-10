@@ -107,5 +107,34 @@ class MovementsController
             echo json_encode(['status' => 'error', 'message' => 'Error al crear el movimiento.']);
         }
     }
+
+    public function editMovement() {
+        header('Content-Type: application/json');
+
+        $requiredFields = ['id', 'start_date', 'end_date', 'place'];
+        foreach ($requiredFields as $field) {
+            if (empty($_POST[$field])) {
+                echo json_encode(['success' => false, 'message' => "El campo {$field} es obligatorio."]);
+                return;
+            }
+        }
+
+        $id = $_POST['id'];
+        $start_date = $_POST['start_date'];
+        $end_date = $_POST['end_date'];
+        $place = $_POST['place'];
+
+        require_once 'models/Movement.php';
+        $movement = new Movement();
+        $result = $movement->editMovement($id, $start_date, $end_date, $place);
+
+        if ($result) {
+            echo json_encode(['success' => true, 'message' => 'Movimiento editado correctamente.']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error al editar el movimiento.']);
+        }
+    }
+    
+    
 }
 ?>

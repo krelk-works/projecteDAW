@@ -34,3 +34,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <p>Feu clic dret per veure opcions</p>
     </div>
 </aside>
+
+<script src="assets/js/upper-case.js"></script>

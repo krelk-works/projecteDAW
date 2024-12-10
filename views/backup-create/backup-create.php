@@ -99,3 +99,5 @@ if (isset($_GET['delete_file']) && isset($_GET['confirmed'])) {
     </form>
     <a href="?generateCSV=true" target="_blank"><button><i class="fa-regular fa-file-pdf"></i>Generar informe CSV</button></a>
 </aside>
+
+<script src="assets/js/upper-case.js"></script>

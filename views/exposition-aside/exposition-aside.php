@@ -94,3 +94,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
     </div>
 </aside>
+<script src="assets/js/upper-case.js"></script>

@@ -9,6 +9,7 @@ const headerCode = `
     </div>
 `;
 
+
 // Renderizar el árbol al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
     // Función para actualizar la altura máxima del contenedor .panel-tree
@@ -291,6 +292,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Acciones del menú contextual
         $('#add-location').on('click', function () {
+            document.addEventListener('DOMContentLoaded', function() {
+                const inputs = document.querySelectorAll('input[type="text"]');
+                
+                inputs.forEach(input => {
+                    input.addEventListener('input', function() {
+                        // Capitaliza la primera letra de cada palabra
+                        this.value = this.value.replace(/\b\w/g, char => char.toUpperCase());
+                    });
+                });
+            });
             const nodeId = $('#context-menu').data('node-id'); // Obtener ID del nodo
 
             // Mostrar SweetAlert con el formulario personalizado
