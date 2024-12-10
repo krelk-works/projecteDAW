@@ -167,6 +167,13 @@
                     require_once "views/cancelations-aside/cancelations-aside.php";
                     require_once "views/cancelations-list/cancelations-list.php";
                 }
+                else if ($actualPage == "restauracions") {
+                    require_once "views/restauration-aside-view/restauration-aside.php";
+                    require_once "views/restauration-list-view/restauration-list.php";
+                }
+                else if ($actualPage == "restoration-create") {
+                    require_once "views/restoration-create/restoration-create.php";
+                }
             }
         }
         // If the session is not active, then show the login view.
