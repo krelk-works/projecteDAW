@@ -57,16 +57,3 @@ function saveMovement(data) {
           }
       });
 }
-
-// Test function to simulate editing a movement
-function testEditMovement() {
-    const testId = 1;
-    const testStartDate = '2023-01-01';
-    const testEndDate = '2023-01-10';
-    const testPlace = 'Test Place';
-
-    showMovementDetails(testId, testStartDate, testEndDate, testPlace);
-}
-
-// Call the test function to simulate the edit
-testEditMovement();
