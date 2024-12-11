@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="panel">
         <form id="searchbarwrapper" method="POST">
             <label for="expositionsearch">Cercador</label>
-            <input type="text" name="expositionsearch" id="expositionsearch" placeholder="Nom de la exposició...">
+            <input type="text" name="expositionsearch" id="expositionsearch" placeholder="Nom de la exposició..." autocomplete="true">
             <hr style="width: 100%; margin-top: 10px; margin-bottom: 5px;">
             <input type="checkbox" name="searchby" id="searchby" value="name"><label for="searchby" id="searchbylabel">Veure exposicions finalitzades</label>
         </form>
@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="panel">
         <form id="createbarwrapper" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=expositions" enctype="multipart/form-data">
             <label for="name">Nom de l'exposició</label>
-            <input type="text" name="name" id="name" placeholder="Introdueix el nom de l'exposició" required>
+            <input type="text" name="name" id="name" placeholder="Introdueix el nom de l'exposició" required autocomplete="true">
             <label for="expoloc">Lloc de l'exposició</label>
             <input type="text" name="expoloc" id="expoloc" placeholder="Introdueix el lloc de l'exposició" required>
             <label for="expotype">Tipus d'exposició</label>
