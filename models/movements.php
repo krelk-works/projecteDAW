@@ -78,7 +78,6 @@
                 $stmt->bindParam(':id', $id);
                 $stmt->execute(); // Retorna true o false
                 $filasAfectadas = $stmt->rowCount();
-                return $id;
                 return $filasAfectadas > 0;
             } catch (PDOException $e) {
                 return false;
