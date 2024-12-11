@@ -441,13 +441,13 @@
                     ?>
                 </div>
             </div>
-            <div class="vocabulary-item-simple ">
+            <!--<div class="vocabulary-item-simple ">
                 <h4>Materials</h4>
                 <input type="text" placeholder="Nou material..." id="new_material_value" maxlength="30">
                 <button id="new_material">+</button>
                 <div class="list-vocabulary-item-simple">
                     <?php
-                        $materials = $vocabularyController->getMaterials();
+                        /*$materials = $vocabularyController->getMaterials();
 
                         foreach ($materials as $material) {
                             echo '<div class="item-vocabulary">
@@ -455,17 +455,17 @@
                                 <button class="edit_vocabulary_button material_edit_button" value="'.$material['id'].'"><i class="fa-solid fa-edit"></i></button>
                                 <button class="delete_vocabulary_button material_delete_button" value="'.$material['id'].'"><i class="fa-solid fa-trash"></i></button>
                             </div>';
-                        }
+                        }*/
                     ?>
                 </div>
-            </div>
-            <div class="vocabulary-item-simple ">
+            </div>-->
+            <!--<div class="vocabulary-item-simple ">
                 <h4>Tecnica</h4>
                 <input type="text" placeholder="Nova tecnica..." id="new_tecnique_value" maxlength="30">
                 <button id="new_tecnique">+</button>
                 <div class="list-vocabulary-item-simple">
                     <?php
-                        $tecniques = $vocabularyController->getTecniques();
+                        /*$tecniques = $vocabularyController->getTecniques();
 
                         foreach ($tecniques as $tecnique) {
                             echo '<div class="item-vocabulary">
@@ -473,10 +473,10 @@
                                 <button class="edit_vocabulary_button tecnique_edit_button" value="'.$tecnique['id'].'"><i class="fa-solid fa-edit"></i></button>
                                 <button class="delete_vocabulary_button tecnique_delete_button" value="'.$tecnique['id'].'"><i class="fa-solid fa-trash"></i></button>
                             </div>';
-                        }
+                        }*/
                     ?>
                 </div>
-            </div>
+            </div>-->
             <div class="vocabulary-item-simple ">
                 <h4>Codi Getty</h4>
                 <input type="text" placeholder="Nou codi Getty..." id="new_getty_value" maxlength="30">
@@ -487,7 +487,7 @@
 
                         foreach ($gettycodes as $gettycode) {
                             echo '<div class="item-vocabulary">
-                                <p>' . $gettycode['text'] . '</p>
+                                <p>' . $gettycode['code'] . '</p>
                                 <button class="edit_vocabulary_button getty_edit_button" value="'.$gettycode['id'].'"><i class="fa-solid fa-edit"></i></button>
                                 <button class="delete_vocabulary_button getty_delete_button" value="'.$gettycode['id'].'"><i class="fa-solid fa-trash"></i></button>
                             </div>';
@@ -499,3 +499,4 @@
     </div>
 </div>
 <script src="assets/js/vocabulary.js" defer></script>
+<script src="assets/js/upper-case.js"></script>

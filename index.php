@@ -17,6 +17,14 @@
     // Start the session.
     session_start();
 
+        // Manejo de la acción 'save-movement'
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['action']) && $_GET['action'] === 'save-movement') {
+            require_once 'controllers/MovementsController.php';
+            $controller = new MovementsController();
+            $controller->editMovement();
+            exit; // Asegúrate de detener el script después de procesar la solicitud
+        }
+
     // Comprobamos si el usuario tiene permiso para descargar backups o generar PDFs
     if (isset($_SESSION['username']) && isset($_SESSION['role'])) {
         // Check if the user wants to download a backup file and if the user is an admin
@@ -68,6 +76,11 @@
         else if (isset($_GET['generateSimplePDF'])) {
             require_once "views/generatePDF/generateSimplePDF.php";
         }
+        else if (isset($_GET['generateCSV'])) {
+            include_once("models/csv.php");
+            $csvExport = new CSV();
+            $csvExport->exportCSV();
+        }
     }
 ?>
 <!DOCTYPE html>
@@ -115,55 +128,64 @@
             }
             // Check what to load in the main content.
             if (isset($actualPage)) {
-                if ($actualPage == "inici") {
-                    require_once "views/search/search.php";
-                    require_once "views/home-list/home-list.php";
-                }
-                else if ($actualPage == "usuaris") {
-                    require_once "views/create/create.php";
-                    require_once "views/user-list/user-list.php";
-                }
-                else if ($actualPage == "localitzacions") {
-                    require_once "views/location-create/location-create.php";
-                    require_once "views/location-list/location-list.php";
-                }
-                else if($actualPage=="user-administration"){
-                    require_once "views/user-adiministration/user-administration-view.php";
-                }
-                else if ($actualPage == "backups") {
-                    require_once "views/backup-create/backup-create.php";
-                    require_once "views/backup-list/backup-list.php";
-                }
-                else if ($actualPage == "artwork-create2") {
-                    require_once "views/artwork-create/artwork-create2.php";
-                }
-                else if ($actualPage == "artwork-view") {
-                    require_once "views/artwork-view/artwork-view.php";
-                }
-                else if ($actualPage == "vocabulari") {
-                    require_once "views/vocabulary/vocabulary.php";
-                }
-                else if ($actualPage == "artwork-administration") {
-                    require_once "views/artwork-administration/artwork-administration.php";
-                }
-                else if ($actualPage == "expositions") {
-                    require_once "views/exposition-aside/exposition-aside.php";
-                    require_once "views/exposition/exposition.php";
-                }
-                else if ($actualPage == "exposition-administration") {
-                    require_once "views/add-artwork-to-exposition/add-artwork-to-exposition.php"; 
-                    require_once "views/exposition-administration/exposition-administration.php";
-                }
-                else if ($actualPage == "moviments") {
-                    require_once "views/movement-create/movement-create.php";
-                    require_once "views/movement-list/movement-list.php";
-                }
-                else if ($actualPage == "cancelacions") {
-                    require_once "views/cancelations-aside/cancelations-aside.php";
-                    require_once "views/cancelations-list/cancelations-list.php";
+                switch ($actualPage) {
+                    case 'inici':
+                        require_once "views/search/search.php";
+                        require_once "views/home-list/home-list.php";
+                        break;
+                    case 'usuaris':
+                        require_once "views/create/create.php";
+                        require_once "views/user-list/user-list.php";
+                        break;
+                    case 'localitzacions':
+                        require_once "views/location-create/location-create.php";
+                        require_once "views/location-list/location-list.php";
+                        break;
+                    case 'user-administration':
+                        require_once "views/user-adiministration/user-administration-view.php";
+                        break;
+                    case 'backups':
+                        require_once "views/backup-create/backup-create.php";
+                        require_once "views/backup-list/backup-list.php";
+                        break;
+                    case 'artwork-create2':
+                        require_once "views/artwork-create/artwork-create2.php";
+                        break;
+                    case 'artwork-view':
+                        require_once "views/artwork-view/artwork-view.php";
+                        break;
+                    case 'vocabulari':
+                        require_once "views/vocabulary/vocabulary.php";
+                        break;
+                    case 'artwork-administration':
+                        require_once "views/artwork-administration/artwork-administration.php";
+                        break;
+                    case 'expositions':
+                        require_once "views/exposition-aside/exposition-aside.php";
+                        require_once "views/exposition/exposition.php";
+                        break;
+                    case 'exposition-administration':
+                        require_once "views/add-artwork-to-exposition/add-artwork-to-exposition.php"; 
+                        require_once "views/exposition-administration/exposition-administration.php";
+                        break;
+                    case 'moviments':
+                        require_once "views/movement-create/movement-create.php";
+                        require_once "views/movement-list/movement-list.php";
+                        break;
+                    case 'cancelacions':
+                        require_once "views/cancelations-aside/cancelations-aside.php";
+                        require_once "views/cancelations-list/cancelations-list.php";
+                        break;
+                    case 'restauracions':
+                        require_once "views/restauration-aside-view/restauration-aside.php";
+                        require_once "views/restauration-list-view/restauration-list.php";
+                        break;
+                    case 'restoration-create':
+                        require_once "views/restoration-create/restoration-create.php";
+                        break;
                 }
             }
-        }
+        }            
         // If the session is not active, then show the login view.
         else{
             if (!isset($_POST['username']) && !isset($_POST['password'])){

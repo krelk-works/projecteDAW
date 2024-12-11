@@ -55,7 +55,21 @@
             } else {
                 return 1;
             }
-        }        
+        }       
+        
+        public function editMovement($id, $sd, $ed, $place) {
+            $conn = $this->connect();
+            $sql = "UPDATE movements
+                    SET start_date = :sd, end_date = :ed, place = :place
+                    WHERE id = :id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':sd', $sd);
+            $stmt->bindParam(':ed', $ed);
+            $stmt->bindParam(':place', $place);        
+            return $stmt->execute(); // Retorna true o false
+        }
+        
 
     }
 ?>

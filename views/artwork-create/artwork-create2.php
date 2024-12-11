@@ -250,3 +250,4 @@
     </div>
 </form>
 <script src="assets/js/add-artwork.js" defer></script>
+<script src="assets/js/upper-case.js"></script>
