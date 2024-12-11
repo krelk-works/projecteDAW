@@ -30,7 +30,7 @@ class Backup extends Database {
         $backupFilePath = BACKUP_DIRECTORY . $backupFileName; // Ruta del archivo SQL
 
         // Comando mysqldump para realizar la copia de seguridad
-        $command = "mysqldump --host=$servername --user=$username --password=$password $dbname > $backupFilePath";
+        $command = "mysqldump --host=$servername --user=$username --password=$password --databases $dbname > $backupFilePath";
 
         // Ejecutar el comando
         system($command, $output);
