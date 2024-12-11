@@ -50,38 +50,36 @@ function saveMovement(data) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
     }).then(response => response.text())
-      .then(responseText => {
-          console.log(responseText);
-          try {
-              const responseData = JSON.parse(responseText);
-              Swal.fire('Guardado', 'El movimiento se ha actualizado correctamente', 'success')
-                  .then(() => window.location.reload());
-          } catch (error) {
-              console.error('Error parsing JSON:', error);
-              Swal.fire('Error', 'Error en la respuesta del servidor', 'error');
-          }
-      });
+        .then(responseText => {
+            console.log(responseText);
+            try {
+                const responseData = JSON.parse(responseText);
+                Swal.fire('Guardado', 'El movimiento se ha actualizado correctamente', 'success')
+                    .then(() => window.location.reload());
+            } catch (error) {
+                console.error('Error parsing JSON:', error);
+                Swal.fire('Error', 'Error en la respuesta del servidor', 'error');
+            }
+        });
 }
 
 function deleteMovement(id) {
-    fetch(`controllers/MovementsController.php?deleteMovement&id=${id}`, {
+    fetch(`controllers/MovementsController.php?deleteMovement`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(id)
     }).then(response => response.text())
-      .then(responseText => {
-          console.log(responseText);
-          try {
-              const responseData = JSON.parse(responseText);
-              if (responseData.success) {
-                  Swal.fire('Eliminado', 'El movimiento ha sido eliminado correctamente.', 'success')
-                      .then(() => window.location.reload());
-              } else {
-                  Swal.fire('Error', responseData.message, 'error');
-              }
-          } catch (error) {
-              console.error('Error parsing JSON:', error);
-              Swal.fire('Error', 'Error en la respuesta del servidor', 'error');
-          }
-      });
+        .then(responseText => {
+            console.log(responseText);
+            try {
+                const responseData = JSON.parse(responseText);
+                Swal.fire('Eliminado', 'El movimiento ha sido eliminado correctamente.', 'success').then(() => window.location.reload());
+            } catch (error) {
+                console.error('Error parsing JSON:', error);
+                Swal.fire('Error', 'Error en la respuesta del servidor', 'error');
+            }
+        }).catch(error => {
+            console.error('Error fetching:', error);
+            Swal.fire('Error', 'Error al eliminar el movimiento', 'error');
+        });
 }

@@ -139,7 +139,7 @@ if (isset($_GET['deleteMovement'])) {
     $rawData = json_decode($input, true); // Decodificar a un array asociativo
 
     if (!empty($rawData)) {
-        $id = $rawData["id"];
+        $id = $rawData;
 
         // Importamos el modelo de obra de arte para obtener obras según localización
         include_once("../models/movements.php");
