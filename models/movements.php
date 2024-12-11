@@ -69,7 +69,18 @@
             $stmt->bindParam(':place', $place);        
             return $stmt->execute(); // Retorna true o false
         }
-        
 
+        public function deleteMovement($id) {
+            $conn = $this->connect();
+            $sql = "DELETE FROM movements WHERE id = :id";
+            try {
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam(':id', $id);
+                return $stmt->execute(); // Retorna true o false
+            } catch (PDOException $e) {
+                return false;
+            }
+        }
+        
     }
 ?>
