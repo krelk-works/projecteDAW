@@ -1,4 +1,4 @@
-let formdata = {
+const formdata = {
     'id_number_min': 1, // Valor mínimo de la letra del identificador
     'id_number_max': 99999, // Valor máximo de la letra del identificador
 };

@@ -12,9 +12,12 @@
             // Ejecuta la consulta y verifica el resultado
             if ($stmt->execute()) {
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                // Si no encuentra ningún registro que devuelva un 1
+                return isset($row['max_id']) && $row['max_id'] !== null ? $row['max_id'] + 1 : 1;
                 
                 // Si no hay registros, empieza en 10001; si los hay, retorna el siguiente valor de `id_num1`
-                return isset($row['max_id']) && $row['max_id'] !== null ? $row['max_id'] + 1 : 10001;
+                // return isset($row['max_id']) && $row['max_id'] !== null ? $row['max_id'] + 1 : 10001;
             } else {
                 return false; // Manejo de error en caso de fallo en la consulta
             }
@@ -490,6 +493,11 @@
             try {
                 $stmt->execute();
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                // If there are no records, return 0 (This is the first record (00001))
+                if ($row['max_id_num1'] === null) {
+                    return 0;
+                }
+                // If is not the first record, return the next number
                 return $row['max_id_num1'];
             } catch (PDOException $e) {
                 return false;
