@@ -63,6 +63,62 @@ if (isset($_GET['movement'])) {
     echo json_encode($response);
 }
 
+if (isset($_GET['editMovement'])) {
+    $isApiCalled = true;
+
+    // Variable de respuesta
+    $response = [
+        "status" => "error",
+        "message" => "Ha ocurrido un error en la modificación del movimiento."
+    ];
+
+    include_once("../models/movements.php");
+    
+    
+    
+
+    // Leer el cuerpo de la solicitud JSON
+    $input = file_get_contents("php://input");
+    // Recogemos los datos en bruto ya transformados a PHP
+    $rawData = json_decode($input, true); // Decodificar a un array asociativo
+
+    if (!empty($rawData)) {
+        $id = $rawData["id"];
+        $startDate = $rawData["start_date"];
+        $endDate = $rawData["end_date"];
+        $place = $rawData["place"];
+
+        // Importamos el modelo de obra de arte para obtener obras según localización
+        include_once("../models/movements.php");
+        $model = new Movement();
+        
+        // Obtenemos los datos de las obras en las localizaciones correspondientes.
+        $movementCallback = $model->editMovement($id, $startDate, $endDate, $place);
+        // Configuramos los datos de la respuesta
+
+        if ($movementCallback) {
+            $response = [
+                "status" => "success",
+                "message" => "Movimiento editado correctamente."
+            ];
+        } else {
+            $response = [
+                "status" => "error",
+                "message" => "Error al editar el movimiento."
+            ];
+        }
+    } else {
+        $response = [
+            "status" => "error",
+            "message" => "Ha ocurrido un error en la solicitud modificación de movimiento."
+        ];
+    }
+
+    // Limpiar el búfer de salida para evitar datos adicionales
+    ob_clean();
+    echo json_encode($response);
+}
+
 // En caso de no ser una solicitud API, cargamos el modelo localmente
 !$isApiCalled ? include_once("models/movements.php") : exit();
 
