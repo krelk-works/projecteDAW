@@ -177,8 +177,8 @@
                         require_once "views/cancelations-list/cancelations-list.php";
                         break;
                     case 'restauracions':
-                        require_once "views/restauration-aside-view/restauration-aside.php";
-                        require_once "views/restauration-list-view/restauration-list.php";
+                        require_once "views/restoration-aside/restoration-aside.php";
+                        require_once "views/restoration-list/restoration-list.php";
                         break;
                     case 'restoration-create':
                         require_once "views/restoration-create/restoration-create.php";

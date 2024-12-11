@@ -119,6 +119,59 @@ if (isset($_GET['editMovement'])) {
     echo json_encode($response);
 }
 
+if (isset($_GET['deleteMovement'])) {
+    $isApiCalled = true;
+
+    // Variable de respuesta
+    $response = [
+        "status" => "error",
+        "message" => "Ha ocurrido un error en la eliminación del movimiento."
+    ];
+
+    include_once("../models/movements.php");
+    
+    
+    
+
+    // Leer el cuerpo de la solicitud JSON
+    $input = file_get_contents("php://input");
+    // Recogemos los datos en bruto ya transformados a PHP
+    $rawData = json_decode($input, true); // Decodificar a un array asociativo
+
+    if (!empty($rawData)) {
+        $id = $rawData["id"];
+
+        // Importamos el modelo de obra de arte para obtener obras según localización
+        include_once("../models/movements.php");
+        $model = new Movement();
+        
+        // Obtenemos los datos de las obras en las localizaciones correspondientes.
+        $movementCallback = $model->deleteMovement($id);
+        // Configuramos los datos de la respuesta
+
+        if ($movementCallback) {
+            $response = [
+                "status" => "success",
+                "message" => "Movimiento eliminado correctamente."
+            ];
+        } else {
+            $response = [
+                "status" => "error",
+                "message" => "Error al eliminar el movimiento."
+            ];
+        }
+    } else {
+        $response = [
+            "status" => "error",
+            "message" => "Ha ocurrido un error en la solicitud de eliminación de movimiento."
+        ];
+    }
+
+    // Limpiar el búfer de salida para evitar datos adicionales
+    ob_clean();
+    echo json_encode($response);
+}
+
 // En caso de no ser una solicitud API, cargamos el modelo localmente
 !$isApiCalled ? include_once("models/movements.php") : exit();
 
@@ -188,6 +241,30 @@ class MovementsController
             echo json_encode(['success' => true, 'message' => 'Movimiento editado correctamente.']);
         } else {
             echo json_encode(['success' => false, 'message' => 'Error al editar el movimiento.']);
+        }
+    }
+
+    public function deleteMovement() {
+        header('Content-Type: application/json');
+
+        $requiredFields = ['id'];
+        foreach ($requiredFields as $field) {
+            if (empty($_POST[$field])) {
+                echo json_encode(['success' => false, 'message' => "El campo {$field} es obligatorio."]);
+                return;
+            }
+        }
+
+        $id = $_POST['id'];
+
+        require_once 'models/Movement.php';
+        $movement = new Movement();
+        $result = $movement->deleteMovement($id);
+
+        if ($result) {
+            echo json_encode(['success' => true, 'message' => 'Movimiento eliminado correctamente.']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error al eliminar el movimiento.']);
         }
     }
     
