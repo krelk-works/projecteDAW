@@ -60,12 +60,12 @@
                 <div class="acb-element-1-2">
                     <label class="element-1-2" for="object_name">Nom objecte</label>
                     <label class="element-1-2" for="artwork_title">Títol</label>
-                    <input type="text" class="element-1-2" id="object_name" name="object_name" placeholder="Nom objecte">
-                    <input type="text" class="element-1-2" placeholder="Títol" id="artwork_title" name="artwork_title">
+                    <input type="text" class="element-1-2" id="object_name" name="object_name" placeholder="Nom objecte" capitalize>
+                    <input type="text" class="element-1-2" placeholder="Títol" id="artwork_title" name="artwork_title" capitalize>
                 </div>
                 <div class="acb-element-1-1">
                     <label for="artwork_description">Descripció</label>
-                    <textarea name="artwork_description" id="artwork_description" placeholder="Descripció"></textarea>
+                    <textarea name="artwork_description" id="artwork_description" placeholder="Descripció" capitalize></textarea>
                 </div>
             </div>
             <div class="artwork-create-box-header">
@@ -91,7 +91,7 @@
                 </div>
                 <div class="acb-element-1-1">
                     <label for="artwork_bibliography">Bibliografia</label>
-                    <textarea name="artwork_bibliography" id="artwork_bibliography" placeholder="Bibliografia"></textarea>
+                    <textarea name="artwork_bibliography" id="artwork_bibliography" placeholder="Bibliografia" capitalize></textarea>
                 </div>
             </div>
             <div class="artwork-create-box-header">
@@ -150,13 +150,13 @@
                 <div class="acb-element-1-2">
                     <label for="origin_museum" class="element-1-2">Nom museu</label>
                     <label for="origin_collection" class="element-1-2">Col·lecció de procedència</label>
-                    <input type="text" class="element-1-2" placeholder="Nom del museu d'origen" id="origin_museum" name="origin_museum">
-                    <input type="text" class="element-1-2" placeholder="Col·lecció de procedència" id="origin_collection" name="origin_collection">
+                    <input type="text" class="element-1-2" placeholder="Nom del museu d'origen" id="origin_museum" name="origin_museum" capitalize>
+                    <input type="text" class="element-1-2" placeholder="Col·lecció de procedència" id="origin_collection" name="origin_collection" capitalize>
                 </div>
                 <div class="acb-element-1-2">
                     <label for="origin_place" class="element-1-2">Lloc d'origen</label>
                     <label for="entry_type_list" class="element-1-2">Tipus d'ingrés</label>
-                    <input type="text" class="element-1-2" placeholder="Lloc d'origen" id="origin_place" name="origin_place">
+                    <input type="text" class="element-1-2" placeholder="Lloc d'origen" id="origin_place" name="origin_place" capitalize>
                     <select name="entry_type_list" id="entry_type_list" class="element-1-2">
                         <option value="">Carregant dades...</option>
                     </select>
@@ -175,7 +175,7 @@
                 </div>
                 <div class="acb-element-1-2">
                     <label for="execution_place" class="element-1-1">Lloc d'execució</label>
-                    <input type="text" class="element-1-1" placeholder="Lloc d'execució" id="execution_place" name="execution_place">
+                    <input type="text" class="element-1-1" placeholder="Lloc d'execució" id="execution_place" name="execution_place" capitalize>
                 </div>
             </div>
             <div class="artwork-create-box-header">
@@ -237,7 +237,7 @@
             <div class="artwork-create-box-elements">
                 <div class="acb-element-1-1">
                     <label for="artwork_history">Historia</label>
-                    <textarea name="artwork_history" id="artwork_history" placeholder="Historia"></textarea>
+                    <textarea name="artwork_history" id="artwork_history" placeholder="Historia" capitalize></textarea>
                 </div>
             </div>
             <div id="hidden_inputs">
@@ -250,4 +250,3 @@
     </div>
 </form>
 <script src="assets/js/add-artwork.js" defer></script>
-<script src="assets/js/upper-case.js"></script>
