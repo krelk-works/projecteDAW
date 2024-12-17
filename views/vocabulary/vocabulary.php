@@ -174,15 +174,6 @@
             $result = $vocabularyController->editGetty($id, $text);
         } 
     }
-
-
-    
-
-
-
-
-
-
 ?>
 
 <div id="vocabulary-wrapper">
@@ -194,7 +185,7 @@
         <div id="vocabulary-items">
             <div class="vocabulary-item-simple ">
                 <h4>Forma d'ingrés</h4>
-                <input type="text" placeholder="Nova forma d'ingrés..." id="new_entry_type_value" maxlength="30">
+                <input type="text" placeholder="Nova forma d'ingrés..." id="new_entry_type_value" maxlength="30" capitalize>
                 <button id="new_entry_type">+</button>
                 <div class="list-vocabulary-item-simple">
                     <?php
@@ -217,7 +208,7 @@
 
             <div class="vocabulary-item-simple ">
                 <h4>Causa de baixa</h4>
-                <input type="text" placeholder="Nova causa de baixa..." id="new_cancelcause_value" maxlength="30">
+                <input type="text" placeholder="Nova causa de baixa..." id="new_cancelcause_value" maxlength="30" capitalize>
                 <button id="new_cancelcause">+</button>
                 <div class="list-vocabulary-item-simple">
 
@@ -265,7 +256,7 @@
 
             <div class="vocabulary-item-simple ">
                 <h4>Estat de conservació</h4>
-                <input type="text" placeholder="Nou estat de conservació..." id="new_conservationstatus_value" maxlength="30">
+                <input type="text" placeholder="Nou estat de conservació..." id="new_conservationstatus_value" maxlength="30" capitalize>
                 <button id="new_conservationstatus">+</button>
                 <div class="list-vocabulary-item-simple">
                 <?php
@@ -305,7 +296,7 @@
     <div class="vocabulary-item-composed ">
         <h4>Datació</h4>
         <div class="mixed_inputs">
-            <input type="text" id="new_datation_value">
+            <input type="text" id="new_datation_value" capitalize>
             <input type="text" id="new_datation_value1">
             <input type="text" id="new_datation_value2">
             <button id="new_datation">+</button>
@@ -333,7 +324,7 @@
     </div>
             <div class="vocabulary-item-simple ">
                 <h4>Tipus d'exposició</h4>
-                <input type="text" placeholder="Nou tipus d'exposició..." id="new_expositiontype_value" maxlength="30">
+                <input type="text" placeholder="Nou tipus d'exposició..." id="new_expositiontype_value" maxlength="30" capitalize>
                 <button id="new_expositiontype">+</button>
                 <div class="list-vocabulary-item-simple">
                     <?php
@@ -379,7 +370,7 @@
             </div>
             <div class="vocabulary-item-simple ">
                 <h4>Autories</h4>
-                <input type="text" placeholder="Nova autoría..." id="new_author_value" maxlength="30">
+                <input type="text" placeholder="Nova autoría..." id="new_author_value" maxlength="30" capitalize>
                 <button id="new_author">+</button>
                 <div class="list-vocabulary-item-simple">
                     <?php
@@ -425,7 +416,7 @@
             </div>
             <div class="vocabulary-item-simple ">
                 <h4>Clasificació generica</h4>
-                <input type="text" placeholder="Nova clasificació generica..." id="new_genericclassifications_value" maxlength="30">
+                <input type="text" placeholder="Nova clasificació generica..." id="new_genericclassifications_value" maxlength="30" capitalize>
                 <button id="new_genericclassifications">+</button>
                 <div class="list-vocabulary-item-simple">
                     <?php
@@ -477,24 +468,24 @@
                     ?>
                 </div>
             </div>-->
-            <div class="vocabulary-item-simple ">
+            <!-- <div class="vocabulary-item-simple ">
                 <h4>Codi Getty</h4>
                 <input type="text" placeholder="Nou codi Getty..." id="new_getty_value" maxlength="30">
                 <button id="new_getty">+</button>
                 <div class="list-vocabulary-item-simple">
                     <?php
-                        $gettycodes = $vocabularyController->getGettys();
+                        // $gettycodes = $vocabularyController->getGettys();
 
-                        foreach ($gettycodes as $gettycode) {
-                            echo '<div class="item-vocabulary">
-                                <p>' . $gettycode['code'] . '</p>
-                                <button class="edit_vocabulary_button getty_edit_button" value="'.$gettycode['id'].'"><i class="fa-solid fa-edit"></i></button>
-                                <button class="delete_vocabulary_button getty_delete_button" value="'.$gettycode['id'].'"><i class="fa-solid fa-trash"></i></button>
-                            </div>';
-                        }
+                        // foreach ($gettycodes as $gettycode) {
+                        //     echo '<div class="item-vocabulary">
+                        //         <p>' . $gettycode['code'] . '</p>
+                        //         <button class="edit_vocabulary_button getty_edit_button" value="'.$gettycode['id'].'"><i class="fa-solid fa-edit"></i></button>
+                        //         <button class="delete_vocabulary_button getty_delete_button" value="'.$gettycode['id'].'"><i class="fa-solid fa-trash"></i></button>
+                        //     </div>';
+                        // }
                     ?>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

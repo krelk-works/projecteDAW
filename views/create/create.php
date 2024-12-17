@@ -81,10 +81,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="password" name="password" id="password" placeholder="Introdueix la contrasenya" maxlength="30" required>
             
             <label for="firstname">Nom</label>
-            <input type="firstname" name="firstname" id="firstname" placeholder="Introdueix el nom" maxlength="30" required>
+            <input type="firstname" name="firstname" id="firstname" placeholder="Introdueix el nom" maxlength="30" required capitalize>
 
             <label for="lastname">Cognom</label>
-            <input type="lastname" name="lastname" id="lastname" placeholder="Introdueix el cognom" maxlength="30" required>
+            <input type="lastname" name="lastname" id="lastname" placeholder="Introdueix el cognom" maxlength="30" required capitalize>
 
             <label for="email">Email</label>
             <input type="email" name="email" id="email" placeholder="Introdueix l'email" maxlength="30" required>
