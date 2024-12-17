@@ -1,6 +1,6 @@
 let canceledOnly = false;
 
-if (document.querySelector("#movementsearch")) {
+if (document.querySelector("#movimentsearcher")) {
     let isLoading = false;
 
     /* Funciones para el buscador de obras */
@@ -18,8 +18,9 @@ if (document.querySelector("#movementsearch")) {
         fetch('apis/movementsAPI.php?search=' + value)
         .then(response => response.json()) // Convertir la respuesta a JSON
         .then(data => { // Mostrar los datos en la consola
+            console.log('Datos de busqueda de movimientos:', data);
             let HTMLCode = generateHTMLCode(data);
-            document.querySelector(".list-container").innerHTML = HTMLCode;
+            document.querySelector(".list-container-moviment").innerHTML = HTMLCode;
             isLoading = false;
         });
     }
@@ -31,7 +32,7 @@ if (document.querySelector("#movementsearch")) {
     function generateHTMLCode($movements) {
         let HTMLCode = headerCode;
         $movements.forEach(movement => {
-            HTMLCode += '<div class="list-item list-item-moviment list-item-moviment-admin">';
+            HTMLCode += '<div class="list-item-moviment list-item-moviment-admin">';
             HTMLCode += '<h3>' + movement.title + '</h3>';
             HTMLCode += '<p>' + movement.start_date + '</p>';
             HTMLCode += '<p>' + movement.end_date + '</p>';
@@ -49,7 +50,7 @@ if (document.querySelector("#movementsearch")) {
             isLoading = !isLoading;
             let HTMLCode = headerCode;
             HTMLCode += '<div class="loader-container"><div class="loader"></div></div>';
-            document.querySelector(".list-container").innerHTML = HTMLCode;
+            document.querySelector(".list-container-moviment").innerHTML = HTMLCode;
         }
     }
     /* ----------------------------------- */
@@ -71,7 +72,7 @@ if (document.querySelector("#movementsearch")) {
         </div>
     `;
 
-    let inputSearch = document.querySelector("#movementsearch");
+    let inputSearch = document.querySelector("#movimentsearcher");
 
     // Código para cuando se haya cargado la página y no haya nada escrito -> Mostrar todas las obras
     if (inputSearch.value === "") { // Si el input está vacío, mostrar todos los artworks

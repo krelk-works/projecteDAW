@@ -83,6 +83,19 @@
                 return false;
             }
         }
+
+        public function searchMovements($searchFilter) {
+            $conn = $this->connect();
+            $sql = "SELECT movements.*, artworks.title
+                    FROM movements
+                    INNER JOIN artworks ON movements.artwork = artworks.id
+                    WHERE artworks.title LIKE :searchFilter OR movements.place LIKE :searchFilter
+                    ORDER BY artworks.title ASC";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(':searchFilter', '%' . $searchFilter . '%');
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
         
     }
 ?>

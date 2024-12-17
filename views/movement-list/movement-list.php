@@ -30,4 +30,4 @@
     </div>
 </main>
 
-<script src="assets/js/movement.js" defer></script>
+<script src="assets/js/movementsearcher.js" defer></script>
