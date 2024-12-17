@@ -73,9 +73,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="panel">
         <form id="createbarwrapper" method="POST" action="<?=$_SERVER['PHP_SELF'];?>?page=expositions" enctype="multipart/form-data">
             <label for="name">Nom de l'exposició</label>
-            <input type="text" name="name" id="name" placeholder="Introdueix el nom de l'exposició" required autocomplete="true">
+            <input type="text" name="name" id="name" placeholder="Introdueix el nom de l'exposició" required autocomplete="true" capitalize>
             <label for="expoloc">Lloc de l'exposició</label>
-            <input type="text" name="expoloc" id="expoloc" placeholder="Introdueix el lloc de l'exposició" required>
+            <input type="text" name="expoloc" id="expoloc" placeholder="Introdueix el lloc de l'exposició" required capitalize>
             <label for="expotype">Tipus d'exposició</label>
             <select name="expotype" id="expotype" required>
             <?php
