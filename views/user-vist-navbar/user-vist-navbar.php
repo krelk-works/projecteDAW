@@ -40,9 +40,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="nom usuari">Nom usuari</label>
                     <input type="text" name="username" value="' . $data['username'] .'" required>
                     <label for="nom">Nom</label>
-                    <input type="text" name="first_name" value="' . $data['first_name'] .'" required>
+                    <input type="text" name="first_name" value="' . $data['first_name'] .'" required capitalize>
                     <label for="cognoms">Cognoms</label>
-                    <input type="text" name="last_name" value="' . $data['last_name'] .'" required>
+                    <input type="text" name="last_name" value="' . $data['last_name'] .'" required capitalize>
                     <label for="email">Email</label>
                     <input type="email" name="email" value="' . $data['email'] .'" required>
                     <label for="contraseña">Contrasenya</label>
