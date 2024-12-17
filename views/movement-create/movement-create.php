@@ -1,10 +1,9 @@
-
-<aside id="createbar">
-    <form id="createbarwrapper" action="<?= $_SERVER['PHP_SELF']; ?>" method="GET">
-        <h3>Creació de moviments</h3>
-        <label for="backupname">Nom</label>
-        <input type="text" name="backupname" id="backupname" placeholder="Nom del moviment">
-        <input type="hidden" name="page" value="backups">
-        <button type="submit" id="createBackupButton"><i class="fa-solid fa-user-plus"></i>Crear</button>
-    </form>
+<aside id="searchbar">
+    <button class="accordion active">Cerca de moviments</button>
+    <div class="panel" id="filters" style="max-height: 127px;">
+        <form id="searchbarwrapper">
+            <label for="artworksearch">Cercador</label>
+            <input type="text" id="movimentsearcher" name="artworksearch" placeholder="Títol, destí...">
+        </form>
+    </div>
 </aside>
