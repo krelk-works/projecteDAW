@@ -45,9 +45,9 @@ if (document.querySelector("#movimentsearcher")) {
     .then(response => response.text()) // Leer la respuesta completa como texto
     .then(response => {
         try {
-            console.log(response);
+            // console.log(response);
             let data = JSON.parse(response); // Convertir la respuesta a JSON
-            let HTMLCode = generateHTMLCode(data);
+            let HTMLCode = generateHTMLCode(data.movements);
             document.querySelector(".list-container-moviment").innerHTML = HTMLCode;
             isLoading = false;
         } catch (error) {
@@ -62,9 +62,10 @@ if (document.querySelector("#movimentsearcher")) {
     const debouncedgetMovementsAPI = debounce(getMovementsAPI, 500)
     const date = new Date();
 
-    function generateHTMLCode($movements) {
+    function generateHTMLCode(movements) {
+        // console.log(movements);
         let HTMLCode = headerCode;
-        $movements.forEach(movement => {
+        movements.forEach(movement => {
             HTMLCode += '<div class="list-item-moviment list-item-moviment-admin">';
             HTMLCode += '<h3>' + movement.title + '</h3>';
             HTMLCode += '<p>' + movement.start_date + '</p>';
@@ -72,7 +73,7 @@ if (document.querySelector("#movimentsearcher")) {
             HTMLCode += '<p>' + movement.place + '</p>';
             HTMLCode += '</div>';
         });
-        if ($movements.length === 0) {
+        if (movements.length === 0) {
             HTMLCode += '<div><h2>No s\'han trobat resultats</h2><p>Intenti amb un altre filtre de cerca.</p></div>';
         }
         return HTMLCode;

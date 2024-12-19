@@ -21,7 +21,7 @@ if (isset($_GET['search'])) {
         $response = [
             "status" => "success",
             "message" => "Movimientos obtenidos correctamente.",
-            "data" => $data
+            "movements" => $data
         ];
         echo(json_encode($response));
     } else {
