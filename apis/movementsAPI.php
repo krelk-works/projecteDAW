@@ -11,7 +11,7 @@ if (isset($_GET['search'])) {
         "message" => "Ha ocurrido un error en la solicitud de obras por localización."
     ];
 
-    $searchFilter = $_GET['search-test'];
+    $searchFilter = $_GET['search'];
     $model = new Movement();
     $data = $model->searchMovements($searchFilter);
 
@@ -21,6 +21,7 @@ if (isset($_GET['search'])) {
         $response = [
             "status" => "success",
             "message" => "Movimientos obtenidos correctamente.",
+            "search" => $searchFilter,
             "movements" => $data
         ];
         echo(json_encode($response));
