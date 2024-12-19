@@ -14,4 +14,10 @@ if (isset($_GET['search'])) {
 
     ob_clean();
 }
+
+if (isset($_GET['test'])) {
+    echo "test-get DONE!";
+
+    ob_clean();
+}
 ?>
