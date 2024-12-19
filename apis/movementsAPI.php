@@ -1,39 +1,31 @@
 <?php
 include_once("../models/movements.php");
+
 if (isset($_GET['search'])) {
-    $searchFilter = $_GET['search'];
-    $model = new Movement();
-    $data = $model->searchMovements($searchFilter);
+    // Establecer el tipo de respuesta como JSON
+    header("Content-Type: application/json");
 
-    if ($data) {
-        echo json_encode($data);
-    } else {
-        echo json_encode(array());
-    }
-    // echo json_encode($data);
+    // Default response
+    $response = [
+        "status" => "error",
+        "message" => "Ha ocurrido un error en la solicitud de obras por localización."
+    ];
 
-    ob_clean();
-}
-
-if (isset($_GET['test'])) {
-    echo "test-get DONE!";
-
-    ob_clean();
-}
-
-if (isset($_GET['search-test'])) {
     $searchFilter = $_GET['search-test'];
     $model = new Movement();
     $data = $model->searchMovements($searchFilter);
 
-    if ($data) {
-        echo "Data found!";
-        echo(var_dump($data));
-    } else {
-        echo "No data found!";
-    }
-    // echo json_encode($data);
-
     ob_clean();
+
+    if ($data) {
+        $response = [
+            "status" => "success",
+            "message" => "Movimientos obtenidos correctamente.",
+            "data" => $data
+        ];
+        echo(json_encode($response));
+    } else {
+        echo(json_encode($response));
+    }    
 }
 ?>
