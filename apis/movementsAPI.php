@@ -28,6 +28,7 @@ if (isset($_GET['search-test'])) {
 
     if ($data) {
         echo "Data found!";
+        echo(var_dump($data));
     } else {
         echo "No data found!";
     }
