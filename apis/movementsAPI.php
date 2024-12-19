@@ -27,9 +27,9 @@ if (isset($_GET['search-test'])) {
     $data = $model->searchMovements($searchFilter);
 
     if ($data) {
-        echo $data;
+        echo "Data found!";
     } else {
-        echo array();
+        echo "No data found!";
     }
     // echo json_encode($data);
 
