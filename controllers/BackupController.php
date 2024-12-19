@@ -18,7 +18,7 @@ class BackupController
         return count($scanned_directory);
     }
 
-    public function getBackups($limit, $offset)
+    public function getBackups()
     {
         // Inicializa el array de backups
         $backups = array();
@@ -31,18 +31,15 @@ class BackupController
             return filemtime(BACKUP_DIRECTORY . $b) - filemtime(BACKUP_DIRECTORY . $a);
         });
 
-        // Aplica la paginación utilizando array_slice
-        $paginated_files = array_slice($scanned_directory, $offset, $limit);
-
-        // Itera sobre la lista paginada de archivos
-        foreach ($paginated_files as $key => $filename) {
+        // Itera sobre la lista de archivos
+        foreach ($scanned_directory as $key => $filename) {
             $file_size = self::human_filesize(filesize(BACKUP_DIRECTORY . $filename));
             $file_creation_date = date("F d Y H:i:s.", filemtime(BACKUP_DIRECTORY . $filename));
 
             // Verifica que el tamaño y la fecha sean válidos
             if ($file_size && $file_creation_date) {
                 $backups[] = array(
-                    'id' => $key + $offset,  // ID único basado en la posición actual
+                    'id' => $key,  // ID único basado en la posición actual
                     'filename' => $filename, // Nombre del archivo
                     'filesize' => $file_size, // Tamaño en formato legible
                     'created' => $file_creation_date // Fecha de creación/modificación
