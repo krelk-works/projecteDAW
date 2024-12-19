@@ -20,4 +20,19 @@ if (isset($_GET['test'])) {
 
     ob_clean();
 }
+
+if (isset($_GET['search-test'])) {
+    $searchFilter = $_GET['search-test'];
+    $model = new Movement();
+    $data = $model->searchMovements($searchFilter);
+
+    if ($data) {
+        echo $data;
+    } else {
+        echo array();
+    }
+    // echo json_encode($data);
+
+    ob_clean();
+}
 ?>
