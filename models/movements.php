@@ -93,9 +93,13 @@
                     ORDER BY artworks.title ASC";
             $stmt = $conn->prepare($sql);
             $stmt->bindValue(':searchFilter', '%' . $searchFilter . '%');
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            try {
+                $stmt->execute();
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                return false;
+            }            
         }
-        
     }
 ?>

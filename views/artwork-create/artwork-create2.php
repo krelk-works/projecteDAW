@@ -69,17 +69,38 @@
                 </div>
             </div>
             <div class="artwork-create-box-header">
+                <h3>Camps Getty</h3>
+                <hr>
+            </div>
+            <div class="artwork-create-box-elements">
+
+                <div class="acb-element-1-2">
+                    <label class="element-1-2" for="object_name">Nom objecte</label>
+                    <label class="element-1-2" for="gc_object_name">Getty Nom d'Objecte</label>
+                    <input type="text" class="element-1-2" id="object_name" name="object_name" placeholder="Nom objecte" capitalize>
+                    <input type="number" class="element-1-2" placeholder="Codi Getty" id="gc_object_name" name="gc_object_name">
+                </div>
+                <div class="acb-element-1-2">
+                    <label class="element-1-2" for="author_names">Autor</label>
+                    <label class="element-1-2" for="gc_author_name">Getty Autor</label>
+                    <select name="author_names" id="author_names" class="element-1-2">
+                        <option value="">Carregant dades...</option>
+                    </select>
+                    <input type="number" class="element-1-2" placeholder="Codi Getty" id="gc_author_name" name="gc_author_name">
+                </div>
+            </div>
+            <div class="artwork-create-box-header">
                 <h3>Detalls de l'obra</h3>
                 <hr>
             </div>
             <div class="artwork-create-box-elements">
                 <div class="acb-element-1-2">
-                    <label class="element-1-2" for="author_names">Autor</label>
-                    <label class="element-1-2" for="datations_list">Datació</label>
-                    <select name="author_names" id="author_names" class="element-1-2">
+                    <!-- <label class="element-1-2" for="author_names">Autor</label> -->
+                    <label class="element-1-1" for="datations_list">Datació</label>
+                    <!-- <select name="author_names" id="author_names" class="element-1-2">
                         <option value="">Carregant dades...</option>
-                    </select>
-                    <select name="datations_list" id="datations_list" class="element-1-2">
+                    </select> -->
+                    <select name="datations_list" id="datations_list" class="element-1-1">
                         <option value="">Carregant dades...</option>
                     </select>
                 </div>
