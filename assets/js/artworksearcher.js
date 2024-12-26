@@ -6,8 +6,8 @@ let advancedFilter = {
     authors: [],
     tecniques: [],
     materials: [],
-    startCDate: '',
-    endCDate: '',
+    startYear: 1900,
+    endYear: new Date().getFullYear(),
     conservationStatus: []
 };
 // ------------------------------
@@ -123,16 +123,24 @@ if (document.querySelector("#artworksearch")) {
                 }
             }
 
-            if (advancedFilter.startCDate !== '' && advancedFilter.endCDate !== '') {
-                const artworkCreationDate = new Date(artwork.creation_date);
+            // if (advancedFilter.startCDate !== '' && advancedFilter.endCDate !== '') {
+            //     const artworkCreationDate = new Date(artwork.creation_date);
 
-                // console.log('Fecha de creación buscada:', advancedFilter.startCDate, advancedFilter.endCDate);
-                // console.log('Fecha de creación actual:', artwork.creation_date);
-                // console.log(artworkCreationDate <= advancedFilter.startCDate || artworkCreationDate >= advancedFilter.endCDate)
+            //     // console.log('Fecha de creación buscada:', advancedFilter.startCDate, advancedFilter.endCDate);
+            //     // console.log('Fecha de creación actual:', artwork.creation_date);
+            //     // console.log(artworkCreationDate <= advancedFilter.startCDate || artworkCreationDate >= advancedFilter.endCDate)
 
-                if (artworkCreationDate <= advancedFilter.startCDate || artworkCreationDate >= advancedFilter.endCDate) {
-                    return;
-                }
+            //     if (artworkCreationDate <= advancedFilter.startCDate || artworkCreationDate >= advancedFilter.endCDate) {
+            //         return;
+            //     }
+            // }
+
+            // Check if the artwork was created between the selected years
+
+            const artworkCreationYear = new Date(artwork.creation_date).getFullYear();
+
+            if (artworkCreationYear < advancedFilter.startYear || artworkCreationYear > advancedFilter.endYear) {
+                return;
             }
 
             // Transformamos el número de registro a string y le añadimos los ceros necesarios
@@ -412,8 +420,8 @@ if (document.querySelector("#artworksearch")) {
             authors: [],
             tecniques: [],
             materials: [],
-            startCDate: '',
-            endCDate: '',
+            startYear: 1900,
+            endYear: new Date().getFullYear(),
             conservationStatus: []
         };
         $('#register_identifier').val('');
@@ -421,10 +429,54 @@ if (document.querySelector("#artworksearch")) {
         $('#tecniques').val('').trigger('chosen:updated');
         $('#materials').val('').trigger('chosen:updated');
         $('#conservationstatus').val('').trigger('chosen:updated');
+        $('#start_date').val(advancedFilter.startYear);
+        $('#end_date').val(advancedFilter.endYear);
         setLoadingStatus();
         getArtworksAPI(inputSearch.value);
     });
 
-    const yearPicker = document.getElementById('yearpicker');
+    // Code for date range filter
 
+    const minYear = 1900;
+    const maxYear = new Date().getFullYear();
+
+    // Initialize date range filters
+
+    $('#start_date').val(minYear);
+    $('#end_date').val(maxYear);
+
+    // Set max year for start date filter and end date filter
+    $('#start_date').attr('max', maxYear);
+    $('#end_date').attr('max', maxYear);
+
+    // Set min year for start date filter and end date filter
+    $('#start_date').attr('min', minYear);
+    $('#end_date').attr('min', minYear);
+
+
+    // Changes on start year
+    $('#start_date').on('input', function () {
+        const value = $(this).val();
+
+        if (value > minYear && value <= maxYear) {
+            // Change the min attribute of the end date filter
+            $('#end_date').attr('min', value);
+            advancedFilter.startYear = value;
+            setLoadingStatus();
+            getArtworksAPI(inputSearch.value);
+        }
+    });
+
+    // Changes on end year
+    $('#end_date').on('input', function () {
+        const value = $(this).val();
+
+        if (value > minYear && value <= maxYear) {
+            // Change the max attribute of the start date filter
+            $('#start_date').attr('max', value);
+            advancedFilter.endYear = value;
+            setLoadingStatus();
+            getArtworksAPI(inputSearch.value);
+        }
+    });
 }

@@ -23,7 +23,10 @@
             <select data-placeholder="Seleccionar estat/s" multiple class="chosen-select" id="conservationstatus" name="conservationstatus">
             </select>
             <p>Filtre d'anys</p>
-            <input type="text" id="yearpicker" name="yearpicker" placeholder="yyyy fins yyyy">
+            <div class="yearpicker-box">
+                <input type="number" name="start_date" id="start_date" placeholder="Desde...">
+                <input type="number" name="end_date" id="end_date" placeholder="Fins...">
+            </div>
             <button class="delete_filters">Esborrar filtres</button>
             <?php
                 if ($isAllowedToCreate) {

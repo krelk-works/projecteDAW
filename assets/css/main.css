@@ -853,6 +853,14 @@ textarea {
   background-color: #ff0000;
 }
 
+.yearpicker-box {
+  display: flex;
+  width: 100%;
+}
+.yearpicker-box input {
+  width: 50% !important;
+}
+
 /*
 #home-list-wrapper {
     padding: 0px 15px 0px 20px;

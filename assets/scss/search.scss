@@ -107,3 +107,12 @@
 .delete_filters:hover {
     background-color: #ff0000;
 }
+
+.yearpicker-box {
+    display: flex;
+    width: 100%;
+
+    input {
+        width: 50% !important;
+    }
+}
