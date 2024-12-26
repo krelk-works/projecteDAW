@@ -166,7 +166,7 @@ if (document.querySelector("#artworksearch")) {
 
     // Función para obtener las obras a través de la API
     const getArtworksAPI = (value) => {
-        fetch('apis/cancelationsAPI.php?search=' + value)
+        fetch('apis/cancelationsAPI.php?api_key=a0cae8cf-4b15-4887-8b82-1499fd283396&search=' + value)
             .then(response => response.json()) // Convertir la respuesta a JSON
             .then(data => { // Mostrar los datos en la consola
                 data = filterArtworks(data);
@@ -283,7 +283,7 @@ if (document.querySelector("#artworksearch")) {
             });            
         }
         if (artworksCount === 0) {
-            HTMLCode += '<div><h2>No s\'han trobat resultats</h2><p>Intenti amb un altre filtre de cerca.</p></div>';
+            HTMLCode += '<div><h2>No s\'han trobat resultats</h2></div>';
         }
         return HTMLCode;
     }

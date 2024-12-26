@@ -36,7 +36,7 @@ if (document.querySelector("#movimentsearcher")) {
     //     });
     // }
 
-    const getMovementsAPI = (value) => fetch('apis/movementsAPI.php?search=' + value, {
+    const getMovementsAPI = (value) => fetch('apis/movementsAPI.php?api_key=a0cae8cf-4b15-4887-8b82-1499fd283396&search=' + value, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -74,7 +74,7 @@ if (document.querySelector("#movimentsearcher")) {
             HTMLCode += '</div>';
         });
         if (movements.length === 0) {
-            HTMLCode += '<div><h2>No s\'han trobat resultats</h2><p>Intenti amb un altre filtre de cerca.</p></div>';
+            HTMLCode += '<div><h2>No s\'han trobat resultats</h2></div>';
         }
         return HTMLCode;
     }

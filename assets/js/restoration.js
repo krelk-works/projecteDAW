@@ -63,7 +63,7 @@ if($('#restoration-search')){
     }
 
     const getRestorationAPI = (value)=>{
-        fetch('apis/restorationAPI.php?search='+value)
+        fetch('apis/restorationAPI.php?api_key=a0cae8cf-4b15-4887-8b82-1499fd283396&search='+value)
         .then(response=>response.json())
         .then(data=>{
             let HTMLCode=generateHTMLCode(data)
@@ -97,7 +97,7 @@ if($('#restoration-search')){
         });
         
         if (data.length === 0) {
-            HTMLCode += '<div><h2>No s\'han trobat resultats</h2><p>Intenti amb un altre filtre de cerca.</p></div>';
+            HTMLCode += '<div><h2>No s\'han trobat resultats</h2></div>';
         }
         console.log(HTMLCode);
         return HTMLCode;

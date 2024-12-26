@@ -166,7 +166,7 @@ if (document.querySelector("#artworksearch")) {
 
     // Función para obtener las obras a través de la API
     const getArtworksAPI = (value) => {
-        fetch('apis/artworksAPI.php?search=' + value)
+        fetch('apis/artworksAPI.php?api_key=a0cae8cf-4b15-4887-8b82-1499fd283396&search=' + value)
             .then(response => response.json()) // Convertir la respuesta a JSON
             .then(data => { // Mostrar los datos en la consola
                 data = filterArtworks(data);
@@ -232,7 +232,7 @@ if (document.querySelector("#artworksearch")) {
             });
         }
         if (artworksCount === 0) {
-            HTMLCode += '<div><h2>No s\'han trobat resultats</h2><p>Intenti amb un altre filtre de cerca.</p></div>';
+            HTMLCode += '<div><h2>No s\'han trobat resultats</h2></div>';
         }
         return HTMLCode;
     }
@@ -252,7 +252,7 @@ if (document.querySelector("#artworksearch")) {
             <a href=""><h4>Nom</h4></a>
             <a href=""><h4>Autor</h4></a>
             <a href=""><h4>Ubicació</h4></a>
-            <a href=""><h4>Any</h4></a>
+            <a href=""><h4>Creació</h4></a>
             <a href=""><h4>Tècnica</h4></a>
         </div>
     `;
@@ -305,7 +305,6 @@ if (document.querySelector("#artworksearch")) {
         .then(response => response.text()) // Leer la respuesta completa como texto
         .then(response => {
             const data = JSON.parse(response);
-            // console.log('Data:', data);
             // Rellenar los campos de los filtros avanzados
             const authors = data.message.authors;
             const tecniques = data.message.tecniques;

@@ -13,7 +13,7 @@ if(document.querySelector('#search')){
     
     //Funcion para obtener los usuarios a través de la API
     const getUsersAPI= (value)=>{
-        fetch('apis/usersAPI.php?search='+value)
+        fetch('apis/usersAPI.php?api_key=a0cae8cf-4b15-4887-8b82-1499fd283396&search='+value)
         .then(response=>response.json())//Pasa la respuesta a formato JSON
         .then(data=>{
             let HTMLCode=generateHTMLCode(data)
@@ -40,7 +40,7 @@ if(document.querySelector('#search')){
         })
 
         if (users.length===0){
-            HTMLCode+= '<div><h2>No s\'han trobat resultats</h2><p>Intenti amb un altre filtre de cerca.</p></div>'
+            HTMLCode+= '<div><h2>No s\'han trobat resultats</h2></div>'
         }
         return HTMLCode
     }
