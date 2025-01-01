@@ -446,7 +446,7 @@ fetch("controllers/ArtworkController.php?getFormData", {
             // console.log('Codi de material Getty:', code.text);
             gettyMaterialCodeHTML += `<option value="${code.id}">${code.text}</option>`;
         });
-        gettyMaterialCodeList.innerHTML = gettyMaterialCodeHTML; // Insertamos las opciones en el select
+        //gettyMaterialCodeList.innerHTML = gettyMaterialCodeHTML; // Insertamos las opciones en el select
 
         let gettyMaterialHTML = '';
         gettyMaterialHTML += `<option value="">Sense especificar</option>`;
@@ -454,7 +454,7 @@ fetch("controllers/ArtworkController.php?getFormData", {
             // console.log('Material Getty:', material.text);
             gettyMaterialHTML += `<option value="${material.id}">${material.text}</option>`;
         });
-        gettyMaterialList.innerHTML = gettyMaterialHTML; // Insertamos las opciones en el select
+        //gettyMaterialList.innerHTML = gettyMaterialHTML; // Insertamos las opciones en el select
 
         let entryTypeHTML = '';
         entryTypeHTML += `<option value="">Sense especificar</option>`;

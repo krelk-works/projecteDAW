@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         HTMLCode += '</div>';
                     });
                     if (artworks.message.length === 0) {
-                        HTMLCode += '<div><h2>No s\'han trobat resultats</h2><p>Intenti amb un altre localització.</p></div>';
+                        HTMLCode += '<div><h2>No s\'han trobat resultats</h2></div>';
                     }
                     document.querySelector(".list-container").innerHTML = HTMLCode;
                 } catch (error) {

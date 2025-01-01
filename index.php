@@ -158,6 +158,9 @@
                     case 'vocabulari':
                         require_once "views/vocabulary/vocabulary.php";
                         break;
+                    case 'vocabulari2':
+                        require_once "views/vocabulary/vocabulary2.php";
+                        break;
                     case 'artwork-administration':
                         require_once "views/artwork-administration/artwork-administration.php";
                         break;

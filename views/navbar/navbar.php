@@ -19,10 +19,6 @@ if (isset($_GET['page'])) {
     <nav id="navbar">
         <!-- Logo -->
         <a href="index.php" id="logo-link">
-            <div class="navideño">
-                <img class="navidad" src="assets/img/navidaa.gif" alt="Navidad">
-                <!--<img class="navidad2" src="assets/img/navidaa.gif" alt="Navidad">-->
-            </div>
             <img src="assets/img/logo.png" width="30" height="30" alt="Logo">
         </a>
         <!-- Navigation menú -->

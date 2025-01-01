@@ -664,28 +664,6 @@ textarea {
   height: 80px;
 }
 
-.navideño {
-  margin-top: 30px;
-  margin-left: -280px;
-  position: absolute;
-  width: 90px;
-  height: 90px;
-}
-
-.navidad {
-  position: absolute;
-  width: 60px;
-  height: 60px;
-}
-
-.navidad2 {
-  margin-top: 17px;
-  position: absolute;
-  width: 60px;
-  height: 60px;
-  margin-left: 313px;
-}
-
 .profile-image {
   width: 100%;
   height: 100%;
@@ -1348,115 +1326,6 @@ footer button {
   max-width: 100%;
 }
 
-.list-header-locations a:first-child {
-  padding-left: 15px !important;
-  width: calc(45% - 15px) !important;
-}
-.list-header-locations a:nth-child(2) {
-  width: 55% !important;
-}
-
-.list-item-location p:first-child {
-  padding-left: 15px !important;
-  width: calc(45% - 15px) !important;
-}
-.list-item-location p:nth-child(2) {
-  width: 55% !important;
-}
-
-/* Estilos generales para el árbol */
-.panel-tree {
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-}
-
-.location-node {
-  list-style: none;
-  margin: 6px;
-  padding-left: 0px;
-}
-
-.location-node label {
-  cursor: pointer;
-  color: #464646 !important; /* Color negro por defecto */
-  padding: 4px;
-}
-
-.location-node.open > label {
-  color: #007bff !important; /* Color azul solo para los elementos con la clase .open */
-}
-
-/* Flecha de despliegue solo en nodos con hijos */
-.location-node.has-children > label::before {
-  content: "▸";
-  display: inline-block;
-  width: 20px;
-  transition: transform 0.3s ease;
-}
-
-.location-node.open.has-children > label::before {
-  transform: rotate(90deg);
-}
-
-.location-node-children {
-  display: none;
-  padding-left: 20px;
-}
-
-.location-node.open > .location-node-children {
-  display: block;
-}
-
-.mini_button {
-  all: unset !important;
-}
-
-/* Estilos del menú contextual */
-.context-menu {
-  position: absolute;
-  display: none;
-  background: #fff;
-  border: 1px solid #ccc;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 14px;
-}
-
-.context-menu li {
-  list-style: none;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-.context-menu li:hover {
-  background-color: #f0f0f0;
-}
-
-.animated-ratoli {
-  flex-wrap: nowrap;
-  display: none;
-  position: absolute;
-  top: 50%;
-  left: 2%;
-  transform: translate(0%, -50%) !important;
-  width: 200px !important;
-  transition: transform 0.5s ease;
-  justify-content: center;
-  align-items: center;
-}
-.animated-ratoli img {
-  display: block;
-  width: 10% !important;
-}
-.animated-ratoli p {
-  display: block;
-  width: 90% !important;
-  font-size: 11px;
-  color: #868686;
-}
-
 #artwork-create-container {
   box-sizing: border-box;
   height: 89vh;
@@ -1701,224 +1570,65 @@ footer button {
   border-bottom: 1px solid #dc3545 !important;
 }
 
-#vocabulary-wrapper {
-  display: flex;
+/* Vocabulary 2 SCSS */
+.vocabulary-wrapper {
+  display: block;
   width: 100%;
   height: 89vh;
-  /*background-color: blue;*/
+  background-color: #fafafa;
+  box-sizing: border-box;
   padding: 10px;
-  overflow: hidden;
-  margin-right: 5px !important;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
-#vocabulary-wrapper #vocabulary-container {
+.vocabulary-wrapper .vocabulary-header {
+  display: block;
   width: 100%;
-  /*height: 100%;*/
 }
-#vocabulary-wrapper #vocabulary-container #vocabulary-header {
-  width: 100%;
-  height: calc(3em - 10px);
+.vocabulary-wrapper .vocabulary-header h2 {
   text-align: center;
-  /*background-color: brown;*/
-}
-#vocabulary-wrapper #vocabulary-container #vocabulary-header h2 {
   margin-bottom: 10px;
 }
-#vocabulary-wrapper #vocabulary-container #vocabulary-items {
-  display: flex;
-  flex-wrap: wrap;
-  height: calc(100% - 3em - 10px);
+.vocabulary-wrapper hr {
   width: 100%;
-  padding: 10px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  margin-top: 10px;
 }
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-simple {
+.vocabulary-wrapper .vocabulary-content {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.vocabulary-wrapper .box {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-  width: calc(33.33% - 20px);
+  height: calc(45vh - 20px);
   margin: 10px;
-  height: 40%;
-  background-color: #fafafa;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  border-radius: 5px;
-  /*overflow: hidden;*/
-}
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-simple h4 {
-  margin: 0px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 2em;
-  width: 100%;
-  /*background-color: aqua;*/
-  border-bottom: 1px solid #868686;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-simple input {
-  height: 2em;
-  width: 70%;
-  padding: 0px !important;
-  margin: 0px !important;
-  padding-left: 10px !important;
-  padding-right: 10px !important;
-}
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-simple button {
-  height: 2em;
-  width: calc(28% - 20px);
-  padding: 0px !important;
-  margin: 0px !important;
-}
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-simple .delete_vocabulary_button:hover {
-  background-color: red !important;
-}
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-simple .list-vocabulary-item-simple {
-  height: calc(100% - 6em);
-  width: 100%;
+  width: calc(33% - 20px);
+  background-color: #d6d6d6;
   overflow-x: hidden;
   overflow-y: auto;
-  /*background-color: chocolate;*/
+  border-radius: 10px;
+  align-items: flex-start;
 }
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-simple .list-vocabulary-item-simple .item-vocabulary {
-  display: flex;
-  height: calc(20% - 8px);
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-  padding-left: 0px;
-  margin: 5px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  transition: all 0.22s;
-  border-bottom: 1px solid rgba(0, 0, 0, 0);
-  border-radius: 5px;
-}
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-simple .list-vocabulary-item-simple .item-vocabulary p {
-  width: 84%;
-}
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-simple .list-vocabulary-item-simple .item-vocabulary button {
-  margin: 0px !important;
-  padding: 0;
-  width: 7%;
-  height: 70%;
-}
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-simple .list-vocabulary-item-simple .item-vocabulary:hover {
-  border-bottom: 1px solid blue;
-}
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-  width: calc(66.66% - 20px);
-  margin: 10px;
-  height: 40%;
-  background-color: #fafafa;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  border-radius: 5px;
-  overflow: hidden;
-}
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed h4 {
-  margin: 0px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 2em;
+.vocabulary-wrapper .box .box-header {
+  display: block;
   width: 100%;
-  /*background-color: aqua;*/
-  border-bottom: 1px solid #868686;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .mixed_inputs {
-  margin-top: 10px;
+.vocabulary-wrapper .box .box-header h3 {
+  width: 100%;
+  text-align: center;
+  padding: 5px;
+}
+.vocabulary-wrapper .box .box-content {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  justify-content: space-around;
-  align-items: center;
-  height: 2.5em;
-}
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .mixed_inputs input:first-child {
-  width: 40% !important;
-}
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .mixed_inputs input:nth-child(2), #vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .mixed_inputs input:last-child {
-  width: 20% !important;
-}
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .mixed_inputs button {
-  width: 10%;
-  height: 90%;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .delete_vocabulary_button:hover {
-  background-color: red !important;
-}
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .mixed_headers {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  justify-content: space-around;
-  align-items: center;
-  height: calc(1.5em - 1px);
-  border-bottom: 1px solid #868686;
-}
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .mixed_headers p {
-  padding-left: 5px;
-  font-weight: 500;
-}
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .mixed_headers p:first-child {
-  width: 40%;
-}
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .mixed_headers p:nth-child(2) {
-  width: 20%;
-}
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .mixed_headers p:last-child {
-  width: 30%;
-}
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .mixed_inputs {
-  display: flex;
-  width: 100%;
-}
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .list-vocabulary-item-composed {
-  height: calc(100% - 9em);
-  width: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  /*background-color: chocolate;*/
-}
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .list-vocabulary-item-composed .item-vocabulary {
   box-sizing: border-box;
-  display: flex;
-  height: calc(25% - 8px);
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  transition: all 0.22s;
-  border-bottom: 1px solid rgba(0, 0, 0, 0);
-  border-radius: 5px;
+  padding: 10px;
+  background-color: black;
+  align-items: flex-start;
 }
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .list-vocabulary-item-composed .item-vocabulary p:first-child {
-  width: 46% !important;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .list-vocabulary-item-composed .item-vocabulary p:nth-child(2) {
-  width: 23% !important;
-}
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .list-vocabulary-item-composed .item-vocabulary p:nth-child(3) {
-  width: 23% !important;
-}
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .list-vocabulary-item-composed .item-vocabulary button {
-  margin: 3px;
-  padding: 0;
-  width: 3%;
-  height: 70%;
-}
-#vocabulary-wrapper #vocabulary-container #vocabulary-items .vocabulary-item-composed .list-vocabulary-item-composed .item-vocabulary:hover {
-  border-bottom: 1px solid blue;
+.vocabulary-wrapper .box-large {
+  width: calc(100% - 20px) !important;
 }
 
 .list-header-expositions a:first-child {

@@ -72,21 +72,37 @@
                 <h3>Camps Getty</h3>
                 <hr>
             </div>
-            <div class="artwork-create-box-elements">
+            <div class="artwork-create-box-elements"> 
 
                 <div class="acb-element-1-2">
                     <label class="element-1-2" for="object_name">Nom objecte</label>
-                    <label class="element-1-2" for="gc_object_name">Getty Nom d'Objecte</label>
+                    <label class="element-1-2" for="gc_object_name">Getty Nom d'Objecte <a href="https://www.getty.edu/research/tools/vocabularies/aat/index.html" target="_blank"><i class="fa-regular fa-share-from-square"></i></a></label>
                     <input type="text" class="element-1-2" id="object_name" name="object_name" placeholder="Nom objecte" capitalize>
                     <input type="number" class="element-1-2" placeholder="Codi Getty" id="gc_object_name" name="gc_object_name">
                 </div>
                 <div class="acb-element-1-2">
                     <label class="element-1-2" for="author_names">Autor</label>
-                    <label class="element-1-2" for="gc_author_name">Getty Autor</label>
+                    <label class="element-1-2" for="gc_author_name">Getty Autor <a href="https://www.getty.edu/research/tools/vocabularies/ulan/" target="_blank"><i class="fa-regular fa-share-from-square"></i></a></label>
                     <select name="author_names" id="author_names" class="element-1-2">
                         <option value="">Carregant dades...</option>
                     </select>
                     <input type="number" class="element-1-2" placeholder="Codi Getty" id="gc_author_name" name="gc_author_name">
+                </div>
+                <div class="acb-element-1-2">
+                    <label for="materials_list" class="element-1-2">Material</label>
+                    <label for="gc_tecnique" class="element-1-2">Getty Material <a href="https://www.getty.edu/research/tools/vocabularies/aat/index.html" target="_blank"><i class="fa-regular fa-share-from-square"></i></a></label>
+                    <select name="materials_list" id="materials_list" class="element-1-2">
+                        <option value="">Carregant dades...</option>
+                    </select>
+                    <input type="number" class="element-1-2" placeholder="Codi Getty" id="gc_material" name="gc_material">
+                </div>
+                <div class="acb-element-1-2">
+                    <label for="tecniques_list" class="element-1-2">Tecnica</label>
+                    <label for="gc_tecnique" class="element-1-2">Getty Tècnica <a href="https://www.getty.edu/research/tools/vocabularies/aat/index.html" target="_blank"><i class="fa-regular fa-share-from-square"></i></a></label>
+                        <select name="tecniques_list" id="tecniques_list" class="element-1-2">
+                        <option value="">Carregant dades...</option>
+                    </select>
+                    <input type="number" class="element-1-2" placeholder="Codi Getty" id="gc_tecnique" name="gc_tecnique">
                 </div>
             </div>
             <div class="artwork-create-box-header">
@@ -105,10 +121,10 @@
                     </select>
                 </div>
                 <div class="acb-element-1-2">
-                    <label class="element-1-2" for="register_date">Data del registre</label>
-                    <label class="element-1-2" for="created_date">Data creació</label>
-                    <input type="date" class="element-1-2" placeholder="Data del registre" id="register_date" name="register_date">
-                    <input type="date" class="element-1-2" placeholder="Data creació" id="created_date" name="created_date">
+                    <!-- <label class="element-1-2" for="register_date">Data del registre</label> -->
+                    <label class="element-1-1" for="created_date">Data creació</label>
+                    <!-- <input type="date" class="element-1-2" placeholder="Data del registre" id="register_date" name="register_date"> -->
+                    <input type="date" class="element-1-1" placeholder="Data creació" id="created_date" name="created_date">
                 </div>
                 <div class="acb-element-1-1">
                     <label for="artwork_bibliography">Bibliografia</label>
@@ -129,36 +145,18 @@
                     <input type="number" class="element-1-3" placeholder="Fons (cm)" id="artwork_depth" name="artwork_depth">
                 </div>
                 <div class="acb-element-1-2">
-                    <label for="artwork_price" class="element-1-3">Cost</label>
-                    <label for="artwork_quantity" class="element-1-3">Quantitat</label>
-                    <label for="materials_list" class="element-1-3">Material</label>
-                    <input type="number" class="element-1-3" placeholder="Cost (eur)" id="artwork_price" name="artwork_price">
-                    <input type="number" class="element-1-3" placeholder="Quantitat" id="artwork_quantity" name="artwork_quantity">
-                    <select name="materials_list" id="materials_list" class="element-1-3">
-                        <option value="">Carregant dades...</option>
-                    </select>
+                    <label for="artwork_price" class="element-1-2">Cost</label>
+                    <label for="artwork_quantity" class="element-1-2">Quantitat</label>
+                    <input type="number" class="element-1-2" placeholder="Cost (eur)" id="artwork_price" name="artwork_price">
+                    <input type="number" class="element-1-2" placeholder="Quantitat" id="artwork_quantity" name="artwork_quantity">
                 </div>
                 <div class="acb-element-1-2">
-                    <label for="generic_classification" class="element-1-3">Classificació genèrica</label>
-                    <label for="tecniques_list" class="element-1-3">Tecnica</label>
-                    <label for="conservations_list" class="element-1-3">Estat de conservació</label>
-                    <select name="generic_classification" id="generic_classification" class="element-1-3">
+                    <label for="generic_classification" class="element-1-2">Classificació genèrica</label>
+                    <label for="conservations_list" class="element-1-2">Estat de conservació</label>
+                    <select name="generic_classification" id="generic_classification" class="element-1-2">
                         <option value="">Carregant dades...</option>
                     </select>
-                    <select name="tecniques_list" id="tecniques_list" class="element-1-3">
-                        <option value="">Carregant dades...</option>
-                    </select>
-                    <select name="conservations_list" id="conservations_list" class="element-1-3">
-                        <option value="">Carregant dades...</option>
-                    </select>
-                </div>
-                <div class="acb-element-1-2">
-                    <label for="getty_material_codes_list" class="element-1-2">Codi de material (Getty)</label>
-                    <label for="getty_material_list" class="element-1-2">Material (Getty)</label>
-                    <select name="getty_material_codes_list" id="getty_material_codes_list" name="getty_material_codes_list" class="element-1-2">
-                        <option value="">Carregant dades...</option>
-                    </select>
-                    <select name="getty_material_list" id="getty_material_list" name="getty_material_list" class="element-1-2">
+                    <select name="conservations_list" id="conservations_list" class="element-1-2">
                         <option value="">Carregant dades...</option>
                     </select>
                 </div>
