@@ -26,7 +26,7 @@ function uploadFile($file, $uploadDir)
 
     // Mueve el archivo al destino final
     move_uploaded_file($file['tmp_name'], $destination);
-    echo "File uploaded successfully".$file['tmp_name']." on ".$destination;
+    // echo "File uploaded successfully".$file['tmp_name']." on ".$destination;
     return $fileName;
 }
 
@@ -86,10 +86,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($inputs['id_sub_number'] != "") {
             $sqlfields['id_num2'] = $inputs['id_sub_number'];
         }
-        $sqlfields['name'] = $inputs['object_name'];
+        $sqlfields['name'] = $inputs['object_names'];
         $sqlfields['description'] = $inputs['artwork_description'];
         $sqlfields['provenancecollection'] = $inputs['origin_collection'];
-        $sqlfields['register_date'] = $inputs['register_date'];
+        // $sqlfields['register_date'] = $inputs['register_date'];
         $sqlfields['creation_date'] = $inputs['created_date'];
         $sqlfields['height'] = $inputs['artwork_height'];
         $sqlfields['width'] = $inputs['artwork_width'];

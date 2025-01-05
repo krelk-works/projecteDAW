@@ -249,4 +249,4 @@
         </div>
     </div>
 </form>
-<script src="assets/js/add-artwork.js" defer></script>
+<script src="assets/js/update-artwork.js" defer></script>

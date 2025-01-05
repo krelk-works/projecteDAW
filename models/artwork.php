@@ -123,6 +123,12 @@
             $stmt = $conn->prepare($sql);
             $stmt->execute();
             $cancelcauses = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // Objects
+            $sql = "SELECT * FROM objects";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $objects = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
             return [
                 'authors' => $authors,
@@ -135,7 +141,8 @@
                 'materialgettycodes' => $materialgettycodes,
                 'materialgetty' => $materialgetty,
                 'entry' => $entry,
-                'cancelcauses' => $cancelcauses
+                'cancelcauses' => $cancelcauses,
+                'objects' => $objects
             ];
         }
         // public function getInfo($limit, $offset, $filter = null) {

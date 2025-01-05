@@ -152,14 +152,14 @@
                     case 'artwork-create2':
                         require_once "views/artwork-create/artwork-create2.php";
                         break;
+                    case 'artwork-update':
+                        require_once "views/artwork-update/artwork-update.php";
+                        break;
                     case 'artwork-view':
                         require_once "views/artwork-view/artwork-view.php";
                         break;
                     case 'vocabulari':
                         require_once "views/vocabulary/vocabulary.php";
-                        break;
-                    case 'vocabulari2':
-                        require_once "views/vocabulary/vocabulary2.php";
                         break;
                     case 'artwork-administration':
                         require_once "views/artwork-administration/artwork-administration.php";

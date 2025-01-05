@@ -357,6 +357,7 @@ const gettyMaterialList = document.getElementById('getty_material_list');
 const entryTypeList = document.getElementById('entry_type_list');
 const locationsList = document.getElementById('locations_list');
 const cancelCausesList = document.getElementById('cancel_causes_list');
+const objectsList = document.getElementById('object_names');
 
 // Construir la estructura jerárquica de ubicaciones
 function buildLocationTree(data, parentId = null, depth = 0) {
@@ -463,6 +464,15 @@ fetch("controllers/ArtworkController.php?getFormData", {
             entryTypeHTML += `<option value="${type.id}">${type.text}</option>`;
         });
         entryTypeList.innerHTML = entryTypeHTML; // Insertamos las opciones en el select
+
+        // Los objetos recogidos de la base de datos
+        let objectsHTML = '';
+        objectsHTML += `<option value="">Sense especificar</option>`;
+        data.message.objects.forEach(object => {
+            console.log('Objecte:', object.text);
+            objectsHTML += `<option value="${object.id}">${object.name}</option>`;
+        });
+        objectsList.innerHTML = objectsHTML; // Insertamos las opciones en el select
 
         // Las ubicaciones se cargaran pero con algo más de código para crear un árbol de ubicaciones y que sea accesible para el usuario
         let locationsHTML = '';
@@ -835,7 +845,7 @@ if (document.getElementById('add-artwork-form')) {
         }
 
         // Validamos que el título de la obra no esté vacío, el nombre del objeto y la descripción
-        const objectName = document.getElementById('object_name');
+        const objectName = document.getElementById('object_names');
         const artworkTitle = document.getElementById('artwork_title');
         const artworkDescription = document.getElementById('artwork_description');
 
@@ -858,7 +868,6 @@ if (document.getElementById('add-artwork-form')) {
         // Validamos los detalles de la obra
         const authorNames = document.getElementById('author_names');
         const datationsList = document.getElementById('datations_list');
-        const registerdate = document.getElementById('register_date');
         const createddate = document.getElementById('created_date');
         const artworkbibliography = document.getElementById('artwork_bibliography');
 
@@ -869,11 +878,6 @@ if (document.getElementById('add-artwork-form')) {
 
         if (datationsList.value === '') {
             errorsHTML += '<li>No has especificat cap datació.</li>';
-            countErrors++;
-        }
-
-        if (registerdate.value === '') {
-            errorsHTML += '<li>No has especificat cap data de registre.</li>';
             countErrors++;
         }
 
@@ -935,19 +939,6 @@ if (document.getElementById('add-artwork-form')) {
             countErrors++;
         }
 
-        const artwork_getty_material_code = document.getElementById('getty_material_codes_list');
-        const artwork_getty_material = document.getElementById('getty_material_list');
-
-        if (artwork_getty_material_code.value === '') {
-            errorsHTML += '<li>No has especificat cap codi de material Getty.</li>';
-            countErrors++;
-        }
-
-        if (artwork_getty_material.value === '') {
-            errorsHTML += '<li>No has especificat cap material Getty.</li>';
-            countErrors++;
-        }
-
         // Validamos la procedencia de la obra
         const origin_museum = document.getElementById('origin_museum');
         const origin_collection = document.getElementById('origin_collection');
@@ -990,7 +981,6 @@ if (document.getElementById('add-artwork-form')) {
 
         // Validamos otros datos de la obra
         const tirage = document.getElementById('tirage');
-        const artwork_cancel_cause = document.getElementById('cancel_causes_list');
 
         if (tirage.value === '') {
             errorsHTML += '<li>No has especificat cap tiratge.</li>';
@@ -1010,11 +1000,6 @@ if (document.getElementById('add-artwork-form')) {
 
         let documentCount = 0;
         let additionalImageCount = 0;
-        // console.log('Inputs ocultos:', hiddenInputs.children.length);
-
-        // hiddenInputs.forEach(input => {
-        //     console.log('Input:', input);
-        // });
 
         // Expresiones regulares para los patrones "document_x" y "additional_image_x"
         const documentPattern = /^document_\d+$/;
@@ -1040,12 +1025,6 @@ if (document.getElementById('add-artwork-form')) {
             warningsHTML += '<li>No has pujat cap imatge addicional.</li>';
             countWarnings++;
         }
-
-
-        // if (artwork_cancel_cause.value === '') {
-        //     waHTML += '<li>No has especificat cap causa de cancel·lació.</li>';
-        //     countErrors++;
-        // }
 
         // Cerramos la lista de advertencias
         warningsHTML += '</ul>';

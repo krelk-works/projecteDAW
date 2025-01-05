@@ -69,6 +69,7 @@
         </div>
         <div class="artwork-view-details">
             <button id="movement_create">Crear moviment</button>
+            <button id="edit_artwork">Editar obra</button>
         </div>
     </div>
 </div>
