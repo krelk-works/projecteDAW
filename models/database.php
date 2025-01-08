@@ -1,10 +1,10 @@
 <?php
     class Database{
         public function connect(){
-            $servername = "bbyirnoypbjzxaryzns9-mysql.services.clever-cloud.com";
-            $dbname= "bbyirnoypbjzxaryzns9";
-            $username = "ujthole5uvbkxwxc";
-            $password = "IYMr7GQwI6KWjKaoAhzn";
+            $servername = "srv1271.hstgr.io";
+            $dbname= "u411677469_db";
+            $username = "u411677469_fenosa";
+            $password = "f3n0s42025Z";
             try {
                 // New connection to the database with PDO object.
                 $this->db = new PDO("mysql:host=$servername;dbname=$dbname",$username, $password);
@@ -12,7 +12,7 @@
                 $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 return $this->db;
             } catch(PDOException $e) {
-                //echo "<br><h1>Error a la base de dades -> </h1><br><br><br>".$e;
+                // echo "<br><h1>Error a la base de dades -> </h1><br><br><br>".$e;
             }
         }
     }
