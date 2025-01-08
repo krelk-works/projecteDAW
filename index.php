@@ -84,7 +84,7 @@
         else if (isset($_GET['generateDOCX'])) {
             include_once("models/docx.php");
             $docxExport = new DOCX();
-            $docxExport->exportDOCX();
+            $docxExport->exportDOCX($_GET['generateDOCX']);
         }
     }
 ?>
