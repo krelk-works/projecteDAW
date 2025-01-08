@@ -81,6 +81,11 @@
             $csvExport = new CSV();
             $csvExport->exportCSV();
         }
+        else if (isset($_GET['generateDOCX'])) {
+            include_once("models/docx.php");
+            $docxExport = new DOCX();
+            $docxExport->exportDOCX();
+        }
     }
 ?>
 <!DOCTYPE html>
