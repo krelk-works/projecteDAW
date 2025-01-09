@@ -70,6 +70,9 @@
         <div class="artwork-view-details">
             <button id="movement_create">Crear moviment</button>
             <button id="edit_artwork">Editar obra</button>
+            <a href="?generateDOCX=<?php echo $_GET['id']; ?>" target="_blank"><button>Descarregar formulari de prestec</button></a>
+            <a href="?generateIndividualPDF=342" target="_blank"><button>Generar informe de fitxa basica</button></a>
+            <a href="?generateSimplePDF=342" target="_blank"><button>Generar informe de fitxa general</button></a>
         </div>
     </div>
 </div>
