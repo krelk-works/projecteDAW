@@ -67,7 +67,7 @@
         <div class="artwork-view-subheader">
             <h4>Gestió</h4>
         </div>
-        <div class="artwork-view-details">
+        <div class="artwork-view-details" style="gap: 20px;">
             <button id="movement_create">Crear moviment</button>
             <button id="edit_artwork">Editar obra</button>
             <a href="?generateDOCX=<?php echo $_GET['id']; ?>" target="_blank"><button>Descarregar formulari de prestec</button></a>
