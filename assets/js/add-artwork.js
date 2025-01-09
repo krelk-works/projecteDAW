@@ -394,7 +394,7 @@ fetch("controllers/ArtworkController.php?getFormData", {
         // console.log('Datos de formulario:', data);
 
         let authorsHTML = '';
-        authorsHTML += `<option value="">Sense especificar</option>`;
+        // authorsHTML += `<option value="">Sense especificar</option>`;
         data.message.authors.forEach(author => {
             // console.log('Autor:', author.name);
             authorsHTML += `<option value="${author.id}">${author.name}</option>`;
@@ -402,7 +402,7 @@ fetch("controllers/ArtworkController.php?getFormData", {
         authorSelect.innerHTML = authorsHTML; // Insertamos las opciones en el select
 
         let datationsHTML = '';
-        datationsHTML += `<option value="">Sense especificar</option>`;
+        // datationsHTML += `<option value="">Sense especificar</option>`;
         data.message.datations.forEach(datation => {
             // console.log('Datació:', datation.name);
             datationsHTML += `<option value="${datation.id}">${datation.text} (${datation.start_date} fins ${datation.end_date == null ? 'actualitat' : datation.end_date})</option>`;
@@ -410,7 +410,7 @@ fetch("controllers/ArtworkController.php?getFormData", {
         datationsList.innerHTML = datationsHTML; // Insertamos las opciones en el select
 
         let materialsHTML = '';
-        materialsHTML += `<option value="">Sense especificar</option>`;
+        // materialsHTML += `<option value="">Sense especificar</option>`;
         data.message.materials.forEach(material => {
             // console.log('Material:', material.text);
             materialsHTML += `<option value="${material.id}">${material.text}</option>`;
@@ -418,7 +418,7 @@ fetch("controllers/ArtworkController.php?getFormData", {
         materialsList.innerHTML = materialsHTML; // Insertamos las opciones en el select
 
         let genericClassificationHTML = '';
-        genericClassificationHTML += `<option value="">Sense especificar</option>`;
+        // genericClassificationHTML += `<option value="">Sense especificar</option>`;
         data.message.classifications.forEach(classification => {
             // console.log('Clasificación:', classification.text);
             genericClassificationHTML += `<option value="${classification.id}">${classification.text}</option>`;
@@ -426,7 +426,7 @@ fetch("controllers/ArtworkController.php?getFormData", {
         genericClassificationList.innerHTML = genericClassificationHTML; // Insertamos las opciones en el select
 
         let tecniquesHTML = '';
-        tecniquesHTML += `<option value="">Sense especificar</option>`;
+        // tecniquesHTML += `<option value="">Sense especificar</option>`;
         data.message.tecniques.forEach(tecnique => {
             // console.log('Tècnica:', tecnique.text);
             tecniquesHTML += `<option value="${tecnique.id}">${tecnique.text}</option>`;
@@ -434,7 +434,7 @@ fetch("controllers/ArtworkController.php?getFormData", {
         tecniquesList.innerHTML = tecniquesHTML; // Insertamos las opciones en el select
 
         let conservationsStatusHTML = '';
-        conservationsStatusHTML += `<option value="">Sense especificar</option>`;
+        // conservationsStatusHTML += `<option value="">Sense especificar</option>`;
         data.message.conservationstatus.forEach(status => {
             // console.log('Estat de conservació:', status.text);
             conservationsStatusHTML += `<option value="${status.id}">${status.text}</option>`;
@@ -442,7 +442,7 @@ fetch("controllers/ArtworkController.php?getFormData", {
         conservationsStatusList.innerHTML = conservationsStatusHTML; // Insertamos las opciones en el select
 
         let gettyMaterialCodeHTML = '';
-        gettyMaterialCodeHTML += `<option value="">Sense especificar</option>`;
+        // gettyMaterialCodeHTML += `<option value="">Sense especificar</option>`;
         data.message.materialgettycodes.forEach(code => {
             // console.log('Codi de material Getty:', code.text);
             gettyMaterialCodeHTML += `<option value="${code.id}">${code.text}</option>`;
@@ -450,7 +450,7 @@ fetch("controllers/ArtworkController.php?getFormData", {
         //gettyMaterialCodeList.innerHTML = gettyMaterialCodeHTML; // Insertamos las opciones en el select
 
         let gettyMaterialHTML = '';
-        gettyMaterialHTML += `<option value="">Sense especificar</option>`;
+        // gettyMaterialHTML += `<option value="">Sense especificar</option>`;
         data.message.materialgetty.forEach(material => {
             // console.log('Material Getty:', material.text);
             gettyMaterialHTML += `<option value="${material.id}">${material.text}</option>`;
@@ -467,7 +467,7 @@ fetch("controllers/ArtworkController.php?getFormData", {
 
         // Los objetos recogidos de la base de datos
         let objectsHTML = '';
-        objectsHTML += `<option value="">Sense especificar</option>`;
+        // objectsHTML += `<option value="">Sense especificar</option>`;
         data.message.objects.forEach(object => {
             console.log('Objecte:', object.text);
             objectsHTML += `<option value="${object.id}">${object.name}</option>`;
@@ -476,12 +476,12 @@ fetch("controllers/ArtworkController.php?getFormData", {
 
         // Las ubicaciones se cargaran pero con algo más de código para crear un árbol de ubicaciones y que sea accesible para el usuario
         let locationsHTML = '';
-        locationsHTML += `<option value="">Sense especificar</option>`;
+        // locationsHTML += `<option value="">Sense especificar</option>`;
         locationsList.innerHTML = locationsHTML; // Insertamos la opción por defecto en el select
         populateLocationsSelect(data.message.locations); // Insertamos todas las opciones en el select
 
         let cancelCausesHTML = '';
-        cancelCausesHTML += `<option value="">Sense especificar</option>`;
+        // cancelCausesHTML += `<option value="">Sense especificar</option>`;
         data.message.cancelcauses.forEach(cause => {
             // console.log('Causa de cancel·lació:', cause.text);
             cancelCausesHTML += `<option value="${cause.id}">${cause.text}</option>`;
@@ -827,10 +827,10 @@ if (document.getElementById('add-artwork-form')) {
         const defaultImage = document.getElementById('defaultimage');
 
         // Validamos que se haya seleccionado una imagen por defecto
-        if (defaultImage.files.length === 0) {
-            errorsHTML += '<li>No has especificat cap imatge principal.</li>';
-            countErrors++;
-        }
+        // if (defaultImage.files.length === 0) {
+        //     errorsHTML += '<li>No has especificat cap imatge principal.</li>';
+        //     countErrors++;
+        // }
 
         // Validamos que el número de registro sea válido
         const idLetter = document.getElementById('id_letter');
@@ -845,155 +845,155 @@ if (document.getElementById('add-artwork-form')) {
         }
 
         // Validamos que el título de la obra no esté vacío, el nombre del objeto y la descripción
-        const objectName = document.getElementById('object_names');
+        //const objectName = document.getElementById('object_names');
         const artworkTitle = document.getElementById('artwork_title');
         const artworkDescription = document.getElementById('artwork_description');
 
 
-        if (objectName.value === '') {
-            errorsHTML += '<li>No has especificat cap nom d\'objecte.</li>';
-            countErrors++;
-        }
+        // if (objectName.value === '') {
+        //     errorsHTML += '<li>No has especificat cap nom d\'objecte.</li>';
+        //     countErrors++;
+        // }
 
         if (artworkTitle.value === '') {
             errorsHTML += '<li>No has especificat cap títol.</li>';
             countErrors++;
         }
 
-        if (artworkDescription.value === '') {
-            errorsHTML += '<li>No has especificat cap descripció.</li>';
-            countErrors++;
-        }
+        // if (artworkDescription.value === '') {
+        //     errorsHTML += '<li>No has especificat cap descripció.</li>';
+        //     countErrors++;
+        // }
 
         // Validamos los detalles de la obra
         const authorNames = document.getElementById('author_names');
-        const datationsList = document.getElementById('datations_list');
+        // const datationsList = document.getElementById('datations_list');
         const createddate = document.getElementById('created_date');
-        const artworkbibliography = document.getElementById('artwork_bibliography');
+        // const artworkbibliography = document.getElementById('artwork_bibliography');
 
         if (authorNames.value === '') {
             errorsHTML += '<li>No has especificat cap autor.</li>';
             countErrors++;
         }
 
-        if (datationsList.value === '') {
-            errorsHTML += '<li>No has especificat cap datació.</li>';
-            countErrors++;
-        }
+        // if (datationsList.value === '') {
+        //     errorsHTML += '<li>No has especificat cap datació.</li>';
+        //     countErrors++;
+        // }
 
         if (createddate.value === '') {
             errorsHTML += '<li>No has especificat cap data de creació.</li>';
             countErrors++;
         }
 
-        if (artworkbibliography.value === '') {
-            errorsHTML += '<li>No has especificat cap bibliografia.</li>';
-            countErrors++;
-        }
+        // if (artworkbibliography.value === '') {
+        //     errorsHTML += '<li>No has especificat cap bibliografia.</li>';
+        //     countErrors++;
+        // }
 
         // Validamos las características de la obra
-        const artwork_hight = document.getElementById('artwork_height');
-        const artwork_width = document.getElementById('artwork_width');
-        const artwork_depth = document.getElementById('artwork_depth');
+        // const artwork_hight = document.getElementById('artwork_height');
+        // const artwork_width = document.getElementById('artwork_width');
+        // const artwork_depth = document.getElementById('artwork_depth');
 
-        if ((artwork_hight.value === '' || artwork_width.value === '' || artwork_depth.value === '') || (artwork_hight.value <= '0' || artwork_width.value <= '0' || artwork_depth.value <= '0')) {
-            errorsHTML += '<li>No has especificat una mida valida.</li>';
-            countErrors++;
-        }
+        // if ((artwork_hight.value === '' || artwork_width.value === '' || artwork_depth.value === '') || (artwork_hight.value <= '0' || artwork_width.value <= '0' || artwork_depth.value <= '0')) {
+        //     errorsHTML += '<li>No has especificat una mida valida.</li>';
+        //     countErrors++;
+        // }
 
-        const artwork_price = document.getElementById('artwork_price');
-        const artwork_quantity = document.getElementById('artwork_quantity');
-        const artwork_material = document.getElementById('materials_list');
+        // const artwork_price = document.getElementById('artwork_price');
+        // const artwork_quantity = document.getElementById('artwork_quantity');
+        // const artwork_material = document.getElementById('materials_list');
 
-        if (artwork_price.value === '' || artwork_price.value <= '0') {
-            errorsHTML += '<li>No has especificat un preu valid.</li>';
-            countErrors++;
-        }
+        // if (artwork_price.value === '' || artwork_price.value <= '0') {
+        //     errorsHTML += '<li>No has especificat un preu valid.</li>';
+        //     countErrors++;
+        // }
 
-        if (artwork_quantity.value === '' || artwork_quantity.value <= '0') {
-            errorsHTML += '<li>No has especificat una quantitat valida.</li>';
-            countErrors++;
-        }
+        // if (artwork_quantity.value === '' || artwork_quantity.value <= '0') {
+        //     errorsHTML += '<li>No has especificat una quantitat valida.</li>';
+        //     countErrors++;
+        // }
 
-        if (artwork_material.value === '') {
-            errorsHTML += '<li>No has especificat cap material.</li>';
-            countErrors++;
-        }
+        // if (artwork_material.value === '') {
+        //     errorsHTML += '<li>No has especificat cap material.</li>';
+        //     countErrors++;
+        // }
 
-        const artwork_classification = document.getElementById('generic_classification');
-        const artwork_tecnique = document.getElementById('tecniques_list');
-        const artwork_conservation = document.getElementById('conservations_list');
+        // const artwork_classification = document.getElementById('generic_classification');
+        // const artwork_tecnique = document.getElementById('tecniques_list');
+        // const artwork_conservation = document.getElementById('conservations_list');
 
-        if (artwork_classification.value === '') {
-            errorsHTML += '<li>No has especificat cap classificació.</li>';
-            countErrors++;
-        }
+        // if (artwork_classification.value === '') {
+        //     errorsHTML += '<li>No has especificat cap classificació.</li>';
+        //     countErrors++;
+        // }
 
-        if (artwork_tecnique.value === '') {
-            errorsHTML += '<li>No has especificat cap tècnica.</li>';
-            countErrors++;
-        }
+        // if (artwork_tecnique.value === '') {
+        //     errorsHTML += '<li>No has especificat cap tècnica.</li>';
+        //     countErrors++;
+        // }
 
-        if (artwork_conservation.value === '') {
-            errorsHTML += '<li>No has especificat cap estat de conservació.</li>';
-            countErrors++;
-        }
+        // if (artwork_conservation.value === '') {
+        //     errorsHTML += '<li>No has especificat cap estat de conservació.</li>';
+        //     countErrors++;
+        // }
 
         // Validamos la procedencia de la obra
-        const origin_museum = document.getElementById('origin_museum');
-        const origin_collection = document.getElementById('origin_collection');
-        const origin_place = document.getElementById('origin_place');
-        const entry_type = document.getElementById('entry_type_list');
+        // const origin_museum = document.getElementById('origin_museum');
+        // const origin_collection = document.getElementById('origin_collection');
+        // const origin_place = document.getElementById('origin_place');
+        // const entry_type = document.getElementById('entry_type_list');
 
-        if (origin_museum.value === '') {
-            errorsHTML += '<li>No has especificat cap museu d\'origen.</li>';
-            countErrors++;
-        }
+        // if (origin_museum.value === '') {
+        //     errorsHTML += '<li>No has especificat cap museu d\'origen.</li>';
+        //     countErrors++;
+        // }
 
-        if (origin_collection.value === '') {
-            errorsHTML += '<li>No has especificat cap col·lecció d\'origen.</li>';
-            countErrors++;
-        }
+        // if (origin_collection.value === '') {
+        //     errorsHTML += '<li>No has especificat cap col·lecció d\'origen.</li>';
+        //     countErrors++;
+        // }
 
-        if (origin_place.value === '') {
-            errorsHTML += '<li>No has especificat cap lloc d\'origen.</li>';
-            countErrors++;
-        }
+        // if (origin_place.value === '') {
+        //     errorsHTML += '<li>No has especificat cap lloc d\'origen.</li>';
+        //     countErrors++;
+        // }
 
-        if (entry_type.value === '') {
-            errorsHTML += '<li>No has especificat cap tipus d\'entrada.</li>';
-            countErrors++;
-        }
+        // if (entry_type.value === '') {
+        //     errorsHTML += '<li>No has especificat cap tipus d\'entrada.</li>';
+        //     countErrors++;
+        // }
 
         // Validamos la ubicación de la obra
         const artwork_location = document.getElementById('locations_list');
-        const execution_place = document.getElementById('execution_place');
+        // const execution_place = document.getElementById('execution_place');
 
         if (artwork_location.value === '') {
             errorsHTML += '<li>No has especificat cap ubicació.</li>';
             countErrors++;
         }
 
-        if (execution_place.value === '') {
-            errorsHTML += '<li>No has especificat cap lloc d\'execució.</li>';
-            countErrors++;
-        }
+        // if (execution_place.value === '') {
+        //     errorsHTML += '<li>No has especificat cap lloc d\'execució.</li>';
+        //     countErrors++;
+        // }
 
         // Validamos otros datos de la obra
-        const tirage = document.getElementById('tirage');
+        // const tirage = document.getElementById('tirage');
 
-        if (tirage.value === '') {
-            errorsHTML += '<li>No has especificat cap tiratge.</li>';
-            countErrors++;
-        }
+        // if (tirage.value === '') {
+        //     errorsHTML += '<li>No has especificat cap tiratge.</li>';
+        //     countErrors++;
+        // }
 
         // Validamos la historia de la obra
-        const artwork_history = document.getElementById('artwork_history');
+        // const artwork_history = document.getElementById('artwork_history');
 
-        if (artwork_history.value === '') {
-            errorsHTML += '<li>No has especificat cap història.</li>';
-            countErrors++;
-        }
+        // if (artwork_history.value === '') {
+        //     errorsHTML += '<li>No has especificat cap història.</li>';
+        //     countErrors++;
+        // }
 
         // Revisamos si se han añadido documentos asociados a la obra, imagenes adicionales y referencias
         const hiddenInputs = document.getElementById('hidden_inputs');
@@ -1016,15 +1016,15 @@ if (document.getElementById('add-artwork-form')) {
             }
         });
 
-        if (documentCount === 0) {
-            warningsHTML += '<li>No has pujat cap document associat.</li>';
-            countWarnings++;
-        }
+        // if (documentCount === 0) {
+        //     warningsHTML += '<li>No has pujat cap document associat.</li>';
+        //     countWarnings++;
+        // }
 
-        if (additionalImageCount === 0) {
-            warningsHTML += '<li>No has pujat cap imatge addicional.</li>';
-            countWarnings++;
-        }
+        // if (additionalImageCount === 0) {
+        //     warningsHTML += '<li>No has pujat cap imatge addicional.</li>';
+        //     countWarnings++;
+        // }
 
         // Cerramos la lista de advertencias
         warningsHTML += '</ul>';

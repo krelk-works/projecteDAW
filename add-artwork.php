@@ -86,42 +86,49 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($inputs['id_sub_number'] != "") {
             $sqlfields['id_num2'] = $inputs['id_sub_number'];
         }
-        $sqlfields['name'] = $inputs['object_names'];
+        if (!empty($inputs['object_names'])) {
+            $sqlfields['name'] = $inputs['object_names'];
+        } else {
+            $sqlfields['name'] = 0;
+        }
         $sqlfields['description'] = $inputs['artwork_description'];
         $sqlfields['provenancecollection'] = $inputs['origin_collection'];
         // $sqlfields['register_date'] = $inputs['register_date'];
         $sqlfields['creation_date'] = $inputs['created_date'];
-        $sqlfields['height'] = $inputs['artwork_height'];
-        $sqlfields['width'] = $inputs['artwork_width'];
-        $sqlfields['depth'] = $inputs['artwork_depth'];
+        $sqlfields['height'] ? $inputs['artwork_height'] : 0;
+        $sqlfields['width'] ? $inputs['artwork_width'] : 0;
+        $sqlfields['depth'] ? $inputs['artwork_depth'] : 0;
         $sqlfields['title'] = $inputs['artwork_title'];
         $sqlfields['originplace'] = $inputs['origin_place'];
         $sqlfields['executionplace'] = $inputs['execution_place'];
         $sqlfields['triage'] = $inputs['tirage'];
         $sqlfileds['otheridnumbers'] = $inputs['id_other'];
-        $sqlfields['cost'] = $inputs['artwork_price'];
-        $sqlfields['amount'] = $inputs['artwork_quantity'];
+        $sqlfields['cost'] ? $inputs['artwork_price'] : 0;
+        $sqlfields['amount'] ? $inputs['artwork_quantity'] : 0;
         $sqlfields['history'] = $inputs['artwork_history'];
-        $sqlfields['location'] = $inputs['locations_list'];
-        $sqlfields['author'] = $inputs['author_names'];
-        $sqlfields['material'] = $inputs['materials_list'];
+        $sqlfields['location'] ? $inputs['locations_list'] : 0;
+        $sqlfields['author'] ? $inputs['author_names'] : 0;
+        $sqlfields['material'] ? $inputs['materials_list'] : 0;
         //$sqlfields['cancelcause'] = $inputs['cancel_cause_list'];
-        $sqlfields['conservationstatus'] = $inputs['conservations_list'];
-        $sqlfields['datation'] = $inputs['datations_list'];
-        $sqlfields['entry'] = $inputs['entry_type_list'];
-        $sqlfields['genericclassification'] = $inputs['generic_classification'];
-        $sqlfields['materialgettycode'] = $inputs['getty_material_codes_list'];
-        $sqlfields['tecnique'] = $inputs['tecniques_list'];
-        $sqlfields['image'] = "uploads/".$mainImageName;
-
+        $sqlfields['conservationstatus'] ? $inputs['conservations_list'] : 0;
+        $sqlfields['datation'] ? $inputs['datations_list'] : 0;
+        $sqlfields['entry'] ? $inputs['entry_type_list'] : 0;
+        $sqlfields['genericclassification'] ? $inputs['generic_classification'] : 0;
+        // $sqlfields['materialgettycode'] = $inputs['getty_material_codes_list'];
+        $sqlfields['tecnique'] ? $inputs['tecniques_list'] : 0;
+        if (empty($_FILES['defaultimage'])) {
+            $sqlfields['image'] = "assets/img/noimage.png";
+        } else {
+            $sqlfields['image'] = "uploads/".$mainImageName;
+        }
         $controller = new ArtworkController();
         $saved = $controller->addNewArtwork($sqlfields, $documents, $additionalImages, $references);
 
         if ($saved) {
-            // echo "<h1>Artwork saved successfully!</h1>";
+            echo "<h1>Artwork saved successfully!</h1>";
             // echo $saved;
         } else {
-            // echo "<h1>There was an error saving the artwork</h1>";
+            echo "<h1>There was an error saving the artwork</h1>";
         }
         // echo "<meta http-equiv='refresh' content='1;url=index.php'>";
     }
