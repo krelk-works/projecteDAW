@@ -43,7 +43,6 @@
             <div class="panel">
                 <button id="new-artwork"><i class="fa-solid fa-plus"></i> Crear obra</button>
                 <a href="?generatePDF=true" target="_blank"><button><i class="fa-regular fa-file-pdf"></i>Generar llibre-registre</button></a>
-                <button id="generatePDFfilter"><i class="fa-regular fa-file-pdf"></i>Generar llibre-registre amb filtres</button>
             </div>';
         }
         
