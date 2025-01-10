@@ -688,7 +688,7 @@
             try {
                 // Ejecuta la consulta y verifica si se realizó correctamente
                 if ($stmt->execute()) {
-                    $conn = null;
+                    // $conn = null;
                     return $conn->lastInsertId();
                 } else {
                     $conn = null;
