@@ -2469,4 +2469,20 @@ svg {
   width: 90% !important;
   font-size: 11px;
   color: #868686;
+}
+
+.restarationTextarea {
+  all: unset;
+  width: 650px;
+  height: 250px;
+  text-align: left;
+  border-radius: 0.25em;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  box-shadow: 1px 1px 1px #999;
+}
+
+.restarationTextarea:focus {
+  border: 1px solid #007bff;
+  box-shadow: 1px 1px 1px #007bff;
 }/*# sourceMappingURL=main.css.map */

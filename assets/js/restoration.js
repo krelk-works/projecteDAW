@@ -63,13 +63,12 @@ if($('#restoration-search')){
     }
 
     const getRestorationAPI = (value)=>{
-        fetch('apis/restorationAPI.php?api_key=a0cae8cf-4b15-4887-8b82-1499fd283396&search='+value)
+        fetch('apis/restorationAPI.php?search='+value)
         .then(response=>response.json())
         .then(data=>{
             let HTMLCode=generateHTMLCode(data)
             $('.list-container').html(HTMLCode)
             isLoading=false
-            console.log('object');
         })
     }
 
@@ -87,19 +86,17 @@ if($('#restoration-search')){
             HTMLCode+=`
                 <div class="list-item">
                     <img src="${element.image}">
-                    <a href="?page=artwork-view&id=${element.artwork}"><h3>${element.title}</h3><span class="register_number">${registerNumber}</span></a>
-                    <p>${element.code}</p>
-                    <p>${element.start_date} - ${element.end_date}<p>
-                    <p>${element.authorised_worker_name}<p>
-                    <a><button class="action_button"><i class="fa-solid fa-user-pen"></i>Comentari</button></a>
+                    <a href="?page=artwork-view&id=${element.artwork}"><h3>${element.title}</h3><span class="register_number">${registerNumber} &nbsp;&nbsp;&nbsp; ${element.code}</span></a>
+                    <p>${element.authorised_worker_name}</p>
+                    <p>${element.start_date} &nbsp; - &nbsp; ${element.end_date}</p>
+                    <a><button data-comment="${element.comment}" id="show-comment" class="action_button" ><i class="fa-solid fa-user-pen"></i>Comentari</button></a>
                 </div>
             `
         });
         
         if (data.length === 0) {
-            HTMLCode += '<div><h2>No s\'han trobat resultats</h2></div>';
+            HTMLCode += '<div><h2>No s\'han trobat resultats</h2><p>Intenti amb un altre filtre de cerca.</p></div>';
         }
-        console.log(HTMLCode);
         return HTMLCode;
     }
 
@@ -109,19 +106,28 @@ if($('#restoration-search')){
                 <h4>Nom</h4>
             </a>
             <a href="">
-                <h4>Restaurador</h4>
+                <h4>&nbsp;&nbsp;&nbsp;Restaurador</h4>
             </a>
             <a href="">
-                <h4>Data</h4>
+                <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dates</h4>
             </a>
             <a href="">
-                <h4>Codi Restauracio</h4>
-            </a>
-            <a href="">
-                <h4>Comentari</h4>
+                <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Comentari</h4>
             </a>
         </div>
     `
+
+    /** Deshabilitamos que al hacer ENTER en cualquier INPUT se envie formulario */
+    document.querySelectorAll('input').forEach(input => {
+        input.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+            }
+        });
+    });
+
+    
+
     function setLoadingStatus() {
         if (!isLoading) {
             isLoading = !isLoading
@@ -141,3 +147,30 @@ if($('#restoration-search')){
         debouncedgetRestorationAPI($(this).val())
     })
 }
+$(document).on('click', '#show-comment', function() {
+    let comment = $(this).data('comment');
+    
+    Swal.fire({
+        title : 'Modificar comentari',
+        html: `<textarea class="comment-textarea">${comment}</textarea>`,
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Guardar",
+        denyButtonText: `Descartar cambios`,
+        cancelButtonText: 'Cerrar',
+        width : '800px'
+    }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          Swal.fire("Saved!", "", "success");
+        } else if (result.isDenied) {
+          Swal.fire("Changes are not saved", "", "info");
+        }
+    });
+});
+$(document).ready(function() {
+    $('#restoration-create').on('click', function(event) {
+        event.preventDefault();
+        window.location.href = "?page=restoration-create";
+    })
+})
