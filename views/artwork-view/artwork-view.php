@@ -73,9 +73,106 @@
             <a href="?generateDOCX=<?php echo $_GET['id']; ?>" target="_blank"><button>Descarregar formulari de prestec</button></a>
             <a href="?generateIndividualPDF=<?php echo $_GET['id']; ?>" target="_blank"><button>Generar informe de fitxa basica</button></a>
             <a href="?generateSimplePDF=<?php echo $_GET['id']; ?>" target="_blank"><button>Generar informe de fitxa general</button></a>
+            <!--<a href="index.php?page=artwork-view&id=<?#php echo $_GET['id']; ?>&cancelArtwork=true" target="_blank"><button>Desactivar obra</button></a>-->
+            <a href="#" id="cancelArtworkLink"><button>Desactivar obra</button></a>
         </div>
+    </div>
+    <div>
+        <?php
+        if ($_GET['cancelArtworkConfirmation']) {
+            $artworkController = new ArtworkController();
+            $confirmation = $artworkController->cancelArtwork((int)$_GET['canc'], $_GET['nom'], (int)$_GET['id'], $_GET['desc']);
+            if (!$confirmation) {
+                echo "
+                <script>
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Obra cancelada',
+                        text: 'Obra cancelada correctament.',
+                        showConfirmButton: true,
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = 'index.php?page=cancelacions';
+                        }
+                    });
+                </script>";
+            } else {
+                echo "
+                <script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'No s'ha pogut cancelar la obra.',
+                        showConfirmButton: true,
+                        confirmButtonText: 'Tornar'
+                    });
+                </script>";
+            }
+        }
+        ?>
     </div>
 </div>
 
 
 <script src="assets/js/artwork-view.js" defer></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('cancelArtworkLink').addEventListener('click', function (e) {
+            e.preventDefault();
+
+            // Obtenemos las opciones del select (generadas desde PHP al inicio)
+            const optionsHtml = `<?php
+                $artworkController = new ArtworkController();
+                $data = $artworkController->getCancelCauseList();
+                foreach ($data as $d) {
+                    echo "<option value='".$d['id']."'>".$d['text']."</option>";
+                }
+            ?>`;
+
+            Swal.fire({
+                title: 'Introdueix els valors',
+                html: `
+                    <div>
+                        <label for="nombre">Nom del treballador autoritzat:</label><br>
+                        <input id="nombre" type="text" class="swal2-input" placeholder="Nom"><br>
+                        <label for="canc">Motiu de baixa:</label><br>
+                        <select id="canc" class="swal2-select">
+                            <option value="" disabled selected>Selecciona un motiu</option>
+                            ${optionsHtml}
+                        </select><br>
+                        <label for="desc">Descripció:</label><br>
+                        <textarea id="desc" class="swal2-textarea" placeholder="Descripció"></textarea>
+                    </div>
+                `,
+                focusConfirm: false,
+                confirmButtonText: 'Guardar',
+                preConfirm: () => {
+                    // Recoger valores
+                    const nombre = document.getElementById('nombre').value.trim();
+                    const canc = document.getElementById('canc').value;
+                    const desc = document.getElementById('desc').value.trim();
+
+                    // Validar que todos los campos están completos
+                    if (!nombre || !canc || !desc) {
+                        Swal.showValidationMessage('Tots els camps són obligatoris.');
+                        return false;
+                    }
+
+                    // Devolver los valores para procesarlos
+                    return { nombre, canc, desc };
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const { nombre, canc, desc } = result.value;
+
+                    // Construir la URL con los parámetros GET
+                    const url = `index.php?page=artwork-view&cancelArtworkConfirmation=true&id=<?php echo $_GET['id']; ?>&nom=${encodeURIComponent(nombre)}&canc=${encodeURIComponent(canc)}&desc=${encodeURIComponent(desc)}`;
+
+                    // Redirigir
+                    window.location.href = url;
+                }
+            });
+        });
+    });
+</script>

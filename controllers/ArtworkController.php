@@ -440,5 +440,19 @@ class ArtworkController
             return false;
         }
     }
+
+    public function cancelArtwork($cancelcause, $name, $artworkID, $description)
+    {
+        $artwork = new Artwork();
+        $conirmation = $artwork->cancelArtwork($cancelcause, $name, $artworkID, $description);
+        return $confirmation;
+    }
+
+    public function getCancelCauseList()
+    {
+        $artwork = new Artwork();
+        $data = $artwork->getCancelCauseList();
+        return $data;
+    }
 }
 ?>

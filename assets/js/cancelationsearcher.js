@@ -260,13 +260,17 @@ if (document.querySelector("#artworksearch")) {
                                         'Restaurat!',
                                         data.message,
                                         'success'
-                                    );
+                                    ).then(() => {
+                                        window.location.href = 'index.php';
+                                    });
                                 } else {
                                     Swal.fire(
                                         'Error!',
                                         data.message,
                                         'error'
-                                    );
+                                    ).then(() => {
+                                        window.location.href = 'index.php?page=cancelacions';
+                                    });
                                 }
                             })
                             .catch(error => {

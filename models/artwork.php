@@ -806,20 +806,56 @@
         public function restoreArtwork($id) {
             $conn = $this->connect();
 
-            // Prepara la sentencia SQL de inserción
-            $sql = "UPDATE artworks SET canceled = 0 WHERE id = :id";
+            $sql = "DELETE FROM cancels WHERE artwork = :id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(':id', $id);
+            $stmt->execute();
+
+            $sql = "UPDATE artworks SET canceled = NULL WHERE id = :id";
             $stmt = $conn->prepare($sql);
 
             try {
                 $stmt->bindValue(':id', $id);
                 $stmt->execute();
-                $conn = null;
                 return true;
             } catch (PDOException $e) {
-                // echo $e->getMessage();
-                $conn = null;
+                echo $e->getMessage();
                 return false;
             }
+        }
+
+        public function cancelArtwork($cancelcause, $name, $artworkID, $description)
+        {
+            $conn = $this->connect();
+
+            $sql = "UPDATE artworks SET canceled = 1 WHERE id = :artworkID";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(':artworkID', $artworkID);
+            $stmt->execute();
+
+            $sql = "INSERT INTO cancels (cancelcause, authorised_worker_name, artwork, description) VALUES (:cancelcause, :name, :artworkID, :description)";
+            $stmt = $conn->prepare($sql);
+
+            try {
+                $stmt->bindValue(':cancelcause', $cancelcause);
+                $stmt->bindValue(':name', $name);
+                $stmt->bindValue(':artworkID', $artworkID);
+                $stmt->bindValue(':description', $description);
+                $stmt->execute();
+                return true;
+            } catch (PDOException $e) {
+                return false;
+            }
+        }
+
+        public function getCancelCauseList()
+        {
+            $conn = $this->connect();
+
+            $sql = "SELECT * FROM cancelcauses";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
     }
 ?>
