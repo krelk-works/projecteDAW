@@ -149,10 +149,10 @@ class VocabularyController
         return $data;
     }
 
-    public function addAuthor($name)
+    public function addAuthor($name, $authorGetty)
     {
         $authors = new Vocabulary();
-        $data = $authors->addAuthor($name);
+        $data = $authors->addAuthor($name, $authorGetty);
         return $data;
     }
 
@@ -169,10 +169,10 @@ class VocabularyController
         return $data;
     }
 
-    public function editAuthor($id, $name)
+    public function editAuthor($id, $name, $authorGetty)
     {
         $authors = new Vocabulary();
-        $data = $authors->editAuthor($id, $name);
+        $data = $authors->editAuthor($id, $name, $authorGetty);
         return $data;
     }
 
@@ -233,12 +233,13 @@ class VocabularyController
         return $data;
     }
 
-    public function addTecnique($text)
+    public function addTecnique($text, $tecnique_getty)
     {
         $tecniques = new Vocabulary();
-        $data = $tecniques->addTecnique($text);
+        $data = $tecniques->addTecnique($text, $tecnique_getty);
         return $data;
     }
+
 
     public function getTecniques()
     {
@@ -254,67 +255,40 @@ class VocabularyController
         return $data;
     }
 
-    public function editTecnique($id, $text)
+    public function editTecnique($id, $text, $tecnique_getty)
     {
         $tecniques = new Vocabulary();
-        $data = $tecniques->editTecnique($id, $text);
+        $data = $tecniques->editTecnique($id, $text, $tecnique_getty);
         return $data;
     }
 
-    public function addGetty($text)
+    public function addObject($text, $object_getty)
     {
-        $getty = new Vocabulary();
-        $data = $getty->addGetty($text);
+        $objects = new Vocabulary();
+        $data = $objects->addObject($text, $object_getty);
         return $data;
     }
 
-    public function getGettys()
+    public function getObjects()
     {
-        $getty = new Vocabulary();
-        $data = $getty->getGettys();
+        $objects = new Vocabulary();
+        $data = $objects->getObjects();
         return $data;
     }
 
-    public function deleteGetty($id)
+    public function deleteObject($id)
     {
-        $getty = new Vocabulary();
-        $data = $getty->deleteGetty($id);
+        $objects = new Vocabulary();
+        $data = $objects->deleteObject($id);
         return $data;
     }
 
-    public function editGetty($id, $text)
+    public function editObject($id, $text, $object_getty)
     {
-        $getty = new Vocabulary();
-        $data = $getty->editGetty($id, $text);
+        $objects = new Vocabulary();
+        $data = $objects->editObject($id, $text, $object_getty);
         return $data;
     }
 
-    public function addGettyTecnique($text)
-    {
-        $gettytecnique = new Vocabulary();
-        $data = $gettytecnique->addGettyTecnique($text);
-        return $data;
-    }
-
-    public function getGettyTecniques()
-    {
-        $gettytecnique = new Vocabulary();
-        $data = $gettytecnique->getGettyTecniques();
-        return $data;
-    }
-
-    public function deleteGettyTecnique($id)
-    {
-        $gettytecnique = new Vocabulary();
-        $data = $gettytecnique->deleteGettyTecnique($id);
-        return $data;
-    }
-
-    public function editGettyTecnique($id, $text)
-    {
-        $gettytecnique = new Vocabulary();
-        $data = $gettytecnique->editGettyTecnique($id, $text);
-        return $data;
-    } 
 }
 ?>

@@ -122,6 +122,59 @@ if(document.querySelector(".material_edit_button")) {
     });
 }
 
+if(document.querySelector(".author_edit_button")) {
+    let listItems = document.querySelectorAll(".author_edit_button");
+    listItems.forEach((listItem) => {
+        listItem.addEventListener("click", () => {
+
+            let valueAttribute = listItem.getAttribute("value");
+            let item = listItem.closest(".item-vocabulary");
+
+            let textElement = item.querySelector("p:nth-child(1)").textContent.trim();
+            let gettyElement = item.querySelector("p:nth-child(2)").textContent.trim();
+
+            Swal.fire({
+                title: 'Edita l\'autor',
+
+                html: `
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <label for="author_text" style="width: 100px; text-align: right;">Text:</label>
+                            <input id="author_text" class="swal2-input" value="${textElement}" style="flex: 1;">
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <label for="getty_text" style="width: 100px; text-align: right;">Getty:</label>
+                            <input id="getty_text" class="swal2-input" value="${gettyElement}" style="flex: 1;">
+                        </div>
+                    </div>
+                `,
+                focusConfirm: false,
+                showCancelButton: true,
+                cancelButtonText: 'Cancel·lar',
+                confirmButtonText: 'Guardar',
+                preConfirm: () => {
+                    const text = document.getElementById("author_text").value.trim();
+                    const getty = document.getElementById("getty_text").value.trim();
+
+                    if (!text || !getty) {
+                        Swal.showValidationMessage('Tots els camps són obligatoris');
+                        return false;
+                    }
+
+                    return { text, getty };
+                },
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const { text, getty } = result.value;
+
+                    window.location.href = `index.php?page=vocabulari&edit_author=${valueAttribute}&edit_author_text=${text}&edit_author_getty=${getty}`;
+                }
+            });
+        });
+    });
+}
+
+
 
 if (document.querySelector(".datation_edit_button")) {
     let listItems = document.querySelectorAll(".datation_edit_button");
@@ -179,33 +232,115 @@ if (document.querySelector(".datation_edit_button")) {
     });
 }
 
+if (document.querySelector(".object_edit_button")) {
+    let listItems = document.querySelectorAll(".object_edit_button");
+    listItems.forEach((listItem) => {
+        listItem.addEventListener("click", () => {
+            let valueAttribute = listItem.getAttribute("value");
+            let item = listItem.closest(".item-vocabulary");
+
+            let textElement = item.querySelector("p:nth-child(1)").textContent.trim();
+            let gettyElement = item.querySelector("p:nth-child(2)").textContent.trim();
+
+            Swal.fire({
+                title: 'Edita l\'objecte',
+
+                html: `
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <label for="object_text" style="width: 100px; text-align: right;">Text:</label>
+                            <input id="object_text" class="swal2-input" value="${textElement}" style="flex: 1;">
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <label for="getty_text" style="width: 100px; text-align: right;">Getty:</label>
+                            <input id="getty_text" class="swal2-input" value="${gettyElement}" style="flex: 1;">
+                        </div>
+                    </div>
+                `,
+                focusConfirm: false,
+                showCancelButton: true,
+                cancelButtonText: 'Cancel·lar',
+
+                confirmButtonText: 'Guardar',
+                preConfirm: () => {
+                    const text = document.getElementById("object_text").value.trim();
+                    const getty = document.getElementById("getty_text").value.trim();
+
+                    if (!text || !getty) {
+                        Swal.showValidationMessage('Tots els camps són obligatoris');
+                        return false;
+                    }
+
+                    return { text, getty };
+                },
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const { text, getty } = result.value;
+
+                    window.location.href = `index.php?page=vocabulari&edit_object=${valueAttribute}&edit_object_text=${text}&edit_object_getty=${getty}`;
+                }
+            });
+        });
+    });
+}
+
+
+
 
 if (document.querySelector(".tecnique_edit_button")) {
     let listItems = document.querySelectorAll(".tecnique_edit_button");
     listItems.forEach((listItem) => {
         listItem.addEventListener("click", () => {
             let valueAttribute = listItem.getAttribute("value");
-            // Obtenemos el texto del elemento <p> hermano más cercano
-            let textElement = listItem.closest(".item-vocabulary").querySelector("p").textContent;
+            let item = listItem.closest(".item-vocabulary");
+
+            let textElement = item.querySelector("p:nth-child(1)").textContent.trim();
+            let gettyElement = item.querySelector("p:nth-child(2)").textContent.trim();
 
             Swal.fire({
-                title: 'Introdueix el nou valor',
-                input: 'text',
-                inputValue: textElement.trim(), // Rellenamos el campo con el texto seleccionado
+                title: 'Edita la tècnica',
+                
+                html: `
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <label for="tecnique_text" style="width: 100px; text-align: right;">Text:</label>
+                            <input id="tecnique_text" class="swal2-input" value="${textElement}" style="flex: 1;">
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <label for="getty_text" style="width: 100px; text-align: right;">Getty:</label>
+                            <input id="getty_text" class="swal2-input" value="${gettyElement}" style="flex: 1;">
+                        </div>
+                    </div>
+                `,
+                focusConfirm: false,
                 showCancelButton: true,
                 cancelButtonText: 'Cancel·lar',
                 confirmButtonText: 'Guardar',
-                showLoaderOnConfirm: true,
-                preConfirm: (value) => {
-                    window.location.href = 'index.php?page=vocabulari' + '&edit_tecnique=' + valueAttribute + '&edit_tecnique_text=' + value;
+                preConfirm: () => {
+                    const text = document.getElementById("tecnique_text").value.trim();
+                    const getty = document.getElementById("getty_text").value.trim();
+
+                    if (!text || !getty) {
+                        Swal.showValidationMessage('Tots els camps són obligatoris');
+                        return false;
+                    }
+
+                    return { text, getty };
+                },
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const { text, getty } = result.value;
+
+                    window.location.href = `index.php?page=vocabulari&edit_tecnique=${valueAttribute}&edit_tecnique_text=${text}&edit_tecnique_getty=${getty}`;
                 }
             });
-        }
-        );
-    }
-    );
-
+        });
+    });
 }
+
+
+            
+
 
 if (document.querySelector(".getty_edit_button")) {
     let listItems = document.querySelectorAll(".getty_edit_button");
@@ -426,6 +561,29 @@ if (document.querySelector(".tecnique_delete_button")) {
     })
 }
 
+if (document.querySelector(".object_delete_button")) {
+    let listItems = document.querySelectorAll(".object_delete_button");
+    listItems.forEach((listItem) => {
+        listItem.addEventListener("click", () => {
+            let valueAttribute = listItem.getAttribute("value");
+            Swal.fire({
+                icon: 'warning',
+                title: 'Estàs segur en esborrar aquest element del vocabulari?',
+                showConfirmButton: true,
+                confirmButtonText: 'Si, esborrar',
+                showCancelButton: true,
+                cancelButtonText: 'Cancel·lar',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = 'index.php?page=vocabulari' + '&delete_object=' + valueAttribute;
+                }
+            });
+        }
+        );
+    }
+    );
+}
+
 if (document.querySelector(".getty_delete_button")) {
     let listItems = document.querySelectorAll(".getty_delete_button");
     listItems.forEach((listItem) => {
@@ -484,7 +642,8 @@ if (document.querySelector("#new_author")) {
     let newEntryType = document.querySelector("#new_author");
     newEntryType.addEventListener("click", () => {
         let newText = document.querySelector("#new_author_value").value;
-        window.location.href = 'index.php?page=vocabulari' + '&add_author=' + newText;
+        let newGetty = document.querySelector("#new_author_getty").value;
+        window.location.href = 'index.php?page=vocabulari' + '&add_author=' + newText + '&add_author_getty=' + newGetty;
     })
 }
 
@@ -511,7 +670,16 @@ if (document.querySelector("#new_tecnique")) {
     let newEntryType = document.querySelector("#new_tecnique");
     newEntryType.addEventListener("click", () => {
         let newText = document.querySelector("#new_tecnique_value").value;
-        window.location.href = 'index.php?page=vocabulari' + '&add_tecnique=' + newText;
+        let newGetty = document.querySelector("#new_tecnique_getty").value;
+        window.location.href = 'index.php?page=vocabulari' + '&add_tecnique=' + newText + '&add_tecnique_getty=' + newGetty;
+    })
+}
+if (document.querySelector("#new_object")) {
+    let newEntryType = document.querySelector("#new_object");
+    newEntryType.addEventListener("click", () => {
+        let newText = document.querySelector("#new_object_value").value;
+        let newGetty = document.querySelector("#new_object_getty").value;
+        window.location.href = 'index.php?page=vocabulari' + '&add_object=' + newText + '&add_object_getty=' + newGetty;
     })
 }
 
