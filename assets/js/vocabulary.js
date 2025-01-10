@@ -342,32 +342,30 @@ if (document.querySelector(".tecnique_edit_button")) {
             
 
 
-if (document.querySelector(".getty_edit_button")) {
-    let listItems = document.querySelectorAll(".getty_edit_button");
+if (document.querySelector(".expositiontypes_edit_button")) {
+    let listItems = document.querySelectorAll(".expositiontypes_edit_button");
     listItems.forEach((listItem) => {
         listItem.addEventListener("click", () => {
             let valueAttribute = listItem.getAttribute("value");
-            // Obtenemos el texto del elemento <p> hermano más cercano
             let textElement = listItem.closest(".item-vocabulary").querySelector("p").textContent;
 
             Swal.fire({
                 title: 'Introdueix el nou valor',
                 input: 'text',
-                inputValue: textElement.trim(), // Rellenamos el campo con el texto seleccionado
+                inputValue: textElement.trim(),
                 showCancelButton: true,
                 cancelButtonText: 'Cancel·lar',
                 confirmButtonText: 'Guardar',
                 showLoaderOnConfirm: true,
                 preConfirm: (value) => {
-                    window.location.href = 'index.php?page=vocabulari' + '&edit_getty=' + valueAttribute + '&edit_getty_text=' + value;
+                    window.location.href = 'index.php?page=vocabulari' + '&edit_expositiontype=' + valueAttribute + '&edit_expositiontype_text=' + value;
                 }
             });
-        }
-        );
-    }
-    );
-
+        });
+    });
 }
+
+
 
 
 
