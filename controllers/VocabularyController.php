@@ -204,12 +204,13 @@ class VocabularyController
         return $data;
     }
 
-    public function addMaterial($text)
+    public function addMaterial($text, $material_getty)
     {
         $materials = new Vocabulary();
-        $data = $materials->addMaterial($text);
+        $data = $materials->addMaterial($text, $material_getty);
         return $data;
     }
+    
 
     public function getMaterials()
     {
@@ -225,10 +226,10 @@ class VocabularyController
         return $data;
     }
 
-    public function editMaterial($id, $text)
+    public function editMaterial($id, $text, $material_getty)
     {
         $materials = new Vocabulary();
-        $data = $materials->editMaterial($id, $text);
+        $data = $materials->editMaterial($id, $text, $material_getty);
         return $data;
     }
 
@@ -314,6 +315,6 @@ class VocabularyController
         $gettytecnique = new Vocabulary();
         $data = $gettytecnique->editGettyTecnique($id, $text);
         return $data;
-    }
+    } 
 }
 ?>

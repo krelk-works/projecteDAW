@@ -441,20 +441,20 @@
             return $stmt->execute();
         }
 
-        public function addMaterial($text)
+        public function addMaterial($text, $material_getty)
         {
             $conn = $this->connect();
-            $sql = "INSERT INTO materials (text) VALUES (:text)";
-
-            // Prepare the SQL statement
+            $sql = "INSERT INTO materials (text, getty) VALUES (:text, :getty)";
+        
             $stmt = $conn->prepare($sql);
-
-            // Bind the parameters
             $stmt->bindParam(':text', $text);
-
-            // Execute the statement
+            $stmt->bindParam(':getty', $material_getty);
+        
             return $stmt->execute();
         }
+        
+        
+
 
         public function getMaterials()
         {
@@ -486,16 +486,17 @@
             return $stmt->execute();
         }
 
-        public function editMaterial($id, $text)
+        public function editMaterial($id, $text, $material_getty)
         {
             $conn = $this->connect();
-            $sql = "UPDATE materials SET text = :text WHERE id = :id";
+            $sql = "UPDATE materials SET text = :text, getty = :getty WHERE id = :id";
 
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
 
             // Bind the parameters
             $stmt->bindParam(':text', $text);
+            $stmt->bindParam(':getty', $material_getty);
             $stmt->bindParam(':id', $id);
 
             // Execute the statement
@@ -684,5 +685,69 @@
             // Execute the statement
             return $stmt->execute();
         }
+
+
+        public function addGettyAuthor($text)
+        {
+            $conn = $this->connect();
+            $sql = "INSERT INTO authorgettycodes (text) VALUES (:text)";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Bind the parameters
+            $stmt->bindParam(':text', $text);
+
+            // Execute the statement
+            return $stmt->execute();
+        }
+
+        public function getGettyAuthors()
+        {
+            $conn = $this->connect();
+            $sql = "SELECT * FROM authorgettycodes";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Execute the statement
+            $stmt->execute();
+        
+            // Fetch the results
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function deleteGettyAuthor($id)
+        {
+            $conn = $this->connect();
+            $sql = "DELETE FROM authorgettycodes WHERE id = :id";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Bind the parameters
+            $stmt->bindParam(':id', $id);
+
+            // Execute the statement
+            return $stmt->execute();
+        }
+
+        public function editGettyAuthor($id, $text)
+        {
+            $conn = $this->connect();
+            $sql = "UPDATE authorgettycodes SET text = :text WHERE id = :id";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Bind the parameters
+            $stmt->bindParam(':text', $text);
+            $stmt->bindParam(':id', $id);
+
+            // Execute the statement
+            return $stmt->execute();
+        }
+
+        
     }
 ?>

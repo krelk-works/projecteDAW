@@ -71,6 +71,58 @@ if (document.querySelector(".conservationstatus_edit_button")) {
     });
 }
 
+if(document.querySelector(".material_edit_button")) {
+    let listItems = document.querySelectorAll(".material_edit_button");
+    listItems.forEach((listItem) => {
+        listItem.addEventListener("click", () => {
+
+            let valueAttribute = listItem.getAttribute("value");
+            let item = listItem.closest(".item-vocabulary");
+
+            let textElement = item.querySelector("p:nth-child(1)").textContent.trim();
+            let gettyElement = item.querySelector("p:nth-child(2)").textContent.trim();
+
+            Swal.fire({
+                title: 'Edita el material',
+                html: `
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <label for="material_text" style="width: 100px; text-align: right;">Text:</label>
+                            <input id="material_text" class="swal2-input" value="${textElement}" style="flex: 1;">
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <label for="getty_text" style="width: 100px; text-align: right;">Getty:</label>
+                            <input id="getty_text" class="swal2-input" value="${gettyElement}" style="flex: 1;">
+                        </div>
+                    </div>
+                `,
+                focusConfirm: false,
+                showCancelButton: true,
+                cancelButtonText: 'Cancel·lar',
+                confirmButtonText: 'Guardar',
+                preConfirm: () => {
+                    const text = document.getElementById("material_text").value.trim();
+                    const getty = document.getElementById("getty_text").value.trim();
+
+                    if (!text || !getty) {
+                        Swal.showValidationMessage('Tots els camps són obligatoris');
+                        return false;
+                    }
+
+                    return { text, getty };
+                },
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const { text, getty } = result.value;
+
+                    window.location.href = `index.php?page=vocabulari&edit_material=${valueAttribute}&edit_material_text=${text}&edit_material_getty=${getty}`;
+                }
+            });
+        });
+    });
+}
+
+
 if (document.querySelector(".datation_edit_button")) {
     let listItems = document.querySelectorAll(".datation_edit_button");
     listItems.forEach((listItem) => {
@@ -445,12 +497,15 @@ if (document.querySelector("#new_genericclassifications")) {
 }
 
 if (document.querySelector("#new_material")) {
-    let newEntryType = document.querySelector("#new_material");
-    newEntryType.addEventListener("click", () => {
+    let newMaterialButton = document.querySelector("#new_material");
+    newMaterialButton.addEventListener("click", () => {
         let newText = document.querySelector("#new_material_value").value;
-        window.location.href = 'index.php?page=vocabulari' + '&add_material=' + newText;
-    })
+        let newMaterialGetty = document.querySelector("#new_material_getty").value;
+        window.location.href = 'index.php?page=vocabulari' + '&add_material=' + newText + '&add_material_getty=' + newMaterialGetty;
+    });
 }
+
+
 
 if (document.querySelector("#new_tecnique")) {
     let newEntryType = document.querySelector("#new_tecnique");

@@ -71,9 +71,10 @@
         $vocabularyController->addGenericClassification($_GET['add_genericclassification']);
     }
 
-    if (isset($_GET['add_material'])) {
-        $vocabularyController->addMaterial($_GET['add_material']);
-    }
+    if (isset($_GET['add_material']) && isset($_GET['add_material_getty'])) {
+        $vocabularyController->addMaterial($_GET['add_material'], $_GET['add_material_getty']);
+    }    
+    
 
     if (isset($_GET['add_tecnique'])) {
         $vocabularyController->addTecnique($_GET['add_tecnique']);
@@ -148,12 +149,13 @@
         } 
     }
 
-    if (isset($_GET['edit_material']) && isset($_GET['edit_material_text'])) {
+    if (isset($_GET['edit_material']) && isset($_GET['edit_material_text']) && isset($_GET['edit_material_getty'])) {
         $id = intval($_GET['edit_material']);
         $text = trim($_GET['edit_material_text']);
+        $getty = trim($_GET['edit_material_getty']);
     
         if (!empty($id) && !empty($text)) {
-            $result = $vocabularyController->editMaterial($id, $text);
+            $result = $vocabularyController->editMaterial($id, $text, $getty);
         } 
     }
 
@@ -368,17 +370,21 @@
                     </div>-->
                 </div>
             </div>
-            <div class="vocabulary-item-simple ">
+            <div class="vocabulary-item-double">
                 <h4>Autories</h4>
-                <input type="text" placeholder="Nova autoría..." id="new_author_value" maxlength="30" capitalize>
-                <button id="new_author">+</button>
-                <div class="list-vocabulary-item-simple">
+                <div class="mixed_inputs_double">
+                    <input type="text" placeholder="Nova autoría..." id="new_author_value" maxlength="30" capitalize>
+                    <input type="text" placeholder="Nou codi Getty..." id="new_author_getty" maxlength="30" capitalize>
+                    <button id="new_author">+</button>
+                 </div>
+                <div class="list-vocabulary-item-double">
                     <?php
                         $authors = $vocabularyController->getAuthors();
 
                         foreach ($authors as $author) {
                             echo '<div class="item-vocabulary">
                                 <p>' . $author['name'] . '</p>
+                                <p>' . $author['getty'] . '</p>
                                 <button class="edit_vocabulary_button author_edit_button" value="'.$author['id'].'"><i class="fa-solid fa-edit"></i></button>
                                 <button class="delete_vocabulary_button author_delete_button" value="'.$author['id'].'"><i class="fa-solid fa-trash"></i></button>
                             </div>';
@@ -414,6 +420,52 @@
                     </div>-->
                 </div>
             </div>
+                <div class="vocabulary-item-double">
+                    <h4>Materials</h4>
+                    <div class="mixed_inputs_double">
+                        <input type="text" id="new_material_value" placeholder="Nou material...">
+                        <input type="text" id="new_material_getty" placeholder="Nou codi Getty...">
+                        <button id="new_material">+</button>
+                    </div>
+                    <div class="list-vocabulary-item-double">
+                        <?php
+                            $materials = $vocabularyController->getMaterials();
+
+                            foreach ($materials as $material) {
+                                echo '<div class="item-vocabulary">
+                                    <p>' . $material['text'] . '</p>
+                                    <p>' . $material['getty'] . '</p>
+                                    <button class="edit_vocabulary_button material_edit_button" value="' . $material['id'] . '"><i class="fa-solid fa-edit"></i></button>
+                                    <button class="delete_vocabulary_button material_delete_button" value="' . $material['id'] . '"><i class="fa-solid fa-trash"></i></button>
+                                </div>';
+                            }
+                        ?>
+                    </div>
+                </div>
+
+            <div class="vocabulary-item-double ">
+                <h4>Tecnica</h4>
+                <div class="mixed_inputs_double">
+                    <input type="text" placeholder="Nova tecnica..." id="new_tecnique_value" maxlength="30">
+                    <input type="text" placeholder="Nou codi Getty..." id="new_tecnique_getty" maxlength="30">
+                    <button id="new_tecnique">+</button>
+                </div>
+                <div class="list-vocabulary-item-double">
+                    <?php
+                        $tecniques = $vocabularyController->getTecniques();
+
+                        foreach ($tecniques as $tecnique) {
+                            echo '<div class="item-vocabulary">
+                                <p>' . $tecnique['text'] . '</p>
+                                <p>' . $tecnique['getty'] . '</p>
+                                <button class="edit_vocabulary_button tecnique_edit_button" value="'.$tecnique['id'].'"><i class="fa-solid fa-edit"></i></button>
+                                <button class="delete_vocabulary_button tecnique_delete_button" value="'.$tecnique['id'].'"><i class="fa-solid fa-trash"></i></button>
+                            </div>';
+                        }
+                    ?>
+                </div>
+            </div>
+
             <div class="vocabulary-item-simple ">
                 <h4>Clasificació generica</h4>
                 <input type="text" placeholder="Nova clasificació generica..." id="new_genericclassifications_value" maxlength="30" capitalize>
@@ -432,42 +484,6 @@
                     ?>
                 </div>
             </div>
-            <!--<div class="vocabulary-item-simple ">
-                <h4>Materials</h4>
-                <input type="text" placeholder="Nou material..." id="new_material_value" maxlength="30">
-                <button id="new_material">+</button>
-                <div class="list-vocabulary-item-simple">
-                    <?php
-                        /*$materials = $vocabularyController->getMaterials();
-
-                        foreach ($materials as $material) {
-                            echo '<div class="item-vocabulary">
-                                <p>' . $material['text'] . '</p>
-                                <button class="edit_vocabulary_button material_edit_button" value="'.$material['id'].'"><i class="fa-solid fa-edit"></i></button>
-                                <button class="delete_vocabulary_button material_delete_button" value="'.$material['id'].'"><i class="fa-solid fa-trash"></i></button>
-                            </div>';
-                        }*/
-                    ?>
-                </div>
-            </div>-->
-            <!--<div class="vocabulary-item-simple ">
-                <h4>Tecnica</h4>
-                <input type="text" placeholder="Nova tecnica..." id="new_tecnique_value" maxlength="30">
-                <button id="new_tecnique">+</button>
-                <div class="list-vocabulary-item-simple">
-                    <?php
-                        /*$tecniques = $vocabularyController->getTecniques();
-
-                        foreach ($tecniques as $tecnique) {
-                            echo '<div class="item-vocabulary">
-                                <p>' . $tecnique['text'] . '</p>
-                                <button class="edit_vocabulary_button tecnique_edit_button" value="'.$tecnique['id'].'"><i class="fa-solid fa-edit"></i></button>
-                                <button class="delete_vocabulary_button tecnique_delete_button" value="'.$tecnique['id'].'"><i class="fa-solid fa-trash"></i></button>
-                            </div>';
-                        }*/
-                    ?>
-                </div>
-            </div>-->
             <!-- <div class="vocabulary-item-simple ">
                 <h4>Codi Getty</h4>
                 <input type="text" placeholder="Nou codi Getty..." id="new_getty_value" maxlength="30">
