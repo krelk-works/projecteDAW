@@ -35,10 +35,14 @@
             try {
                 // Execute the statement
                 $stmt->execute();
+
+                $conn = null;
                 
                 // Fetch the results
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
             } catch (Exception $e) {
+
+                $conn = null;
                 return false;
             }
         }
@@ -56,11 +60,14 @@
             try {
                 // Ejecutar la consulta
                 if ($stmt->execute()) {
+                    $conn = null;
                     return true;
                 } else {
+                    $conn = null;
                     return false;
                 }
             } catch (Exception $e) {
+                $conn = null;
                 return false;
             }
         }
@@ -77,11 +84,14 @@
             try {
                 // Ejecutar la consulta
                 if ($stmt->execute()) {
+                    $conn = null;
                     return true;
                 } else {
+                    $conn = null;
                     return false;
                 }
             } catch (Exception $e) {
+                $conn = null;
                 return false;
             }
         }
@@ -98,6 +108,7 @@
         
                 if ($totalLocations <= 1) {
                     // Si solo hay una ubicación, no permitir eliminarla
+                    $conn = null;
                     return false;
                 }
         
@@ -111,6 +122,7 @@
                 $lowestParentId = $stmt->fetchColumn();
         
                 if (!$lowestParentId) {
+                    $conn = null;
                     return false;
                     // throw new Exception("No se encontró ninguna ubicación raíz para asignar.");
                 }
@@ -130,10 +142,12 @@
         
                 // Confirmar la transacción
                 $conn->commit();
+                $conn = null;
                 return true;
             } catch (Exception $e) {
                 // Revertir los cambios en caso de error
                 $conn->rollBack();
+                $conn = null;
                 // error_log("Error al eliminar la ubicación: " . $e->getMessage());
                 return false;
             }
@@ -149,6 +163,7 @@
             $stmt = $conn->prepare($sql);
             // Execute the query
             $stmt->execute();
+            $conn = null;
             // Fetch the count result
             return $stmt->fetchColumn();
         }
@@ -173,6 +188,8 @@
         
             // Execute the query
             $stmt->execute();
+
+            $conn = null;
         
             // Fetch the results
             return $stmt->fetchAll(PDO::FETCH_ASSOC);

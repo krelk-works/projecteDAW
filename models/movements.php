@@ -16,6 +16,8 @@
 
             $stmt->execute();
 
+            $conn = null;
+
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
@@ -51,8 +53,10 @@
             $stmt->bindParam(':artwork', $artwork);
         
             if ($stmt->execute()) {
+                $conn = null;
                 return 0;
             } else {
+                $conn = null;
                 return 1;
             }
         }       
@@ -66,8 +70,15 @@
             $stmt->bindParam(':id', $id);
             $stmt->bindParam(':sd', $sd);
             $stmt->bindParam(':ed', $ed);
-            $stmt->bindParam(':place', $place);        
-            return $stmt->execute(); // Retorna true o false
+            $stmt->bindParam(':place', $place);
+            if ($stmt->execute()) {
+                $conn = null;
+                return true;
+            } else {
+                $conn = null;
+                return false;
+            }
+            // return $stmt->execute(); // Retorna true o false
         }
 
         public function deleteMovement($id) {
@@ -78,8 +89,10 @@
                 $stmt->bindParam(':id', $id);
                 $stmt->execute(); // Retorna true o false
                 $filasAfectadas = $stmt->rowCount();
+                $conn = null;
                 return $filasAfectadas > 0;
             } catch (PDOException $e) {
+                $conn = null;
                 return false;
             }
         }
@@ -96,8 +109,10 @@
 
             try {
                 $stmt->execute();
+                $conn = null;
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
+                $conn = null;
                 return false;
             }            
         }

@@ -125,12 +125,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $saved = $controller->addNewArtwork($sqlfields, $documents, $additionalImages, $references);
 
         if ($saved) {
-            echo "<h1>Artwork saved successfully!</h1>";
+            // echo "<h1>Artwork saved successfully!</h1>";
+            // echo "<meta http-equiv='refresh' content='1;url=index.php'>";
             // echo $saved;
         } else {
-            echo "<h1>There was an error saving the artwork</h1>";
+            // echo "<h1>There was an error saving the artwork</h1>";
         }
-        // echo "<meta http-equiv='refresh' content='1;url=index.php'>";
+        echo "<meta http-equiv='refresh' content='1;url=index.php'>";
     }
 }
 

@@ -16,6 +16,8 @@
 
             $stmt->execute();
 
+            $conn = null;
+
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
@@ -33,6 +35,8 @@
 
             $stmt->bindParam(':search', $searchTerm, PDO::PARAM_STR);
             $stmt->execute();
+
+            $conn = null;
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
@@ -55,8 +59,10 @@
             
             // Ejecutar la consulta
             if ($stmt->execute()) {
+                $conn = null;
                 return true;
             } else {
+                $conn = null;
                 return false;
             }
         }

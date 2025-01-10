@@ -24,6 +24,8 @@
 
             // Execute the statement
             $stmt->execute();
+
+            $conn = null;
         
             // Fetch the results
             return $stmt->fetchAll(PDO::FETCH_ASSOC);

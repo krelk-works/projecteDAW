@@ -13,12 +13,15 @@
             if ($stmt->execute()) {
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
+                $conn = null;
+
                 // Si no encuentra ningún registro que devuelva un 1
                 return isset($row['max_id']) && $row['max_id'] !== null ? $row['max_id'] + 1 : 1;
                 
                 // Si no hay registros, empieza en 10001; si los hay, retorna el siguiente valor de `id_num1`
                 // return isset($row['max_id']) && $row['max_id'] !== null ? $row['max_id'] + 1 : 10001;
             } else {
+                $conn = null;
                 return false; // Manejo de error en caso de fallo en la consulta
             }
         }
@@ -53,8 +56,10 @@
             // Ejecuta la consulta y verifica el resultado
             if ($stmt->execute()) {
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                $conn = null;
                 return $row['total'] == 0;
             } else {
+                $conn = null;
                 return false; // Manejo de error en caso de fallo en la consulta
             }
         }
@@ -129,6 +134,8 @@
             $stmt = $conn->prepare($sql);
             $stmt->execute();
             $objects = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            $conn = null;
         
             return [
                 'authors' => $authors,
@@ -246,6 +253,7 @@
             $stmt = $conn->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $conn = null;
             return $result;
         }
 
@@ -262,8 +270,10 @@
             $stmt = $conn->prepare($sql);
 
             if ($stmt->execute()) {
+                $conn = null;
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
             } else {
+                $conn = null;
                 return false;
             }
         }
@@ -337,6 +347,7 @@
             // Execute the query
             $stmt->execute();
         
+            $conn = null;
             // Fetch the count result
             return $stmt->fetchColumn();
         }
@@ -393,6 +404,7 @@
             $stmt->bindParam(':tecniquegettycode', $tecniquegettycode, PDO::PARAM_INT);
             $stmt->bindParam(':image', $image, PDO::PARAM_STR);
             $stmt->execute();
+            $conn = null;
             return $stmt->rowCount();
 
         }
@@ -404,8 +416,10 @@
             $stmt=$conn->prepare($sql);
             $stmt->bindParam(':id', $id);
             if ($stmt->execute()) {
+                $conn = null;
                 return $stmt->fetch(PDO::FETCH_ASSOC);
             } else {
+                $conn = null;
                 return false;
             }
         }
@@ -479,8 +493,10 @@
             $stmt->bindParam(':tecniquegettycode', $data['tecniquegettycode'], PDO::PARAM_INT);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             if ($stmt->execute()) {
+                $conn = null;
                 return true;
             } else {
+                $conn = null;
                 return false;
             }
         }
@@ -502,11 +518,14 @@
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
                 // If there are no records, return 0 (This is the first record (00001))
                 if ($row['max_id_num1'] === null) {
+                    $conn = null;
                     return 0;
                 }
+                $conn = null;
                 // If is not the first record, return the next number
                 return $row['max_id_num1'];
             } catch (PDOException $e) {
+                $conn = null;
                 return false;
             }
         }
@@ -536,6 +555,7 @@
             
             $stmt = $conn->prepare($sql);
             $stmt->execute();
+            $conn = null;
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
@@ -565,6 +585,7 @@
             
             $stmt = $conn->prepare($sql);
             $stmt->execute();
+            $conn = null;
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
@@ -594,6 +615,7 @@
             
             $stmt = $conn->prepare($sql);
             $stmt->execute();
+            $conn = null;
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
@@ -612,9 +634,11 @@
             $stmt->bindParam(':search', $searchTerm, PDO::PARAM_STR);
             try {
                 $stmt->execute();
+                $conn = null;
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
                 // echo $e->getMessage();
+                $conn = null;
                 return false;
             }
         }
@@ -634,9 +658,11 @@
             $stmt->bindParam(':search', $searchTerm, PDO::PARAM_STR);
             try {
                 $stmt->execute();
+                $conn = null;
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
                 // echo $e->getMessage();
+                $conn = null;
                 return false;
             }
         }
@@ -662,12 +688,15 @@
             try {
                 // Ejecuta la consulta y verifica si se realizó correctamente
                 if ($stmt->execute()) {
+                    $conn = null;
                     return $conn->lastInsertId();
                 } else {
+                    $conn = null;
                     return false;
                 }
             } catch (PDOException $e) {
-                echo $e->getMessage();
+                //echo $e->getMessage();
+                $conn = null;
                 return false;
             }
         }
@@ -686,9 +715,11 @@
                     $stmt->bindValue(':document', $document);
                     $stmt->execute();
                 }
+                $conn = null;
                 return true;
             } catch (PDOException $e) {
-                echo $e->getMessage();
+                // echo $e->getMessage();
+                $conn = null;
                 return false;
             }
         }
@@ -707,9 +738,11 @@
                     $stmt->bindValue(':image', 'uploads/'.$image);
                     $stmt->execute();
                 }
+                $conn = null;
                 return true;
             } catch (PDOException $e) {
-                echo $e->getMessage();
+                // echo $e->getMessage();
+                $conn = null;
                 return false;
             }
         }
@@ -729,9 +762,11 @@
                     $stmt->bindValue(':URL', $reference['url']);
                     $stmt->execute();
                 }
+                $conn = null;
                 return true;
             } catch (PDOException $e) {
-                echo $e->getMessage();
+                // echo $e->getMessage();
+                $conn = null;
                 return false;
             }
         }
@@ -760,8 +795,10 @@
             try {
                 $stmt = $conn->prepare($sql);
                 $stmt->execute();
+                $conn = null;
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
+                $conn = null;
                 return false;
             }
         }
@@ -776,9 +813,11 @@
             try {
                 $stmt->bindValue(':id', $id);
                 $stmt->execute();
+                $conn = null;
                 return true;
             } catch (PDOException $e) {
-                echo $e->getMessage();
+                // echo $e->getMessage();
+                $conn = null;
                 return false;
             }
         }

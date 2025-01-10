@@ -405,7 +405,11 @@ fetch("controllers/ArtworkController.php?getFormData", {
         // datationsHTML += `<option value="">Sense especificar</option>`;
         data.message.datations.forEach(datation => {
             // console.log('Datació:', datation.name);
-            datationsHTML += `<option value="${datation.id}">${datation.text} (${datation.start_date} fins ${datation.end_date == null ? 'actualitat' : datation.end_date})</option>`;
+            if (datation.start_date != null && datation.start_date != '') {
+                datationsHTML += `<option value="${datation.id}">${datation.text} (${datation.start_date} fins ${datation.end_date == null ? 'actualitat' : datation.end_date})</option>`;
+            } else {
+                datationsHTML += `<option value="${datation.id}">${datation.text}</option>`;
+            }
         });
         datationsList.innerHTML = datationsHTML; // Insertamos las opciones en el select
 
@@ -470,7 +474,7 @@ fetch("controllers/ArtworkController.php?getFormData", {
         // objectsHTML += `<option value="">Sense especificar</option>`;
         data.message.objects.forEach(object => {
             console.log('Objecte:', object.text);
-            objectsHTML += `<option value="${object.id}">${object.name}</option>`;
+            objectsHTML += `<option value="${object.id}">${object.text}</option>`;
         });
         objectsList.innerHTML = objectsHTML; // Insertamos las opciones en el select
 

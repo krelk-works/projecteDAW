@@ -88,6 +88,8 @@
         
             // Execute the statement
             $stmt->execute();
+
+            $conn = null;
         }
 
         public function login($username, $password){
@@ -121,10 +123,12 @@
                     // Send data to UserController to start the web session
                     $controller = new UserController();
                     $controller->startSession(new User($this->username, $this->password, $this->first_name, $this->last_name, $this->email, $this->profile_img, $this->role));
+                    $conn = null;
                     return true;
                     //$username, $password, $first_name, $last_name, $email, $profile_img, $role
                 } else {
                     // TODO: Show error message user or password incorrect
+                    $conn = null;
                     return false;
                 }
             }
@@ -154,6 +158,8 @@
         
             // Execute the statement
             $stmt->execute();
+
+            $conn = null;
         
             // Fetch the results
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -164,6 +170,8 @@
             $sql = "SELECT COUNT(*) FROM users";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
+
+            $conn = null;
             return $stmt->fetchColumn();
         }
 
@@ -187,8 +195,10 @@
             
             // Ejecutar la consulta
             if ($stmt->execute()) {
+                $conn = null;
                 return true;
             } else {
+                $conn = null;
                 return false;
             }
         }
@@ -200,8 +210,10 @@
             $stmt->bindParam(':id', $id);
 
             if ($stmt->execute()) {
+                $conn = null;
                 return true;
             } else {
+                $conn = null;
                 return false;
             }
         }      
@@ -211,8 +223,10 @@
             $stmt=$conn->prepare($sql);
             $stmt->bindParam(':id', $id);
             if ($stmt->execute()) {
+                $conn = null;
                 return $stmt->fetch(PDO::FETCH_ASSOC);
             } else {
+                $conn = null;
                 return false;
             }
         }
@@ -235,8 +249,10 @@
             $stmt->bindParam(':password', $data['password']);
             $stmt->bindParam(':role', $data['role']);
             if ($stmt->execute()) {
+                $conn = null;
                 return true;
             } else {
+                $conn = null;
                 return false;
             }
         }
@@ -246,6 +262,7 @@
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':username', $username);
             $stmt->execute();
+            $conn = null;
             return $stmt->fetchColumn();
         }
         public function searchUser($searchfilter){
@@ -256,6 +273,7 @@
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':searchfilter', $searchTerm);
             $stmt->execute();
+            $conn = null;
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
     }

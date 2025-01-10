@@ -22,6 +22,8 @@ class DOCX extends Database {
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+        $conn = null;
+
         $filePath = __DIR__ . '/formulariprestec.docx';
         $newFilePath = __DIR__ .'/formulariprestec_printable.docx';
         $templateProcessor = new TemplateProcessor($filePath);

@@ -17,6 +17,8 @@
 
             $stmt->execute();
 
+            $conn = null;
+
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
@@ -33,6 +35,8 @@
             $stmt = $conn->prepare($sql);
 
             $stmt->execute();
+
+            $conn = null;
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
@@ -54,6 +58,8 @@
 
             $stmt->execute();
 
+            $conn = null;
+
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
@@ -74,8 +80,10 @@
             
             // Ejecutar la consulta
             if ($stmt->execute()) {
+                $conn = null;
                 return true;
             } else {
+                $conn = null;
                 return false;
             }
         }
@@ -91,10 +99,11 @@
                 $stmt->bindParam(':artworkID', $artworkID);
                 
                 if (!$stmt->execute()) {
+                    $conn = null;
                     return false;
                 }
             }
-        
+            $conn = null;
             return true;
         }
 
@@ -108,8 +117,10 @@
             $stmt->bindParam(':artworkID', $artworkID);
                 
             if ($stmt->execute()) {
+                $conn = null;
                 return true;
             } else {
+                $conn = null;
                 return false;
             }
         }
@@ -128,6 +139,7 @@
 
             $stmt->bindParam(':search', $searchTerm, PDO::PARAM_STR);
             $stmt->execute();
+            $conn = null;
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
@@ -145,6 +157,7 @@
             $stmt->bindParam(':id', $id);
 
             $stmt->execute();
+            $conn = null;
 
             return $stmt->fetch(PDO::FETCH_ASSOC);
         }
