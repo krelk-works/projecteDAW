@@ -353,6 +353,17 @@
 
         public function deleteAuthor($id) {
             $conn = $this->connect();
+            
+            $sql = "UPDATE artworks SET author = 0 WHERE author = :id";
+
+            // Prepare the SQL statement
+            $stmt = $conn->prepare($sql);
+
+            // Bind the parameters
+            $stmt->bindParam(':id', $id);
+
+            $stmt->execute();
+            
             $sql = "DELETE FROM authors WHERE id = :id";
 
             // Prepare the SQL statement
