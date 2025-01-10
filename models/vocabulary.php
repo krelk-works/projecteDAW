@@ -320,16 +320,17 @@
             return $stmt->execute();
         }
 
-        public function addAuthor($name)
+        public function addAuthor($name, $authorGetty)
         {
             $conn = $this->connect();
-            $sql = "INSERT INTO authors (name) VALUES (:name)";
+            $sql = "INSERT INTO authors (name, getty) VALUES (:name, :authorGetty)";
 
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
 
             // Bind the parameters
             $stmt->bindParam(':name', $name);
+            $stmt->bindParam(':authorGetty', $authorGetty);
 
             // Execute the statement
             return $stmt->execute();
@@ -364,10 +365,10 @@
             return $stmt->execute();
         }
 
-        public function editAuthor($id, $name)
+        public function editAuthor($id, $name, $authorGetty)
         {
             $conn = $this->connect();
-            $sql = "UPDATE authors SET name = :name WHERE id = :id";
+            $sql = "UPDATE authors SET name = :name, getty = :authorGetty WHERE id = :id";
 
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
@@ -375,6 +376,7 @@
             // Bind the parameters
             $stmt->bindParam(':name', $name);
             $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':authorGetty', $authorGetty);
 
             // Execute the statement
             return $stmt->execute();
@@ -503,20 +505,22 @@
             return $stmt->execute();
         }
 
-        public function addTecnique($text)
+        public function addTecnique($text, $tecnique_getty)
         {
             $conn = $this->connect();
-            $sql = "INSERT INTO tecniques (text) VALUES (:text)";
+            $sql = "INSERT INTO tecniques (text, getty) VALUES (:text, :getty)";
 
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
 
             // Bind the parameters
             $stmt->bindParam(':text', $text);
+            $stmt->bindParam(':getty', $tecnique_getty);
 
             // Execute the statement
             return $stmt->execute();
         }
+
 
         public function getTecniques()
         {
@@ -548,41 +552,43 @@
             return $stmt->execute();
         }
 
-        public function editTecnique($id, $text)
+        public function editTecnique($id, $text, $tecnique_getty)
         {
             $conn = $this->connect();
-            $sql = "UPDATE tecniques SET text = :text WHERE id = :id";
+            $sql = "UPDATE tecniques SET text = :text, getty = :getty WHERE id = :id";
 
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
 
             // Bind the parameters
             $stmt->bindParam(':text', $text);
+            $stmt->bindParam(':getty', $tecnique_getty);
             $stmt->bindParam(':id', $id);
 
             // Execute the statement
             return $stmt->execute();
         }
 
-        public function addGetty($text)
+        public function addObject($text, $object_getty)
         {
             $conn = $this->connect();
-            $sql = "INSERT INTO gettycodes (code) VALUES (:text)";
+            $sql = "INSERT INTO objects (text, getty) VALUES (:text, :getty)";
 
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
 
             // Bind the parameters
             $stmt->bindParam(':text', $text);
+            $stmt->bindParam(':getty', $object_getty);
 
             // Execute the statement
             return $stmt->execute();
         }
 
-        public function getGettys()
+        public function getObjects()
         {
             $conn = $this->connect();
-            $sql = "SELECT * FROM gettycodes ORDER BY gettycodes.code";
+            $sql = "SELECT * FROM objects ORDER BY objects.text";
 
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
@@ -594,10 +600,10 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        public function deleteGetty($id)
+        public function deleteObject($id)
         {
             $conn = $this->connect();
-            $sql = "DELETE FROM gettycodes WHERE id = :id";
+            $sql = "DELETE FROM objects WHERE id = :id";
 
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
@@ -609,144 +615,23 @@
             return $stmt->execute();
         }
 
-        public function editGetty($id, $text)
+        public function editObject($id, $text, $object_getty)
         {
             $conn = $this->connect();
-            $sql = "UPDATE gettycodes SET code = :text WHERE id = :id";
+            $sql = "UPDATE objects SET text = :text, getty = :getty WHERE id = :id";
 
             // Prepare the SQL statement
             $stmt = $conn->prepare($sql);
 
             // Bind the parameters
             $stmt->bindParam(':text', $text);
+            $stmt->bindParam(':getty', $object_getty);
             $stmt->bindParam(':id', $id);
 
             // Execute the statement
             return $stmt->execute();
         }
 
-        public function addGettyTecnique($text)
-        {
-            $conn = $this->connect();
-            $sql = "INSERT INTO tecniquegettycodes (text) VALUES (:text)";
-
-            // Prepare the SQL statement
-            $stmt = $conn->prepare($sql);
-
-            // Bind the parameters
-            $stmt->bindParam(':text', $text);
-
-            // Execute the statement
-            return $stmt->execute();
-        }
-
-        public function getGettyTecniques()
-        {
-            $conn = $this->connect();
-            $sql = "SELECT * FROM tecniquegettycodes";
-
-            // Prepare the SQL statement
-            $stmt = $conn->prepare($sql);
-
-            // Execute the statement
-            $stmt->execute();
-        
-            // Fetch the results
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        }
-
-        public function deleteGettyTecnique($id)
-        {
-            $conn = $this->connect();
-            $sql = "DELETE FROM tecniquegettycodes WHERE id = :id";
-
-            // Prepare the SQL statement
-            $stmt = $conn->prepare($sql);
-
-            // Bind the parameters
-            $stmt->bindParam(':id', $id);
-
-            // Execute the statement
-            return $stmt->execute();
-        }
-
-        public function editGettyTecnique($id, $text)
-        {
-            $conn = $this->connect();
-            $sql = "UPDATE tecniquegettycodes SET text = :text WHERE id = :id";
-
-            // Prepare the SQL statement
-            $stmt = $conn->prepare($sql);
-
-            // Bind the parameters
-            $stmt->bindParam(':text', $text);
-            $stmt->bindParam(':id', $id);
-
-            // Execute the statement
-            return $stmt->execute();
-        }
-
-
-        public function addGettyAuthor($text)
-        {
-            $conn = $this->connect();
-            $sql = "INSERT INTO authorgettycodes (text) VALUES (:text)";
-
-            // Prepare the SQL statement
-            $stmt = $conn->prepare($sql);
-
-            // Bind the parameters
-            $stmt->bindParam(':text', $text);
-
-            // Execute the statement
-            return $stmt->execute();
-        }
-
-        public function getGettyAuthors()
-        {
-            $conn = $this->connect();
-            $sql = "SELECT * FROM authorgettycodes";
-
-            // Prepare the SQL statement
-            $stmt = $conn->prepare($sql);
-
-            // Execute the statement
-            $stmt->execute();
-        
-            // Fetch the results
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        }
-
-        public function deleteGettyAuthor($id)
-        {
-            $conn = $this->connect();
-            $sql = "DELETE FROM authorgettycodes WHERE id = :id";
-
-            // Prepare the SQL statement
-            $stmt = $conn->prepare($sql);
-
-            // Bind the parameters
-            $stmt->bindParam(':id', $id);
-
-            // Execute the statement
-            return $stmt->execute();
-        }
-
-        public function editGettyAuthor($id, $text)
-        {
-            $conn = $this->connect();
-            $sql = "UPDATE authorgettycodes SET text = :text WHERE id = :id";
-
-            // Prepare the SQL statement
-            $stmt = $conn->prepare($sql);
-
-            // Bind the parameters
-            $stmt->bindParam(':text', $text);
-            $stmt->bindParam(':id', $id);
-
-            // Execute the statement
-            return $stmt->execute();
-        }
 
         
     }
