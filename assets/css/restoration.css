@@ -1,0 +1,15 @@
+.comment-textarea {
+  all: unset;
+  width: 650px;
+  height: 250px;
+  text-align: left;
+  border-radius: 0.25em;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  box-shadow: 1px 1px 1px #999;
+}
+
+.comment-textarea:focus {
+  border: 1px solid #007bff;
+  box-shadow: 1px 1px 1px #007bff;
+}/*# sourceMappingURL=restoration.css.map */
