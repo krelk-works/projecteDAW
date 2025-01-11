@@ -105,18 +105,6 @@
             $stmt->execute();
             $tecniques = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            // Material Getty Codes
-            $sql = "SELECT * FROM materialgettycodes";
-            $stmt = $conn->prepare($sql);
-            $stmt->execute();
-            $materialgettycodes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            // Material Getty
-            $sql = "SELECT * FROM materialgetty";
-            $stmt = $conn->prepare($sql);
-            $stmt->execute();
-            $materialgetty = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
             // Entry types
             $sql = "SELECT * FROM entry";
             $stmt = $conn->prepare($sql);
@@ -145,8 +133,6 @@
                 'datations' => $datations,
                 'classifications' => $classifications,
                 'tecniques' => $tecniques,
-                'materialgettycodes' => $materialgettycodes,
-                'materialgetty' => $materialgetty,
                 'entry' => $entry,
                 'cancelcauses' => $cancelcauses,
                 'objects' => $objects
@@ -260,7 +246,7 @@
         public function getArtworkList($ID) {
             $conn = $this->connect();
             
-            $sql = "SELECT artworks.name, artworks.title, artworks.id
+            $sql = "SELECT artworks.title, artworks.id
                     FROM artworks
                     LEFT JOIN expositionsartworks ON artworks.id = expositionsartworks.artwork 
                     AND expositionsartworks.exposition =". $ID ."
@@ -294,7 +280,7 @@
             if (!empty($filter) && is_array($filter)) {
                 // Search filter
                 if (!empty($filter['search'])) {
-                    $conditions[] = "artworks.name LIKE :search";
+                    $conditions[] = "artworks.title LIKE :search";
                 }
         
                 // Author filter
@@ -356,15 +342,15 @@
         public function createArtwork($nom_del_museu, $id_letter, $id_num1, $id_num2, $objecte, $descripcio,
         $procedencia, $data_registre, $creation_date, $height, $width, $depth, $titol, $originplace, $executionplace, $tiratge, $altres_numeros,
         $cost, $amount, $historia_objecte, $ubicacio, $autor, $material, /*$exposition, $cancel,*/ $causa_baixa, $estat_conservacio, $datacio, $entry, 
-        $expositiontype, $classificacio_generica, $materialgettycode, $tecniquegetty, $image) {
+        $expositiontype, $classificacio_generica, $image) {
             $conn = $this->connect();
             $sql = "INSERT INTO artworks (museumname, id_letter, id_num1, id_num2, name, description, provenancecollection, register_date, creation_date, 
             height, width, depth, title, originplace, executionplace, triage, otheridnumbers, cost, amount, history, location, author, material,/* exposition,
-            cancel, */cancelcause, conservationstatus, datation, entry, expositiontype, genericclassification, materialgettycode, movement, restoration, 
-            tecnique, tecniquegettycode, image) VALUES (:museumname, :id_letter, :id_num1, :id_num2, :name, :description, :provenancecollection, :register_date,
+            cancel, */cancelcause, conservationstatus, datation, entry, expositiontype, genericclassification, movement, restoration, 
+            tecnique, image) VALUES (:museumname, :id_letter, :id_num1, :id_num2, :name, :description, :provenancecollection, :register_date,
             :creation_date, :height, :width, :depth, :title, :originplace, :executionplace, :triage, :otheridnumbers, :cost, :amount, :history, :location,
             :author, :material, /*:exposition, :cancel,*/ :cancelcause, :conservationstatus, :datation, :entry, :expositiontype, :genericclassification,
-            :materialgettycode, :movement, :restoration, :tecnique, :tecniquegettycode, :image)";
+            :movement, :restoration, :tecnique, :image)";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':museumname', $nom_del_museu, PDO::PARAM_STR);
             $stmt->bindParam(':id_letter', $id_letter, PDO::PARAM_STR);
@@ -534,12 +520,12 @@
             require_once 'vendor/autoload.php';
         
             $conn = $this->connect();
-            $sql = "SELECT artworks.id, artworks.name, artworks.creation_date, artworks.image,
+            $sql = "SELECT artworks.id, artworks.creation_date, artworks.image,
                     artworks.description, authors.name AS author, artworks.id_letter, artworks.id_num1,
                     artworks.id_num2, genericclassifications.text AS genericclassification, artworks.provenancecollection,
                     artworks.height, artworks.width, artworks.title, materials.text AS material, tecniques.text AS tecnique, datations.start_date,
                     datations.end_date, datations.text AS datation, artworks.register_date, artworks.cost, artworks.amount, artworks.depth,
-                    materialgettycodes.text AS materialgettycode, conservationstatus.text AS conservationstatus, artworks.museumname,
+                    conservationstatus.text AS conservationstatus, artworks.museumname,
                     artworks.provenancecollection, artworks.originplace, entry.text AS entry, artworks.history, artworks.triage,
                     artworks.executionplace, locations.name AS location
                     FROM artworks
@@ -548,7 +534,6 @@
                     INNER JOIN materials ON artworks.material = materials.id
                     INNER JOIN tecniques ON artworks.tecnique = tecniques.id
                     INNER JOIN datations ON artworks.datation = datations.id
-                    INNER JOIN materialgettycodes ON artworks.materialgettycode = materialgettycodes.id
                     INNER JOIN conservationstatus ON artworks.conservationstatus = conservationstatus.id
                     INNER JOIN entry ON artworks.entry = entry.id
                     INNER JOIN locations ON artworks.location = locations.id";
@@ -563,12 +548,12 @@
             require_once 'vendor/autoload.php';
         
             $conn = $this->connect();
-            $sql = "SELECT artworks.id, artworks.name, artworks.creation_date, artworks.image,
+            $sql = "SELECT artworks.id, artworks.creation_date, artworks.image,
                     artworks.description, authors.name AS author, artworks.id_letter, artworks.id_num1,
                     artworks.id_num2, genericclassifications.text AS genericclassification, artworks.provenancecollection,
                     artworks.height, artworks.width, artworks.title, materials.text AS material, tecniques.text AS tecnique, datations.start_date,
                     datations.end_date, datations.text AS datation, artworks.register_date, artworks.cost, artworks.amount, artworks.depth,
-                    materialgettycodes.text AS materialgettycode, conservationstatus.text AS conservationstatus, artworks.museumname,
+                    conservationstatus.text AS conservationstatus, artworks.museumname,
                     artworks.provenancecollection, artworks.originplace, entry.text AS entry, artworks.history, artworks.triage,
                     artworks.executionplace, locations.name AS location
                     FROM artworks
@@ -577,7 +562,6 @@
                     INNER JOIN materials ON artworks.material = materials.id
                     INNER JOIN tecniques ON artworks.tecnique = tecniques.id
                     INNER JOIN datations ON artworks.datation = datations.id
-                    INNER JOIN materialgettycodes ON artworks.materialgettycode = materialgettycodes.id
                     INNER JOIN conservationstatus ON artworks.conservationstatus = conservationstatus.id
                     INNER JOIN entry ON artworks.entry = entry.id
                     INNER JOIN locations ON artworks.location = locations.id
@@ -593,12 +577,11 @@
             require_once 'vendor/autoload.php';
         
             $conn = $this->connect();
-            $sql = "SELECT artworks.id, artworks.name, artworks.creation_date, artworks.image,
+            $sql = "SELECT artworks.id, artworks.creation_date, artworks.image,
                     artworks.description, authors.name AS author, artworks.id_letter, artworks.id_num1,
                     artworks.id_num2, genericclassifications.text AS genericclassification, artworks.provenancecollection,
                     artworks.height, artworks.width, artworks.title, materials.text AS material, tecniques.text AS tecnique, datations.start_date,
                     datations.end_date, datations.text AS datation, artworks.register_date, artworks.cost, artworks.amount, artworks.depth,
-                    materialgettycodes.text AS materialgettycode, conservationstatus.text AS conservationstatus, artworks.museumname,
                     artworks.provenancecollection, artworks.originplace, entry.text AS entry, artworks.history, artworks.triage,
                     artworks.executionplace, locations.name AS location
                     FROM artworks
@@ -607,7 +590,6 @@
                     INNER JOIN materials ON artworks.material = materials.id
                     INNER JOIN tecniques ON artworks.tecnique = tecniques.id
                     INNER JOIN datations ON artworks.datation = datations.id
-                    INNER JOIN materialgettycodes ON artworks.materialgettycode = materialgettycodes.id
                     INNER JOIN conservationstatus ON artworks.conservationstatus = conservationstatus.id
                     INNER JOIN entry ON artworks.entry = entry.id
                     INNER JOIN locations ON artworks.location = locations.id
@@ -627,7 +609,7 @@
                     INNER JOIN tecniques ON artworks.tecnique = tecniques.id
                     INNER JOIN locations ON artworks.location = locations.id
                     INNER JOIN conservationstatus ON artworks.conservationstatus = conservationstatus.id
-                    WHERE artworks.name LIKE :search OR authors.name LIKE :search OR locations.name LIKE :search OR conservationstatus.text LIKE :search OR artworks.title LIKE :search
+                    WHERE artworks.title LIKE :search OR authors.name LIKE :search OR locations.name LIKE :search OR conservationstatus.text LIKE :search OR artworks.title LIKE :search
                     ORDER BY artworks.title ASC";
             $stmt = $conn->prepare($sql);
             $searchTerm = "%" . $search . "%";
@@ -637,7 +619,7 @@
                 $conn = null;
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
-                // echo $e->getMessage();
+                echo $e->getMessage();
                 $conn = null;
                 return false;
             }
@@ -651,7 +633,7 @@
                     INNER JOIN locations ON artworks.location = locations.id
                     INNER JOIN conservationstatus ON artworks.conservationstatus = conservationstatus.id
                     INNER JOIN cancels ON cancels.artwork = artworks.id
-                    WHERE (artworks.name LIKE :search OR authors.name LIKE :search OR locations.name LIKE :search OR conservationstatus.text LIKE :search OR artworks.title LIKE :search) AND artworks.canceled = 1
+                    WHERE (artworks.title LIKE :search OR authors.name LIKE :search OR locations.name LIKE :search OR conservationstatus.text LIKE :search OR artworks.title LIKE :search) AND artworks.canceled = 1
                     ORDER BY artworks.title ASC";
             $stmt = $conn->prepare($sql);
             $searchTerm = "%" . $search . "%";
@@ -695,7 +677,7 @@
                     return false;
                 }
             } catch (PDOException $e) {
-                //echo $e->getMessage();
+                echo $e->getMessage();
                 $conn = null;
                 return false;
             }
@@ -773,12 +755,12 @@
 
         public function getArtworkAllData($id) {
             $conn = $this->connect();
-            $sql = "SELECT artworks.id, artworks.name, artworks.creation_date, artworks.image,
+            $sql = "SELECT artworks.id, artworks.creation_date, artworks.image,
                     artworks.description, artworks.bibliography, authors.name AS author, artworks.id_letter, artworks.id_num1,
                     artworks.id_num2, genericclassifications.text AS genericclassification, artworks.provenancecollection,
                     artworks.height, artworks.width, artworks.title, materials.text AS material, tecniques.text AS tecnique, datations.start_date,
                     datations.end_date, datations.text AS datation, artworks.register_date, artworks.cost, artworks.amount, artworks.depth,
-                    materialgettycodes.text AS materialgettycode, conservationstatus.text AS conservationstatus, artworks.museumname,
+                    conservationstatus.text AS conservationstatus, artworks.museumname,
                     artworks.provenancecollection, artworks.originplace, entry.text AS entry, artworks.history, artworks.triage,
                     artworks.executionplace, locations.name AS location
                     FROM artworks
@@ -787,7 +769,6 @@
                     INNER JOIN materials ON artworks.material = materials.id
                     INNER JOIN tecniques ON artworks.tecnique = tecniques.id
                     INNER JOIN datations ON artworks.datation = datations.id
-                    INNER JOIN materialgettycodes ON artworks.materialgettycode = materialgettycodes.id
                     INNER JOIN conservationstatus ON artworks.conservationstatus = conservationstatus.id
                     INNER JOIN entry ON artworks.entry = entry.id
                     INNER JOIN locations ON artworks.location = locations.id
@@ -798,6 +779,7 @@
                 $conn = null;
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
+                echo $e->getMessage();
                 $conn = null;
                 return false;
             }

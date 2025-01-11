@@ -18,10 +18,10 @@ class Backup extends Database {
     }
     public function create($name = null) {
         // Variables de conexión que ya están en la clase Database
-        $servername = "bbyirnoypbjzxaryzns9-mysql.services.clever-cloud.com";
-        $dbname = "bbyirnoypbjzxaryzns9";
-        $username = "ujthole5uvbkxwxc";
-        $password = "IYMr7GQwI6KWjKaoAhzn";
+        $servername = "srv1271.hstgr.io";
+        $dbname = "u411677469_db";
+        $username = "u411677469_fenosa";
+        $password = "f3n0s42025Z";
 
         // Nombre del archivo de copia de seguridad con fecha y hora actual
         $date = new DateTime();

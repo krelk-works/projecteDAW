@@ -76,7 +76,7 @@ if (isset($_GET['getArtworkAllData'])) {
         // Obtenemos los datos de la obra de arte correspondiente.
         $artworkDataCallback = $model->getArtworkAllData($artworkId);
 
-        if ($artworkDataCallback === false && $artworkDataCallback === null || empty($artworkDataCallback)) {
+        if ($artworkDataCallback === false || $artworkDataCallback === null || empty($artworkDataCallback)) {
             $response = [
                 "status" => "error",
                 "message" => "Ha ocurrido un error al obtener los datos de la obra de arte."
@@ -424,6 +424,8 @@ class ArtworkController
     {
         $artwork = new Artwork();
         $confirmation = $artwork->addNewArtwork($sqlfields);
+
+        // echo var_dump($sqlfields);
         if ($confirmation) {
             $artworkId = $confirmation;
 

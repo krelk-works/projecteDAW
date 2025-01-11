@@ -8,7 +8,7 @@
         </div>
         <div class="artwork-view-details">
             <p><span class="bold">Numero de registre:&nbsp;</span><span id="artwork-identifier">Carregant...</span></p>
-            <p><span class="bold">Nom de l'objecte:&nbsp;</span><span id="artwork-object-name">Carregant...</span></p>
+            <!-- <p><span class="bold">Nom de l'objecte:&nbsp;</span><span id="artwork-object-name">Carregant...</span></p> -->
             <p><span class="bold">Descripció:&nbsp;</span><span id="artwork-description">Carregant...</span></p>
         </div>
         <div class="artwork-view-subheader">
@@ -28,7 +28,7 @@
             <p class="half"><span class="bold">Material:&nbsp;</span><span id="artwork-material">Carregant...</span></p>
             <p class="half"><span class="bold">Tècnica:&nbsp;</span><span id="artwork-tecnique">Carregant...</span></p>
             <p class="half"><span class="bold">Classificació generica:&nbsp;</span><span id="artwork-generic-classification">Carregant...</span></p>
-            <p class="half"><span class="bold">Codi material *Getty:&nbsp;</span><span id="artwork-code-material-getty">Carregant...</span></p>
+            <!-- <p class="half"><span class="bold">Codi material *Getty:&nbsp;</span><span id="artwork-code-material-getty">Carregant...</span></p> -->
             <p class="half"><span class="bold">Cost:&nbsp;</span><span id="artwork-price">Carregant...</span></p>
             <p class="half"><span class="bold">Quantitat:&nbsp;</span><span id="artwork-amount">Carregant...</span></p>
             <p class="half"><span class="bold">Mides:&nbsp;</span><span id="artwork-dimensions">Carregant...</span></p>

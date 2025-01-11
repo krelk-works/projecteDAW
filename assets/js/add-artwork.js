@@ -352,8 +352,6 @@ const materialsList = document.getElementById('materials_list');
 const genericClassificationList = document.getElementById('generic_classification');
 const tecniquesList = document.getElementById('tecniques_list');
 const conservationsStatusList = document.getElementById('conservations_list');
-const gettyMaterialCodeList = document.getElementById('getty_material_codes_list');
-const gettyMaterialList = document.getElementById('getty_material_list');
 const entryTypeList = document.getElementById('entry_type_list');
 const locationsList = document.getElementById('locations_list');
 const cancelCausesList = document.getElementById('cancel_causes_list');
@@ -444,22 +442,6 @@ fetch("controllers/ArtworkController.php?getFormData", {
             conservationsStatusHTML += `<option value="${status.id}">${status.text}</option>`;
         });
         conservationsStatusList.innerHTML = conservationsStatusHTML; // Insertamos las opciones en el select
-
-        let gettyMaterialCodeHTML = '';
-        // gettyMaterialCodeHTML += `<option value="">Sense especificar</option>`;
-        data.message.materialgettycodes.forEach(code => {
-            // console.log('Codi de material Getty:', code.text);
-            gettyMaterialCodeHTML += `<option value="${code.id}">${code.text}</option>`;
-        });
-        //gettyMaterialCodeList.innerHTML = gettyMaterialCodeHTML; // Insertamos las opciones en el select
-
-        let gettyMaterialHTML = '';
-        // gettyMaterialHTML += `<option value="">Sense especificar</option>`;
-        data.message.materialgetty.forEach(material => {
-            // console.log('Material Getty:', material.text);
-            gettyMaterialHTML += `<option value="${material.id}">${material.text}</option>`;
-        });
-        //gettyMaterialList.innerHTML = gettyMaterialHTML; // Insertamos las opciones en el select
 
         let entryTypeHTML = '';
         entryTypeHTML += `<option value="">Sense especificar</option>`;

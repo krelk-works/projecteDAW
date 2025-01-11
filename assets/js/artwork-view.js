@@ -102,7 +102,7 @@ if (urlParams.has('id')) {
                 $('#artwork-identifier').text(identifier);
 
                 // Artwork object name
-                $('#artwork-object-name').text(artworkData.name);
+                // $('#artwork-object-name').text(artworkData.name);
 
                 // Artwork description
                 $('#artwork-description').text(artworkData.description);
@@ -136,9 +136,6 @@ if (urlParams.has('id')) {
 
                 // Artwork generic classification
                 $('#artwork-generic-classification').text(artworkData.genericclassification);
-
-                // Artwork material code getty
-                $('#artwork-code-material-getty').text(artworkData.materialgettycode);
 
                 // Artwork price
                 $('#artwork-price').text(artworkData.cost);
