@@ -243,6 +243,19 @@
             return $result;
         }
 
+        public function getArtworkById($id) {
+            $conn = $this->connect();
+            $sql = "SELECT *
+                    FROM artworks
+                    WHERE artworks.id = :id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $conn = null;
+            return $result;
+        }
+
         public function getArtworkList($ID) {
             $conn = $this->connect();
             

@@ -22,7 +22,7 @@
             <div class="artwork-create-box-elements">
                 <div class="acb-element-1-2">
                     <label for="id_number">Número de registre</label>
-                    <select name="id_letter" id="id_letter" class="custom-select-1">
+                    <select name="id_letter" id="id_letter" class="custom-select-1" disabled>
                         <option value="">-</option>
                         <option value="a">A</option>
                         <option value="b">B</option>
@@ -52,10 +52,10 @@
                         <option value="z">Z</option>
                     </select>
                     <input class="custom-number-imput-1" type="number" name="id_number" id="id_number"
-                        placeholder="Identificador" max="99999" min="1" required>
-                    <input class="custom-number-imput-2" type="number" name="id_sub_number" id="id_sub_number" placeholder="Sub">
+                        placeholder="Identificador" max="99999" min="1" disabled>
+                    <input class="custom-number-imput-2" type="number" name="id_sub_number" id="id_sub_number" placeholder="Sub" disabled>
                     <input class="custom-number-imput-3" type="text" name="" id="id_other" name="id_other"
-                        placeholder="Altres idenfiticadors">
+                        placeholder="Altres idenfiticadors" disabled>
                 </div>
                 <div class="acb-element-1-2">
                     <label class="element-1-1" for="artwork_title">Títol</label>
@@ -244,9 +244,9 @@
                 <!-- <input type="file" name="document_0" id="document_0" hidden> -->
             </div>
             <div class="create-artwork-button">
-                <button type="submit">Crear obra</button>
+                <button type="submit">Desar obra</button>
             </div>
         </div>
     </div>
 </form>
-<script src="assets/js/update-artwork.js" defer></script>
+<script src="assets/js/artwork-update.js" defer></script>

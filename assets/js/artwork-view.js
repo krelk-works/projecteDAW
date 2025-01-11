@@ -224,6 +224,10 @@ if (urlParams.has('id')) {
             
         })
         .catch(error => console.log(error));
+
+        $("#edit_artwork").click(function() {
+            window.open('index.php?page=artwork-update&id='+urlParams.get('id'));
+        });
 }
 
 movement_create.addEventListener('click', function () {
