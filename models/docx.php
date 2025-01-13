@@ -10,7 +10,7 @@ class DOCX extends Database {
         $conn = $this->connect();
         $sql = "SELECT artworks.title, artworks.id_letter, artworks.id_num1, artworks.id_num2, 
         artworks.height, artworks.width, artworks.depth, authors.name, materials.text AS material,
-        datations.text AS datation
+        datations.text AS datation, artworks.cost
         FROM artworks
         INNER JOIN authors ON artworks.author = authors.id
         INNER JOIN materials ON artworks.material = materials.id
@@ -34,6 +34,7 @@ class DOCX extends Database {
             'text4' => $result[0]['height'] . "cm/" . $result[0]['width'] . "cm/" . $result[0]['depth'] . "cm",
             'text5' => $result[0]['material'],
             'text6' => $result[0]['datation'],
+            'text7' => $result[0]['cost'] . "€"
         ];
 
         foreach ($data as $placeholder => $value) {
