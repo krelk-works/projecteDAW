@@ -9,9 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $start_date = $_POST['start_date'];
         $end_date = $_POST['end_date'];
         // comprovar si las fechas son validas y tienen sentido
-        $currentDate = new DateTime();
-        $currentDate = $currentDate->format('Y-m-d');
-        if ($start_date >= $currentDate && $end_date >= $start_date) {
+        if ($end_date >= $start_date) {
             // enviar datos al controlador
             $expositionController = new ExpositionController();
             $check = $expositionController->createExposition($name, $expoloc, $expotype['id'], $start_date, $end_date);
@@ -41,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: 'Ha hagut un problema al crear la exposicio: comprova que les dates introduides siguin valides y torna a provar.',
+                    text: 'Ha hagut un problema al crear la exposicio: comprova que les dates introduides siguin valides y toena a provar.',
                     showConfirmButton: true,
                     confirmButtonText: 'Tornar'
                 });
