@@ -121,7 +121,6 @@
         document.getElementById('cancelArtworkLink').addEventListener('click', function (e) {
             e.preventDefault();
 
-            // Obtenemos las opciones del select (generadas desde PHP al inicio)
             const optionsHtml = `<?php
                 $artworkController = new ArtworkController();
                 $data = $artworkController->getCancelCauseList();
@@ -135,9 +134,9 @@
                 html: `
                     <div>
                         <label for="nombre">Nom del treballador autoritzat:</label><br>
-                        <input id="nombre" type="text" class="swal2-input" placeholder="Nom"><br>
+                        <input id="nombre" type="text" class="swal2-input" style="margin-bottom: 20px;" placeholder="Nom"><br>
                         <label for="canc">Motiu de baixa:</label><br>
-                        <select id="canc" class="swal2-select">
+                        <select id="canc" class="swal2-select" style="width: 250px; margin-bottom: 20px;">
                             <option value="" disabled selected>Selecciona un motiu</option>
                             ${optionsHtml}
                         </select><br>
@@ -148,28 +147,24 @@
                 focusConfirm: false,
                 confirmButtonText: 'Guardar',
                 preConfirm: () => {
-                    // Recoger valores
+
                     const nombre = document.getElementById('nombre').value.trim();
                     const canc = document.getElementById('canc').value;
                     const desc = document.getElementById('desc').value.trim();
 
-                    // Validar que todos los campos están completos
                     if (!nombre || !canc || !desc) {
                         Swal.showValidationMessage('Tots els camps són obligatoris.');
                         return false;
                     }
 
-                    // Devolver los valores para procesarlos
                     return { nombre, canc, desc };
                 }
             }).then((result) => {
                 if (result.isConfirmed) {
                     const { nombre, canc, desc } = result.value;
 
-                    // Construir la URL con los parámetros GET
                     const url = `index.php?page=artwork-view&cancelArtworkConfirmation=true&id=<?php echo $_GET['id']; ?>&nom=${encodeURIComponent(nombre)}&canc=${encodeURIComponent(canc)}&desc=${encodeURIComponent(desc)}`;
 
-                    // Redirigir
                     window.location.href = url;
                 }
             });
