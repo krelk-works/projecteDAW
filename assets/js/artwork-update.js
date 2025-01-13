@@ -177,6 +177,18 @@ function setFieldsData(artwork) {
             }
         }
     });
+
+    // Cargamos la imagen principal de la obra de arte si existe
+    if (artwork.image && artwork.image !== 'assets/img/noimage.png') {
+        // Mostramos la imagen
+        const image = $("#defaultimagepreview");
+        image.attr("src", artwork.image);
+        image.show(600);
+
+        // Ocultamos el mensaje de "agregar imagen"
+        const button = $("#add-default-image");
+        button.hide();
+    }
 }
 
 function loadEventHandlers() {

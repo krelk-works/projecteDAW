@@ -225,7 +225,7 @@
             <div class="artwork-create-box-multimedia">
                 <!-- <div class="multimedia-content">
                     <img src="assets/img/defaultimageexample.png" alt="">
-                </div>-->
+                </div> -->
                 <div class="multimedia-add-content">
                     <button type="button"><i class="fa-solid fa-plus"></i></button>
                 </div>
