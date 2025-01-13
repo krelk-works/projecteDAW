@@ -71,7 +71,7 @@
             <button id="movement_create">Crear moviment</button>
             <button id="edit_artwork">Editar obra</button>
             <a href="?generateDOCX=<?php echo $_GET['id']; ?>" target="_blank"><button>Descarregar formulari de prestec</button></a>
-            <a href="?generateIndividualPDF=<?php echo $_GET['id']; ?>" target="_blank"><button>Generar informe de fitxa basica</button></a>
+            <a href="?generateIndividualPDF=342" target="_blank"><button>Generar informe de fitxa basica</button></a>
             <a href="?generateSimplePDF=<?php echo $_GET['id']; ?>" target="_blank"><button>Generar informe de fitxa general</button></a>
             <!--<a href="index.php?page=artwork-view&id=<?#php echo $_GET['id']; ?>&cancelArtwork=true" target="_blank"><button>Desactivar obra</button></a>-->
             <a href="#" id="cancelArtworkLink"><button>Desactivar obra</button></a>
