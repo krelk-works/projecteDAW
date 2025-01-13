@@ -1,7 +1,7 @@
 <?php
     require_once "controllers/PDFController.php";
     $PDFController = new PDFController();
-    $data = $PDFController->generateInvididualPDF($_GET['generateInvididualPDF']);
+    $data = $PDFController->generateIndividualPDF($_GET['generateIndividualPDF']);
     $placeholderImage = 'assets/img/images.jpg';
 
     $html2pdf = new \Spipu\Html2Pdf\Html2Pdf('P', 'A3', 'es');

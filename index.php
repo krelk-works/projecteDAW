@@ -70,7 +70,7 @@
         if (isset($_GET['generatePDF'])) {
             require_once "views/generatePDF/generatePDF.php";
         }
-        else if (isset($_GET['generateInvididualPDF'])) {
+        else if (isset($_GET['generateIndividualPDF'])) {
             require_once "views/generatePDF/generateIndividualPDF.php";
         }
         else if (isset($_GET['generateSimplePDF'])) {

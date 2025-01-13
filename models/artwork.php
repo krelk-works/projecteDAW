@@ -557,7 +557,7 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        public function generateInvididualPDF($id) {
+        public function generateIndividualPDF($id) {
             require_once 'vendor/autoload.php';
         
             $conn = $this->connect();

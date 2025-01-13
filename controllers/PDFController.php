@@ -7,10 +7,10 @@
             return $artwork->generatePDF();
         }
 
-        public function generateInvididualPDF($id) {
+        public function generateIndividualPDF($id) {
             require_once "models/artwork.php";
             $artwork = new Artwork();
-            return $artwork->generateInvididualPDF($id);
+            return $artwork->generateIndividualPDF($id);
         }
 
         public function generateSimplePDF($id) {
