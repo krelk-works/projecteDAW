@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: 'Ha hagut un problema al crear la exposicio: comprova que les dates introduides siguin valides y toena a provar.',
+                    text: 'Ha hagut un problema al crear la exposicio: comprova que les dates introduides siguin valides y torna a provar.',
                     showConfirmButton: true,
                     confirmButtonText: 'Tornar'
                 });

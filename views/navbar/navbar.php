@@ -37,7 +37,7 @@ if (isset($_GET['page'])) {
                 $userManagementStyle = $actualPage == "usuaris" ? "border-bottom: 2px solid #007bff;" : "";
                 $locationManagementStyle = $actualPage == "localitzacions" ? "border-bottom: 2px solid #007bff;" : "";
                 $vocabularyManagementStyle = $actualPage == "vocabulari" ? "border-bottom: 2px solid #007bff;" : "";
-                $dropdownManagementStyle = $actualPage == "vocabulari" || $actualPage == "moviments" || $actualPage == "cancelacions" || $actualPage == "restauracions" ? "border-bottom: 2px solid #007bff;" : "";
+                $dropdownManagementStyle = $actualPage == "moviments" || $actualPage == "cancelacions" || $actualPage == "restauracions" ? "border-bottom: 2px solid #007bff;" : "";
                 $movimentManagementStyle = $actualPage == "moviments" ? "border-bottom: 2px solid #007bff;" : "";
                 $backupManagementStyle = $actualPage == "backups" ? "border-bottom: 2px solid #007bff;" : "";
                 $cancelationManagementStyle = $actualPage == "cancelacions" ? "border-bottom: 2px solid #007bff;" : "";
@@ -47,31 +47,31 @@ if (isset($_GET['page'])) {
                 echo "<li>";
                 echo "<a href='?page=expositions' style='$expositionManagementStyle'>Exposicions</a>";
                 echo "</li>";
-
+                
+                // Location management
+                echo "<li>";
+                echo "<a href='?page=localitzacions' style='$locationManagementStyle'>Ubicacions</a>";
+                echo "</li>";
+                
+                echo "<li class='dropdown1'>";
+                echo "<a href='#' class='dropdown-toggle1' style='$dropdownManagementStyle'>Gestio</a>";
+                echo "<ul class='dropdown-menu1'>";
+                echo "<li><a href='?page=moviments' style='$movimentManagementStyle'>Moviments</a></li>";
+                echo "<li><a href='?page=cancelacions' style='$cancelationManagementStyle'>Baixes</a></li>";
+                echo "<li><a href='?page=restauracions' style='$restaurationManagementStyle'>Restauracions</a></li>";
+                echo "</ul>";
+                echo "</li>";
                 
 
                 if ($_SESSION['role'] == "admin") {
                     // User management
+
+                    echo "<li><a href='?page=vocabulari' style='$vocabularyManagementStyle'>Vocabularis</a></li>";
+
                     echo "<li>";
                     echo "<a href='?page=usuaris' style='$userManagementStyle'>Usuaris</a>";
                     echo "</li>";
-
-                    // Location management
-                    echo "<li>";
-                    echo "<a href='?page=localitzacions' style='$locationManagementStyle'>Ubicacions</a>";
-                    echo "</li>";
                 
-                    echo "<li class='dropdown1'>";
-                    echo "<a href='#' class='dropdown-toggle1' style='$dropdownManagementStyle'>Gestio</a>";
-                    echo "<ul class='dropdown-menu1'>";
-                    echo "<li><a href='?page=vocabulari' style='$vocabularyManagementStyle'>Vocabularis</a></li>";
-                    echo "<li><a href='?page=moviments' style='$movimentManagementStyle'>Moviments</a></li>";
-                    echo "<li><a href='?page=cancelacions' style='$cancelationManagementStyle'>Cancelacions</a></li>";
-                    echo "<li><a href='?page=restauracions' style='$restaurationManagementStyle'>Restauracions</a></li>";
-                    echo "</ul>";
-                    echo "</li>";
-                    
-
                     // Backup management
                     echo "<li>";
                     echo "<a href='?page=backups' style='$backupManagementStyle'>Backups</a>";
@@ -93,7 +93,6 @@ if (isset($_GET['page'])) {
 
 
 
-                        echo "<a href='?page=user-administration&userID=" . $_SESSION['id'] . "'><i class='fa-solid fa-user'></i>" . $_SESSION['username'] . "</a>";
                         ?>
                         <a href="#" id="logoutButton"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
                     </div>
