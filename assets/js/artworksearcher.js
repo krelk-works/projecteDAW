@@ -312,6 +312,7 @@ if (document.querySelector("#artworksearch")) {
     })
         .then(response => response.text()) // Leer la respuesta completa como texto
         .then(response => {
+            // console.log(response);
             const data = JSON.parse(response);
             // Rellenar los campos de los filtros avanzados
             const authors = data.message.authors;

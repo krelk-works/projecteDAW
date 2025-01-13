@@ -13,6 +13,8 @@ $(document).ready(async function() {
         const artworkData = await getArtwork(urlParams.get('id'));
 
         setFieldsData(artworkData);
+
+        loadArtworkImageFunctions();
     }
 });
 
@@ -256,4 +258,30 @@ function padSubWithZeros(number) {
 
     // Si las comprobaciones son correctas, agrega ceros a la izquierda hasta 5 dígitos
     return number.toString().padStart(2, '0');
+}
+
+function loadArtworkImageFunctions() {
+    // Funcionalidad para cargar la imagen principal de la obra de arte
+    const defaultImagePreview = $("#defaultimagepreview");
+
+    defaultImagePreview.on('click', function() {
+        alert('Funcionalidad en construcción...');
+
+        Swal.fire({
+            title: "Estas segur que vols eliminar la imatge principal?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Si, eliminar",
+            cancelButtonText: "Cancel·lar",
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                // Eliminamos el input y el contenedor de vista previa asociados
+                const inputToRemove = document.getElementById(filePreviewContainer.getAttribute("data-input-id"));
+                inputToRemove?.remove();
+                outerContainer.remove();
+            }
+        });  
+    });
+    
 }

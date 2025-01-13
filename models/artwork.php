@@ -852,5 +852,16 @@
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
+
+        public function removeFile($file) {
+            $uploaddir = 'uploads/';
+            if (file_exists($uploaddir . $file)) {
+                unlink($uploaddir . $file);
+                return true;
+            } else {
+                return false;
+            }
+
+        }
     }
 ?>

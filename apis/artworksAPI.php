@@ -19,4 +19,22 @@
         ob_clean();
         echo json_encode($data);
     }
+
+    if (isset($_GET['remfile'])) {
+        header('Content-Type: application/json');
+        include_once("../models/artwork.php");
+        $file = $_GET['remfile'];
+        $model = new artwork();
+        $result = $model->removeFile($file);
+        $reponse = [];
+        if ($result) {
+            $response['status'] = "success";
+        } else {
+            $response['status'] = "error";
+        }
+        ob_clean();
+        echo json_encode($response);
+    }
+
+    
 ?>
