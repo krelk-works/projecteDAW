@@ -152,7 +152,7 @@ $(document).on('click', '#show-comment', function() {
     
     Swal.fire({
         title : 'Modificar comentari',
-        html: `<textarea class="comment-textarea">${comment}</textarea>`,
+        html: `<textarea class="swal2-textarea" style="width: 650px;height: 330px; resize : none;">${comment}</textarea>`,
         showDenyButton: true,
         showCancelButton: true,
         confirmButtonText: "Guardar",
