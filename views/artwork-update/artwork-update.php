@@ -1,11 +1,11 @@
-<form action="add-artwork.php" method="POST" enctype="multipart/form-data" id="add-artwork-form">
+<form action="#" method="POST" enctype="multipart/form-data" id="add-artwork-form">
     <div id="artwork-create-container">
         <div class="artwork-create-header">
             <h1><i class="fa-regular fa-bookmark"></i> <span id="artwork-page-title">Nova obra</span></h1>
             <hr>
         </div>
         <div class="artwork-create-box">
-            <div class="artwork-create-box-header">
+            <!-- <div class="artwork-create-box-header">
                 <h3>Imatge principal</h3>
                 <hr>
             </div>
@@ -13,8 +13,7 @@
                 <img src="" alt="Imatge per defecte" style="display: none" id="defaultimagepreview">
                 <button id="add-default-image">Afegir imatge</button>
                 <input type="file" id="defaultimage" name="defaultimage" hidden="true" accept="image/png, image/jpeg, image/jpg, image/jfif">
-                <!-- <button>Cambiar fotografia</button> -->
-            </div>
+            </div> -->
             <div class="artwork-create-box-header">
                 <h3>Identificació</h3>
                 <hr>
@@ -194,14 +193,12 @@
                     </select>
                 </div> -->
             </div>
-            <div class="artwork-create-box-header">
+            <!-- <div class="artwork-create-box-header">
                 <h3>Documents</h3>
                 <hr>
             </div>
             <div class="artwork-create-box-multimedia">
-                <!-- <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div> -->
+
                 <div class="multimedia-add-content">
                     <button type="button" id="add_documents_button"><i class="fa-solid fa-plus"></i></button>
                 </div>
@@ -211,9 +208,7 @@
                 <hr>
             </div>
             <div class="artwork-create-box-multimedia">
-                <!-- <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div>-->
+
                 <div class="multimedia-add-content">
                     <button type="button"><i class="fa-solid fa-plus"></i></button>
                 </div>
@@ -223,13 +218,11 @@
                 <hr>
             </div>
             <div class="artwork-create-box-multimedia">
-                <!-- <div class="multimedia-content">
-                    <img src="assets/img/defaultimageexample.png" alt="">
-                </div> -->
+
                 <div class="multimedia-add-content">
                     <button type="button"><i class="fa-solid fa-plus"></i></button>
                 </div>
-            </div>
+            </div> -->
             <div class="artwork-create-box-header">
                 <h3>Historia</h3>
                 <hr>

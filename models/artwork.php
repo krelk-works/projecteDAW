@@ -853,15 +853,45 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        public function removeFile($file) {
-            $uploaddir = 'uploads/';
-            if (file_exists($uploaddir . $file)) {
-                unlink($uploaddir . $file);
+        public function removeFile($dir) {
+            // echo $dir;
+            $file = "/var/www/html/$dir";
+            echo $file;
+            if (file_exists($file) && $dir != "assets/img/noimage.png") {
+                unlink($file);
                 return true;
             } else {
                 return false;
             }
 
+        }
+
+        public function updateArtwork_($id, $data) {
+            $conn = $this->connect();
+            
+            // Generar la consulta dinámica
+            $table = 'artworks'; // Nombre de tu tabla
+            $setParts = [];
+            $params = [];
+
+            // echo var_dump($data);
+
+            foreach ($data as $column => $value) {
+                $setParts[] = "`$column` = :$column";
+                $params[":$column"] = $value;
+            }
+
+            // Agregar la condición WHERE
+            $params[':id'] = $id;
+            $sql = "UPDATE `$table` SET " . implode(', ', $setParts) . " WHERE `id` = :id";
+
+            // Preparar y ejecutar la consulta
+            $stmt = $conn->prepare($sql);
+            if ($stmt->execute($params)) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 ?>

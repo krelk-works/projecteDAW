@@ -60,5 +60,61 @@ class Backup extends Database {
             return false;
         }
     }
+    public function restore($zipFileName)
+    {
+        // Variables de conexión que ya están en la clase Database
+        $servername = "srv1271.hstgr.io";
+        $dbname = "u411677469_db";
+        $username = "u411677469_fenosa";
+        $password = "f3n0s42025Z";
+
+        // Directorio donde se encuentran los backups
+        $backupDirectory = "/var/www/html/backups/";
+
+        // Ruta completa del archivo ZIP
+        $zipFilePath = $backupDirectory . $zipFileName;
+
+        // Verificar si el archivo ZIP existe
+        if (!file_exists($zipFilePath)) {
+            return false; // Archivo ZIP no encontrado
+        }
+
+        // Extraer el archivo ZIP
+        $zip = new ZipArchive();
+        if ($zip->open($zipFilePath) === TRUE) {
+            // Extraer el contenido del archivo ZIP
+            $extractedPath = $backupDirectory; // Extraer en el mismo directorio
+            $zip->extractTo($extractedPath);
+            $zip->close();
+        } else {
+            return false; // Error al abrir el archivo ZIP
+        }
+
+        // Obtener el nombre del archivo .sql (se asume que hay un solo archivo en el ZIP)
+        $sqlFileName = pathinfo($zipFileName, PATHINFO_FILENAME) . '.sql';
+        $sqlFilePath = $extractedPath . $sqlFileName;
+
+        // Verificar si el archivo .sql existe después de extraerlo
+        if (!file_exists($sqlFilePath)) {
+            return false; // Archivo .sql no encontrado
+        }
+
+        // Comando para restaurar la base de datos
+        $command = "mysql --host=$servername --user=$username --password=$password $dbname < $sqlFilePath";
+
+        // Ejecutar el comando
+        system($command, $output);
+
+        // Eliminar el archivo .sql después de restaurar
+        unlink($sqlFilePath);
+
+        // Verificar si la restauración fue exitosa
+        if ($output === 0) {
+            return true; // Restauración exitosa
+        } else {
+            return false; // Error al restaurar
+        }
+    }
+
 }
 ?>

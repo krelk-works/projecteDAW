@@ -14,7 +14,7 @@ $(document).ready(async function() {
 
         setFieldsData(artworkData);
 
-        loadArtworkImageFunctions();
+        // loadArtworkImageFunctions();
     }
 });
 
@@ -207,7 +207,79 @@ function loadEventHandlers() {
     const form = $("#add-artwork-form");
     form.on('submit', function(event) {
         event.preventDefault();
-        alert('Actualización de obra de arte en construcción...');
+
+        const urlParams = new URLSearchParams(window.location.search);
+        // alert('Actualización de obra de arte en construcción...');
+
+        // Recogemos los datos necesarios del formulario
+
+        const fieldsIdentifiers = [
+            { formId: 'author_names', dbId: 'author' },
+            { formId: 'object_names', dbId: 'object' },
+            { formId: 'materials_list', dbId: 'material' },
+            { formId: 'tecniques_list', dbId: 'tecnique' },
+            { formId: 'datations_list', dbId: 'datation' },
+            { formId: 'generic_classification', dbId: 'genericclassification' },
+            { formId: 'conservations_list', dbId: 'conservationstatus' },
+            { formId: 'entry_type_list', dbId: 'entry' },
+            { formId: 'locations_list', dbId: 'location' },
+            { formId: 'artwork_title', dbId: 'title' },
+            { formId: 'artwork_description', dbId: 'description' },
+            { formId: 'created_date', dbId: 'creation_date' },
+            { formId: 'artwork_bibliography', dbId: 'bibliography' },
+            { formId: 'artwork_height', dbId: 'height' },
+            { formId: 'artwork_width', dbId: 'width' },
+            { formId: 'artwork_depth', dbId: 'depth' },
+            { formId: 'artwork_price', dbId: 'cost' },
+            { formId: 'artwork_quantity', dbId: 'amount' },
+            { formId: 'origin_museum', dbId: 'museumname' },
+            { formId: 'origin_collection', dbId: 'provenancecollection' },
+            { formId: 'origin_place', dbId: 'originplace' },
+            { formId: 'execution_place', dbId: 'executionplace' },
+            { formId: 'tirage', dbId: 'triage' },
+            { formId: 'artwork_history', dbId: 'history' },
+        ];
+        
+        const artworkData = {}; // Inicializa la variable antes de usarla
+        
+        for (const field of fieldsIdentifiers) {
+            const formField = document.getElementById(field.formId);
+            if (formField) {
+                artworkData[field.dbId] = formField.value;
+                console.log(artworkData[field.dbId], formField.value);
+            }
+        }
+        
+        
+        // Obtenemos los datos de los campos del formulario
+        fetch('/apis/artworksAPI.php?updateArtwork', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ artwork: artworkData, id: urlParams.get('id') })
+        }).then(response => response.json()).then(data => {
+            if (data.status === 'success') {
+                Swal.fire({
+                    title: "Registre actualitzat correctament",
+                    text: "L'obra d'art s'ha actualitzat correctament.",
+                    icon: "success",
+                    confirmButtonText: "D'acord",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "index.php";
+                    }
+                });
+            } else {
+                Swal.fire({
+                    title: "Hi ha hagut un error",
+                    text: "Hi ha hagut un error en l'actualització de l'obra d'art. Si us plau, torna-ho a intentar.",
+                    icon: "error",
+                    confirmButtonText: "D'acord",
+                });
+            }
+        });
+
     });
 }
 
@@ -260,28 +332,37 @@ function padSubWithZeros(number) {
     return number.toString().padStart(2, '0');
 }
 
-function loadArtworkImageFunctions() {
-    // Funcionalidad para cargar la imagen principal de la obra de arte
-    const defaultImagePreview = $("#defaultimagepreview");
+// function loadArtworkImageFunctions() {
+//     // Funcionalidad para cargar la imagen principal de la obra de arte
+//     const defaultImagePreview = $("#defaultimagepreview");
 
-    defaultImagePreview.on('click', function() {
-        alert('Funcionalidad en construcción...');
+//     defaultImagePreview.on('click', function() {
 
-        Swal.fire({
-            title: "Estas segur que vols eliminar la imatge principal?",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Si, eliminar",
-            cancelButtonText: "Cancel·lar",
-        }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-                // Eliminamos el input y el contenedor de vista previa asociados
-                const inputToRemove = document.getElementById(filePreviewContainer.getAttribute("data-input-id"));
-                inputToRemove?.remove();
-                outerContainer.remove();
-            }
-        });  
-    });
+//         // alert('Funcionalidad en construcción...');
+
+//         Swal.fire({
+//             title: "Estas segur que vols eliminar la imatge principal?",
+//             icon: "warning",
+//             showCancelButton: true,
+//             confirmButtonText: "Si, eliminar",
+//             cancelButtonText: "Cancel·lar",
+//         }).then((result) => {
+//             /* Read more about isConfirmed, isDenied below */
+//             if (result.isConfirmed) {
+//                 // Eliminamos el input y el contenedor de vista previa asociados
+                
+//                 fetch('controllers/ArtworkController.php?remfile', {
+//                     method: "POST",
+//                     headers: {
+//                         "Content-Type": "application/json"
+//                     },
+//                     body: JSON.stringify({
+//                         image: defaultImagePreview.attr('src')
+//                     })
+//                 }).then(response => response.json()).then(data => {return data;});
+
+//             }
+//         });  
+//     });
     
-}
+// }

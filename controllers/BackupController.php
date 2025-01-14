@@ -69,5 +69,11 @@ class BackupController
         $created = $backupModel->create($filename);
         return $created;
     }
+
+    public function restore($filename) {
+        $backupModel = new Backup();
+        $restored = $backupModel->restore($filename);
+        return $restored;
+    }
 }
 ?>
