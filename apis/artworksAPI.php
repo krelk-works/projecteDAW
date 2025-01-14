@@ -65,5 +65,68 @@
         echo json_encode($response);
     }
 
+    if (isset($_GET['additionalimages'])) {
+        header('Content-Type: application/json');
+        include_once("../models/artwork.php");
+        $request = file_get_contents('php://input');
+        $data = json_decode($request, true); // Decodifica a un array asociativo
+        $artworkId = $data['id'];
+        $reponse = [];
+        if (!empty($artworkId)) {
+            $model = new artwork();
+            $result = $model->getAdditionalImages($artworkId);
+            if ($result) {
+                $response['status'] = "success";
+                $response['data'] = $result;
+            } else {
+                $response['status'] = "error";
+            }
+        }
+        ob_clean();
+        echo json_encode($response);
+    }
+
+    if (isset($_GET['artworkdocuments'])) {
+        header('Content-Type: application/json');
+        include_once("../models/artwork.php");
+        $request = file_get_contents('php://input');
+        $data = json_decode($request, true); // Decodifica a un array asociativo
+        $artworkId = $data['id'];
+        $reponse = [];
+        if (!empty($artworkId)) {
+            $model = new artwork();
+            $result = $model->getArtworkDocuments($artworkId);
+            if ($result) {
+                $response['status'] = "success";
+                $response['data'] = $result;
+            } else {
+                $response['status'] = "error";
+            }
+        }
+        ob_clean();
+        echo json_encode($response);
+    }
+
+    if (isset($_GET['artworkrefs'])) {
+        header('Content-Type: application/json');
+        include_once("../models/artwork.php");
+        $request = file_get_contents('php://input');
+        $data = json_decode($request, true); // Decodifica a un array asociativo
+        $artworkId = $data['id'];
+        $reponse = [];
+        if (!empty($artworkId)) {
+            $model = new artwork();
+            $result = $model->getReferences($artworkId);
+            if ($result) {
+                $response['status'] = "success";
+                $response['data'] = $result;
+            } else {
+                $response['status'] = "error";
+            }
+        }
+        ob_clean();
+        echo json_encode($response);
+    }
+
     
 ?>

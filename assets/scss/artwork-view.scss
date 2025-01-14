@@ -95,6 +95,17 @@
             .bold {
                 font-weight: bold;
             }
+
+            .ref {
+                color: rgb(71, 71, 71);
+                // cursor: pointer;
+                width: 100%;
+                padding: 5px;
+            }
+
+            .ref a:hover {
+                text-decoration: underline;
+            }
             
         }
 
@@ -148,6 +159,70 @@
             }
 
             
+        }
+
+        .artwork-view-documents {
+            // Temporales diseño
+            // background-color: pink;
+            // Usamos flexbox por defecto
+            display: flex;
+            flex-wrap: wrap;
+            // Alineamos el contenido de arriba a abajo
+            align-items: flex-start;
+            // Tamaño fijo
+            width: 100%;
+            // Padding para que no esté pegado a los bordes el contenido
+            padding: 5px;
+
+            // background-color: #464646;
+
+            .artwork-document {
+                // Temporales diseño
+                // background-color: yellow;
+                // Usamos flexbox por defecto
+                display: flex;
+                flex-wrap: wrap;
+                // Alineamos el contenido de arriba a abajo
+                align-items: center;
+                justify-content: center;
+
+                // Tamaño fijo
+                width: 148px;
+                height: 96px;
+
+                // Padding para que no esté pegado a los bordes el contenido
+                padding: 5px;
+
+                // Separamos las imágenes con un margen
+                margin-right: 5px;
+                margin-bottom: 5px;
+
+                // Configuramos el cursor para que sea clickable
+                cursor: pointer;
+
+                white-space: nowrap;        /* Evita que el texto se envuelva */
+                overflow: hidden;          /* Oculta el texto que excede el límite */
+                text-overflow: ellipsis;   /* Añade puntos suspensivos al final */
+
+                img {
+                    // Temporales diseño
+                    // background-color: orange;
+                    // Tamaño fijo
+                    width: 50%;
+                    height: 80%;
+                }
+
+                p {
+                    // Temporales diseño
+                    // background-color: orange;
+                    // Tamaño fijo
+                    width: 100%;
+                    height: 20%;
+                    color: rgb(71, 71, 71);
+                    text-align: center;
+                    font-size: 12px;
+                }
+            }
         }
     }
 }

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 #artwork-view-container {
   background-color: #fafafa;
   flex-wrap: wrap;
@@ -51,6 +52,14 @@
 #artwork-view-container #artwork-view-body .artwork-view-details .bold {
   font-weight: bold;
 }
+#artwork-view-container #artwork-view-body .artwork-view-details .ref {
+  color: rgb(71, 71, 71);
+  width: 100%;
+  padding: 5px;
+}
+#artwork-view-container #artwork-view-body .artwork-view-details .ref a:hover {
+  text-decoration: underline;
+}
 #artwork-view-container #artwork-view-body .artwork-view-images {
   display: flex;
   flex-wrap: wrap;
@@ -73,4 +82,37 @@
 #artwork-view-container #artwork-view-body .artwork-view-images .artwork-view-image img {
   width: 100%;
   height: 100%;
+}
+#artwork-view-container #artwork-view-body .artwork-view-documents {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  width: 100%;
+  padding: 5px;
+}
+#artwork-view-container #artwork-view-body .artwork-view-documents .artwork-document {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 148px;
+  height: 96px;
+  padding: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  white-space: nowrap; /* Evita que el texto se envuelva */
+  overflow: hidden; /* Oculta el texto que excede el límite */
+  text-overflow: ellipsis; /* Añade puntos suspensivos al final */
+}
+#artwork-view-container #artwork-view-body .artwork-view-documents .artwork-document img {
+  width: 50%;
+  height: 80%;
+}
+#artwork-view-container #artwork-view-body .artwork-view-documents .artwork-document p {
+  width: 100%;
+  height: 20%;
+  color: rgb(71, 71, 71);
+  text-align: center;
+  font-size: 12px;
 }/*# sourceMappingURL=artwork-view.css.map */

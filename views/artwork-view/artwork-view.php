@@ -59,6 +59,32 @@
             </div> -->
         </div>
         <div class="artwork-view-subheader">
+            <h4>Documents</h4>
+        </div>
+        <div class="artwork-view-documents">
+            <!-- <div class="artwork-document">
+                <img src="assets/img/icono-documento.png" />
+                <p>Document PDF</p>
+            </div> -->
+        </div>
+        <div class="artwork-view-subheader">
+            <h4>Referències</h4>
+        </div>
+        <div class="artwork-view-details artwork-view-references">
+            <!-- <div class="ref">
+                <a href="https://www.google.com">Ref1</a>
+            </div>
+            <div class="ref">
+                <a href="https://www.google.com">Ref2</a>
+            </div>
+            <div class="ref">
+                <a href="https://www.google.com">Ref3</a>
+            </div>
+            <div class="ref">
+                <a href="https://www.google.com">Ref4</a>
+            </div> -->
+        </div>
+        <div class="artwork-view-subheader">
             <h4>Altres detalls</h4>
         </div>
         <div class="artwork-view-details">

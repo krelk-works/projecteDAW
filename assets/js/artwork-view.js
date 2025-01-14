@@ -80,7 +80,7 @@ if (urlParams.has('id')) {
         body: JSON.stringify({ artworkId: urlParams.get('id') }) // Convertir el array a JSON
     })
         .then(response => response.text()) // Leer la respuesta completa como texto
-        .then(data => {
+        .then(async data => {
             try {
                 // console.log('Hola API...')
                 // console.log(data);
@@ -94,10 +94,10 @@ if (urlParams.has('id')) {
 
                 // Artwork identifier
                 let identifier = "";
-                
+
                 artworkData.id_letter ? identifier += artworkData.id_letter : null;
                 artworkData.id_num1 ? identifier += padIdentifierWithZeros(artworkData.id_num1) : null;
-                artworkData.id_num2 ? identifier += "."+padSubWithZeros(artworkData.id_num2) : null;
+                artworkData.id_num2 ? identifier += "." + padSubWithZeros(artworkData.id_num2) : null;
 
                 $('#artwork-identifier').text(identifier);
 
@@ -165,7 +165,7 @@ if (urlParams.has('id')) {
 
                 // Artwork conservation status
                 $('#artwork-conservation').text(artworkData.conservationstatus);
-                
+
                 // Artwork provenance locations museum
                 $('#artwork-museum-name').text(artworkData.museumname);
 
@@ -210,7 +210,113 @@ if (urlParams.has('id')) {
 
                 // Add additional images to the gallery if they exist
 
+                // const additionalImages = fetchData.additionalImages;
 
+                // Obtenemos los datos de las fotos adicionales
+                const additionalImages = await fetch('apis/artworksAPI.php?additionalimages', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ id: urlParams.get('id') }) // Convertir el array a JSON
+                }).then(response => response.json()).then(data => { return data; });
+
+                // console.log(additionalImages);
+
+                if (additionalImages.status == 'success') {
+                    additionalImages.data.forEach(image => {
+                        const newImageDivElement = document.createElement('div');
+                        newImageDivElement.className = "artwork-view-image";
+                        const newImageElement = document.createElement('img');
+                        newImageElement.src = image.URL;
+                        newImageElement.alt = "Imatge addicional de l'obra";
+                        newImageDivElement.appendChild(newImageElement);
+                        newImageDivElement.addEventListener('click', () => {
+                            // Open image in new tab
+                            window.open(image.URL, '_blank');
+                        });
+                        $('.artwork-view-images').append(newImageDivElement);
+                    });
+                }
+
+                // Obtenemos los documentos asociados a la obra
+                const artworkDocuments = await fetch('apis/artworksAPI.php?artworkdocuments', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ id: urlParams.get('id') }) // Convertir el array a JSON
+                }).then(response => response.json());
+
+                // console.log(artworkDocuments);
+
+                if (artworkDocuments.status === 'success') {
+                    const documentBox = document.querySelector('.artwork-view-documents'); // Corrige la obtención del contenedor
+
+                    artworkDocuments.data.forEach(doc => {
+                        // console.log(doc);
+
+                        // Crear el div contenedor del documento
+                        const newDocumentDivElement = document.createElement('div');
+                        newDocumentDivElement.className = "artwork-document";
+
+                        // Crear la imagen del documento
+                        const newDocumentElement = document.createElement('img');
+                        newDocumentElement.src = "assets/img/icono-documento.png";
+                        newDocumentElement.alt = "Document associat a l'obra";
+
+                        // Crear el texto del documento
+                        const newDocumentText = document.createElement('p');
+                        newDocumentText.textContent = doc.URL;
+
+                        // Añadir la imagen y el texto al div contenedor
+                        newDocumentDivElement.appendChild(newDocumentElement);
+                        newDocumentDivElement.appendChild(newDocumentText);
+
+                        // Añadir el evento click al div contenedor
+                        newDocumentDivElement.addEventListener('click', () => {
+                            // Abrir el documento en una nueva pestaña
+                            window.open('uploads/' + doc.URL, '_blank');
+                        });
+
+                        // Añadir el div contenedor al contenedor principal
+                        documentBox.appendChild(newDocumentDivElement);
+                    });
+                }
+
+                // Obtenemos las referencias asociadas a la obra
+                const artworkRefs = await fetch('apis/artworksAPI.php?artworkrefs', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ id: urlParams.get('id') }) // Convertir el array a JSON
+                }).then(response => response.json());
+
+                // Verificar si la respuesta es exitosa
+                if (artworkRefs.status === 'success') {
+                    const refsBox = document.querySelector('.artwork-view-references'); // Contenedor de las referencias
+
+                    artworkRefs.data.forEach(ref => {
+                        // console.log(ref);
+
+                        // Crear el div contenedor de la referencia
+                        const newRefDivElement = document.createElement('div');
+                        newRefDivElement.className = "ref";
+
+                        // Crear el enlace de la referencia
+                        const newRefLink = document.createElement('a');
+                        newRefLink.href = ref.URL; // Asignar la URL desde los datos del servidor
+                        newRefLink.textContent = ref.label || 'Referencia'; // Asignar el texto del enlace
+                        newRefLink.target = '_blank'; // Abrir el enlace en una nueva pestaña
+
+                        // Agregar el enlace al div contenedor
+                        newRefDivElement.appendChild(newRefLink);
+
+                        // Agregar el div contenedor al contenedor principal
+                        refsBox.appendChild(newRefDivElement);
+                    });
+                }
 
                 // Stop loader spinner and delete element
                 loaderContainer.remove();
@@ -221,14 +327,14 @@ if (urlParams.has('id')) {
             } catch (error) {
                 console.log('Error parsing JSON data:', data + " | Error: " + error);
             }
-            
+
         })
         .catch(error => console.log(error));
 
-        $("#edit_artwork").click(function() {
-            // window.open('index.php?page=artwork-update&id='+urlParams.get('id'));
-            window.location.href = 'index.php?page=artwork-update&id='+urlParams.get('id');
-        });
+    $("#edit_artwork").click(function () {
+        // window.open('index.php?page=artwork-update&id='+urlParams.get('id'));
+        window.location.href = 'index.php?page=artwork-update&id=' + urlParams.get('id');
+    });
 }
 
 movement_create.addEventListener('click', function () {
@@ -283,18 +389,18 @@ movement_create.addEventListener('click', function () {
                     artwork: formData.artworkId
                 })
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status == 'success') {
-                    Swal.fire('Éxito', data.message, 'success');
-                } else {
-                    Swal.fire('Error', data.message, 'error');
-                }
-            })
-            .catch(error => {
-                Swal.fire('Error', 'Hubo un problema al crear el movimiento.', 'error');
-                console.error(error);
-            });
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status == 'success') {
+                        Swal.fire('Éxito', data.message, 'success');
+                    } else {
+                        Swal.fire('Error', data.message, 'error');
+                    }
+                })
+                .catch(error => {
+                    Swal.fire('Error', 'Hubo un problema al crear el movimiento.', 'error');
+                    console.error(error);
+                });
         }
     });
 });

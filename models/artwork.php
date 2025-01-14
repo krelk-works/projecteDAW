@@ -893,5 +893,34 @@
                 return false;
             }
         }
+
+        public function getAdditionalImages($id) {
+            $conn = $this->connect();
+            $sql = "SELECT * FROM images WHERE artwork = :id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(':id', $id);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function getArtworkDocuments($id) {
+            $conn = $this->connect();
+            $sql = "SELECT * FROM documents WHERE artwork = :id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(':id', $id);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function getReferences($id) {
+            $conn = $this->connect();
+            $sql = "SELECT * FROM refs WHERE artwork = :id ORDER BY label";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(':id', $id);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
     }
+
+   
 ?>
