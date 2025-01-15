@@ -34,7 +34,7 @@
                     }
                 ?>
                 
-                <a href="#" class="forgot-password">He oblidat la meva contrasenya</a>
+                <!--<a href="#" class="forgot-password">He oblidat la meva contrasenya</a>-->
                 <button type="submit" class="login-btn">Login</button>
             </form>
         </div>
