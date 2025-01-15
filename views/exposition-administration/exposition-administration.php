@@ -85,7 +85,7 @@
             foreach ($expoData as $data) {
                 echo '<div class="list-item list-item-exposition-admin">
                     <img src="' . $data['image'] . '" alt="' . $data['name'] . '">
-                    <h3>' . $data['name'] . '</h3>
+                    <h3>' . $data['title'] . '</h3>
                     <p>' . $data['register_date'] . '</p>
                     <a href="?page=exposition-administration&expoID=' . $id . '&confirm=true&artworkID=' . $data['id'] . '"><button class="action_button delete_button">Eliminar</button></a>
                 </div>';
